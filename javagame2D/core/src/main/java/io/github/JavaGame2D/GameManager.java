@@ -3,6 +3,7 @@ package io.github.JavaGame2D;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import io.github.JavaGame2D.Components.DrawableComponent;
@@ -59,8 +60,12 @@ public class GameManager extends ApplicationAdapter {
         Entity player = entityManager.createEntity();
 
         Texture playerSprite = new Texture("playerSprite.png");
+        float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
         DrawableComponent drawableComponent = new DrawableComponent(playerSprite);
         TransformComponent transformComponent = new TransformComponent();
+        transformComponent.height = 100*scale;
+        transformComponent.width = 100;
+        transformComponent.position = new Vector2(10f,10f);
 
         player.addComponent(drawableComponent);
         player.addComponent(transformComponent);

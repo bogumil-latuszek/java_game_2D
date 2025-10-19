@@ -1,6 +1,7 @@
 package io.github.JavaGame2D;
 
 import io.github.JavaGame2D.Components.Component;
+import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Enums.ComponentType;
 import io.github.JavaGame2D.Systems.EntityManager;
 
@@ -15,6 +16,7 @@ public class Entity {
     // the ID will just get passed to it's constructor
     public Entity(int ID) {
         this.ID = ID;
+        this.components = new HashMap<ComponentType, Component>();
     }
 
     public boolean hasComponent(ComponentType componentType){
@@ -22,6 +24,14 @@ public class Entity {
     }
 
     public Component getComponent(ComponentType componentType){
+        return this.components.get(componentType);
+    }
+
+//    public <T extends Component> getComponent(Class<T> componentClass){
+//        return this.components.get(componentClass);
+//    }
+
+    public Component getDrawableComponent(ComponentType componentType){
         return this.components.get(componentType);
     }
 

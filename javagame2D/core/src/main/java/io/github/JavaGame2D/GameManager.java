@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import io.github.JavaGame2D.Components.DrawableComponent;
+import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Systems.EntityManager;
 import io.github.JavaGame2D.Systems.RenderingSystem;
 import io.github.JavaGame2D.Systems.UserInterface;
@@ -22,10 +23,13 @@ public class GameManager extends ApplicationAdapter {
     @Override
     public void create() {
         // initialize systems
-        renderingSystem = new RenderingSystem();
         entityManager = new EntityManager();
+
+        renderingSystem = new RenderingSystem(entityManager);
         userInterface = new UserInterface();
         previousTimeframe = System.currentTimeMillis();
+
+        createPlayer();
     }
 
     // this function may be called "render"
@@ -39,6 +43,7 @@ public class GameManager extends ApplicationAdapter {
         userInterface.update(deltaTime);
         //inputSystem.update();
         //physics2DSystem.update();
+
         renderingSystem.render();
         userInterface.render();
     }
@@ -47,5 +52,17 @@ public class GameManager extends ApplicationAdapter {
     public void dispose() {
         renderingSystem.dispose();
         userInterface.dispose();
+    }
+
+
+    private void createPlayer(){
+        Entity player = entityManager.createEntity();
+
+        Texture playerSprite = new Texture("playerSprite.png");
+        DrawableComponent drawableComponent = new DrawableComponent(playerSprite);
+        TransformComponent transformComponent = new TransformComponent();
+
+        player.addComponent(drawableComponent);
+        player.addComponent(transformComponent);
     }
 }

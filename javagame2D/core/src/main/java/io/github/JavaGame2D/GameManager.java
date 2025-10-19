@@ -5,28 +5,47 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.ScreenUtils;
 
+import io.github.JavaGame2D.Components.DrawableComponent;
+import io.github.JavaGame2D.Systems.EntityManager;
+import io.github.JavaGame2D.Systems.RenderingSystem;
+import io.github.JavaGame2D.Systems.UserInterface;
+
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class GameManager extends ApplicationAdapter {
-    private SpriteBatch batch;
-    private Texture image;
+    RenderingSystem renderingSystem;
+    EntityManager entityManager;
+    UserInterface userInterface;
+    Long previousTimeframe;
+
+
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        image = new Texture("libgdx.png");
+        // initialize systems
+        renderingSystem = new RenderingSystem();
+        entityManager = new EntityManager();
+        userInterface = new UserInterface();
+        previousTimeframe = System.currentTimeMillis();
     }
 
+    // this function may be called "render"
+    // but this is actually one frame of our main loop
     @Override
     public void render() {
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-        batch.begin();
-        batch.draw(image, 140, 210);
-        batch.end();
+        Long currentTime = System.currentTimeMillis();
+        float deltaTime = (float)(currentTime - previousTimeframe);
+        previousTimeframe = currentTime;
+
+        userInterface.update(deltaTime);
+        //inputSystem.update();
+        //physics2DSystem.update();
+        renderingSystem.render();
+        userInterface.render();
     }
 
     @Override
     public void dispose() {
-        batch.dispose();
-        image.dispose();
+        renderingSystem.dispose();
+        userInterface.dispose();
     }
 }

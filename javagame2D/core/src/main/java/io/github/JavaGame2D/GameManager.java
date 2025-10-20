@@ -8,15 +8,15 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
-import io.github.JavaGame2D.Systems.EntityManager;
-import io.github.JavaGame2D.Systems.RenderingSystem;
-import io.github.JavaGame2D.Systems.UserInterface;
+import io.github.JavaGame2D.Systems.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class GameManager extends ApplicationAdapter {
     RenderingSystem renderingSystem;
     EntityManager entityManager;
     UserInterface userInterface;
+    InputSystem inputSystem;
+    PlayerCharacterController playerCharacterController;
     Long previousTimeframe;
 
 
@@ -28,9 +28,13 @@ public class GameManager extends ApplicationAdapter {
 
         renderingSystem = new RenderingSystem(entityManager);
         userInterface = new UserInterface();
-        previousTimeframe = System.currentTimeMillis();
+        inputSystem = new InputSystem();
+        playerCharacterController = new PlayerCharacterController();
 
-        createPlayer();
+        Entity player = createPlayer();
+        playerCharacterController.setPlayerCharacter(player);
+
+        previousTimeframe = System.currentTimeMillis();
     }
 
     // this function may be called "render"
@@ -41,8 +45,8 @@ public class GameManager extends ApplicationAdapter {
         float deltaTime = (float)(currentTime - previousTimeframe);
         previousTimeframe = currentTime;
 
+        inputSystem.update();
         userInterface.update(deltaTime);
-        //inputSystem.update();
         //physics2DSystem.update();
 
         renderingSystem.render();
@@ -56,7 +60,7 @@ public class GameManager extends ApplicationAdapter {
     }
 
 
-    private void createPlayer(){
+    private Entity createPlayer(){
         Entity player = entityManager.createEntity();
 
         Texture playerSprite = new Texture("playerSprite.png");
@@ -69,5 +73,6 @@ public class GameManager extends ApplicationAdapter {
 
         player.addComponent(drawableComponent);
         player.addComponent(transformComponent);
+        return player;
     }
 }

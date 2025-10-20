@@ -18,6 +18,9 @@ public class Entity {
         this.ID = ID;
         this.components = new HashMap<ComponentType, Component>();
     }
+    public int getID(){
+        return this.ID;
+    }
 
     public boolean hasComponent(ComponentType componentType){
         return this.components.containsKey(componentType);

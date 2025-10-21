@@ -1,0 +1,24 @@
+package io.github.JavaGame2D.Components;
+
+import com.badlogic.gdx.math.Vector2;
+import io.github.JavaGame2D.Enums.ComponentType;
+
+public class PhysicalBodyComponent implements Component{
+
+    public Vector2 velocity;
+    public boolean usesGravity;
+    public boolean onGround;
+
+    public PhysicalBodyComponent() {
+        this.velocity = new Vector2(0f,0f);
+        this.usesGravity = false;
+        this.onGround = false;
+
+    }
+
+
+    @Override
+    public ComponentType type() {
+        return ComponentType.PHYSICAL_BODY;
+    }
+}

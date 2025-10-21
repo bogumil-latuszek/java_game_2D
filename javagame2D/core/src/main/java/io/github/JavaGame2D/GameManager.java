@@ -7,12 +7,14 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 import io.github.JavaGame2D.Components.DrawableComponent;
+import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Systems.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class GameManager extends ApplicationAdapter {
     RenderingSystem renderingSystem;
+    PhysicsSystem physicsSystem;
     EntityManager entityManager;
     UserInterface userInterface;
     InputSystem inputSystem;
@@ -27,6 +29,7 @@ public class GameManager extends ApplicationAdapter {
         entityManager = new EntityManager();
 
         renderingSystem = new RenderingSystem(entityManager);
+        physicsSystem = new PhysicsSystem(entityManager);
         userInterface = new UserInterface();
         inputSystem = new InputSystem();
         playerCharacterController = new PlayerCharacterController();
@@ -43,11 +46,13 @@ public class GameManager extends ApplicationAdapter {
     public void render() {
         Long currentTime = System.currentTimeMillis();
         float deltaTime = (float)(currentTime - previousTimeframe);
+        // TODO: make delta time uses consistent across the system!
+        float deltaTimeInSeconds = deltaTime/1000;
         previousTimeframe = currentTime;
 
         inputSystem.update();
         userInterface.update(deltaTime);
-        //physics2DSystem.update();
+        physicsSystem.update(deltaTimeInSeconds);
 
         renderingSystem.render();
         userInterface.render();
@@ -69,10 +74,13 @@ public class GameManager extends ApplicationAdapter {
         TransformComponent transformComponent = new TransformComponent();
         transformComponent.height = 100*scale;
         transformComponent.width = 100;
-        transformComponent.position = new Vector2(10f,10f);
+        transformComponent.position = new Vector2(10f,50f);
+        PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
+        bodyComponent.usesGravity = true;
 
         player.addComponent(drawableComponent);
         player.addComponent(transformComponent);
+        player.addComponent(bodyComponent);
         return player;
     }
 }

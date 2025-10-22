@@ -17,6 +17,9 @@ public class PlayerCharacterController {
     }
 
     public void handlePlayerAction(InputSystem.PlayerAction event){
+        if (playerCharacter == null){
+            return;
+        }
         TransformComponent transform = (TransformComponent) playerCharacter.getComponent(ComponentType.TRANSFORM);
         switch (event.action){
             case GO_LEFT:

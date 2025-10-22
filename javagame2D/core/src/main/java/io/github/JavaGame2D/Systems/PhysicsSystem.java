@@ -13,7 +13,7 @@ public class PhysicsSystem {
     private EntityManager entityManager;
 
     public PhysicsSystem(EntityManager entityManager) {
-        this.gravity = -9.8f;
+        this.gravity = -9.8f; //acceleration: 9.8 m/s in -y direction
         this.entityManager = entityManager;
     }
 

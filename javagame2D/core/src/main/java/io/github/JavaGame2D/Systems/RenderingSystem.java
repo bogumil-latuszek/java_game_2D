@@ -44,11 +44,6 @@ public class RenderingSystem {
             float height = transformComponent.height;
             batch.draw(sprite, position.x, position.y, width, height);
         }
-        // texture  = entity.drawableComponent.sprite
-        // width/height = e.d.width/height
-        // position = entity.transformComponent.positionVector
-
-
         batch.end();
     }
 

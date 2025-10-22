@@ -36,6 +36,7 @@ public class GameManager extends ApplicationAdapter {
 
         Entity player = createPlayer();
         playerCharacterController.setPlayerCharacter(player);
+        renderingSystem.setEntityFollowedByCamera(player);
 
         previousTimeframe = System.currentTimeMillis();
     }

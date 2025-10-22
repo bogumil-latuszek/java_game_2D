@@ -72,8 +72,8 @@ public class GameManager extends ApplicationAdapter {
         float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
         DrawableComponent drawableComponent = new DrawableComponent(playerSprite);
         TransformComponent transformComponent = new TransformComponent();
-        transformComponent.height = 100*scale;
-        transformComponent.width = 100;
+        transformComponent.height = 2*scale;
+        transformComponent.width = 2;
         transformComponent.position = new Vector2(10f,50f);
         PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
         bodyComponent.usesGravity = true;

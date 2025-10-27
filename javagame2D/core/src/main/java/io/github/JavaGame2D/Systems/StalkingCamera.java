@@ -45,7 +45,6 @@ public class StalkingCamera {
 
 
     public Matrix4 getProjectionMatrix(){
-        System.out.println(this.camera.combined.toString());
         return this.camera.combined;
     }
 }

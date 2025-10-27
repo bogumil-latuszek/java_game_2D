@@ -1,6 +1,7 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.math.Vector2;
+import com.sun.org.apache.bcel.internal.generic.IfInstruction;
 import io.github.JavaGame2D.Components.ColliderComponent;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
@@ -16,10 +17,12 @@ public class PhysicsSystem {
     private float gravity;
     //TODO: dependency injection
     private EntityManager entityManager;
+    private float groundCheckDepth;
 
     public PhysicsSystem(EntityManager entityManager) {
         this.gravity = -60f; //acceleration: unit/s in -y direction
         this.entityManager = entityManager;
+        this.groundCheckDepth = 1f;
     }
 
     public void update(float deltaTime){
@@ -39,6 +42,13 @@ public class PhysicsSystem {
             Vector2 position = transformComponent.position;
             Vector2 previousPosition = transformComponent.previousPosition;
             Vector2 velocity = physicalBodyComponent.velocity;
+            if (physicalBodyComponent.usesGravity && physicalBodyComponent.onGround){
+                //do the ground check:
+                boolean stillOnGround = groundCheck(entity);
+                if (!stillOnGround){
+                    physicalBodyComponent.onGround = false;
+                }
+            }
             // apply gravity
             if (physicalBodyComponent.usesGravity && !physicalBodyComponent.onGround){
                 //assuming deltaTime is in seconds! also shouldn't it be capped? or is that irrelevant to gravity calc?
@@ -58,6 +68,59 @@ public class PhysicsSystem {
             velocity.x = 0;
             position.y += velocity.y * deltaTime;
         }
+    }
+
+    private boolean groundCheck(Entity entity){
+        boolean stillOnGround = true;
+        ColliderComponent collider = (ColliderComponent) entity.getComponent(ComponentType.COLLIDER);
+
+        if (collider.type == ColliderType.AABB){
+            stillOnGround = groundCheckForAABB(entity);
+        }
+        return stillOnGround;
+    }
+
+    private boolean groundCheckForAABB(Entity entity){
+        boolean stillOnGround = true;
+        boolean atLeastOneCollision = false;
+        TransformComponent transform = (TransformComponent) entity.getComponent(ComponentType.TRANSFORM);
+        ColliderComponent collider = (ColliderComponent) entity.getComponent(ComponentType.COLLIDER);
+
+        // #1 construct "ground check collider" from collider:
+        float groundColliserPositionX = transform.position.x;
+        float groundColliderPositionY = transform.position.y - ( (transform.height/2) + groundCheckDepth );
+        Vector2 groundColliderPosition = new Vector2(groundColliserPositionX, groundColliderPositionY );
+        float groundColliderWidth = transform.width;
+        float groundColliderHeight = groundCheckDepth;
+
+        ComponentType[] requiredComponents = {ComponentType.TRANSFORM,
+                                              ComponentType.PHYSICAL_BODY,
+                                              ComponentType.COLLIDER};
+        Entity[] potentialGround = entityManager.getMatchingEntities(requiredComponents);
+        for (Entity otherEntity : potentialGround){
+            // check if collision is possible
+            // impossible for entity to collide with itself
+            if (entity == otherEntity){
+                continue;
+            }
+            ColliderComponent collider2 = (ColliderComponent) otherEntity.getComponent(ComponentType.COLLIDER);
+            // impossible for entities on different layers to collide
+            if (collider.layer != collider2.layer){
+                continue;
+            }
+            TransformComponent transfrom2 = (TransformComponent) otherEntity.getComponent(ComponentType.TRANSFORM);
+            if (collider2.type == ColliderType.AABB){
+                boolean detectedCollision = detectAABBxAABBCollision(groundColliderPosition, groundColliderWidth, groundColliderHeight,
+                                                                     transfrom2.position, transfrom2.width, transfrom2.height);
+                if(detectedCollision){
+                    atLeastOneCollision = true;
+                }
+            }
+        }
+        if (!atLeastOneCollision){
+            stillOnGround = false;
+        }
+        return stillOnGround;
     }
 
     private void detectAndResolveCollisions(){

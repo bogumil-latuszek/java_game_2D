@@ -90,7 +90,7 @@ public class GameManager extends ApplicationAdapter {
         Entity player = entityManager.createEntity();
 
         //Texture playerSprite = new Texture("playerSprite.png");
-        Texture playerSprite = new Texture("amongusPlayer.png");
+        Texture playerSprite = new Texture("playerSprite.png");
         float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
         DrawableComponent drawableComponent = new DrawableComponent(playerSprite);
         TransformComponent transformComponent = new TransformComponent();

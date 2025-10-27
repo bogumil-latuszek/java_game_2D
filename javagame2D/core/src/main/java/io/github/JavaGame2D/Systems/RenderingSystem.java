@@ -3,6 +3,7 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
@@ -50,10 +51,14 @@ public class RenderingSystem {
             DrawableComponent drawableComponent = (DrawableComponent)entity.getComponent(ComponentType.DRAWABLE);
             TransformComponent transformComponent = (TransformComponent) entity.getComponent(ComponentType.TRANSFORM);
             Texture sprite = drawableComponent.getSprite();
-            Vector2 position = transformComponent.position;
+
+            float centerX = transformComponent.position.x;
+            float centerY = transformComponent.position.y;
             float width = transformComponent.width;
             float height = transformComponent.height;
-            batch.draw(sprite, position.x, position.y, width, height);
+            // this system needs x,y coords of the lower left corner, not center!
+            Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
+            batch.draw(sprite, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
         }
         batch.end();
     }

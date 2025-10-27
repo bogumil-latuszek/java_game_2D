@@ -8,12 +8,15 @@ public class PhysicalBodyComponent implements Component{
     public Vector2 velocity;
     public boolean usesGravity;
     public boolean onGround;
+    public boolean dynamic; // doesn't move by itself;
+    public float moveSpeed;
 
     public PhysicalBodyComponent() {
         this.velocity = new Vector2(0f,0f);
         this.usesGravity = false;
         this.onGround = false;
-
+        this.dynamic = true;
+        moveSpeed = 10;
     }
 
 

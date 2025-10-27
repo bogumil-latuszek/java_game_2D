@@ -35,6 +35,8 @@ public class PhysicsSystem {
             }
             // move objects
             position.x += velocity.x * deltaTime;
+            // reset player's horizontal velocity
+            velocity.x = 0;
             position.y += velocity.y * deltaTime;
 
             // detect collisions

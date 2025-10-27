@@ -1,5 +1,6 @@
 package io.github.JavaGame2D.Systems;
 
+import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ComponentType;
@@ -20,16 +21,19 @@ public class PlayerCharacterController {
         if (playerCharacter == null){
             return;
         }
-        TransformComponent transform = (TransformComponent) playerCharacter.getComponent(ComponentType.TRANSFORM);
+        PhysicalBodyComponent body = (PhysicalBodyComponent) playerCharacter.getComponent(ComponentType.PHYSICAL_BODY);
         switch (event.action){
             case GO_LEFT:
-                transform.position.x -= 1;
+                body.velocity.x = -body.moveSpeed;
                 break;
             case GO_RIGHT:
-                transform.position.x += 1;
+                body.velocity.x = body.moveSpeed;
                 break;
+            case JUMP:
+                if (body.onGround){
+                    body.onGround = false;
+                    body.velocity.y += 50;
+                }
         }
     }
-
-
 }

@@ -261,12 +261,6 @@ public class PhysicsSystem {
 
             int pushDirection = sPreviousPosition.y < dPreviousPosition.y ? 1 : -1;
 
-            pushOffset = 0.9f;// if I set it to any value less then 0.9, then
-                              // after initial collision resolution that pushes up/down, there will be few more
-                              // which will push dynamic entity right or left (to the closest corner of static entity)
-                              // why? I HAVE NO FUCKING IDEA! I SPENT WHOLE FUCKING DAY TRYING TO FIX THIS SHIT!!
-                              // but I give up, this has to do the job for now
-
             float yAxisPushLength = (yAxisOverlap + pushOffset)*pushDirection ;
             dTransform.position.y += yAxisPushLength;
             System.out.println("pushing on y by "+yAxisPushLength);
@@ -314,9 +308,9 @@ public class PhysicsSystem {
         float bMaxX = bPositionX + bWidth/2;
         float minX = Math.min(aMinX,bMinX);
         float maxX = Math.max(aMaxX,bMaxX);
-        float xRange = Math.abs(maxX-minX);
+        float xRange = maxX - minX;
         float combinedWidth = aWidth+bWidth;
-        float xAxisOverlap = (combinedWidth-xRange)/2;
+        float xAxisOverlap = combinedWidth-xRange;
         return xAxisOverlap;
     }
 
@@ -327,9 +321,9 @@ public class PhysicsSystem {
         float bMaxY = bPositionY + bHeight/2;
         float minY = Math.min(aMinY,bMinY);
         float maxY = Math.max(aMaxY,bMaxY);
-        float yRange = Math.abs(maxY-minY);
+        float yRange = maxY - minY;
         float combinedHeight = aHeight+bHeight;
-        float yAxisOverlap = (combinedHeight-yRange)/2;
+        float yAxisOverlap = combinedHeight-yRange;
         return yAxisOverlap;
     }
 

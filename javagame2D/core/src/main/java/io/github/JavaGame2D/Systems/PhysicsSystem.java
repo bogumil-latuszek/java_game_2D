@@ -178,11 +178,9 @@ public class PhysicsSystem {
         boolean collisionDetected = false;
 
         TransformComponent transformA = (TransformComponent) a.getComponent(ComponentType.TRANSFORM);
-        //PhysicalBodyComponent bodyA = (PhysicalBodyComponent) a.getComponent(ComponentType.PHYSICAL_BODY);
         ColliderComponent colliderA = (ColliderComponent) a.getComponent(ComponentType.COLLIDER);
 
         TransformComponent transformB = (TransformComponent) b.getComponent(ComponentType.TRANSFORM);
-        //PhysicalBodyComponent bodyB = (PhysicalBodyComponent) b.getComponent(ComponentType.PHYSICAL_BODY);
         ColliderComponent colliderB = (ColliderComponent) b.getComponent(ComponentType.COLLIDER);
 
         Vector2 positionA = transformA.position;
@@ -237,7 +235,7 @@ public class PhysicsSystem {
 
         float pushOffset = 0.0001f;// used to push dynamic entity slightly further to reduce unnecessary collisions
         if (previouslyOverlappedOnYAxis){
-            float xAxisOverlap = calculateXAxisOverlap(dTransform.position.x, dTransform.width,
+            float xAxisOverlap = calculateOverlap(dTransform.position.x, dTransform.width,
                 sTransform.position.x, sTransform.width);
 
             // update previous position to current?
@@ -252,7 +250,7 @@ public class PhysicsSystem {
             dBody.velocity.x = 0;
         }
         else{
-            float yAxisOverlap = calculateYAxisOverlap(dTransform.position.y, dTransform.height,
+            float yAxisOverlap = calculateOverlap(dTransform.position.y, dTransform.height,
                 sTransform.position.y, sTransform.height);
 
             // update previous position to current?
@@ -277,56 +275,36 @@ public class PhysicsSystem {
 
     public boolean detectAABBxAABBCollision(Vector2 positionA, float widthA, float heightA,
                                             Vector2 positionB, float widthB, float heightB){
-        boolean overlapOnXAxis = false;
-        boolean overlapOnYAxis = false;
-        float aMinX = positionA.x - widthA/2;
-        float aMaxX = positionA.x + widthA/2;
-        float bMinX = positionB.x - widthB/2;
-        float bMaxX = positionB.x + widthB/2;
-        if ( (aMinX < bMinX && bMinX < aMaxX) || (aMinX < bMaxX && bMaxX < aMaxX) ||
-             (bMinX < aMinX && aMinX < bMaxX) || (bMinX < aMaxX && aMaxX < bMaxX) ){
-
-            overlapOnXAxis = true;
-        }
-        float aMinY = positionA.y - heightA/2;
-        float aMaxY = positionA.y + heightA/2;
-        float bMinY = positionB.y - heightB/2;
-        float bMaxY = positionB.y + heightB/2;
-        if ( (aMinY < bMinY && bMinY < aMaxY) || (aMinY < bMaxY && bMaxY < aMaxY) ||
-             (bMinY < aMinY && aMinY < bMaxY) || (bMinY < aMaxY && aMaxY < bMaxY) ){
-            overlapOnYAxis = true;
-        }
+        boolean overlapOnXAxis = detectOverlap(positionA.x, widthA, positionB.x, widthB);
+        boolean overlapOnYAxis = detectOverlap(positionA.y, heightA, positionB.y, heightB);
         boolean detectedCollision = overlapOnXAxis && overlapOnYAxis;
-        //System.out.println("col on X: "+overlapOnXAxis +" , col on Y: "+ overlapOnYAxis);
         return detectedCollision;
     }
 
-    public float calculateXAxisOverlap(float aPositionX, float aWidth, float bPositionX, float bWidth){
-        float aMinX = aPositionX - aWidth/2;
-        float aMaxX = aPositionX + aWidth/2;
-        float bMinX = bPositionX - bWidth/2;
-        float bMaxX = bPositionX + bWidth/2;
-        float minX = Math.min(aMinX,bMinX);
-        float maxX = Math.max(aMaxX,bMaxX);
-        float xRange = maxX - minX;
-        float combinedWidth = aWidth+bWidth;
-        float xAxisOverlap = combinedWidth-xRange;
-        return xAxisOverlap;
+    public boolean detectOverlap(float pointA, float rangeA, float pointB, float rangeB){
+        boolean overlapDetected = false;
+        float aMin = pointA - rangeA/2;
+        float aMax = pointA + rangeA/2;
+        float bMin = pointB - rangeB/2;
+        float bMax = pointB + rangeB/2;
+        if (aMax > bMin && bMax > aMin){
+            overlapDetected = true;
+        }
+        return  overlapDetected;
     }
 
-    public float calculateYAxisOverlap(float aPositionY, float aHeight, float bPositionY, float bHeight){
-        float aMinY = aPositionY - aHeight/2;
-        float aMaxY = aPositionY + aHeight/2;
-        float bMinY = bPositionY - bHeight/2;
-        float bMaxY = bPositionY + bHeight/2;
-        float minY = Math.min(aMinY,bMinY);
-        float maxY = Math.max(aMaxY,bMaxY);
-        float yRange = maxY - minY;
-        float combinedHeight = aHeight+bHeight;
-        float yAxisOverlap = combinedHeight-yRange;
-        return yAxisOverlap;
+    public float calculateOverlap(float pointA, float rangeA, float pointB, float rangeB){
+        // remember to only use this function if you know for sure that there IS an overlap
+        // for lines that are apart from each other, the results will be wrong
+        float aMin = pointA - rangeA/2;
+        float aMax = pointA + rangeA/2;
+        float bMin = pointB - rangeB/2;
+        float bMax = pointB + rangeB/2;
+        float min = Math.min(aMin,bMin);
+        float max = Math.max(aMax,bMax);
+        float maximumRange = rangeA + rangeB;
+        float actualRange = max - min;
+        float overlap = maximumRange - actualRange;
+        return overlap;
     }
-
-
-
 }

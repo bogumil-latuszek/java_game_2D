@@ -1,16 +1,15 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.math.Vector2;
-import com.sun.org.apache.bcel.internal.generic.IfInstruction;
+//import com.sun.org.apache.bcel.internal.generic.IfInstruction;
 import io.github.JavaGame2D.Components.ColliderComponent;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ColliderType;
 import io.github.JavaGame2D.Enums.ComponentType;
-import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
+//import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
 
-import java.awt.geom.Line2D;
 
 public class PhysicsSystem {
     // TODO: load this from settings
@@ -81,46 +80,42 @@ public class PhysicsSystem {
     }
 
     private boolean groundCheckForAABB(Entity entity){
-        boolean stillOnGround = true;
+        boolean groundCollisionDetected = true;
         boolean atLeastOneCollision = false;
         TransformComponent transform = (TransformComponent) entity.getComponent(ComponentType.TRANSFORM);
         ColliderComponent collider = (ColliderComponent) entity.getComponent(ComponentType.COLLIDER);
-
-        // #1 construct "ground check collider" from collider:
-        float groundColliserPositionX = transform.position.x;
-        float groundColliderPositionY = transform.position.y - ( (transform.height/2) + groundCheckDepth );
-        Vector2 groundColliderPosition = new Vector2(groundColliserPositionX, groundColliderPositionY );
-        float groundColliderWidth = transform.width;
-        float groundColliderHeight = groundCheckDepth;
+        AABBCollider transformedCollider = createAABBCollider(transform, collider);
+        AABBCollider groundCollider = createAABBGroundCollider(transformedCollider);
 
         ComponentType[] requiredComponents = {ComponentType.TRANSFORM,
                                               ComponentType.PHYSICAL_BODY,
                                               ComponentType.COLLIDER};
         Entity[] potentialGround = entityManager.getMatchingEntities(requiredComponents);
+
         for (Entity otherEntity : potentialGround){
             // check if collision is possible
             // impossible for entity to collide with itself
             if (entity == otherEntity){
                 continue;
             }
-            ColliderComponent collider2 = (ColliderComponent) otherEntity.getComponent(ComponentType.COLLIDER);
+            ColliderComponent otherCollider = (ColliderComponent) otherEntity.getComponent(ComponentType.COLLIDER);
             // impossible for entities on different layers to collide
-            if (collider.layer != collider2.layer){
+            if (collider.layer != otherCollider.layer){
                 continue;
             }
-            TransformComponent transfrom2 = (TransformComponent) otherEntity.getComponent(ComponentType.TRANSFORM);
-            if (collider2.type == ColliderType.AABB){
-                boolean detectedCollision = detectAABBxAABBCollision(groundColliderPosition, groundColliderWidth, groundColliderHeight,
-                                                                     transfrom2.position, transfrom2.width, transfrom2.height);
+            TransformComponent otherTransform = (TransformComponent) otherEntity.getComponent(ComponentType.TRANSFORM);
+            if (otherCollider.type == ColliderType.AABB){
+                AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
+                boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
                 if(detectedCollision){
                     atLeastOneCollision = true;
                 }
             }
         }
         if (!atLeastOneCollision){
-            stillOnGround = false;
+            groundCollisionDetected = false;
         }
-        return stillOnGround;
+        return groundCollisionDetected;
     }
 
     private void detectAndResolveCollisions(){
@@ -168,7 +163,7 @@ public class PhysicsSystem {
                 else {
                     resolveDynamicxStaticAABBCollision(entity, otherEntity);
                 }
-                //System.out.println("collision detected between" + entity.getID() + " and " + otherEntity.getID());
+                System.out.println("collision detected between" + entity.getID() + " and " + otherEntity.getID());
             }
         }
 
@@ -183,17 +178,10 @@ public class PhysicsSystem {
         TransformComponent transformB = (TransformComponent) b.getComponent(ComponentType.TRANSFORM);
         ColliderComponent colliderB = (ColliderComponent) b.getComponent(ComponentType.COLLIDER);
 
-        Vector2 positionA = transformA.position;
-        float widthA = transformA.width;
-        float heightA = transformA.height;
-
-        Vector2 positionB = transformB.position;
-        float widthB = transformB.width;
-        float heightB = transformB.height;
-
         if (colliderA.type == ColliderType.AABB && colliderB.type == ColliderType.AABB){
-            collisionDetected = detectAABBxAABBCollision(positionA, widthA, heightA,
-                                                         positionB, widthB, heightB);
+            AABBCollider transformedColliderA = createAABBCollider(transformA, colliderA);
+            AABBCollider transformedColliderB = createAABBCollider(transformB, colliderB);
+            collisionDetected = detectAABBxAABBCollision(transformedColliderA, transformedColliderB);
         }
         return collisionDetected;
     }
@@ -207,27 +195,20 @@ public class PhysicsSystem {
         PhysicalBodyComponent sBody = (PhysicalBodyComponent) staticEntity.getComponent(ComponentType.PHYSICAL_BODY);
         ColliderComponent sCollider = (ColliderComponent) staticEntity.getComponent(ComponentType.COLLIDER);
 
+        AABBCollider dTransformedCollider = createAABBCollider(dTransform, dCollider);
+        AABBCollider dPreviousTransformedCollider = createAABBCollider(dTransform, dCollider, true);
+        AABBCollider sTransformedCollider = createAABBCollider(sTransform, sCollider);
+
         //1) find overlap on previous frame:
-        Vector2 dPreviousPosition = dTransform.previousPosition;
-        Vector2 sPreviousPosition = sTransform.previousPosition;
+        Vector2 dPreviousPosition = dPreviousTransformedCollider.position;
+        Vector2 sPreviousPosition = sTransformedCollider.position;
 
-//        float dPreviousMinX = dPreviousPosition.x - dTransform.width/2;
-//        float dPreviousMaxX = dPreviousPosition.x + dTransform.width/2;
-//        float sPreviousMinX = sPreviousPosition.x - sTransform.width/2;
-//        float sPreviousMaxX = sPreviousPosition.x + sTransform.width/2;
-
-//        boolean previouslyOverlappedOnXAxis = false;
-
-
-//        if (sPreviousMaxX > dPreviousMinX && dPreviousMaxX > sPreviousMinX){
-//            previouslyOverlappedOnXAxis = true;
-//        }
         boolean previouslyOverlappedOnYAxis = false;
 
-        float dPreviousMinY = dPreviousPosition.y - dTransform.height/2;
-        float dPreviousMaxY = dPreviousPosition.y + dTransform.height/2;
-        float sPreviousMinY = sPreviousPosition.y - sTransform.height/2;
-        float sPreviousMaxY = sPreviousPosition.y + sTransform.height/2;
+        float dPreviousMinY = dPreviousPosition.y - dPreviousTransformedCollider.height/2;
+        float dPreviousMaxY = dPreviousPosition.y + dPreviousTransformedCollider.height/2;
+        float sPreviousMinY = sPreviousPosition.y - sTransformedCollider.height/2;
+        float sPreviousMaxY = sPreviousPosition.y + sTransformedCollider.height/2;
 
         if (sPreviousMaxY > dPreviousMinY && dPreviousMaxY > sPreviousMinY){
             previouslyOverlappedOnYAxis = true;
@@ -235,8 +216,8 @@ public class PhysicsSystem {
 
         float pushOffset = 0.0001f;// used to push dynamic entity slightly further to reduce unnecessary collisions
         if (previouslyOverlappedOnYAxis){
-            float xAxisOverlap = calculateOverlap(dTransform.position.x, dTransform.width,
-                sTransform.position.x, sTransform.width);
+            float xAxisOverlap = calculateOverlap(dTransformedCollider.position.x, dTransformedCollider.width,
+                sTransformedCollider.position.x, sTransformedCollider.width);
 
             // update previous position to current?
             // dTransform.previousPosition.x =  dTransform.position.x;
@@ -246,12 +227,11 @@ public class PhysicsSystem {
             float xAxisPushLength = (xAxisOverlap + pushOffset)*pushDirection;
             dTransform.position.x += xAxisPushLength;
             System.out.println("pushing on x by "+xAxisPushLength);
-
             dBody.velocity.x = 0;
         }
         else{
-            float yAxisOverlap = calculateOverlap(dTransform.position.y, dTransform.height,
-                sTransform.position.y, sTransform.height);
+            float yAxisOverlap = calculateOverlap(dTransformedCollider.position.y, dTransformedCollider.height,
+                sTransformedCollider.position.y, sTransformedCollider.height);
 
             // update previous position to current?
             //  dTransform.previousPosition.x =  dTransform.position.x;
@@ -270,16 +250,21 @@ public class PhysicsSystem {
 
             dBody.velocity.y = 0;
         }
-        //System.out.println("positions prev:" + dTransform.previousPosition.toString()+ "current: " + dTransform.position.toString());
     }
 
-    public boolean detectAABBxAABBCollision(Vector2 positionA, float widthA, float heightA,
-                                            Vector2 positionB, float widthB, float heightB){
-        boolean overlapOnXAxis = detectOverlap(positionA.x, widthA, positionB.x, widthB);
-        boolean overlapOnYAxis = detectOverlap(positionA.y, heightA, positionB.y, heightB);
+    public boolean detectAABBxAABBCollision(AABBCollider a, AABBCollider b){
+        boolean overlapOnXAxis = detectOverlap(a.position.x, a.width, b.position.x, b.width);
+        boolean overlapOnYAxis = detectOverlap(a.position.y, a.height, b.position.y, b.height);
         boolean detectedCollision = overlapOnXAxis && overlapOnYAxis;
         return detectedCollision;
     }
+//    public boolean detectAABBxAABBCollision(Vector2 positionA, float widthA, float heightA,
+//                                            Vector2 positionB, float widthB, float heightB){
+//        boolean overlapOnXAxis = detectOverlap(positionA.x, widthA, positionB.x, widthB);
+//        boolean overlapOnYAxis = detectOverlap(positionA.y, heightA, positionB.y, heightB);
+//        boolean detectedCollision = overlapOnXAxis && overlapOnYAxis;
+//        return detectedCollision;
+//    }
 
     public boolean detectOverlap(float pointA, float rangeA, float pointB, float rangeB){
         boolean overlapDetected = false;
@@ -306,5 +291,40 @@ public class PhysicsSystem {
         float actualRange = max - min;
         float overlap = maximumRange - actualRange;
         return overlap;
+    }
+
+    //TODO: check why you can't use "record" instead. Is it because of Java versioning problem?
+    //public record AABBCollider (Vector2 position, float width, float height) {}
+    public class AABBCollider{
+        Vector2 position;
+        float width;
+        float height;
+
+        public AABBCollider(Vector2 position, float width, float height){
+            this.position = position;
+            this.width = width;
+            this.height = height;
+        }
+    }
+
+    public AABBCollider createAABBCollider(TransformComponent transform, ColliderComponent collider){
+        return createAABBCollider(transform, collider, false);
+    }
+
+    public AABBCollider createAABBCollider(TransformComponent transform, ColliderComponent collider, boolean usePreviousPosition){
+        Vector2 transformPosition = usePreviousPosition ? transform.previousPosition : transform.position;
+        Vector2 position = collider.usesOffset ? transformPosition.add(collider.offset): transformPosition;
+        float width = collider.sizeFromTransform ? transform.width : collider.width;
+        float height = collider.sizeFromTransform ? transform.height : collider.height;
+        return new AABBCollider(position, width, height);
+    }
+
+    public AABBCollider createAABBGroundCollider(AABBCollider collider){
+        float width = collider.width;
+        float height = groundCheckDepth;
+        float positionX = collider.position.x;
+        float positionY = collider.position.y - (collider.height+groundCheckDepth)/2;
+        Vector2 position = new Vector2(positionX, positionY);
+        return new AABBCollider(position, width, height);
     }
 }

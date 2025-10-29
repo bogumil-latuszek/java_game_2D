@@ -2,12 +2,7 @@ package io.github.JavaGame2D;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.ScreenUtils;
 
 import io.github.JavaGame2D.Components.ColliderComponent;
 import io.github.JavaGame2D.Components.DrawableComponent;
@@ -101,6 +96,9 @@ public class GameManager extends ApplicationAdapter {
         //bodyComponent.usesGravity = true;
         bodyComponent.usesGravity = true;
         ColliderComponent collider = new ColliderComponent();
+        collider.sizeFromTransform = false;
+        collider.width = transformComponent.width/2;
+        collider.height = transformComponent.height;
 
         player.addComponent(drawableComponent);
         player.addComponent(transformComponent);

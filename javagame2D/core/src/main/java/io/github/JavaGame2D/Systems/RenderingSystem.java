@@ -63,6 +63,10 @@ public class RenderingSystem {
         batch.end();
     }
 
+    public void resizeViewport(int width, int height){
+        this.stalkingCamera.resizeViewport(width, height);
+    }
+
     public void dispose(){
         batch.dispose();
         image.dispose();

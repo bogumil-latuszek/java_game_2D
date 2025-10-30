@@ -76,6 +76,12 @@ public class GameManager extends ApplicationAdapter {
     }
 
     @Override
+    public void resize(int width, int height) {
+        this.renderingSystem.resizeViewport(width, height);
+        System.out.println("Resize called: " + width + "x" + height); // Debug
+    }
+
+    @Override
     public void dispose() {
         renderingSystem.dispose();
         userInterface.dispose();

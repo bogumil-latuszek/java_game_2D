@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ComponentType;
@@ -11,17 +12,13 @@ import io.github.JavaGame2D.Enums.ComponentType;
 public class StalkingCamera {
     private Entity followedEntity;
     private OrthographicCamera camera;
+    private ExtendViewport viewport;
 
 
     public StalkingCamera() {
-        int cameraWidth = 30; // in game units
-        float aspectRatio = (float) Gdx.graphics.getWidth() / Gdx.graphics.getHeight();
-        camera = new OrthographicCamera(cameraWidth,cameraWidth*aspectRatio);
-    }
-
-    public void resizeCamera(int width, int height){
-        this.camera.viewportWidth = width;
-        this.camera.viewportHeight = height;
+        camera = new OrthographicCamera();
+        //viewport = new ExtendViewport(50,35, camera);
+        viewport = new ExtendViewport(20,14, camera);
     }
 
     public void followEntity(Entity entity){
@@ -31,6 +28,8 @@ public class StalkingCamera {
     }
 
     public void update(){
+        this.viewport.apply();
+
         if (followedEntity == null){
             return;
         }
@@ -43,6 +42,9 @@ public class StalkingCamera {
         this.camera.update();
     }
 
+    public void resizeViewport(int width, int height){
+        this.viewport.update(width,height);
+    }
 
     public Matrix4 getProjectionMatrix(){
         return this.camera.combined;

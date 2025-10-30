@@ -7,15 +7,19 @@ import io.github.JavaGame2D.EventBus;
 import java.util.HashMap;
 
 public class InputSystem {
+    private boolean space_previously_pressed;
+
     public enum Action{
         GO_RIGHT,
         GO_LEFT,
-        JUMP
+        JUMP,
+        EXTEND_JUMP
     }
     private HashMap<Integer, Action> keyBindings;
 
     public class PlayerAction{
         public Action action;
+        public float deltaTime;
     }
 
     public InputSystem(){
@@ -23,20 +27,44 @@ public class InputSystem {
         keyBindings.put(Input.Keys.RIGHT, Action.GO_RIGHT);
         keyBindings.put(Input.Keys.LEFT, Action.GO_LEFT);
         keyBindings.put(Input.Keys.SPACE, Action.JUMP);
+        space_previously_pressed = false;
     }
 
-    public void update(){
-        //get pressed key
-        Action action = null;
-        action = Gdx.input.isKeyPressed(Input.Keys.RIGHT) ? keyBindings.get(Input.Keys.RIGHT) : null;
-        action = Gdx.input.isKeyPressed(Input.Keys.LEFT) ? keyBindings.get(Input.Keys.LEFT) : action;
-        action = Gdx.input.isKeyJustPressed(Input.Keys.SPACE) ? keyBindings.get(Input.Keys.SPACE) : action;
+    public void update(float deltaTime){
+
+        Action horizontal_movement = null;
+        Action jump_action = null;
+
+        // independent system - directional movement
+        horizontal_movement = Gdx.input.isKeyPressed(Input.Keys.RIGHT) ? keyBindings.get(Input.Keys.RIGHT) : null;
+        horizontal_movement = Gdx.input.isKeyPressed(Input.Keys.LEFT) ? keyBindings.get(Input.Keys.LEFT) : horizontal_movement;
+
+        // independent system - jumping
+        boolean spacePressed = Gdx.input.isKeyPressed(Input.Keys.SPACE);
+        if(spacePressed){
+            if (!space_previously_pressed){
+                space_previously_pressed = true;
+                jump_action = keyBindings.get(Input.Keys.SPACE);
+            }
+            else{
+                jump_action = Action.EXTEND_JUMP;
+            }
+        }
+        else {
+            space_previously_pressed = false;
+        }
         //find action bound to that key
-        if (action != null){
+        if (horizontal_movement != null){
             PlayerAction playerAction = new PlayerAction();
-            playerAction.action = action;
+            playerAction.action = horizontal_movement;
+            playerAction.deltaTime = deltaTime;
             EventBus.getInstance().publish(playerAction);
         }
-        //execute action
+        if (jump_action != null){
+            PlayerAction playerAction = new PlayerAction();
+            playerAction.action = jump_action;
+            playerAction.deltaTime = deltaTime;
+            EventBus.getInstance().publish(playerAction);
+        }
     }
 }

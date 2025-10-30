@@ -67,7 +67,7 @@ public class GameManager extends ApplicationAdapter {
         float deltaTimeInSeconds = deltaTime/1000;
         previousTimeframe = currentTime;
 
-        inputSystem.update();
+        inputSystem.update(deltaTimeInSeconds);
         userInterface.update(deltaTime);
         physicsSystem.update(deltaTimeInSeconds);
 

@@ -8,20 +8,21 @@ import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ColliderType;
 import io.github.JavaGame2D.Enums.ComponentType;
+import io.github.JavaGame2D.GameSettings;
 //import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
 
 
 public class PhysicsSystem {
     // TODO: load this from settings
-    private float gravity;
+    private float gravity; //acceleration: unit/s in y direction
     //TODO: dependency injection
     private EntityManager entityManager;
     private float groundCheckDepth;
 
-    public PhysicsSystem(EntityManager entityManager) {
-        this.gravity = -60f; //acceleration: unit/s in -y direction
+    public PhysicsSystem(EntityManager entityManager, GameSettings settings) {
         this.entityManager = entityManager;
-        this.groundCheckDepth = 1f;
+        this.gravity = settings.gravity;
+        this.groundCheckDepth = settings.groundCheckDepth;
     }
 
     public void update(float deltaTime){

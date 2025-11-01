@@ -19,16 +19,22 @@ public class GameManager extends ApplicationAdapter {
     InputSystem inputSystem;
     PlayerCharacterController playerCharacterController;
     Long previousTimeframe;
+    GameSettings gameSettings;
 
 
 
     @Override
     public void create() {
+
+        gameSettings = new GameSettings();
+        gameSettings = gameSettings.loadSettings();
+        gameSettings.saveSettings();
+
         // initialize systems
         entityManager = new EntityManager();
 
         renderingSystem = new RenderingSystem(entityManager);
-        physicsSystem = new PhysicsSystem(entityManager);
+        physicsSystem = new PhysicsSystem(entityManager, gameSettings);
         userInterface = new UserInterface();
         inputSystem = new InputSystem();
         playerCharacterController = new PlayerCharacterController();

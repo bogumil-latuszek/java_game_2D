@@ -43,22 +43,22 @@ public class GameManager extends ApplicationAdapter {
         playerCharacterController.setPlayerCharacter(player);
         renderingSystem.setEntityFollowedByCamera(player);
 
-        Entity platform1 = createPlatform(new Vector2(0f,-10f),20f,5f);
-        Entity platform2 = createPlatform(new Vector2(20f, 5f), 10f,10f);
-        Entity platform3 = createPlatform(new Vector2(40f, 10f), 20f,10f);
-        Entity platform4 = createPlatform(new Vector2(50f, 10f), 5f,40f);
-        Entity platform5 = createPlatform(new Vector2(70f, 10f), 5f,70f);
-        Entity platform6 = createPlatform(new Vector2(70f, -40f), 50f,5f);
-        Entity platform7 = createPlatform(new Vector2(20f, -25f), 50f,5f);
-        Entity platform8 = createPlatform(new Vector2(80f, -25f), 10f,5f);
-        Entity platform9 = createPlatform(new Vector2(90f, -5f), 10f,5f);
-        Entity platform10 = createPlatform(new Vector2(80f, 15f), 10f,5f);
-        Entity platform11 = createPlatform(new Vector2(90f, 35f), 10f,5f);
-        Entity platform12 = createPlatform(new Vector2(80f, 55f), 10f,5f);
-        Entity platform13 = createPlatform(new Vector2(90f, 75f), 10f,5f);
-        Entity platform14 = createPlatform(new Vector2(70f, 95f), 20f,5f);
-        Entity platform15 = createPlatform(new Vector2(70f, 115f), 10f,5f);
-        Entity platform16 = createPlatform(new Vector2(70f, 135f), 5f,5f);
+        Entity platform1 = createPlatform(new Vector2(0f,-2.5f),5f,1f);
+        Entity platform2 = createPlatform(new Vector2(5f, 1.125f), 2.5f,2.5f);
+        Entity platform3 = createPlatform(new Vector2(10f, 2.5f), 5f,2.5f);
+        Entity platform4 = createPlatform(new Vector2(12.5f, 2.5f), 1.25f,10f);
+        Entity platform5 = createPlatform(new Vector2(17.5f, 2.5f), 1.25f,17.5f);
+        Entity platform6 = createPlatform(new Vector2(17.5f, -10f), 12.5f,1.25f);
+        Entity platform7 = createPlatform(new Vector2(-6f, -5f), 30f,0.5f);
+        Entity platform8 = createPlatform(new Vector2(20f, -6f), 2.5f,0.5f);
+        Entity platform9 = createPlatform(new Vector2(22.5f, -2f), 2.5f,0.5f);
+        Entity platform10 = createPlatform(new Vector2(20f, 2f), 2.5f,0.5f);
+        Entity platform11 = createPlatform(new Vector2(22.5f, 6f), 2.5f,0.5f);
+        Entity platform12 = createPlatform(new Vector2(20f, 10f), 2.5f,0.5f);
+        Entity platform13 = createPlatform(new Vector2(22.5f, 14f), 2.5f,0.5f);
+        Entity platform14 = createPlatform(new Vector2(17.5f, 18f), 5f,0.5f);
+        Entity platform15 = createPlatform(new Vector2(17.5f, 22f), 2.5f,0.5f);
+        Entity platform16 = createPlatform(new Vector2(17.5f, 26f), 1.25f,0.5f);
 
         previousTimeframe = System.currentTimeMillis();
     }
@@ -101,8 +101,8 @@ public class GameManager extends ApplicationAdapter {
         float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
         DrawableComponent drawableComponent = new DrawableComponent(playerSprite);
         TransformComponent transformComponent = new TransformComponent();
-        transformComponent.height = 4*scale;
-        transformComponent.width = 4;
+        transformComponent.height = 1*scale;
+        transformComponent.width = 1;
         transformComponent.position = new Vector2(10f,50f);
         PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
         //bodyComponent.usesGravity = true;

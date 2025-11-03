@@ -18,7 +18,7 @@ public class StalkingCamera {
     public StalkingCamera() {
         camera = new OrthographicCamera();
         //viewport = new ExtendViewport(50,35, camera);
-        viewport = new ExtendViewport(20,14, camera);
+        viewport = new ExtendViewport(14,9.8f, camera);
     }
 
     public void followEntity(Entity entity){

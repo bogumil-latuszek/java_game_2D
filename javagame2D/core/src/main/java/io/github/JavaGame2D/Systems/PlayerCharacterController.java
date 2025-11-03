@@ -32,7 +32,7 @@ public class PlayerCharacterController {
                     body.velocity.x = -body.moveSpeed*deltaTime;
                 }
                 else{
-                    body.velocity.x = -(body.moveSpeed*deltaTime)/1.5f;
+                    body.velocity.x = -(body.moveSpeed*deltaTime)/1.0f;
                 }
                 break;
             case GO_RIGHT:
@@ -40,7 +40,7 @@ public class PlayerCharacterController {
                     body.velocity.x = body.moveSpeed*deltaTime;
                 }
                 else{
-                    body.velocity.x = (body.moveSpeed*deltaTime)/1.5f;
+                    body.velocity.x = (body.moveSpeed*deltaTime)/1.0f;
                 }
                 break;
             case JUMP:
@@ -48,13 +48,14 @@ public class PlayerCharacterController {
                     body.onGround = false;
                     jumpTimer = deltaTime;
                     //body.velocity.y += body.jumpForce*deltaTime/jumpTimer;
-                    body.velocity.y += 34;
+                    body.velocity.y += body.jumpForce/5;
                 }
                 break;
             case EXTEND_JUMP:
-                if (!body.onGround && body.velocity.y > 0 && jumpTimer < 0.5f){
+                if (!body.onGround && body.velocity.y > 0 && jumpTimer < 0.2f){
                     jumpTimer += deltaTime;
-                    body.velocity.y += (body.jumpForce*deltaTime)/(jumpTimer*2);
+                    //body.velocity.y += (body.jumpForce*deltaTime)/(jumpTimer*2);
+                    body.velocity.y += (body.jumpForce*deltaTime);
                 }
         }
     }

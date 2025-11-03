@@ -17,8 +17,8 @@ public class PhysicalBodyComponent implements Component{
         this.usesGravity = false;
         this.onGround = false;
         this.dynamic = true;
-        moveSpeed = 1000;
-        jumpForce = 15f;
+        moveSpeed = 300;
+        jumpForce = 26f;
     }
 
 

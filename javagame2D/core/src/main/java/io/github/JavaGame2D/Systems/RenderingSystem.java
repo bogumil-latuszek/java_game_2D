@@ -50,7 +50,7 @@ public class RenderingSystem {
         for (Entity entity : drawableEntities){
             DrawableComponent drawableComponent = (DrawableComponent)entity.getComponent(ComponentType.DRAWABLE);
             TransformComponent transformComponent = (TransformComponent) entity.getComponent(ComponentType.TRANSFORM);
-            Texture sprite = drawableComponent.getSprite();
+            Texture sprite = drawableComponent.sprite;
 
             float centerX = transformComponent.position.x;
             float centerY = transformComponent.position.y;

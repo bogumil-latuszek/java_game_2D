@@ -30,9 +30,9 @@ public class Entity {
         return this.components.get(componentType);
     }
 
-//    public <T extends Component> getComponent(Class<T> componentClass){
-//        return this.components.get(componentClass);
-//    }
+    public Component[] getAllComponents(){
+        return  this.components.values().toArray(new Component[]{});
+    }
 
     public Component getDrawableComponent(ComponentType componentType){
         return this.components.get(componentType);

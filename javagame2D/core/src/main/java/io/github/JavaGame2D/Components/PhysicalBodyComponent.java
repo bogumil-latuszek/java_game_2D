@@ -5,6 +5,7 @@ import io.github.JavaGame2D.Enums.ComponentType;
 
 public class PhysicalBodyComponent implements Component{
 
+    public ComponentType componentType = ComponentType.PHYSICAL_BODY;
     public Vector2 velocity;
     public boolean usesGravity;
     public boolean onGround;
@@ -24,6 +25,6 @@ public class PhysicalBodyComponent implements Component{
 
     @Override
     public ComponentType type() {
-        return ComponentType.PHYSICAL_BODY;
+        return this.componentType;
     }
 }

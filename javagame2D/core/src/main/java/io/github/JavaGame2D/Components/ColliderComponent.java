@@ -5,8 +5,10 @@ import io.github.JavaGame2D.Enums.ColliderType;
 import io.github.JavaGame2D.Enums.ComponentType;
 
 public class ColliderComponent implements Component {
+
+    public ComponentType componentType = ComponentType.COLLIDER;
     public int layer;
-    public ColliderType type;
+    public ColliderType colliderType;
     public boolean usesOffset;
     public Vector2 offset;
     public float width;
@@ -15,7 +17,7 @@ public class ColliderComponent implements Component {
 
     public ColliderComponent(){
         this.layer = 0;
-        this.type = ColliderType.AABB;
+        this.colliderType = ColliderType.AABB;
         this.usesOffset = false;
         this.sizeFromTransform = true;
         this.offset = new Vector2(0f,0f);
@@ -25,6 +27,6 @@ public class ColliderComponent implements Component {
 
     @Override
     public ComponentType type() {
-        return ComponentType.COLLIDER;
+        return this.componentType;
     }
 }

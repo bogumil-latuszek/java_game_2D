@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Enums.ComponentType;
 
 public class TransformComponent implements Component{
+
+    ComponentType componentType = ComponentType.TRANSFORM;
     // position of the center
     public Vector2 position;
     // previous frame position
@@ -20,6 +22,6 @@ public class TransformComponent implements Component{
 
     @Override
     public ComponentType type() {
-        return ComponentType.TRANSFORM;
+        return this.componentType;
     }
 }

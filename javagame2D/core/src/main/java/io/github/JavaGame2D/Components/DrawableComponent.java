@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import io.github.JavaGame2D.Enums.ComponentType;
 
 public class DrawableComponent implements Component{
+    public ComponentType componentType = ComponentType.DRAWABLE;
     public Texture sprite;
 
     public DrawableComponent(Texture sprite){
@@ -12,6 +13,6 @@ public class DrawableComponent implements Component{
 
     @Override
     public ComponentType type() {
-        return ComponentType.DRAWABLE;
+        return this.componentType;
     }
 }

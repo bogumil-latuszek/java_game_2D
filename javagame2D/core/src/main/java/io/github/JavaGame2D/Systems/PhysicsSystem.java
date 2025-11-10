@@ -74,7 +74,7 @@ public class PhysicsSystem {
         boolean stillOnGround = true;
         ColliderComponent collider = (ColliderComponent) entity.getComponent(ComponentType.COLLIDER);
 
-        if (collider.type == ColliderType.AABB){
+        if (collider.colliderType == ColliderType.AABB){
             stillOnGround = groundCheckForAABB(entity);
         }
         return stillOnGround;
@@ -105,7 +105,7 @@ public class PhysicsSystem {
                 continue;
             }
             TransformComponent otherTransform = (TransformComponent) otherEntity.getComponent(ComponentType.TRANSFORM);
-            if (otherCollider.type == ColliderType.AABB){
+            if (otherCollider.colliderType == ColliderType.AABB){
                 AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
                 boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
                 if(detectedCollision){
@@ -179,7 +179,7 @@ public class PhysicsSystem {
         TransformComponent transformB = (TransformComponent) b.getComponent(ComponentType.TRANSFORM);
         ColliderComponent colliderB = (ColliderComponent) b.getComponent(ComponentType.COLLIDER);
 
-        if (colliderA.type == ColliderType.AABB && colliderB.type == ColliderType.AABB){
+        if (colliderA.colliderType == ColliderType.AABB && colliderB.colliderType == ColliderType.AABB){
             AABBCollider transformedColliderA = createAABBCollider(transformA, colliderA);
             AABBCollider transformedColliderB = createAABBCollider(transformB, colliderB);
             collisionDetected = detectAABBxAABBCollision(transformedColliderA, transformedColliderB);

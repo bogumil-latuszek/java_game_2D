@@ -32,13 +32,15 @@ public class PhysicsSystem {
 
     private void moveEntities(float deltaTime){
         // get all entities that can move: ones with PhysicalBodyComponent and TransformComponent
-        ComponentType[] requiredComponents = {ComponentType.PHYSICAL_BODY,
-                                              ComponentType.TRANSFORM};
-        Entity[] physicalEntities = entityManager.getMatchingEntities(requiredComponents);
+//        ComponentType[] requiredComponents = {ComponentType.PHYSICAL_BODY,
+//                                              ComponentType.TRANSFORM};
+//        Entity[] physicalEntities = entityManager.getMatchingEntities(requiredComponents);
+        Entity[] physicalEntities = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
+                                                                             e.physicalBodyComponent != null);
         // move them:
         for(Entity entity: physicalEntities){
-            TransformComponent transformComponent = (TransformComponent) entity.getComponent(ComponentType.TRANSFORM);
-            PhysicalBodyComponent physicalBodyComponent = (PhysicalBodyComponent) entity.getComponent(ComponentType.PHYSICAL_BODY);
+            TransformComponent transformComponent = entity.transformComponent;
+            PhysicalBodyComponent physicalBodyComponent = entity.physicalBodyComponent;
             Vector2 position = transformComponent.position;
             Vector2 previousPosition = transformComponent.previousPosition;
             Vector2 velocity = physicalBodyComponent.velocity;
@@ -72,7 +74,7 @@ public class PhysicsSystem {
 
     private boolean groundCheck(Entity entity){
         boolean stillOnGround = true;
-        ColliderComponent collider = (ColliderComponent) entity.getComponent(ComponentType.COLLIDER);
+        ColliderComponent collider = entity.colliderComponent;
 
         if (collider.colliderType == ColliderType.AABB){
             stillOnGround = groundCheckForAABB(entity);
@@ -83,15 +85,18 @@ public class PhysicsSystem {
     private boolean groundCheckForAABB(Entity entity){
         boolean groundCollisionDetected = true;
         boolean atLeastOneCollision = false;
-        TransformComponent transform = (TransformComponent) entity.getComponent(ComponentType.TRANSFORM);
-        ColliderComponent collider = (ColliderComponent) entity.getComponent(ComponentType.COLLIDER);
+        TransformComponent transform = entity.transformComponent;
+        ColliderComponent collider = entity.colliderComponent;
         AABBCollider transformedCollider = createAABBCollider(transform, collider);
         AABBCollider groundCollider = createAABBGroundCollider(transformedCollider);
 
         ComponentType[] requiredComponents = {ComponentType.TRANSFORM,
                                               ComponentType.PHYSICAL_BODY,
                                               ComponentType.COLLIDER};
-        Entity[] potentialGround = entityManager.getMatchingEntities(requiredComponents);
+        //Entity[] potentialGround = entityManager.getMatchingEntities(requiredComponents);
+        Entity[] potentialGround = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
+                                                                            e.physicalBodyComponent != null &&
+                                                                            e.colliderComponent != null);
 
         for (Entity otherEntity : potentialGround){
             // check if collision is possible
@@ -99,12 +104,12 @@ public class PhysicsSystem {
             if (entity == otherEntity){
                 continue;
             }
-            ColliderComponent otherCollider = (ColliderComponent) otherEntity.getComponent(ComponentType.COLLIDER);
+            ColliderComponent otherCollider = entity.colliderComponent;
             // impossible for entities on different layers to collide
             if (collider.layer != otherCollider.layer){
                 continue;
             }
-            TransformComponent otherTransform = (TransformComponent) otherEntity.getComponent(ComponentType.TRANSFORM);
+            TransformComponent otherTransform = entity.transformComponent;
             if (otherCollider.colliderType == ColliderType.AABB){
                 AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
                 boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
@@ -121,14 +126,17 @@ public class PhysicsSystem {
 
     private void detectAndResolveCollisions(){
         // get all entities with Transform Component and Collider Component
-        ComponentType[] requiredComponents = {ComponentType.TRANSFORM,
-                                              ComponentType.PHYSICAL_BODY,
-                                              ComponentType.COLLIDER};
-        Entity[] potentiallyColliding = entityManager.getMatchingEntities(requiredComponents);
+//        ComponentType[] requiredComponents = {ComponentType.TRANSFORM,
+//                                              ComponentType.PHYSICAL_BODY,
+//                                              ComponentType.COLLIDER};
+        //Entity[] potentiallyColliding = entityManager.getMatchingEntities(requiredComponents);
+        Entity[] potentiallyColliding = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
+                                                                                 e.physicalBodyComponent != null &&
+                                                                                 e.colliderComponent != null);
         //ArrayList<Entity> collidedEntities = new ArrayList<>();
 
         for (Entity entity: potentiallyColliding){
-            PhysicalBodyComponent body = (PhysicalBodyComponent) entity.getComponent(ComponentType.PHYSICAL_BODY);
+            PhysicalBodyComponent body = entity.physicalBodyComponent;
             // if it's not dynamic, it can't move by itself
             // therefore it didn't INITIATE any collisions
             // * what about collisions if it was pushed?
@@ -141,8 +149,8 @@ public class PhysicsSystem {
                 if (entity == otherEntity){
                     continue;
                 }
-                ColliderComponent collider1 = (ColliderComponent) entity.getComponent(ComponentType.COLLIDER);
-                ColliderComponent collider2 = (ColliderComponent) otherEntity.getComponent(ComponentType.COLLIDER);
+                ColliderComponent collider1 = entity.colliderComponent;
+                ColliderComponent collider2 = otherEntity.colliderComponent;
                 // impossible for entities on different layers to collide
                 if (collider1.layer != collider2.layer){
                     continue;
@@ -157,7 +165,7 @@ public class PhysicsSystem {
                 // resolve collision
                 // we know that entity is dynamic
                 // now if other entity is static:
-                PhysicalBodyComponent otherBody = (PhysicalBodyComponent) otherEntity.getComponent(ComponentType.PHYSICAL_BODY);
+                PhysicalBodyComponent otherBody = otherEntity.physicalBodyComponent;
                 if (otherBody.dynamic){
                     // resolve collision between 2 dynamic entities
                 }
@@ -173,12 +181,11 @@ public class PhysicsSystem {
     public boolean detectCollision(Entity a, Entity b){
         boolean collisionDetected = false;
 
-        TransformComponent transformA = (TransformComponent) a.getComponent(ComponentType.TRANSFORM);
-        ColliderComponent colliderA = (ColliderComponent) a.getComponent(ComponentType.COLLIDER);
+        TransformComponent transformA = a.transformComponent;
+        ColliderComponent colliderA = a.colliderComponent;
 
-        TransformComponent transformB = (TransformComponent) b.getComponent(ComponentType.TRANSFORM);
-        ColliderComponent colliderB = (ColliderComponent) b.getComponent(ComponentType.COLLIDER);
-
+        TransformComponent transformB = b.transformComponent;
+        ColliderComponent colliderB = b.colliderComponent;
         if (colliderA.colliderType == ColliderType.AABB && colliderB.colliderType == ColliderType.AABB){
             AABBCollider transformedColliderA = createAABBCollider(transformA, colliderA);
             AABBCollider transformedColliderB = createAABBCollider(transformB, colliderB);
@@ -188,13 +195,13 @@ public class PhysicsSystem {
     }
 
     public void resolveDynamicxStaticAABBCollision(Entity dynamicEntity, Entity staticEntity){
-        TransformComponent dTransform = (TransformComponent) dynamicEntity.getComponent(ComponentType.TRANSFORM);
-        PhysicalBodyComponent dBody = (PhysicalBodyComponent) dynamicEntity.getComponent(ComponentType.PHYSICAL_BODY);
-        ColliderComponent dCollider = (ColliderComponent) dynamicEntity.getComponent(ComponentType.COLLIDER);
+        TransformComponent dTransform = dynamicEntity.transformComponent;
+        PhysicalBodyComponent dBody = dynamicEntity.physicalBodyComponent;
+        ColliderComponent dCollider = dynamicEntity.colliderComponent;
 
-        TransformComponent sTransform = (TransformComponent) staticEntity.getComponent(ComponentType.TRANSFORM);
-        PhysicalBodyComponent sBody = (PhysicalBodyComponent) staticEntity.getComponent(ComponentType.PHYSICAL_BODY);
-        ColliderComponent sCollider = (ColliderComponent) staticEntity.getComponent(ComponentType.COLLIDER);
+        TransformComponent sTransform = staticEntity.transformComponent;
+        PhysicalBodyComponent sBody = staticEntity.physicalBodyComponent;
+        ColliderComponent sCollider = staticEntity.colliderComponent;
 
         AABBCollider dTransformedCollider = createAABBCollider(dTransform, dCollider);
         AABBCollider dPreviousTransformedCollider = createAABBCollider(dTransform, dCollider, true);

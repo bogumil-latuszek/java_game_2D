@@ -45,7 +45,7 @@ public class GameManager extends ApplicationAdapter {
 
 //        Entity platform1 = createPlatform(new Vector2(0f,-2.5f),5f,1f);
 //        Entity platform2 = createPlatform(new Vector2(5f, 1.125f), 2.5f,2.5f);
-        Entity platform3 = createPlatform(new Vector2(10f, 2.5f), 5f,2.5f);
+//        Entity platform3 = createPlatform(new Vector2(10f, 2.5f), 5f,2.5f);
 //        Entity platform4 = createPlatform(new Vector2(12.5f, 2.5f), 1.25f,10f);
 //        Entity platform5 = createPlatform(new Vector2(17.5f, 2.5f), 1.25f,17.5f);
 //        Entity platform6 = createPlatform(new Vector2(17.5f, -10f), 12.5f,1.25f);
@@ -65,15 +65,18 @@ public class GameManager extends ApplicationAdapter {
 //        newLevel.entitiesInside.add(platform2);
 //        newLevel.entitiesInside.add(platform3);
 //        newLevel.entitiesInside.add(platform4);
-//        FileSystem fileSystem = new FileSystem();
+        FileSystem fileSystem = new FileSystem();
 //        LevelManager levelManager = new LevelManager(fileSystem);
 //        levelManager.changeCurrentLevel(newLevel);
 //        levelManager.saveLevel();
 //        levelManager.loadLevel("leveldefault");
-//          FileSystem.serializeEntityJackson(platform3);
+//        FileSystem.serializeEntityJackson(platform3);
 //          FileSystem.serializeComponentJsonWriter(platform3);
+        Entity platformLoaded = fileSystem.loadEntityJackson("levels/serialized_component_jackson.json");
+        entityManager.addEntity(platformLoaded);
 
         previousTimeframe = System.currentTimeMillis();
+        renderingSystem.loadTextures();
     }
 
     // this function may be called "render"
@@ -109,10 +112,10 @@ public class GameManager extends ApplicationAdapter {
     private Entity createPlayer(){
         Entity player = entityManager.createEntity();
 
-        //Texture playerSprite = new Texture("playerSprite.png");
         Texture playerSprite = new Texture("playerSprite.png");
         float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
-        DrawableComponent drawableComponent = new DrawableComponent(playerSprite);
+        DrawableComponent drawableComponent = new DrawableComponent();
+        drawableComponent.texturePath = "playerSprite.png";
         TransformComponent transformComponent = new TransformComponent();
         transformComponent.height = 1*scale;
         transformComponent.width = 1;
@@ -125,10 +128,10 @@ public class GameManager extends ApplicationAdapter {
         collider.width = transformComponent.width/2;
         collider.height = transformComponent.height;
 
-        player.addComponent(drawableComponent);
-        player.addComponent(transformComponent);
-        player.addComponent(bodyComponent);
-        player.addComponent(collider);
+        player.drawableComponent = drawableComponent;
+        player.transformComponent = transformComponent;
+        player.physicalBodyComponent = bodyComponent;
+        player.colliderComponent = collider;
         return player;
     }
 
@@ -136,7 +139,8 @@ public class GameManager extends ApplicationAdapter {
         Entity platform = entityManager.createEntity();
         Texture texture = new Texture("autumnBrick1.png");
         float scale = (float)texture.getHeight()/texture.getWidth();
-        DrawableComponent drawableComponent = new DrawableComponent(texture);
+        DrawableComponent drawableComponent = new DrawableComponent();
+        drawableComponent.texturePath = "autumnBrick1.png";
         TransformComponent transformComponent = new TransformComponent();
         transformComponent.position = position;
         transformComponent.height = height*scale;
@@ -146,10 +150,10 @@ public class GameManager extends ApplicationAdapter {
         bodyComponent.usesGravity = false;
         ColliderComponent collider = new ColliderComponent();
 
-        platform.addComponent(drawableComponent);
-        platform.addComponent(transformComponent);
-        platform.addComponent(bodyComponent);
-        platform.addComponent(collider);
+        platform.drawableComponent = drawableComponent;
+        platform.transformComponent = transformComponent;
+        platform.physicalBodyComponent = bodyComponent;
+        platform.colliderComponent = collider;
         return platform;
     }
 }

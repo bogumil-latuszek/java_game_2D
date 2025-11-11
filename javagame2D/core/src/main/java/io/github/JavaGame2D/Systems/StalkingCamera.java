@@ -22,7 +22,7 @@ public class StalkingCamera {
     }
 
     public void followEntity(Entity entity){
-        if(entity.hasComponent(ComponentType.TRANSFORM)){
+        if(entity.transformComponent != null){
             followedEntity = entity;
         }
     }
@@ -33,7 +33,7 @@ public class StalkingCamera {
         if (followedEntity == null){
             return;
         }
-        TransformComponent transform = (TransformComponent) followedEntity.getComponent(ComponentType.TRANSFORM);
+        TransformComponent transform = followedEntity.transformComponent;
         Vector2 stalkedEntityPosition = transform.position;
         this.camera.position.x = stalkedEntityPosition.x;
         this.camera.position.y = stalkedEntityPosition.y;

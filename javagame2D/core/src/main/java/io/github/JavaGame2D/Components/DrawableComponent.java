@@ -6,6 +6,7 @@ import io.github.JavaGame2D.Enums.ComponentType;
 
 public class DrawableComponent implements Component{
     public ComponentType componentType = ComponentType.DRAWABLE;
+    public String texturePath;
     @JsonIgnore
     public Texture sprite;
 

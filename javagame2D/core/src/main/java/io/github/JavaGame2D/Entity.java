@@ -1,47 +1,34 @@
 package io.github.JavaGame2D;
 
-import io.github.JavaGame2D.Components.Component;
-import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Enums.ComponentType;
-import io.github.JavaGame2D.Systems.EntityManager;
-
-import java.util.HashMap;
+import io.github.JavaGame2D.Components.*;
 
 public class Entity {
-    private final int ID;
-    private HashMap<ComponentType, Component> components;
+    private int ID;
+    public TransformComponent transformComponent;
+    public DrawableComponent drawableComponent;
+    public PhysicalBodyComponent physicalBodyComponent;
+    public ColliderComponent colliderComponent;
 
+//    public boolean hasTransform() { return transform != null; }
+//    public boolean hasDrawable() { return drawable != null; }
+//    public boolean hasPhysicalBody() { return physicalBody != null; }
+//    public boolean hasCollider() { return collider != null; }
+
+    public Entity() {
+    }
 
     // Since Entity will only ever be created by EntityManager
     // the ID will just get passed to it's constructor
     public Entity(int ID) {
         this.ID = ID;
-        this.components = new HashMap<ComponentType, Component>();
+    }
+
+    // should only be used when deserializing
+    public void setID(int ID){
+        this.ID = ID;
     }
     public int getID(){
         return this.ID;
     }
 
-    public boolean hasComponent(ComponentType componentType){
-        return this.components.containsKey(componentType);
-    }
-
-    public Component getComponent(ComponentType componentType){
-        return this.components.get(componentType);
-    }
-
-    public Component[] getAllComponents(){
-        return  this.components.values().toArray(new Component[]{});
-    }
-
-    public Component getDrawableComponent(ComponentType componentType){
-        return this.components.get(componentType);
-    }
-
-    public void addComponent(Component component){
-        ComponentType componentType = component.type();
-        if (!components.containsKey(componentType)){
-            components.put(componentType, component);
-        }
-    }
 }

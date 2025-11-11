@@ -1,0 +1,45 @@
+{
+  "transformComponent" : {
+    "componentType" : "TRANSFORM",
+    "position" : {
+      "x" : 10.0,
+      "y" : 2.5
+    },
+    "previousPosition" : {
+      "x" : 0.0,
+      "y" : 0.0
+    },
+    "width" : 5.0,
+    "height" : 2.5
+  },
+  "drawableComponent" : {
+    "componentType" : "DRAWABLE",
+    "texturePath" : "autumnBrick1.png"
+  },
+  "physicalBodyComponent" : {
+    "componentType" : "PHYSICAL_BODY",
+    "velocity" : {
+      "x" : 0.0,
+      "y" : 0.0
+    },
+    "usesGravity" : false,
+    "onGround" : false,
+    "dynamic" : false,
+    "moveSpeed" : 300.0,
+    "jumpForce" : 26.0
+  },
+  "colliderComponent" : {
+    "componentType" : "COLLIDER",
+    "layer" : 0,
+    "colliderType" : "AABB",
+    "usesOffset" : false,
+    "offset" : {
+      "x" : 0.0,
+      "y" : 0.0
+    },
+    "width" : 0.0,
+    "height" : 0.0,
+    "sizeFromTransform" : true
+  },
+  "id" : 1
+}

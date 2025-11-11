@@ -1,10 +1,8 @@
 package io.github.JavaGame2D.Systems;
 
 import io.github.JavaGame2D.Entity;
-import io.github.JavaGame2D.Enums.ComponentType;
-
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 public class EntityManager {
     private HashMap<Integer, Entity> entities;
@@ -23,21 +21,16 @@ public class EntityManager {
         return newEntity;
     }
 
-    public Entity[] getMatchingEntities(ComponentType[] requiredComponents){
-        ArrayList<Entity> matchingEntitiesFound = new ArrayList<Entity>();
-        for(Entity entity : entities.values() ){
-            boolean hasAllRequiredComponents = true;
-            for(ComponentType componentType : requiredComponents ){
-                if(!entity.hasComponent(componentType)){
-                    hasAllRequiredComponents = false;
-                }
-            }
-            if (hasAllRequiredComponents){
-                matchingEntitiesFound.add(entity);
-            }
-        }
-        Entity[] output = new Entity[matchingEntitiesFound.size()];
-        matchingEntitiesFound.toArray(output);
-        return output;
+    public void addEntity(Entity entity){
+        int id = nextEntityId;
+        nextEntityId++;
+        entity.setID(id);
+        entities.put(id,entity);
+    }
+
+    public Entity[] getEntitiesWith(Predicate<Entity> condition) {
+        return entities.values().stream()
+            .filter(condition)
+            .toArray(Entity[]::new);
     }
 }

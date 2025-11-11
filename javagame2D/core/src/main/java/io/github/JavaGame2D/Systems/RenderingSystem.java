@@ -15,12 +15,24 @@ public class RenderingSystem {
     private Texture image;
     private EntityManager entityManager;
     private StalkingCamera stalkingCamera;
+    private Texture missingTexture;
 
     public RenderingSystem(EntityManager entityManager){
         image = new Texture("libgdx.png");
         batch = new SpriteBatch();
         this.entityManager = entityManager;
         stalkingCamera = new StalkingCamera();
+        missingTexture = new Texture("autumnBrick1.png");
+    }
+
+    public void loadTextures(){
+        Entity[] drawableEntities = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
+                                                                             e.drawableComponent != null);
+        for (Entity entity : drawableEntities){
+            if (entity.drawableComponent.sprite == null && entity.drawableComponent.texturePath != null) {
+                entity.drawableComponent.sprite = new Texture(entity.drawableComponent.texturePath);
+            }
+        }
     }
 
     public void setEntityFollowedByCamera(Entity entity){
@@ -43,14 +55,16 @@ public class RenderingSystem {
         //draw drawable entities
 
         // get list of drawable entities from EntityManager
-        ComponentType[] requiredComponents = {ComponentType.DRAWABLE,
-                                            ComponentType.TRANSFORM};
-        Entity[] drawableEntities = entityManager.getMatchingEntities(requiredComponents);
+//        ComponentType[] requiredComponents = {ComponentType.DRAWABLE,
+//                                            ComponentType.TRANSFORM};
+//        Entity[] drawableEntities = entityManager.getMatchingEntities(requiredComponents);
+        Entity[] drawableEntities = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
+                                                                             e.drawableComponent != null);
         // draw each entity in list:
         for (Entity entity : drawableEntities){
-            DrawableComponent drawableComponent = (DrawableComponent)entity.getComponent(ComponentType.DRAWABLE);
-            TransformComponent transformComponent = (TransformComponent) entity.getComponent(ComponentType.TRANSFORM);
-            Texture sprite = drawableComponent.sprite;
+            TransformComponent transformComponent = entity.transformComponent;
+            DrawableComponent drawableComponent = entity.drawableComponent;
+            Texture sprite = drawableComponent.sprite != null ? drawableComponent.sprite : missingTexture;
 
             float centerX = transformComponent.position.x;
             float centerY = transformComponent.position.y;

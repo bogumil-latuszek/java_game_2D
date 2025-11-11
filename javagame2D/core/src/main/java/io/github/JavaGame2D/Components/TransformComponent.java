@@ -5,7 +5,7 @@ import io.github.JavaGame2D.Enums.ComponentType;
 
 public class TransformComponent implements Component{
 
-    ComponentType componentType = ComponentType.TRANSFORM;
+    public ComponentType componentType = ComponentType.TRANSFORM;
     // position of the center
     public Vector2 position;
     // previous frame position

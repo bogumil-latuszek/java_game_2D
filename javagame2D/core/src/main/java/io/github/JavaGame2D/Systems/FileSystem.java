@@ -1,6 +1,7 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
@@ -32,64 +33,25 @@ public class FileSystem {
         return json.fromJson(Level.class, jsonText); // Convert back to object
     }
 
-    // Serialize single entity
-    private JsonValue serializeEntity(Entity entity) {
-        JsonValue entityJson = new JsonValue(JsonValue.ValueType.object);
-        entityJson.addChild("id", new JsonValue(entity.getID()));
+    public Entity loadEntityJackson(String filename) {
+        try {
+            FileHandle file = Gdx.files.local(filename);
+            if (!file.exists()) {
+                return null;
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
 
-        JsonValue componentsArray = new JsonValue(JsonValue.ValueType.array);
+            String json = file.readString();
+            return mapper.readValue(json, Entity.class);
 
-        Component[] components = entity.getAllComponents();
-        // Serialize all components
-        for (Component component : components) {
-//            if (component instanceof SerializableComponent) {
-//                ComponentSerializer serializer = serializers.get(component.getClass());
-//                if (serializer != null) {
-//                    JsonValue componentJson = serializer.serialize(component);
-//                    componentJson.addChild("_type", new JsonValue(component.getClass().getSimpleName()));
-//                    componentsArray.addChild(componentJson);
-//                }
-//            }
+        } catch (Exception e) {
+            Gdx.app.error("SaveManager", "Failed to load entity from: " + filename, e);
+            return null;
         }
-
-        entityJson.addChild("components", componentsArray);
-        return entityJson;
     }
-
-//    public static <T> void serializeComponentJsonWriter(T component) {
-//        json = new Json();
-//        // Pretty print for readability
-//        json.setOutputType(JsonWriter.OutputType.json);
-//        String jsonText = json.toJson(component, component.getClass());
-//        jsonText = json.prettyPrint(jsonText);
-//        String path = "levels/serialized_component_json_writer.json";
-//        try {
-//            Gdx.files.local(path).writeString(jsonText, false);
-//
-//        } catch (Exception e) {
-//            Gdx.app.error("GenericSerializer", "Failed to serialize component: " + component.getClass().getSimpleName(), e);
-//        }
-//    }
-
-//    public static Entity deserializeEntityJackson() {
-//        String jsonText = Gdx.files.local("levels/serialized_component_jackson.json").readString();
-//        return json.fromJson(Entity.class, jsonText); // Convert back to object
-//    }
-
-//    public <T> T loadObjectJackson(Class<T> type, String filename) {
-//        if (!Gdx.files.local(filename).exists()) {
-//            return null;
-//        }
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
-//        try {
-//            String json = Gdx.files.local(filename).readString();
-//            return mapper.readValue(json, type);
-//        } catch (Exception e) {
-//            Gdx.app.error("JacksonDeserializer", "Load failed: " + filename, e);
-//            return null;
-//        }
-//    }
 
     public static <T> void serializeEntityJackson(T entity) {
         ObjectMapper mapper = new ObjectMapper();

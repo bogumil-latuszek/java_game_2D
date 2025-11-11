@@ -24,7 +24,7 @@ public class PlayerCharacterController {
             return;
         }
         float deltaTime = event.deltaTime;
-        PhysicalBodyComponent body = (PhysicalBodyComponent) playerCharacter.getComponent(ComponentType.PHYSICAL_BODY);
+        PhysicalBodyComponent body = playerCharacter.physicalBodyComponent;
 
         switch (event.action){
             case GO_LEFT:

@@ -9,6 +9,9 @@ public class DrawableComponent implements Component{
     @JsonIgnore
     public Texture sprite;
 
+
+    public DrawableComponent(){
+    }
     public DrawableComponent(Texture sprite){
         this.sprite = sprite;
     }

@@ -24,13 +24,35 @@ import java.io.IOException;
 public class FileSystem {
 
     public void saveLevel(Level level){
+        ObjectMapper mapper = new ObjectMapper();
+        // add special rules for Vector2 class
+        mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
+        // formats json for better reading
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        String path = "levels/"+ level.levelName+".json";
+        try{
+            mapper.writeValue(new File(path), level);
+        } catch (Exception e) {
+            Gdx.app.error("JacksonSerializer", "Failed to serialize component: " + level.getClass().getSimpleName(), e);
+        }
     }
     public Level loadLevel(String levelName){
         if (!Gdx.files.local("levels/"+levelName+".json").exists()) {
-            return new Level(); // Return defaults if no save file
+            return null; // Return defaults if no save file
         }
-        String jsonText = Gdx.files.local("levels/"+levelName+".json").readString();
-        return json.fromJson(Level.class, jsonText); // Convert back to object
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
+
+            String jsonText = Gdx.files.local("levels/"+levelName+".json").readString();
+            return mapper.readValue(jsonText, Level.class);
+
+        } catch (Exception e) {
+            Gdx.app.error("SaveManager", "Failed to load level: "+ levelName, e);
+            return null;
+        }
     }
 
     public Entity loadEntityJackson(String filename) {

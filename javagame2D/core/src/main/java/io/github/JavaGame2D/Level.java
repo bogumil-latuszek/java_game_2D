@@ -1,6 +1,8 @@
 package io.github.JavaGame2D;
 
 import com.badlogic.gdx.math.Vector2;
+import io.github.JavaGame2D.Systems.EntityManager;
+import io.github.JavaGame2D.Systems.FileSystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,13 +25,8 @@ public class Level {
     public int defaultSpawnPointID;
 
     public Level() {
-        this(0,
-            "default",
-            new ArrayList<>(),
-            new Vector2(-100,-100),
-            new Vector2(100,100),
-            new HashMap<>(),
-            0);
+        entitiesInside = new ArrayList<>();
+        validSpawnPoints = new HashMap<>();
     }
 
     public Level(int levelID, String levelName, ArrayList<Entity> entitiesInside, Vector2 lowerLeftCorner,
@@ -41,5 +38,11 @@ public class Level {
         this.upperRightCorner = upperRightCorner;
         this.validSpawnPoints = validSpawnPoints;
         this.defaultSpawnPointID = defaultSpawnPointID;
+    }
+
+    public void registerLevelEntities(EntityManager entityManager){
+        for (Entity entity : entitiesInside){
+            entityManager.addEntity(entity);
+        }
     }
 }

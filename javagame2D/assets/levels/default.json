@@ -1,0 +1,185 @@
+{
+  "levelID" : 0,
+  "levelName" : "default",
+  "entitiesInside" : [ {
+    "transformComponent" : {
+      "componentType" : "TRANSFORM",
+      "position" : {
+        "x" : 0.0,
+        "y" : -2.5
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 1.0
+    },
+    "drawableComponent" : {
+      "componentType" : "DRAWABLE",
+      "texturePath" : "autumnBrick1.png"
+    },
+    "physicalBodyComponent" : {
+      "componentType" : "PHYSICAL_BODY",
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    },
+    "colliderComponent" : {
+      "componentType" : "COLLIDER",
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    },
+    "id" : 1
+  }, {
+    "transformComponent" : {
+      "componentType" : "TRANSFORM",
+      "position" : {
+        "x" : 5.0,
+        "y" : 1.125
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 2.5
+    },
+    "drawableComponent" : {
+      "componentType" : "DRAWABLE",
+      "texturePath" : "autumnBrick1.png"
+    },
+    "physicalBodyComponent" : {
+      "componentType" : "PHYSICAL_BODY",
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    },
+    "colliderComponent" : {
+      "componentType" : "COLLIDER",
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    },
+    "id" : 2
+  }, {
+    "transformComponent" : {
+      "componentType" : "TRANSFORM",
+      "position" : {
+        "x" : 10.0,
+        "y" : 2.5
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 2.5
+    },
+    "drawableComponent" : {
+      "componentType" : "DRAWABLE",
+      "texturePath" : "autumnBrick1.png"
+    },
+    "physicalBodyComponent" : {
+      "componentType" : "PHYSICAL_BODY",
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    },
+    "colliderComponent" : {
+      "componentType" : "COLLIDER",
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    },
+    "id" : 3
+  }, {
+    "transformComponent" : {
+      "componentType" : "TRANSFORM",
+      "position" : {
+        "x" : 12.5,
+        "y" : 2.5
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.25,
+      "height" : 10.0
+    },
+    "drawableComponent" : {
+      "componentType" : "DRAWABLE",
+      "texturePath" : "autumnBrick1.png"
+    },
+    "physicalBodyComponent" : {
+      "componentType" : "PHYSICAL_BODY",
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    },
+    "colliderComponent" : {
+      "componentType" : "COLLIDER",
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    },
+    "id" : 4
+  } ],
+  "lowerLeftCorner" : null,
+  "upperRightCorner" : null,
+  "validSpawnPoints" : { },
+  "defaultSpawnPointID" : 0
+}

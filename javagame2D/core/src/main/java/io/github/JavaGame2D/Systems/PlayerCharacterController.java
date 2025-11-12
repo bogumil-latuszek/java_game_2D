@@ -1,17 +1,18 @@
 package io.github.JavaGame2D.Systems;
 
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
-import io.github.JavaGame2D.Components.TransformComponent;
+
 import io.github.JavaGame2D.Entity;
-import io.github.JavaGame2D.Enums.ComponentType;
 import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.PlayerActionEvent;
+import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 
 public class PlayerCharacterController {
     private Entity playerCharacter;
     private float jumpTimer;
 
     public PlayerCharacterController(){
-        EventBus.getInstance().subscribe(InputSystem.PlayerAction.class, this::handlePlayerAction);
+        EventBus.getInstance().subscribe(PlayerActionEvent.class, this::handlePlayerAction);
         this.jumpTimer = 0;
     }
 
@@ -19,7 +20,7 @@ public class PlayerCharacterController {
         this.playerCharacter = newPlayerCharacter;
     }
 
-    public void handlePlayerAction(InputSystem.PlayerAction event){
+    public void handlePlayerAction(PlayerActionEvent event){
         if (playerCharacter == null){
             return;
         }

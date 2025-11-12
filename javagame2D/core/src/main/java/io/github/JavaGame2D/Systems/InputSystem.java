@@ -3,6 +3,7 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.PlayerActionEvent;
 
 import java.util.HashMap;
 
@@ -55,13 +56,13 @@ public class InputSystem {
         }
         //find action bound to that key
         if (horizontal_movement != null){
-            PlayerAction playerAction = new PlayerAction();
+            PlayerActionEvent playerAction = new PlayerActionEvent();
             playerAction.action = horizontal_movement;
             playerAction.deltaTime = deltaTime;
             EventBus.getInstance().publish(playerAction);
         }
         if (jump_action != null){
-            PlayerAction playerAction = new PlayerAction();
+            PlayerActionEvent playerAction = new PlayerActionEvent();
             playerAction.action = jump_action;
             playerAction.deltaTime = deltaTime;
             EventBus.getInstance().publish(playerAction);

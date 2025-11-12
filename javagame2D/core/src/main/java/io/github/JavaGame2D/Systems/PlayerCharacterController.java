@@ -58,6 +58,12 @@ public class PlayerCharacterController {
                     //body.velocity.y += (body.jumpForce*deltaTime)/(jumpTimer*2);
                     body.velocity.y += (body.jumpForce*deltaTime);
                 }
+                break;
+            case CHANGE_LEVEL:
+                TeleportPlayerEvent teleportEvent = new TeleportPlayerEvent();
+                teleportEvent.targetLevelName = "level2";
+                EventBus.getInstance().publish(teleportEvent);
+                break;
         }
     }
 

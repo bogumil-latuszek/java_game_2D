@@ -21,11 +21,16 @@ public class EntityManager {
         return newEntity;
     }
 
-    public void addEntity(Entity entity){
+    public int addEntity(Entity entity){
         int id = nextEntityId;
         nextEntityId++;
         entity.setID(id);
         entities.put(id,entity);
+        return id;
+    }
+
+    public void removeEntity(int ID){
+        entities.remove(ID);
     }
 
     public Entity[] getEntitiesWith(Predicate<Entity> condition) {

@@ -128,7 +128,7 @@ public class GameManager extends ApplicationAdapter {
 //        levelManager.saveLevel();
 
 
-        levelManager.loadLevel("level2");
+        levelManager.loadLevel("default");
 
 
 

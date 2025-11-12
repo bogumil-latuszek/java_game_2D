@@ -14,20 +14,17 @@ public class InputSystem {
         GO_RIGHT,
         GO_LEFT,
         JUMP,
-        EXTEND_JUMP
+        EXTEND_JUMP,
+        CHANGE_LEVEL
     }
     private HashMap<Integer, Action> keyBindings;
-
-    public class PlayerAction{
-        public Action action;
-        public float deltaTime;
-    }
 
     public InputSystem(){
         keyBindings = new HashMap<>();
         keyBindings.put(Input.Keys.RIGHT, Action.GO_RIGHT);
         keyBindings.put(Input.Keys.LEFT, Action.GO_LEFT);
         keyBindings.put(Input.Keys.SPACE, Action.JUMP);
+        keyBindings.put(Input.Keys.P, Action.CHANGE_LEVEL);
         space_previously_pressed = false;
     }
 
@@ -53,6 +50,12 @@ public class InputSystem {
         }
         else {
             space_previously_pressed = false;
+        }
+        // independent system - changing level
+        if (Gdx.input.isKeyJustPressed(Input.Keys.P)){
+            PlayerActionEvent playerAction = new PlayerActionEvent();
+            playerAction.action = keyBindings.get(Input.Keys.P);
+            EventBus.getInstance().publish(playerAction);
         }
         //find action bound to that key
         if (horizontal_movement != null){

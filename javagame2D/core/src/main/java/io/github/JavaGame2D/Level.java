@@ -2,7 +2,6 @@ package io.github.JavaGame2D;
 
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Systems.EntityManager;
-import io.github.JavaGame2D.Systems.FileSystem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,8 +12,9 @@ public class Level {
     // level name
     public String levelName;
 
+    private ArrayList<Integer> levelEntitiesIDs;
     // list of entities
-    public ArrayList<Entity> entitiesInside;
+    public ArrayList<Entity> levelEntities;
 
     // level-specific settings:
     // boundary for camera
@@ -25,15 +25,16 @@ public class Level {
     public int defaultSpawnPointID;
 
     public Level() {
-        entitiesInside = new ArrayList<>();
+        levelEntitiesIDs = new ArrayList<>();
+        levelEntities = new ArrayList<>();
         validSpawnPoints = new HashMap<>();
     }
 
-    public Level(int levelID, String levelName, ArrayList<Entity> entitiesInside, Vector2 lowerLeftCorner,
+    public Level(int levelID, String levelName, ArrayList<Entity> levelEntities, Vector2 lowerLeftCorner,
                  Vector2 upperRightCorner, HashMap<Integer, Vector2> validSpawnPoints, int defaultSpawnPointID) {
         this.levelID = levelID;
         this.levelName = levelName;
-        this.entitiesInside = entitiesInside;
+        this.levelEntities = levelEntities;
         this.lowerLeftCorner = lowerLeftCorner;
         this.upperRightCorner = upperRightCorner;
         this.validSpawnPoints = validSpawnPoints;
@@ -41,8 +42,14 @@ public class Level {
     }
 
     public void registerLevelEntities(EntityManager entityManager){
-        for (Entity entity : entitiesInside){
-            entityManager.addEntity(entity);
+        for (Entity entity : levelEntities){
+            int ID = entityManager.addEntity(entity);
+            levelEntitiesIDs.add(ID);
+        }
+    }
+    public void deregisterLevelEntities(EntityManager entityManager){
+        for (int ID : levelEntitiesIDs){
+            entityManager.removeEntity(ID);
         }
     }
 }

@@ -1,7 +1,7 @@
 {
   "levelID" : 1,
   "levelName" : "level1",
-  "entitiesInside" : [ {
+  "levelEntities" : [ {
     "transformComponent" : {
       "componentType" : "TRANSFORM",
       "position" : {

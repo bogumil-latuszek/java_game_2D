@@ -8,6 +8,10 @@ import io.github.JavaGame2D.Components.ColliderComponent;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.Enums.EventType;
+import io.github.JavaGame2D.Events.TeleportPlayerEvent;
+import io.github.JavaGame2D.OnCollisionActions.OnCollisionAction;
+import io.github.JavaGame2D.OnCollisionActions.OnCollisionTeleport;
 import io.github.JavaGame2D.Systems.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -21,7 +25,7 @@ public class GameManager extends ApplicationAdapter {
     Long previousTimeframe;
     GameSettings gameSettings;
     LevelManager levelManager;
-
+    //SpecialEventManager specialEventManager;
 
 
     @Override
@@ -36,6 +40,7 @@ public class GameManager extends ApplicationAdapter {
         // initialize systems
         entityManager = new EntityManager();
 
+        //specialEventManager = new SpecialEventManager(entityManager);
         renderingSystem = new RenderingSystem(entityManager);
         physicsSystem = new PhysicsSystem(entityManager, gameSettings);
         userInterface = new UserInterface();
@@ -64,6 +69,7 @@ public class GameManager extends ApplicationAdapter {
 //        Entity platform14 = createPlatform(new Vector2(17.5f, 18f), 5f,0.5f);
 //        Entity platform15 = createPlatform(new Vector2(17.5f, 22f), 2.5f,0.5f);
 //        Entity platform16 = createPlatform(new Vector2(17.5f, 26f), 1.25f,0.5f);
+//        Entity teleport_to_level2 = createTeleporter(new Vector2(17.5f, 29f), 2f,2f);
 //
 //        Level newLevel = new Level();
 //        newLevel.levelID = 1;
@@ -87,7 +93,7 @@ public class GameManager extends ApplicationAdapter {
 //        levelManager.changeCurrentLevel(newLevel);
 //        levelManager.saveLevel();
 
-        // LEVEL 2
+//        // LEVEL 2
 //        Entity platform1 = createPlatform(new Vector2(5f,2f),15f,10f);
 //        Entity platform2 = createPlatform(new Vector2(35f, 0f), 40f,20f);
 //        Entity platform3 = createPlatform(new Vector2(30f, 5f), 10f,16f);
@@ -102,43 +108,47 @@ public class GameManager extends ApplicationAdapter {
 //        Entity platform12 = createPlatform(new Vector2(87.5f, 35.5f), 5f,15f);
 //        Entity platform13 = createPlatform(new Vector2(97.5f, 32f), 5f,15f);
 //        Entity platform14 = createPlatform(new Vector2(107.5f, 18f), 5f,10f);
-//        Entity platform15 = createPlatform(new Vector2(117.5f, 20f), 3f,5f);
-//        Entity platform16 = createPlatform(new Vector2(112.5f, 37.5f), 5f,15f);
-////
+//        Entity platform15 = createPlatform(new Vector2(112.5f, 37.5f), 5f,15f);
+//        Entity platform16 = createPlatform(new Vector2(117.5f, 20f), 3f,5f);
+//        Entity teleport_to_level1 = createTeleporter(new Vector2(117.5f, 23f), 2f,2f);
+//
 //        Level newLevel = new Level();
-//        newLevel.levelID = 1;
+//        newLevel.levelID = 2;
 //        newLevel.levelName = "level2";
-//        newLevel.entitiesInside.add(platform1);
-//        newLevel.entitiesInside.add(platform2);
-//        newLevel.entitiesInside.add(platform3);
-//        newLevel.entitiesInside.add(platform4);
-//        newLevel.entitiesInside.add(platform5);
-//        newLevel.entitiesInside.add(platform6);
-//        newLevel.entitiesInside.add(platform7);
-//        newLevel.entitiesInside.add(platform8);
-//        newLevel.entitiesInside.add(platform9);
-//        newLevel.entitiesInside.add(platform10);
-//        newLevel.entitiesInside.add(platform11);
-//        newLevel.entitiesInside.add(platform12);
-//        newLevel.entitiesInside.add(platform13);
-//        newLevel.entitiesInside.add(platform14);
-//        newLevel.entitiesInside.add(platform15);
-//        newLevel.entitiesInside.add(platform16);
+//        newLevel.levelEntities.add(platform1);
+//        newLevel.levelEntities.add(platform2);
+//        newLevel.levelEntities.add(platform3);
+//        newLevel.levelEntities.add(platform4);
+//        newLevel.levelEntities.add(platform5);
+//        newLevel.levelEntities.add(platform6);
+//        newLevel.levelEntities.add(platform7);
+//        newLevel.levelEntities.add(platform8);
+//        newLevel.levelEntities.add(platform9);
+//        newLevel.levelEntities.add(platform10);
+//        newLevel.levelEntities.add(platform11);
+//        newLevel.levelEntities.add(platform12);
+//        newLevel.levelEntities.add(platform13);
+//        newLevel.levelEntities.add(platform14);
+//        newLevel.levelEntities.add(platform15);
+//        newLevel.levelEntities.add(platform16);
+//        newLevel.levelEntities.add(teleport_to_level1);
 //        levelManager.changeCurrentLevel(newLevel);
 //        levelManager.saveLevel();
 
 
-        levelManager.loadLevel("default");
+//        levelManager.loadLevel("level1");
+        levelManager.loadLevel("level2");
+//        levelManager.loadLevel("default");
 
 
-
-//        levelManager.loadLevel("leveldefault");
 //        FileSystem.serializeEntityJackson(platform3);
 //          FileSystem.serializeComponentJsonWriter(platform3);
 //        Entity platformLoaded = fileSystem.loadEntityJackson("levels/serialized_component_jackson.json");
 //        entityManager.addEntity(platformLoaded);
 
         previousTimeframe = System.currentTimeMillis();
+
+        //TODO: Move this to level creation
         renderingSystem.loadTextures();
     }
 
@@ -173,7 +183,7 @@ public class GameManager extends ApplicationAdapter {
     }
 
     private Entity createPlayer(){
-        Entity player = entityManager.createEntity();
+        Entity player = entityManager.createPlayer();
 
         Texture playerSprite = new Texture("playerSprite.png");
         float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
@@ -218,5 +228,33 @@ public class GameManager extends ApplicationAdapter {
         platform.physicalBodyComponent = bodyComponent;
         platform.colliderComponent = collider;
         return platform;
+    }
+
+    private Entity createTeleporter(Vector2 position, float width, float height){
+        Entity teleporter = entityManager.createEntity();
+        Texture texture = new Texture("teleport.png");
+        float scale = (float)texture.getHeight()/texture.getWidth();
+        DrawableComponent drawableComponent = new DrawableComponent();
+        drawableComponent.texturePath = "teleport.png";
+        TransformComponent transformComponent = new TransformComponent();
+        transformComponent.position = position;
+        transformComponent.height = height*scale;
+        transformComponent.width = width;
+        PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
+        bodyComponent.dynamic = false;
+        bodyComponent.usesGravity = false;
+        ColliderComponent collider = new ColliderComponent();
+
+        collider.triggersAction = true;
+        //collider.eventType = EventType.TELEPORT;
+        OnCollisionTeleport onCollisionTeleport = new OnCollisionTeleport();
+        onCollisionTeleport.targetLevelName = "level1";
+        collider.action = onCollisionTeleport;
+
+        teleporter.drawableComponent = drawableComponent;
+        teleporter.transformComponent = transformComponent;
+        teleporter.physicalBodyComponent = bodyComponent;
+        teleporter.colliderComponent = collider;
+        return teleporter;
     }
 }

@@ -8,6 +8,8 @@ import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ColliderType;
 import io.github.JavaGame2D.Enums.ComponentType;
+import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.CollisionEvent;
 import io.github.JavaGame2D.GameSettings;
 //import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
 
@@ -163,6 +165,25 @@ public class PhysicsSystem {
                     continue;
                 }
                 // resolve collision
+                // first, if the property "TriggersEvent" is true:
+                if(collider1.triggersAction){
+                    collider1.action.trigger(entity,otherEntity);
+                    // throw appropriate event
+//                    CollisionEvent event = new CollisionEvent();
+//                    event.emitterEntity = entity;
+//                    event.otherEntity = otherEntity;
+//                    EventBus.getInstance().publish(event);
+                }
+                // TODO: is there really a need for duplicating this?
+                if(collider2.triggersAction){
+                    collider1.action.trigger(otherEntity,entity);
+                    // throw appropriate event
+//                    CollisionEvent event = new CollisionEvent();
+//                    event.emitterEntity = otherEntity;
+//                    event.otherEntity = entity;
+//                    EventBus.getInstance().publish(event);
+                }
+
                 // we know that entity is dynamic
                 // now if other entity is static:
                 PhysicalBodyComponent otherBody = otherEntity.physicalBodyComponent;

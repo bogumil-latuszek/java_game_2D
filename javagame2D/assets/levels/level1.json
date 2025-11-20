@@ -42,7 +42,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 1
   }, {
@@ -86,7 +88,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 2
   }, {
@@ -130,7 +134,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 3
   }, {
@@ -174,7 +180,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 4
   }, {
@@ -218,7 +226,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 5
   }, {
@@ -262,7 +272,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 6
   }, {
@@ -306,7 +318,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 7
   }, {
@@ -350,7 +364,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 8
   }, {
@@ -394,7 +410,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 9
   }, {
@@ -438,7 +456,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 10
   }, {
@@ -482,7 +502,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 11
   }, {
@@ -526,7 +548,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 12
   }, {
@@ -570,7 +594,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 13
   }, {
@@ -614,7 +640,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 14
   }, {
@@ -658,7 +686,9 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 15
   }, {
@@ -702,9 +732,57 @@
       },
       "width" : 0.0,
       "height" : 0.0,
-      "sizeFromTransform" : true
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
     },
     "id" : 16
+  }, {
+    "transformComponent" : {
+      "componentType" : "TRANSFORM",
+      "position" : {
+        "x" : 17.5,
+        "y" : 29.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
+    },
+    "drawableComponent" : {
+      "componentType" : "DRAWABLE",
+      "texturePath" : "teleport.png"
+    },
+    "physicalBodyComponent" : {
+      "componentType" : "PHYSICAL_BODY",
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    },
+    "colliderComponent" : {
+      "componentType" : "COLLIDER",
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true,
+      "triggersAction" : false,
+      "action" : null
+    },
+    "id" : 17
   } ],
   "lowerLeftCorner" : null,
   "upperRightCorner" : null,

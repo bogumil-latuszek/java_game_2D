@@ -7,6 +7,22 @@ import java.util.function.Predicate;
 public class EntityManager {
     private HashMap<Integer, Entity> entities;
     private int nextEntityId;
+    private Integer playerID;
+
+    public int getPlayerID(){
+        return playerID;
+    }
+
+    public int addPlayer(Entity entity){
+        playerID = addEntity(entity);
+        return playerID;
+    }
+
+    public Entity createPlayer(){
+        Entity player = createEntity();
+        playerID = player.getID();
+        return player;
+    }
 
     public EntityManager(){
         entities = new HashMap<Integer, Entity>();

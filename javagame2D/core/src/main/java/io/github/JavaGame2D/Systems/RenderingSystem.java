@@ -13,24 +13,26 @@ import io.github.JavaGame2D.Enums.ComponentType;
 public class RenderingSystem {
     private SpriteBatch batch;
     private Texture image;
-    private EntityManager entityManager;
+    private EntityComponentManager entityComponentManager;
+    private int signature;
     private StalkingCamera stalkingCamera;
     private Texture missingTexture;
 
-    public RenderingSystem(EntityManager entityManager){
+    public RenderingSystem(EntityComponentManager entityComponentManager){
         image = new Texture("libgdx.png");
         batch = new SpriteBatch();
-        this.entityManager = entityManager;
+        this.entityComponentManager = entityComponentManager;
         stalkingCamera = new StalkingCamera();
         missingTexture = new Texture("autumnBrick1.png");
     }
 
     public void loadTextures(){
-        Entity[] drawableEntities = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
-                                                                             e.drawableComponent != null);
-        for (Entity entity : drawableEntities){
-            if (entity.drawableComponent.sprite == null && entity.drawableComponent.texturePath != null) {
-                entity.drawableComponent.sprite = new Texture(entity.drawableComponent.texturePath);
+//        Entity[] drawableEntities = entityComponentManager.getEntitiesWith(e -> e.transformComponent != null &&
+//                                                                             e.drawableComponent != null);
+        DrawableComponent[] drawableComponents = entityComponentManager.getDrawableComponents();
+        for (DrawableComponent drawable : drawableComponents){
+            if (drawable.sprite == null && drawable.texturePath != null) {
+                drawable.sprite = new Texture(drawable.texturePath);
             }
         }
     }

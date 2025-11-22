@@ -15,16 +15,6 @@ public class ColliderComponent implements Component {
     public float height;
     public boolean sizeFromTransform;
 
-    public ColliderComponent(){
-        this.layer = 0;
-        this.colliderType = ColliderType.AABB;
-        this.usesOffset = false;
-        this.sizeFromTransform = true;
-        this.offset = new Vector2(0f,0f);
-        this.height = 0;
-        this.width = 0;
-    }
-
     @Override
     public ComponentType type() {
         return this.componentType;

@@ -13,12 +13,17 @@ public class EntityManager {
         nextEntityId = 0;
     }
 
-    public Entity createEntity(){
+    public int createEntity(){
         int id = nextEntityId;
         nextEntityId++;
         Entity newEntity = new Entity(id);
         entities.put(id,newEntity);
-        return newEntity;
+        return id;
+    }
+
+    public void addSignature(int entityID, int signature){
+        Entity entity  = entities.get(entityID);
+        entity.signature = signature;
     }
 
     public int addEntity(Entity entity){

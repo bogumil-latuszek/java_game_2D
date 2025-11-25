@@ -41,15 +41,15 @@ public class Level {
         this.defaultSpawnPointID = defaultSpawnPointID;
     }
 
-    public void registerLevelEntities(EntityManager entityManager){
-        for (Entity entity : levelEntities){
-            int ID = entityManager.addEntity(entity);
-            levelEntitiesIDs.add(ID);
-        }
-    }
-    public void deregisterLevelEntities(EntityManager entityManager){
-        for (int ID : levelEntitiesIDs){
-            entityManager.removeEntity(ID);
-        }
-    }
+//    public void registerLevelEntities(EntityManager entityManager){
+//        for (Entity entity : levelEntities){
+//            int ID = entityManager.addEntity(entity);
+//            levelEntitiesIDs.add(ID);
+//        }
+//    }
+//    public void deregisterLevelEntities(EntityManager entityManager){
+//        for (int ID : levelEntitiesIDs){
+//            entityManager.removeEntity(ID);
+//        }
+//    }
 }

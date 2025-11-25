@@ -5,7 +5,7 @@ import io.github.JavaGame2D.Enums.ComponentType;
 
 public class TransformComponent implements Component{
 
-    public ComponentType componentType = ComponentType.TRANSFORM;
+    public final long signature = ComponentSignatures.TRANSFORM;
     // position of the center
     public Vector2 position;
     // previous frame position
@@ -21,7 +21,7 @@ public class TransformComponent implements Component{
     }
 
     @Override
-    public ComponentType type() {
-        return this.componentType;
+    public long getSignature() {
+        return this.signature;
     }
 }

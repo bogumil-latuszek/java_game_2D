@@ -17,6 +17,8 @@ public class PhysicalBodyComponentsCollection{
     public PhysicalBodyComponentsCollection(){
         physicsComponents = new PhysicalBodyComponent[defaultSize];
         lastLivePosition = -1;
+        entityIDToPosition = new HashMap<>();
+        positionToEntityID = new HashMap<>();
     }
 
     public PhysicalBodyComponent getPhysicalBodyComponent(int entityID){

@@ -16,6 +16,8 @@ public class TransformComponentsCollection {
     public TransformComponentsCollection(){
         transformComponents = new TransformComponent[defaultSize];
         lastLivePosition = -1;
+        entityIDToPosition = new HashMap<>();
+        positionToEntityID = new HashMap<>();
     }
 
     public TransformComponent getTransformComponent(int entityID){

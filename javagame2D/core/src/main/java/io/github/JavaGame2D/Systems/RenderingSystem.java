@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.ScreenUtils;
+import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
@@ -27,9 +28,7 @@ public class RenderingSystem {
     }
 
     public void loadTextures(){
-//        Entity[] drawableEntities = entityComponentManager.getEntitiesWith(e -> e.transformComponent != null &&
-//                                                                             e.drawableComponent != null);
-        DrawableComponent[] drawableComponents = entityComponentManager.getDrawableComponents();
+        DrawableComponent[] drawableComponents = entityComponentManager.getAllDrawableComponents();
         for (DrawableComponent drawable : drawableComponents){
             if (drawable.sprite == null && drawable.texturePath != null) {
                 drawable.sprite = new Texture(drawable.texturePath);
@@ -37,8 +36,9 @@ public class RenderingSystem {
         }
     }
 
-    public void setEntityFollowedByCamera(Entity entity){
-        this.stalkingCamera.followEntity(entity);
+    public void setEntityFollowedByCamera(int entityID){
+        TransformComponent transformComponent = entityComponentManager.getTransformComponent(entityID);
+        this.stalkingCamera.followTransformComponent(transformComponent);
     }
 
     public void render(){
@@ -56,16 +56,13 @@ public class RenderingSystem {
         batch.draw(image, 30, -30, 60, 60*(float)image.getHeight()/image.getWidth());
         //draw drawable entities
 
-        // get list of drawable entities from EntityManager
-//        ComponentType[] requiredComponents = {ComponentType.DRAWABLE,
-//                                            ComponentType.TRANSFORM};
-//        Entity[] drawableEntities = entityManager.getMatchingEntities(requiredComponents);
-        Entity[] drawableEntities = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
-                                                                             e.drawableComponent != null);
+        long signature = ComponentSignatures.TRANSFORM & ComponentSignatures.DRAWABLE;
+        int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
+
         // draw each entity in list:
-        for (Entity entity : drawableEntities){
-            TransformComponent transformComponent = entity.transformComponent;
-            DrawableComponent drawableComponent = entity.drawableComponent;
+        for ( int entityID : drawableEntities){
+            TransformComponent transformComponent = entityComponentManager.getTransformComponent(entityID);
+            DrawableComponent drawableComponent = entityComponentManager.getDrawableComponent(entityID);
             Texture sprite = drawableComponent.sprite != null ? drawableComponent.sprite : missingTexture;
 
             float centerX = transformComponent.position.x;

@@ -10,7 +10,7 @@ import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ComponentType;
 
 public class StalkingCamera {
-    private Entity followedEntity;
+    private TransformComponent followedTransformComponent;
     private OrthographicCamera camera;
     private ExtendViewport viewport;
 
@@ -21,22 +21,18 @@ public class StalkingCamera {
         viewport = new ExtendViewport(14,9.8f, camera);
     }
 
-    public void followEntity(Entity entity){
-        if(entity.transformComponent != null){
-            followedEntity = entity;
-        }
+    public void followTransformComponent(TransformComponent transformComponent){
+        this.followedTransformComponent = transformComponent;
     }
 
     public void update(){
         this.viewport.apply();
 
-        if (followedEntity == null){
+        if (followedTransformComponent == null){
             return;
         }
-        TransformComponent transform = followedEntity.transformComponent;
-        Vector2 stalkedEntityPosition = transform.position;
-        this.camera.position.x = stalkedEntityPosition.x;
-        this.camera.position.y = stalkedEntityPosition.y;
+        this.camera.position.x =  followedTransformComponent.position.x;
+        this.camera.position.y =  followedTransformComponent.position.y;
 
         //very important! without this update call the projection matrix won't update!
         this.camera.update();

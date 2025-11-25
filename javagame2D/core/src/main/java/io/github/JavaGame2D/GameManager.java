@@ -14,13 +14,13 @@ import io.github.JavaGame2D.Systems.*;
 public class GameManager extends ApplicationAdapter {
     RenderingSystem renderingSystem;
     PhysicsSystem physicsSystem;
-    EntityManager entityManager;
     UserInterface userInterface;
     InputSystem inputSystem;
     PlayerCharacterController playerCharacterController;
     Long previousTimeframe;
     GameSettings gameSettings;
     LevelManager levelManager;
+    EntityComponentManager entityComponentManager;
 
 
 
@@ -34,58 +34,36 @@ public class GameManager extends ApplicationAdapter {
 
         FileSystem fileSystem = new FileSystem();
         // initialize systems
-        entityManager = new EntityManager();
+        entityComponentManager = new EntityComponentManager();
 
-        renderingSystem = new RenderingSystem(entityManager);
-        physicsSystem = new PhysicsSystem(entityManager, gameSettings);
+        renderingSystem = new RenderingSystem(entityComponentManager);
+        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
         userInterface = new UserInterface();
         inputSystem = new InputSystem();
-        playerCharacterController = new PlayerCharacterController();
-        levelManager = new LevelManager(fileSystem, entityManager);
+        playerCharacterController = new PlayerCharacterController(entityComponentManager);
 
-        Entity player = createPlayer();
+        int playerID = entityComponentManager.createPlayer();
+        Entity player = entityComponentManager.getEntity(playerID);
         playerCharacterController.setPlayerCharacter(player);
-        renderingSystem.setEntityFollowedByCamera(player);
+        renderingSystem.setEntityFollowedByCamera(playerID);
 
         // LEVEL 1
-//        Entity platform1 = createPlatform(new Vector2(0f,-2.5f),5f,1f);
-//        Entity platform2 = createPlatform(new Vector2(5f, 1.125f), 2.5f,2.5f);
-//        Entity platform3 = createPlatform(new Vector2(10f, 2.5f), 5f,2.5f);
-//        Entity platform4 = createPlatform(new Vector2(12.5f, 2.5f), 1.25f,10f);
-//        Entity platform5 = createPlatform(new Vector2(17.5f, 2.5f), 1.25f,17.5f);
-//        Entity platform6 = createPlatform(new Vector2(17.5f, -10f), 12.5f,1.25f);
-//        Entity platform7 = createPlatform(new Vector2(-6f, -5f), 30f,0.5f);
-//        Entity platform8 = createPlatform(new Vector2(20f, -6f), 2.5f,0.5f);
-//        Entity platform9 = createPlatform(new Vector2(22.5f, -2f), 2.5f,0.5f);
-//        Entity platform10 = createPlatform(new Vector2(20f, 2f), 2.5f,0.5f);
-//        Entity platform11 = createPlatform(new Vector2(22.5f, 6f), 2.5f,0.5f);
-//        Entity platform12 = createPlatform(new Vector2(20f, 10f), 2.5f,0.5f);
-//        Entity platform13 = createPlatform(new Vector2(22.5f, 14f), 2.5f,0.5f);
-//        Entity platform14 = createPlatform(new Vector2(17.5f, 18f), 5f,0.5f);
-//        Entity platform15 = createPlatform(new Vector2(17.5f, 22f), 2.5f,0.5f);
-//        Entity platform16 = createPlatform(new Vector2(17.5f, 26f), 1.25f,0.5f);
-//
-//        Level newLevel = new Level();
-//        newLevel.levelID = 1;
-//        newLevel.levelName = "level1";
-//        newLevel.entitiesInside.add(platform1);
-//        newLevel.entitiesInside.add(platform2);
-//        newLevel.entitiesInside.add(platform3);
-//        newLevel.entitiesInside.add(platform4);
-//        newLevel.entitiesInside.add(platform5);
-//        newLevel.entitiesInside.add(platform6);
-//        newLevel.entitiesInside.add(platform7);
-//        newLevel.entitiesInside.add(platform8);
-//        newLevel.entitiesInside.add(platform9);
-//        newLevel.entitiesInside.add(platform10);
-//        newLevel.entitiesInside.add(platform11);
-//        newLevel.entitiesInside.add(platform12);
-//        newLevel.entitiesInside.add(platform13);
-//        newLevel.entitiesInside.add(platform14);
-//        newLevel.entitiesInside.add(platform15);
-//        newLevel.entitiesInside.add(platform16);
-//        levelManager.changeCurrentLevel(newLevel);
-//        levelManager.saveLevel();
+        entityComponentManager.createPlatform(0f,    -2.5f, 5f,   1f);
+        entityComponentManager.createPlatform(5f,    1.125f,2.5f, 2.5f);
+        entityComponentManager.createPlatform(10f,   2.5f,  5f,   2.5f);
+        entityComponentManager.createPlatform(12.5f, 2.5f,  1.25f,10f);
+        entityComponentManager.createPlatform(17.5f, 2.5f,  1.25f,17.5f);
+        entityComponentManager.createPlatform(17.5f, -10f,  12.5f,1.25f);
+        entityComponentManager.createPlatform(-6f,   -5f,   30f,  0.5f);
+        entityComponentManager.createPlatform(20f,   -6f,   2.5f, 0.5f);
+        entityComponentManager.createPlatform(22.5f, -2f,   2.5f, 0.5f);
+        entityComponentManager.createPlatform(20f,   2f,    2.5f, 0.5f);
+        entityComponentManager.createPlatform(22.5f, 6f,    2.5f, 0.5f);
+        entityComponentManager.createPlatform(20f,   10f,   2.5f, 0.5f);
+        entityComponentManager.createPlatform(22.5f, 14f,   2.5f, 0.5f);
+        entityComponentManager.createPlatform(17.5f, 18f,   5f,   0.5f);
+        entityComponentManager.createPlatform(17.5f, 22f,   2.5f, 0.5f);
+        entityComponentManager.createPlatform(17.5f, 26f,   1.25f,0.5f);
 
         // LEVEL 2
 //        Entity platform1 = createPlatform(new Vector2(5f,2f),15f,10f);
@@ -128,8 +106,7 @@ public class GameManager extends ApplicationAdapter {
 //        levelManager.saveLevel();
 
 
-        levelManager.loadLevel("default");
-
+//        levelManager.loadLevel("default");
 
 
 //        levelManager.loadLevel("leveldefault");
@@ -172,51 +149,51 @@ public class GameManager extends ApplicationAdapter {
         userInterface.dispose();
     }
 
-    private Entity createPlayer(){
-        Entity player = entityManager.createEntity();
-
-        Texture playerSprite = new Texture("playerSprite.png");
-        float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
-        DrawableComponent drawableComponent = new DrawableComponent();
-        drawableComponent.texturePath = "playerSprite.png";
-        TransformComponent transformComponent = new TransformComponent();
-        transformComponent.height = 1*scale;
-        transformComponent.width = 1;
-        transformComponent.position = new Vector2(10f,50f);
-        PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
-        //bodyComponent.usesGravity = true;
-        bodyComponent.usesGravity = true;
-        ColliderComponent collider = new ColliderComponent();
-        collider.sizeFromTransform = false;
-        collider.width = transformComponent.width/2;
-        collider.height = transformComponent.height;
-
-        player.drawableComponent = drawableComponent;
-        player.transformComponent = transformComponent;
-        player.physicalBodyComponent = bodyComponent;
-        player.colliderComponent = collider;
-        return player;
-    }
-
-    private Entity createPlatform(Vector2 position, float width, float height){
-        Entity platform = entityManager.createEntity();
-        Texture texture = new Texture("autumnBrick1.png");
-        float scale = (float)texture.getHeight()/texture.getWidth();
-        DrawableComponent drawableComponent = new DrawableComponent();
-        drawableComponent.texturePath = "autumnBrick1.png";
-        TransformComponent transformComponent = new TransformComponent();
-        transformComponent.position = position;
-        transformComponent.height = height*scale;
-        transformComponent.width = width;
-        PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
-        bodyComponent.dynamic = false;
-        bodyComponent.usesGravity = false;
-        ColliderComponent collider = new ColliderComponent();
-
-        platform.drawableComponent = drawableComponent;
-        platform.transformComponent = transformComponent;
-        platform.physicalBodyComponent = bodyComponent;
-        platform.colliderComponent = collider;
-        return platform;
-    }
+//    private Entity createPlayer(){
+//        Entity player = entityManager.createEntity();
+//
+//        Texture playerSprite = new Texture("playerSprite.png");
+//        float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
+//        DrawableComponent drawableComponent = new DrawableComponent();
+//        drawableComponent.texturePath = "playerSprite.png";
+//        TransformComponent transformComponent = new TransformComponent();
+//        transformComponent.height = 1*scale;
+//        transformComponent.width = 1;
+//        transformComponent.position = new Vector2(10f,50f);
+//        PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
+//        //bodyComponent.usesGravity = true;
+//        bodyComponent.usesGravity = true;
+//        ColliderComponent collider = new ColliderComponent();
+//        collider.sizeFromTransform = false;
+//        collider.width = transformComponent.width/2;
+//        collider.height = transformComponent.height;
+//
+//        player.drawableComponent = drawableComponent;
+//        player.transformComponent = transformComponent;
+//        player.physicalBodyComponent = bodyComponent;
+//        player.colliderComponent = collider;
+//        return player;
+//    }
+//
+//    private Entity createPlatform(Vector2 position, float width, float height){
+//        Entity platform = entityManager.createEntity();
+//        Texture texture = new Texture("autumnBrick1.png");
+//        float scale = (float)texture.getHeight()/texture.getWidth();
+//        DrawableComponent drawableComponent = new DrawableComponent();
+//        drawableComponent.texturePath = "autumnBrick1.png";
+//        TransformComponent transformComponent = new TransformComponent();
+//        transformComponent.position = position;
+//        transformComponent.height = height*scale;
+//        transformComponent.width = width;
+//        PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
+//        bodyComponent.dynamic = false;
+//        bodyComponent.usesGravity = false;
+//        ColliderComponent collider = new ColliderComponent();
+//
+//        platform.drawableComponent = drawableComponent;
+//        platform.transformComponent = transformComponent;
+//        platform.physicalBodyComponent = bodyComponent;
+//        platform.colliderComponent = collider;
+//        return platform;
+//    }
 }

@@ -6,17 +6,17 @@ import io.github.JavaGame2D.Enums.ComponentType;
 
 public class ColliderComponent implements Component {
 
-    public ComponentType componentType = ComponentType.COLLIDER;
-    public int layer;
-    public ColliderType colliderType;
-    public boolean usesOffset;
+    public final long signature = ComponentSignatures.COLLIDER;
+    public int layer = 0;
+    public ColliderType colliderType = ColliderType.AABB;
+    public boolean usesOffset = false;
     public Vector2 offset;
     public float width;
     public float height;
-    public boolean sizeFromTransform;
+    public boolean sizeFromTransform = true;
 
     @Override
-    public ComponentType type() {
-        return this.componentType;
+    public long getSignature() {
+        return this.signature;
     }
 }

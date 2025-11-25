@@ -3,6 +3,7 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.math.Vector2;
 //import com.sun.org.apache.bcel.internal.generic.IfInstruction;
 import io.github.JavaGame2D.Components.ColliderComponent;
+import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
@@ -16,41 +17,47 @@ public class PhysicsSystem {
     // TODO: load this from settings
     private float gravity; //acceleration: unit/s in y direction
     //TODO: dependency injection
-    private EntityManager entityManager;
+    private EntityComponentManager entityComponentManager;
     private float groundCheckDepth;
 
-    public PhysicsSystem(EntityManager entityManager, GameSettings settings) {
-        this.entityManager = entityManager;
+    public PhysicsSystem(EntityComponentManager entityComponentManager, GameSettings settings) {
+        this.entityComponentManager = entityComponentManager;
         this.gravity = settings.gravity;
         this.groundCheckDepth = settings.groundCheckDepth;
     }
 
     public void update(float deltaTime){
+        // #1 do the GroundCheck
+        // #2 move entites
         moveEntities(deltaTime);
+        // #3 detect collisions
+        // #4 send list of collided items to systems like:
+        // PhysicsSystem.resolveCollisions(list);
+        // TrapSystem.resolveTraps(list)
+        // TeleportSystem.resolveTeleports(list);
         detectAndResolveCollisions();
     }
 
     private void moveEntities(float deltaTime){
-        // get all entities that can move: ones with PhysicalBodyComponent and TransformComponent
-//        ComponentType[] requiredComponents = {ComponentType.PHYSICAL_BODY,
-//                                              ComponentType.TRANSFORM};
-//        Entity[] physicalEntities = entityManager.getMatchingEntities(requiredComponents);
-        Entity[] physicalEntities = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
-                                                                             e.physicalBodyComponent != null);
+
+        long signature = ComponentSignatures.PHYSICAL_BODY & ComponentSignatures.TRANSFORM;
+        int[] physicalEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
+
         // move them:
-        for(Entity entity: physicalEntities){
-            TransformComponent transformComponent = entity.transformComponent;
-            PhysicalBodyComponent physicalBodyComponent = entity.physicalBodyComponent;
+        for(int entityID: physicalEntities){
+            TransformComponent transformComponent = entityComponentManager.getTransformComponent(entityID);
+            PhysicalBodyComponent physicalBodyComponent = entityComponentManager.getPhysicalBodyComponent(entityID);
             Vector2 position = transformComponent.position;
             Vector2 previousPosition = transformComponent.previousPosition;
             Vector2 velocity = physicalBodyComponent.velocity;
-            if (physicalBodyComponent.usesGravity && physicalBodyComponent.onGround){
-                //do the ground check:
-                boolean stillOnGround = groundCheck(entity);
-                if (!stillOnGround){
-                    physicalBodyComponent.onGround = false;
-                }
-            }
+            //TODO: ground checks should be made for all entities capable of movement and grounded, but before the moveEntities step
+//            if (physicalBodyComponent.usesGravity && physicalBodyComponent.onGround){
+//                //do the ground check:
+//                boolean stillOnGround = groundCheck(entity);
+//                if (!stillOnGround){
+//                    physicalBodyComponent.onGround = false;
+//                }
+//            }
             // apply gravity
             if (physicalBodyComponent.usesGravity && !physicalBodyComponent.onGround){
                 //assuming deltaTime is in seconds! also shouldn't it be capped? or is that irrelevant to gravity calc?
@@ -72,92 +79,88 @@ public class PhysicsSystem {
         }
     }
 
-    private boolean groundCheck(Entity entity){
-        boolean stillOnGround = true;
-        ColliderComponent collider = entity.colliderComponent;
+//    private boolean groundCheck(ColliderComponent collider, int entityID){
+//        boolean stillOnGround = true;
+//        if (collider.colliderType == ColliderType.AABB){
+//            stillOnGround = groundCheckForAABB(ColliderComponent collider, );
+//        }
+//        return stillOnGround;
+//    }
 
-        if (collider.colliderType == ColliderType.AABB){
-            stillOnGround = groundCheckForAABB(entity);
-        }
-        return stillOnGround;
-    }
-
-    private boolean groundCheckForAABB(Entity entity){
-        boolean groundCollisionDetected = true;
-        boolean atLeastOneCollision = false;
-        TransformComponent transform = entity.transformComponent;
-        ColliderComponent collider = entity.colliderComponent;
-        AABBCollider transformedCollider = createAABBCollider(transform, collider);
-        AABBCollider groundCollider = createAABBGroundCollider(transformedCollider);
-
-        ComponentType[] requiredComponents = {ComponentType.TRANSFORM,
-                                              ComponentType.PHYSICAL_BODY,
-                                              ComponentType.COLLIDER};
-        //Entity[] potentialGround = entityManager.getMatchingEntities(requiredComponents);
-        Entity[] potentialGround = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
-                                                                            e.physicalBodyComponent != null &&
-                                                                            e.colliderComponent != null);
-
-        for (Entity otherEntity : potentialGround){
-            // check if collision is possible
-            // impossible for entity to collide with itself
-            if (entity == otherEntity){
-                continue;
-            }
-            ColliderComponent otherCollider = entity.colliderComponent;
-            // impossible for entities on different layers to collide
-            if (collider.layer != otherCollider.layer){
-                continue;
-            }
-            TransformComponent otherTransform = entity.transformComponent;
-            if (otherCollider.colliderType == ColliderType.AABB){
-                AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
-                boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
-                if(detectedCollision){
-                    atLeastOneCollision = true;
-                }
-            }
-        }
-        if (!atLeastOneCollision){
-            groundCollisionDetected = false;
-        }
-        return groundCollisionDetected;
-    }
-
-    private void detectAndResolveCollisions(){
-        // get all entities with Transform Component and Collider Component
+//    private boolean groundCheckForAABB(Entity entity){
+//        boolean groundCollisionDetected = true;
+//        boolean atLeastOneCollision = false;
+//        TransformComponent transform = entity.transformComponent;
+//        ColliderComponent collider = entity.colliderComponent;
+//        AABBCollider transformedCollider = createAABBCollider(transform, collider);
+//        AABBCollider groundCollider = createAABBGroundCollider(transformedCollider);
+//
 //        ComponentType[] requiredComponents = {ComponentType.TRANSFORM,
 //                                              ComponentType.PHYSICAL_BODY,
 //                                              ComponentType.COLLIDER};
-        //Entity[] potentiallyColliding = entityManager.getMatchingEntities(requiredComponents);
-        Entity[] potentiallyColliding = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
-                                                                                 e.physicalBodyComponent != null &&
-                                                                                 e.colliderComponent != null);
-        //ArrayList<Entity> collidedEntities = new ArrayList<>();
+//        //Entity[] potentialGround = entityManager.getMatchingEntities(requiredComponents);
+//        Entity[] potentialGround = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
+//                                                                            e.physicalBodyComponent != null &&
+//                                                                            e.colliderComponent != null);
+//
+//        for (Entity otherEntity : potentialGround){
+//            // check if collision is possible
+//            // impossible for entity to collide with itself
+//            if (entity == otherEntity){
+//                continue;
+//            }
+//            ColliderComponent otherCollider = entity.colliderComponent;
+//            // impossible for entities on different layers to collide
+//            if (collider.layer != otherCollider.layer){
+//                continue;
+//            }
+//            TransformComponent otherTransform = entity.transformComponent;
+//            if (otherCollider.colliderType == ColliderType.AABB){
+//                AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
+//                boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
+//                if(detectedCollision){
+//                    atLeastOneCollision = true;
+//                }
+//            }
+//        }
+//        if (!atLeastOneCollision){
+//            groundCollisionDetected = false;
+//        }
+//        return groundCollisionDetected;
+//    }
 
-        for (Entity entity: potentiallyColliding){
-            PhysicalBodyComponent body = entity.physicalBodyComponent;
+    private void detectAndResolveCollisions(){
+
+        long signature = ComponentSignatures.PHYSICAL_BODY &
+                         ComponentSignatures.TRANSFORM &
+                         ComponentSignatures.COLLIDER;
+        int[] potentiallyColliding = entityComponentManager.getEntitiesMatchingSignature(signature);
+
+        for (int entityID : potentiallyColliding){
             // if it's not dynamic, it can't move by itself
             // therefore it didn't INITIATE any collisions
             // * what about collisions if it was pushed?
+            PhysicalBodyComponent body = entityComponentManager.getPhysicalBodyComponent(entityID);
             if (!body.dynamic){
                 continue;
             }
-            for (Entity otherEntity : potentiallyColliding){
+            for (int otherEntityID : potentiallyColliding){
                 // check if collision is possible
                 // impossible for entity to collide with itself
-                if (entity == otherEntity){
+                if (entityID == otherEntityID){
                     continue;
                 }
-                ColliderComponent collider1 = entity.colliderComponent;
-                ColliderComponent collider2 = otherEntity.colliderComponent;
+                ColliderComponent collider1 = entityComponentManager.getColliderComponent(entityID);
+                ColliderComponent collider2 = entityComponentManager.getColliderComponent(otherEntityID);
                 // impossible for entities on different layers to collide
                 if (collider1.layer != collider2.layer){
                     continue;
                 }
 
                 // check if objects are colliding
-                boolean collisionDetected = detectCollision(entity, otherEntity);
+                TransformComponent transform1 = entityComponentManager.getTransformComponent(entityID);
+                TransformComponent transform2 = entityComponentManager.getTransformComponent(otherEntityID);
+                boolean collisionDetected = detectCollision(transform1, collider1, transform2, collider2);
 
                 if (!collisionDetected){
                     continue;
@@ -165,27 +168,24 @@ public class PhysicsSystem {
                 // resolve collision
                 // we know that entity is dynamic
                 // now if other entity is static:
-                PhysicalBodyComponent otherBody = otherEntity.physicalBodyComponent;
+                PhysicalBodyComponent otherBody = entityComponentManager.getPhysicalBodyComponent(otherEntityID);
                 if (otherBody.dynamic){
                     // resolve collision between 2 dynamic entities
                 }
                 else {
-                    resolveDynamicxStaticAABBCollision(entity, otherEntity);
+                    resolveDynamicxStaticAABBCollision(transform1, body, collider1,
+                                                       transform2, otherBody, collider2);
                 }
-                System.out.println("collision detected between" + entity.getID() + " and " + otherEntity.getID());
+                System.out.println("collision detected between" + entityID + " and " + otherEntityID);
             }
         }
 
     }
 
-    public boolean detectCollision(Entity a, Entity b){
+    public boolean detectCollision(TransformComponent transformA, ColliderComponent colliderA,
+                                   TransformComponent transformB, ColliderComponent colliderB){
         boolean collisionDetected = false;
 
-        TransformComponent transformA = a.transformComponent;
-        ColliderComponent colliderA = a.colliderComponent;
-
-        TransformComponent transformB = b.transformComponent;
-        ColliderComponent colliderB = b.colliderComponent;
         if (colliderA.colliderType == ColliderType.AABB && colliderB.colliderType == ColliderType.AABB){
             AABBCollider transformedColliderA = createAABBCollider(transformA, colliderA);
             AABBCollider transformedColliderB = createAABBCollider(transformB, colliderB);
@@ -194,14 +194,8 @@ public class PhysicsSystem {
         return collisionDetected;
     }
 
-    public void resolveDynamicxStaticAABBCollision(Entity dynamicEntity, Entity staticEntity){
-        TransformComponent dTransform = dynamicEntity.transformComponent;
-        PhysicalBodyComponent dBody = dynamicEntity.physicalBodyComponent;
-        ColliderComponent dCollider = dynamicEntity.colliderComponent;
-
-        TransformComponent sTransform = staticEntity.transformComponent;
-        PhysicalBodyComponent sBody = staticEntity.physicalBodyComponent;
-        ColliderComponent sCollider = staticEntity.colliderComponent;
+    public void resolveDynamicxStaticAABBCollision(TransformComponent dTransform, PhysicalBodyComponent dBody, ColliderComponent dCollider,
+                                                   TransformComponent sTransform, PhysicalBodyComponent sBody, ColliderComponent sCollider){
 
         AABBCollider dTransformedCollider = createAABBCollider(dTransform, dCollider);
         AABBCollider dPreviousTransformedCollider = createAABBCollider(dTransform, dCollider, true);

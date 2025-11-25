@@ -1,37 +1,35 @@
 package io.github.JavaGame2D.Collections;
 
 
-import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Components.PhysicalBodyComponent;
-import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.Components.ColliderComponent;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class DrawableComponentsCollection {
+public class ColliderComponentCollection {
     HashMap<Integer, Integer> entityIDToPosition;
     HashMap<Integer, Integer> positionToEntityID;
     int lastLivePosition;
     int defaultSize = 10;
-    DrawableComponent[] drawableComponents;
+    ColliderComponent[] colliderComponents;
 
-    public DrawableComponentsCollection(){
-        drawableComponents = new DrawableComponent[defaultSize];
+    public ColliderComponentCollection(){
+        colliderComponents = new ColliderComponent[defaultSize];
         lastLivePosition = -1;
         entityIDToPosition = new HashMap<>();
         positionToEntityID = new HashMap<>();
     }
 
-    public DrawableComponent getDrawableComponent(int entityID){
+    public ColliderComponent getColliderComponent(int entityID){
         int position = entityIDToPosition.get(entityID);
-        return drawableComponents[position];
+        return colliderComponents[position];
     }
 
-    public DrawableComponent[] getDrawableComponents(){
+    public ColliderComponent[] getColliderComponents(){
         if (lastLivePosition < 0){
-            return new DrawableComponent[]{};
+            return new ColliderComponent[]{};
         }
-        return Arrays.copyOfRange(drawableComponents, 0, lastLivePosition);
+        return Arrays.copyOfRange(colliderComponents, 0, lastLivePosition);
     }
 
     public void removeComponentAtPosition(int position){
@@ -58,7 +56,7 @@ public class DrawableComponentsCollection {
         entityIDToPosition.remove(entityIDtoDelete);
 
         // 2) move the component from last live position to vacant position
-        drawableComponents[vacantPosition] = drawableComponents[lastLivePosition];
+        colliderComponents[vacantPosition] = colliderComponents[lastLivePosition];
 
         // 3) update mappings for entityIDtoMove
         positionToEntityID.put(vacantPosition,entityIDtoMove);
@@ -71,28 +69,28 @@ public class DrawableComponentsCollection {
         lastLivePosition -= 1;
     }
 
-    public void addComponent(DrawableComponent component, int entityID){
-        // if entity already has DrawableComponent, first delete the old one
+    public void addComponent(ColliderComponent component, int entityID){
+        // if entity already has ColliderComponent, first delete the old one
         if(entityIDToPosition.containsKey(entityID)){
             removeComponentFromEntity(entityID);
         }
         // 1) resize physicsComponents if necessary
-        if(lastLivePosition == (drawableComponents.length-1) ){
+        if(lastLivePosition == (colliderComponents.length-1) ){
             enlargeComponentArray();
         }
         // 2) add new component
         lastLivePosition += 1;
-        drawableComponents[lastLivePosition] = component;
+        colliderComponents[lastLivePosition] = component;
         entityIDToPosition.put(entityID, lastLivePosition);
         positionToEntityID.put(lastLivePosition, entityID);
     }
 
     private void enlargeComponentArray(){
-        int newSize = drawableComponents.length + 10;
-        DrawableComponent[] newDrawableComponents =  new DrawableComponent[newSize];
-        for (int i = 0; i < drawableComponents.length; i++){
-            newDrawableComponents[i] = drawableComponents[i];
+        int newSize = colliderComponents.length + 10;
+        ColliderComponent[] newColliderComponents =  new ColliderComponent[newSize];
+        for (int i = 0; i < colliderComponents.length; i++){
+            newColliderComponents[i] = colliderComponents[i];
         }
-        drawableComponents = newDrawableComponents;
+        colliderComponents = newColliderComponents;
     }
 }

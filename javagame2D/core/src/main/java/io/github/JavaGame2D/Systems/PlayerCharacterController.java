@@ -1,5 +1,6 @@
 package io.github.JavaGame2D.Systems;
 
+import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 
 import io.github.JavaGame2D.Entity;
@@ -10,8 +11,10 @@ import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 public class PlayerCharacterController {
     private Entity playerCharacter;
     private float jumpTimer;
+    EntityComponentManager entityComponentManager;
 
-    public PlayerCharacterController(){
+    public PlayerCharacterController(EntityComponentManager entityComponentManager){
+        this.entityComponentManager = entityComponentManager;
         EventBus.getInstance().subscribe(PlayerActionEvent.class, this::handlePlayerAction);
         this.jumpTimer = 0;
     }
@@ -25,7 +28,8 @@ public class PlayerCharacterController {
             return;
         }
         float deltaTime = event.deltaTime;
-        PhysicalBodyComponent body = playerCharacter.physicalBodyComponent;
+        PhysicalBodyComponent body = entityComponentManager.getPhysicalBodyComponent(playerCharacter.ID);
+
 
         switch (event.action){
             case GO_LEFT:

@@ -41,6 +41,7 @@ public class GameManager extends ApplicationAdapter {
         userInterface = new UserInterface();
         inputSystem = new InputSystem();
         playerCharacterController = new PlayerCharacterController(entityComponentManager);
+        levelManager = new LevelManager(fileSystem,entityComponentManager);
 
         int playerID = entityComponentManager.createPlayer();
         Entity player = entityComponentManager.getEntity(playerID);
@@ -64,6 +65,9 @@ public class GameManager extends ApplicationAdapter {
         entityComponentManager.createPlatform(17.5f, 18f,   5f,   0.5f);
         entityComponentManager.createPlatform(17.5f, 22f,   2.5f, 0.5f);
         entityComponentManager.createPlatform(17.5f, 26f,   1.25f,0.5f);
+
+        levelManager.saveLevel(0);
+          //levelManager.loadLevel(0);
 
         // LEVEL 2
 //        Entity platform1 = createPlatform(new Vector2(5f,2f),15f,10f);

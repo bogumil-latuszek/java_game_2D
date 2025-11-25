@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class DrawableComponentsCollection {
-    HashMap<Integer, Integer> entityIDToPosition;
-    HashMap<Integer, Integer> positionToEntityID;
-    int lastLivePosition;
-    int defaultSize = 10;
-    DrawableComponent[] drawableComponents;
+    public HashMap<Integer, Integer> entityIDToPosition;
+    public HashMap<Integer, Integer> positionToEntityID;
+    public int lastLivePosition;
+    public int defaultSize = 10;
+    public DrawableComponent[] drawableComponents;
 
     public DrawableComponentsCollection(){
         drawableComponents = new DrawableComponent[defaultSize];

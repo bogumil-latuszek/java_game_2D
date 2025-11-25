@@ -8,11 +8,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class PhysicalBodyComponentsCollection{
-    HashMap<Integer, Integer> entityIDToPosition;
-    HashMap<Integer, Integer> positionToEntityID;
-    int lastLivePosition;
-    int defaultSize = 10;
-    PhysicalBodyComponent[] physicsComponents;
+    public HashMap<Integer, Integer> entityIDToPosition;
+    public HashMap<Integer, Integer> positionToEntityID;
+    public int lastLivePosition;
+    public int defaultSize = 10;
+    public PhysicalBodyComponent[] physicsComponents;
 
     public PhysicalBodyComponentsCollection(){
         physicsComponents = new PhysicalBodyComponent[defaultSize];

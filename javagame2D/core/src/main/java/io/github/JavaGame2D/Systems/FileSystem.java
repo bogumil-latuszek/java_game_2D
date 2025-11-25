@@ -29,15 +29,15 @@ public class FileSystem {
         mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
         // formats json for better reading
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        String path = "levels/"+ level.levelName+".json";
+        String path = "levels/"+ level.levelID+".json";
         try{
             mapper.writeValue(new File(path), level);
         } catch (Exception e) {
             Gdx.app.error("JacksonSerializer", "Failed to serialize component: " + level.getClass().getSimpleName(), e);
         }
     }
-    public Level loadLevel(String levelName){
-        if (!Gdx.files.local("levels/"+levelName+".json").exists()) {
+    public Level loadLevel(int levelID){
+        if (!Gdx.files.local("levels/"+levelID+".json").exists()) {
             return null; // Return defaults if no save file
         }
         try {
@@ -46,11 +46,11 @@ public class FileSystem {
             mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
             mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
 
-            String jsonText = Gdx.files.local("levels/"+levelName+".json").readString();
+            String jsonText = Gdx.files.local("levels/"+levelID+".json").readString();
             return mapper.readValue(jsonText, Level.class);
 
         } catch (Exception e) {
-            Gdx.app.error("SaveManager", "Failed to load level: "+ levelName, e);
+            Gdx.app.error("SaveManager", "Failed to load level: "+ levelID, e);
             return null;
         }
     }

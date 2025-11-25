@@ -1,6 +1,10 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.math.Vector2;
+import io.github.JavaGame2D.Collections.ColliderComponentCollection;
+import io.github.JavaGame2D.Collections.DrawableComponentsCollection;
+import io.github.JavaGame2D.Collections.PhysicalBodyComponentsCollection;
+import io.github.JavaGame2D.Collections.TransformComponentsCollection;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
 
@@ -101,4 +105,40 @@ public class EntityComponentManager {
         return entityID;
     }
 
+    public TransformComponentsCollection getTransformCollection() {
+        return componentManager.getTransformCollection();
+    }
+
+    public PhysicalBodyComponentsCollection getPhysicalBodyCollection() {
+        return componentManager.getPhysicalBodyCollection();
+    }
+
+    public ColliderComponentCollection getColliderCollection() {
+        return componentManager.getColliderCollection();
+    }
+
+    public DrawableComponentsCollection getDrawableCollection() {
+        return componentManager.getDrawableCollection();
+    }
+
+    public void loadEntitiesFromCollections() {
+        // component collections store entityID-s as keys in mappings
+        // so, using that info, add them to EntityManager and rebuild their signatures
+    }
+
+    public void setTransformComponentCollection(TransformComponentsCollection transformCollection) {
+        componentManager.setTransformCollection(transformCollection);
+    }
+
+    public void setPhysicalBodyComponentCollection(PhysicalBodyComponentsCollection bodyCollection) {
+        componentManager.setPhysicalBodyCollection(bodyCollection);
+    }
+
+    public void setColliderComponentCollection(ColliderComponentCollection colliderCollection) {
+        componentManager.setColliderCollection(colliderCollection);
+    }
+
+    public void setDrawableComponentCollection(DrawableComponentsCollection drawableCollection) {
+        componentManager.setDrawableCollection(drawableCollection);
+    }
 }

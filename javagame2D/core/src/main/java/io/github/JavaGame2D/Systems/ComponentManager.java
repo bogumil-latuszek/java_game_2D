@@ -13,14 +13,14 @@ public class ComponentManager {
     private DrawableComponentsCollection drawableCollection;
     private TransformComponentsCollection transformCollection;
     private PhysicalBodyComponentsCollection physicalBodyCollection;
-    private ColliderComponentCollection colliderComponentCollection;
+    private ColliderComponentCollection colliderCollection;
 
 
     public ComponentManager() {
         this.drawableCollection = new DrawableComponentsCollection();
         this.transformCollection = new TransformComponentsCollection();
         this.physicalBodyCollection = new PhysicalBodyComponentsCollection();
-        this.colliderComponentCollection = new ColliderComponentCollection();
+        this.colliderCollection = new ColliderComponentCollection();
     }
 
     public TransformComponent getTransformComponent(int entityID){
@@ -32,7 +32,7 @@ public class ComponentManager {
     }
 
     public ColliderComponent getColliderComponent(int entityID){
-        return colliderComponentCollection.getColliderComponent(entityID);
+        return colliderCollection.getColliderComponent(entityID);
     }
 
     public DrawableComponent getDrawableComponent(int entityID){
@@ -48,7 +48,7 @@ public class ComponentManager {
     }
 
     public void addColliderComponent(ColliderComponent collider, int entityID){
-        colliderComponentCollection.addComponent(collider, entityID);
+        colliderCollection.addComponent(collider, entityID);
     }
 
     public void addDrawableComponent(DrawableComponent drawable, int entityID){
@@ -59,5 +59,24 @@ public class ComponentManager {
         return drawableCollection.getDrawableComponents();
     }
 
+    public TransformComponentsCollection getTransformCollection() { return transformCollection; }
+    public PhysicalBodyComponentsCollection getPhysicalBodyCollection() { return physicalBodyCollection; }
+    public ColliderComponentCollection getColliderCollection() { return colliderCollection; }
+    public DrawableComponentsCollection getDrawableCollection() { return drawableCollection; }
 
+    public void setTransformCollection(TransformComponentsCollection transformCollection) {
+        this.transformCollection = transformCollection;
+    }
+
+    public void setPhysicalBodyCollection(PhysicalBodyComponentsCollection bodyCollection) {
+        this.physicalBodyCollection = bodyCollection;
+    }
+
+    public void setColliderCollection(ColliderComponentCollection colliderCollection) {
+        this.colliderCollection = colliderCollection;
+    }
+
+    public void setDrawableCollection(DrawableComponentsCollection drawableCollection) {
+        this.drawableCollection = drawableCollection;
+    }
 }

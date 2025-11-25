@@ -36,6 +36,10 @@ public class LevelManager {
         PhysicalBodyComponentsCollection bodyCollection = level.physicalBodyCollection;
         ColliderComponentCollection colliderCollection = level.colliderCollection;
         DrawableComponentsCollection drawableCollection = level.drawableCollection;
+        entityComponentManager.setTransformComponentCollection(transformCollection);
+        entityComponentManager.setPhysicalBodyComponentCollection(bodyCollection);
+        entityComponentManager.setColliderComponentCollection(colliderCollection);
+        entityComponentManager.setDrawableComponentCollection(drawableCollection);
         // #3 infer Entites from collections and save them in EntityManager
         entityComponentManager.loadEntitiesFromCollections();
         // #4 load level specific data to global variable?

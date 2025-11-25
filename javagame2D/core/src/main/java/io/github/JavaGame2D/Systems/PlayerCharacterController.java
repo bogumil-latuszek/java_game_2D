@@ -65,7 +65,7 @@ public class PlayerCharacterController {
                 break;
             case CHANGE_LEVEL:
                 TeleportPlayerEvent teleportEvent = new TeleportPlayerEvent();
-                teleportEvent.targetLevelName = "level2";
+                teleportEvent.targetLevelID = 0;
                 EventBus.getInstance().publish(teleportEvent);
                 break;
         }

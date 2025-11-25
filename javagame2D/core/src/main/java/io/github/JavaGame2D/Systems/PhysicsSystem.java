@@ -45,21 +45,22 @@ public class PhysicsSystem {
 
         // move them:
         for(int entityID: physicalEntities){
-            TransformComponent transformComponent = entityComponentManager.getTransformComponent(entityID);
-            PhysicalBodyComponent physicalBodyComponent = entityComponentManager.getPhysicalBodyComponent(entityID);
-            Vector2 position = transformComponent.position;
-            Vector2 previousPosition = transformComponent.previousPosition;
-            Vector2 velocity = physicalBodyComponent.velocity;
+            TransformComponent transform = entityComponentManager.getTransformComponent(entityID);
+            PhysicalBodyComponent body = entityComponentManager.getPhysicalBodyComponent(entityID);
+            Vector2 position = transform.position;
+            Vector2 previousPosition = transform.previousPosition;
+            Vector2 velocity = body.velocity;
             //TODO: ground checks should be made for all entities capable of movement and grounded, but before the moveEntities step
-//            if (physicalBodyComponent.usesGravity && physicalBodyComponent.onGround){
-//                //do the ground check:
-//                boolean stillOnGround = groundCheck(entity);
-//                if (!stillOnGround){
-//                    physicalBodyComponent.onGround = false;
-//                }
-//            }
+            if (body.usesGravity && body.onGround){
+                //do the ground check:
+                ColliderComponent collider = entityComponentManager.getColliderComponent(entityID);
+                boolean stillOnGround = groundCheck(collider, transform, entityID);
+                if (!stillOnGround){
+                    body.onGround = false;
+                }
+            }
             // apply gravity
-            if (physicalBodyComponent.usesGravity && !physicalBodyComponent.onGround){
+            if (body.usesGravity && !body.onGround){
                 //assuming deltaTime is in seconds! also shouldn't it be capped? or is that irrelevant to gravity calc?
                 if (velocity.y < 1){
                     velocity.y += gravity*2*deltaTime;
@@ -79,55 +80,51 @@ public class PhysicsSystem {
         }
     }
 
-//    private boolean groundCheck(ColliderComponent collider, int entityID){
-//        boolean stillOnGround = true;
-//        if (collider.colliderType == ColliderType.AABB){
-//            stillOnGround = groundCheckForAABB(ColliderComponent collider, );
-//        }
-//        return stillOnGround;
-//    }
+    private boolean groundCheck(ColliderComponent collider, TransformComponent transform, int entityID){
+        boolean stillOnGround = true;
+        if (collider.colliderType == ColliderType.AABB){
+            stillOnGround = groundCheckForAABB(collider, transform, entityID);
+        }
+        return stillOnGround;
+    }
 
-//    private boolean groundCheckForAABB(Entity entity){
-//        boolean groundCollisionDetected = true;
-//        boolean atLeastOneCollision = false;
-//        TransformComponent transform = entity.transformComponent;
-//        ColliderComponent collider = entity.colliderComponent;
-//        AABBCollider transformedCollider = createAABBCollider(transform, collider);
-//        AABBCollider groundCollider = createAABBGroundCollider(transformedCollider);
-//
-//        ComponentType[] requiredComponents = {ComponentType.TRANSFORM,
-//                                              ComponentType.PHYSICAL_BODY,
-//                                              ComponentType.COLLIDER};
-//        //Entity[] potentialGround = entityManager.getMatchingEntities(requiredComponents);
-//        Entity[] potentialGround = entityManager.getEntitiesWith(e -> e.transformComponent != null &&
-//                                                                            e.physicalBodyComponent != null &&
-//                                                                            e.colliderComponent != null);
-//
-//        for (Entity otherEntity : potentialGround){
-//            // check if collision is possible
-//            // impossible for entity to collide with itself
-//            if (entity == otherEntity){
-//                continue;
-//            }
-//            ColliderComponent otherCollider = entity.colliderComponent;
-//            // impossible for entities on different layers to collide
-//            if (collider.layer != otherCollider.layer){
-//                continue;
-//            }
-//            TransformComponent otherTransform = entity.transformComponent;
-//            if (otherCollider.colliderType == ColliderType.AABB){
-//                AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
-//                boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
-//                if(detectedCollision){
-//                    atLeastOneCollision = true;
-//                }
-//            }
-//        }
-//        if (!atLeastOneCollision){
-//            groundCollisionDetected = false;
-//        }
-//        return groundCollisionDetected;
-//    }
+    private boolean groundCheckForAABB(ColliderComponent collider, TransformComponent transform, int entityID){
+        boolean groundCollisionDetected = true;
+        boolean atLeastOneCollision = false;
+
+        AABBCollider transformedCollider = createAABBCollider(transform, collider);
+        AABBCollider groundCollider = createAABBGroundCollider(transformedCollider);
+
+        long signature = ComponentSignatures.TRANSFORM
+                         & ComponentSignatures.PHYSICAL_BODY
+                         & ComponentSignatures.COLLIDER;
+        int[] potentialGround = entityComponentManager.getEntitiesMatchingSignature(signature);
+
+        for (int otherEntityID : potentialGround){
+            // check if collision is possible
+            // impossible for entity to collide with itself
+            if (entityID == otherEntityID){
+                continue;
+            }
+            ColliderComponent otherCollider = entityComponentManager.getColliderComponent(otherEntityID);
+            // impossible for entities on different layers to collide
+            if (collider.layer != otherCollider.layer){
+                continue;
+            }
+            TransformComponent otherTransform = entityComponentManager.getTransformComponent(otherEntityID);
+            if (otherCollider.colliderType == ColliderType.AABB){
+                AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
+                boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
+                if(detectedCollision){
+                    atLeastOneCollision = true;
+                }
+            }
+        }
+        if (!atLeastOneCollision){
+            groundCollisionDetected = false;
+        }
+        return groundCollisionDetected;
+    }
 
     private void detectAndResolveCollisions(){
 

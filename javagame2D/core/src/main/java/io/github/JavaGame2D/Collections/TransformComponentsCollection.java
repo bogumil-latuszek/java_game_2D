@@ -29,7 +29,7 @@ public class TransformComponentsCollection {
         if (lastLivePosition < 0){
             return new TransformComponent[]{};
         }
-        return Arrays.copyOfRange(transformComponents, 0, lastLivePosition);
+        return Arrays.copyOfRange(transformComponents, 0, lastLivePosition+1);
     }
 
     public void removeComponentAtPosition(int position){

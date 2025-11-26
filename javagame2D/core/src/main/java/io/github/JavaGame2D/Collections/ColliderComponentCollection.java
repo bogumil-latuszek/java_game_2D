@@ -29,7 +29,7 @@ public class ColliderComponentCollection {
         if (lastLivePosition < 0){
             return new ColliderComponent[]{};
         }
-        return Arrays.copyOfRange(colliderComponents, 0, lastLivePosition);
+        return Arrays.copyOfRange(colliderComponents, 0, lastLivePosition+1);
     }
 
     public void removeComponentAtPosition(int position){

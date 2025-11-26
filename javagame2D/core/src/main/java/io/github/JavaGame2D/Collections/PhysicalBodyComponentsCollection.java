@@ -31,7 +31,7 @@ public class PhysicalBodyComponentsCollection{
         if (lastLivePosition < 0){
             return new PhysicalBodyComponent[]{};
         }
-        return Arrays.copyOfRange(physicsComponents, 0, lastLivePosition);
+        return Arrays.copyOfRange(physicsComponents, 0, lastLivePosition+1);
     }
 
     public void removeComponentAtPosition(int position){

@@ -31,7 +31,7 @@ public class DrawableComponentsCollection {
         if (lastLivePosition < 0){
             return new DrawableComponent[]{};
         }
-        return Arrays.copyOfRange(drawableComponents, 0, lastLivePosition);
+        return Arrays.copyOfRange(drawableComponents, 0, lastLivePosition+1);
     }
 
     public void removeComponentAtPosition(int position){

@@ -2,6 +2,7 @@ package io.github.JavaGame2D.Collections;
 
 
 import io.github.JavaGame2D.Components.ColliderComponent;
+import io.github.JavaGame2D.Components.ComponentSignatures;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -12,12 +13,28 @@ public class ColliderComponentCollection {
     public int lastLivePosition;
     public int defaultSize = 10;
     public ColliderComponent[] colliderComponents;
+    public Long componentSignature;
 
     public ColliderComponentCollection(){
         colliderComponents = new ColliderComponent[defaultSize];
         lastLivePosition = -1;
         entityIDToPosition = new HashMap<>();
         positionToEntityID = new HashMap<>();
+        componentSignature = ComponentSignatures.COLLIDER;
+    }
+
+    public HashMap<Integer, Long> updateEntitySignature(HashMap<Integer,Long> entityIDtoSignature){
+        for (Integer key : entityIDToPosition.keySet()){
+            if (entityIDtoSignature.containsKey(key)){
+                Long existingSignature = entityIDtoSignature.get(key);
+                Long combinedSignature = existingSignature | componentSignature;
+                entityIDtoSignature.put(key,combinedSignature);
+            }
+            else{
+                entityIDtoSignature.put(key, componentSignature);
+            }
+        }
+        return entityIDtoSignature;
     }
 
     public ColliderComponent getColliderComponent(int entityID){

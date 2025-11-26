@@ -1,6 +1,7 @@
 package io.github.JavaGame2D.Collections;
 
 
+import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.TransformComponent;
 
 import java.util.Arrays;
@@ -12,12 +13,28 @@ public class TransformComponentsCollection {
     public int lastLivePosition;
     public int defaultSize = 10;
     public TransformComponent[] transformComponents;
+    public Long componentSignature;
 
     public TransformComponentsCollection(){
         transformComponents = new TransformComponent[defaultSize];
         lastLivePosition = -1;
         entityIDToPosition = new HashMap<>();
         positionToEntityID = new HashMap<>();
+        componentSignature = ComponentSignatures.TRANSFORM;
+    }
+
+    public HashMap<Integer, Long> updateEntitySignature(HashMap<Integer,Long> entityIDtoSignature){
+        for (Integer key : entityIDToPosition.keySet()){
+            if (entityIDtoSignature.containsKey(key)){
+                Long existingSignature = entityIDtoSignature.get(key);
+                Long combinedSignature = existingSignature | componentSignature;
+                entityIDtoSignature.put(key,combinedSignature);
+            }
+            else{
+                entityIDtoSignature.put(key, componentSignature);
+            }
+        }
+        return entityIDtoSignature;
     }
 
     public TransformComponent getTransformComponent(int entityID){

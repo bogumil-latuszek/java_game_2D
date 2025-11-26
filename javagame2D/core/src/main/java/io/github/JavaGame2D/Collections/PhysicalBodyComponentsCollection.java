@@ -1,6 +1,7 @@
 package io.github.JavaGame2D.Collections;
 
 
+import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 
@@ -13,12 +14,28 @@ public class PhysicalBodyComponentsCollection{
     public int lastLivePosition;
     public int defaultSize = 10;
     public PhysicalBodyComponent[] physicsComponents;
+    public long componentSignature;
 
     public PhysicalBodyComponentsCollection(){
         physicsComponents = new PhysicalBodyComponent[defaultSize];
         lastLivePosition = -1;
         entityIDToPosition = new HashMap<>();
         positionToEntityID = new HashMap<>();
+        componentSignature = ComponentSignatures.PHYSICAL_BODY;
+    }
+
+    public HashMap<Integer, Long> updateEntitySignature(HashMap<Integer,Long> entityIDtoSignature){
+        for (Integer key : entityIDToPosition.keySet()){
+            if (entityIDtoSignature.containsKey(key)){
+                Long existingSignature = entityIDtoSignature.get(key);
+                Long combinedSignature = existingSignature | componentSignature;
+                entityIDtoSignature.put(key,combinedSignature);
+            }
+            else{
+                entityIDtoSignature.put(key, componentSignature);
+            }
+        }
+        return entityIDtoSignature;
     }
 
     public PhysicalBodyComponent getPhysicalBodyComponent(int entityID){

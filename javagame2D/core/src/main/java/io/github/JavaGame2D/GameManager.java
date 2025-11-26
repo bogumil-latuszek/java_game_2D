@@ -43,31 +43,34 @@ public class GameManager extends ApplicationAdapter {
         playerCharacterController = new PlayerCharacterController(entityComponentManager);
         levelManager = new LevelManager(fileSystem,entityComponentManager);
 
+
+
+        // LEVEL 1
+//        entityComponentManager.createPlatform(0f,    -2.5f, 5f,   1f);
+//        entityComponentManager.createPlatform(5f,    1.125f,2.5f, 2.5f);
+//        entityComponentManager.createPlatform(10f,   2.5f,  5f,   2.5f);
+//        entityComponentManager.createPlatform(12.5f, 2.5f,  1.25f,10f);
+//        entityComponentManager.createPlatform(17.5f, 2.5f,  1.25f,17.5f);
+//        entityComponentManager.createPlatform(17.5f, -10f,  12.5f,1.25f);
+//        entityComponentManager.createPlatform(-6f,   -5f,   30f,  0.5f);
+//        entityComponentManager.createPlatform(20f,   -6f,   2.5f, 0.5f);
+//        entityComponentManager.createPlatform(22.5f, -2f,   2.5f, 0.5f);
+//        entityComponentManager.createPlatform(20f,   2f,    2.5f, 0.5f);
+//        entityComponentManager.createPlatform(22.5f, 6f,    2.5f, 0.5f);
+//        entityComponentManager.createPlatform(20f,   10f,   2.5f, 0.5f);
+//        entityComponentManager.createPlatform(22.5f, 14f,   2.5f, 0.5f);
+//        entityComponentManager.createPlatform(17.5f, 18f,   5f,   0.5f);
+//        entityComponentManager.createPlatform(17.5f, 22f,   2.5f, 0.5f);
+//        entityComponentManager.createPlatform(17.5f, 26f,   1.25f,0.5f);
+
+//        levelManager.saveLevel(0);
+          levelManager.loadLevel(0);
+
         int playerID = entityComponentManager.createPlayer();
         Entity player = entityComponentManager.getEntity(playerID);
         playerCharacterController.setPlayerCharacter(player);
         renderingSystem.setEntityFollowedByCamera(playerID);
 
-        // LEVEL 1
-        entityComponentManager.createPlatform(0f,    -2.5f, 5f,   1f);
-        entityComponentManager.createPlatform(5f,    1.125f,2.5f, 2.5f);
-        entityComponentManager.createPlatform(10f,   2.5f,  5f,   2.5f);
-        entityComponentManager.createPlatform(12.5f, 2.5f,  1.25f,10f);
-        entityComponentManager.createPlatform(17.5f, 2.5f,  1.25f,17.5f);
-        entityComponentManager.createPlatform(17.5f, -10f,  12.5f,1.25f);
-        entityComponentManager.createPlatform(-6f,   -5f,   30f,  0.5f);
-        entityComponentManager.createPlatform(20f,   -6f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(22.5f, -2f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(20f,   2f,    2.5f, 0.5f);
-        entityComponentManager.createPlatform(22.5f, 6f,    2.5f, 0.5f);
-        entityComponentManager.createPlatform(20f,   10f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(22.5f, 14f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(17.5f, 18f,   5f,   0.5f);
-        entityComponentManager.createPlatform(17.5f, 22f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(17.5f, 26f,   1.25f,0.5f);
-
-        levelManager.saveLevel(0);
-          //levelManager.loadLevel(0);
 
         // LEVEL 2
 //        Entity platform1 = createPlatform(new Vector2(5f,2f),15f,10f);

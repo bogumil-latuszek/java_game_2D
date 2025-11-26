@@ -9,6 +9,8 @@ import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 
+import java.util.HashMap;
+
 public class ComponentManager {
     private DrawableComponentsCollection drawableCollection;
     private TransformComponentsCollection transformCollection;
@@ -78,5 +80,17 @@ public class ComponentManager {
 
     public void setDrawableCollection(DrawableComponentsCollection drawableCollection) {
         this.drawableCollection = drawableCollection;
+    }
+
+    public HashMap<Integer, Long> loadEntitiesFromCollections() {
+        HashMap<Integer, Long> entityIDToSignature = new HashMap<>();
+//        for (ComponentCollection collection: collections){
+//            entityIDToSignature = collection.loadSignatures(entityIDToSignature);
+//        }
+        entityIDToSignature = transformCollection.updateEntitySignature(entityIDToSignature);
+        entityIDToSignature = drawableCollection.updateEntitySignature(entityIDToSignature);
+        entityIDToSignature = colliderCollection.updateEntitySignature(entityIDToSignature);
+        entityIDToSignature = physicalBodyCollection.updateEntitySignature(entityIDToSignature);
+        return entityIDToSignature;
     }
 }

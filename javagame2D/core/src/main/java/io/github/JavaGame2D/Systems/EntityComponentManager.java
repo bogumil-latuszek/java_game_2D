@@ -8,6 +8,8 @@ import io.github.JavaGame2D.Collections.TransformComponentsCollection;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
 
+import java.util.HashMap;
+
 public class EntityComponentManager {
     private EntityManager entityManager;
     private ComponentManager componentManager;
@@ -124,6 +126,8 @@ public class EntityComponentManager {
     public void loadEntitiesFromCollections() {
         // component collections store entityID-s as keys in mappings
         // so, using that info, add them to EntityManager and rebuild their signatures
+        HashMap<Integer, Long> entities = componentManager.loadEntitiesFromCollections();
+        entityManager.loadEntitiesFromHashMap(entities);
     }
 
     public void setTransformComponentCollection(TransformComponentsCollection transformCollection) {

@@ -5,6 +5,7 @@ import io.github.JavaGame2D.Entity;
 
 import java.util.ArrayList;
 import java.util.BitSet;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.function.Predicate;
 
@@ -39,6 +40,15 @@ public class EntityManager {
             .filter(entity -> ((entity.signature & signature) == signature))  // Your condition here
             .mapToInt(obj -> obj.ID)      // Extract ID
             .toArray();                   // Convert to array
+    }
+
+    public void loadEntitiesFromHashMap(HashMap<Integer, Long> entitySignatures) {
+        this.nextEntityId = Collections.max(entitySignatures.keySet()) + 1;
+        for (Integer entityID : entitySignatures.keySet()){
+            Entity entity = new Entity(entityID);
+            entity.signature = entitySignatures.get(entityID);
+            this.entities.put(entityID,entity);
+        }
     }
 
 //    public int addEntity(Entity entity){

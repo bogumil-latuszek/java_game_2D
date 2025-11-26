@@ -1,12 +1,14 @@
 package io.github.JavaGame2D.Collections;
 
 
+import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class DrawableComponentsCollection {
     public HashMap<Integer, Integer> entityIDToPosition;
@@ -14,12 +16,28 @@ public class DrawableComponentsCollection {
     public int lastLivePosition;
     public int defaultSize = 10;
     public DrawableComponent[] drawableComponents;
+    public long componentSignature;
 
     public DrawableComponentsCollection(){
         drawableComponents = new DrawableComponent[defaultSize];
         lastLivePosition = -1;
         entityIDToPosition = new HashMap<>();
         positionToEntityID = new HashMap<>();
+        componentSignature = ComponentSignatures.DRAWABLE;
+    }
+
+    public HashMap<Integer, Long> updateEntitySignature(HashMap<Integer,Long> entityIDtoSignature){
+        for (Integer key : entityIDToPosition.keySet()){
+            if (entityIDtoSignature.containsKey(key)){
+                Long existingSignature = entityIDtoSignature.get(key);
+                Long combinedSignature = existingSignature | componentSignature;
+                entityIDtoSignature.put(key,combinedSignature);
+            }
+            else{
+                entityIDtoSignature.put(key, componentSignature);
+            }
+        }
+        return entityIDtoSignature;
     }
 
     public DrawableComponent getDrawableComponent(int entityID){

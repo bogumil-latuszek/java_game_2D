@@ -1,13 +1,6 @@
 package io.github.JavaGame2D;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
-
-import io.github.JavaGame2D.Components.ColliderComponent;
-import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Components.PhysicalBodyComponent;
-import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Systems.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -125,52 +118,4 @@ public class GameManager extends ApplicationAdapter {
         renderingSystem.dispose();
         userInterface.dispose();
     }
-
-//    private Entity createPlayer(){
-//        Entity player = entityManager.createEntity();
-//
-//        Texture playerSprite = new Texture("playerSprite.png");
-//        float scale = (float)playerSprite.getHeight()/playerSprite.getWidth();
-//        DrawableComponent drawableComponent = new DrawableComponent();
-//        drawableComponent.texturePath = "playerSprite.png";
-//        TransformComponent transformComponent = new TransformComponent();
-//        transformComponent.height = 1*scale;
-//        transformComponent.width = 1;
-//        transformComponent.position = new Vector2(10f,50f);
-//        PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
-//        //bodyComponent.usesGravity = true;
-//        bodyComponent.usesGravity = true;
-//        ColliderComponent collider = new ColliderComponent();
-//        collider.sizeFromTransform = false;
-//        collider.width = transformComponent.width/2;
-//        collider.height = transformComponent.height;
-//
-//        player.drawableComponent = drawableComponent;
-//        player.transformComponent = transformComponent;
-//        player.physicalBodyComponent = bodyComponent;
-//        player.colliderComponent = collider;
-//        return player;
-//    }
-//
-//    private Entity createPlatform(Vector2 position, float width, float height){
-//        Entity platform = entityManager.createEntity();
-//        Texture texture = new Texture("autumnBrick1.png");
-//        float scale = (float)texture.getHeight()/texture.getWidth();
-//        DrawableComponent drawableComponent = new DrawableComponent();
-//        drawableComponent.texturePath = "autumnBrick1.png";
-//        TransformComponent transformComponent = new TransformComponent();
-//        transformComponent.position = position;
-//        transformComponent.height = height*scale;
-//        transformComponent.width = width;
-//        PhysicalBodyComponent bodyComponent = new PhysicalBodyComponent();
-//        bodyComponent.dynamic = false;
-//        bodyComponent.usesGravity = false;
-//        ColliderComponent collider = new ColliderComponent();
-//
-//        platform.drawableComponent = drawableComponent;
-//        platform.transformComponent = transformComponent;
-//        platform.physicalBodyComponent = bodyComponent;
-//        platform.colliderComponent = collider;
-//        return platform;
-//    }
 }

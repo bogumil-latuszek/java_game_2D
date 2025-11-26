@@ -56,7 +56,7 @@ public class RenderingSystem {
         batch.draw(image, 30, -30, 60, 60*(float)image.getHeight()/image.getWidth());
         //draw drawable entities
 
-        long signature = ComponentSignatures.TRANSFORM & ComponentSignatures.DRAWABLE;
+        long signature = ComponentSignatures.TRANSFORM | ComponentSignatures.DRAWABLE;
         int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
 
         // draw each entity in list:

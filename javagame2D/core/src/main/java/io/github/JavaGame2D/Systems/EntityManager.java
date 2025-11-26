@@ -31,7 +31,7 @@ public class EntityManager {
 
     public void addSignature(int entityID, long signature){
         Entity entity  = entities.get(entityID);
-        entity.signature = entity.signature & signature;
+        entity.signature = entity.signature | signature;
     }
 
     public  int[] getEntitiesMatchingSignature(long signature) {

@@ -40,7 +40,7 @@ public class PhysicsSystem {
 
     private void moveEntities(float deltaTime){
 
-        long signature = ComponentSignatures.PHYSICAL_BODY & ComponentSignatures.TRANSFORM;
+        long signature = ComponentSignatures.PHYSICAL_BODY | ComponentSignatures.TRANSFORM;
         int[] physicalEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
 
         // move them:
@@ -96,8 +96,8 @@ public class PhysicsSystem {
         AABBCollider groundCollider = createAABBGroundCollider(transformedCollider);
 
         long signature = ComponentSignatures.TRANSFORM
-                         & ComponentSignatures.PHYSICAL_BODY
-                         & ComponentSignatures.COLLIDER;
+                         | ComponentSignatures.PHYSICAL_BODY
+                         | ComponentSignatures.COLLIDER;
         int[] potentialGround = entityComponentManager.getEntitiesMatchingSignature(signature);
 
         for (int otherEntityID : potentialGround){
@@ -128,8 +128,8 @@ public class PhysicsSystem {
 
     private void detectAndResolveCollisions(){
 
-        long signature = ComponentSignatures.PHYSICAL_BODY &
-                         ComponentSignatures.TRANSFORM &
+        long signature = ComponentSignatures.PHYSICAL_BODY |
+                         ComponentSignatures.TRANSFORM |
                          ComponentSignatures.COLLIDER;
         int[] potentiallyColliding = entityComponentManager.getEntitiesMatchingSignature(signature);
 

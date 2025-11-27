@@ -104,6 +104,8 @@ public class GameManager extends ApplicationAdapter {
 
         renderingSystem.render();
         userInterface.render();
+
+        levelManager.loadLevelIfChanged();
     }
 
     @Override

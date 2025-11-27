@@ -19,6 +19,7 @@ public class LevelManager {
     private int currentLevelID;
     private FileSystem fileSystem;
     EntityComponentManager entityComponentManager;
+    TeleportPlayerEvent teleportEventToResolve;
 
     public LevelManager(FileSystem fileSystem, EntityComponentManager entityComponentManager) {
         this.fileSystem = fileSystem;
@@ -28,6 +29,14 @@ public class LevelManager {
 
     // level manager can load level when given its ID
     // it uses file manager to load appropriate assets
+
+    public void loadLevelIfChanged(){
+        if (this.teleportEventToResolve != null){
+            int newLevelID = teleportEventToResolve.targetLevelID;
+            changeCurrentLevel(newLevelID);
+            teleportEventToResolve = null;
+        }
+    }
 
     public void loadLevel (int levelID){
         // #1 load and deserialize level
@@ -81,7 +90,8 @@ public class LevelManager {
     }
 
     public void handleTeleportEvent(TeleportPlayerEvent event){
-        int newLevelID = event.targetLevelID;
-        changeCurrentLevel(newLevelID);
+        this.teleportEventToResolve = event;
+        //int newLevelID = event.targetLevelID;
+        //changeCurrentLevel(newLevelID);
     }
 }

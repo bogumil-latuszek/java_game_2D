@@ -74,6 +74,7 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
+        drawable.textureID = 0;
         componentManager.addDrawableComponent(drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
@@ -101,7 +102,7 @@ public class EntityComponentManager {
         entityManager.addSignature(playerID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.texturePath = "playerSprite.png";
+        drawable.textureID = 1;
         componentManager.addDrawableComponent(drawable, playerID);
         entityManager.addSignature(playerID, ComponentSignatures.DRAWABLE);
 
@@ -117,7 +118,7 @@ public class EntityComponentManager {
         return this.playerEntityID;
     }
 
-    public int createTeleporter(float x, float y, float width, float height){
+    public int createTeleporter(float x, float y, float width, float height, int targetLevel){
         int entityID = entityManager.createEntity();
 
         TransformComponent transform = new TransformComponent();
@@ -134,6 +135,7 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
+        drawable.textureID = 2;
         componentManager.addDrawableComponent(drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
@@ -142,7 +144,7 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
         TeleporterComponent teleporter = new TeleporterComponent();
-        teleporter.targetLevelID = 1;
+        teleporter.targetLevelID = targetLevel;
         componentManager.addTeleporterComponent(teleporter, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.TELEPORTER);
 

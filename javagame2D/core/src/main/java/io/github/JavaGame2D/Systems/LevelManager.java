@@ -1,10 +1,7 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.math.Vector2;
-import io.github.JavaGame2D.Collections.ColliderComponentCollection;
-import io.github.JavaGame2D.Collections.DrawableComponentsCollection;
-import io.github.JavaGame2D.Collections.PhysicalBodyComponentsCollection;
-import io.github.JavaGame2D.Collections.TransformComponentsCollection;
+import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.FinishedLoadingLevelEvent;
 import io.github.JavaGame2D.Events.LoadingNewLevelEvent;
@@ -46,10 +43,12 @@ public class LevelManager {
         PhysicalBodyComponentsCollection bodyCollection = level.physicalBodyCollection;
         ColliderComponentCollection colliderCollection = level.colliderCollection;
         DrawableComponentsCollection drawableCollection = level.drawableCollection;
+        TeleporterComponentsCollection teleporterCollection = level.teleporterCollection;
         entityComponentManager.setTransformComponentCollection(transformCollection);
         entityComponentManager.setPhysicalBodyComponentCollection(bodyCollection);
         entityComponentManager.setColliderComponentCollection(colliderCollection);
         entityComponentManager.setDrawableComponentCollection(drawableCollection);
+        entityComponentManager.setTeleporterComponentCollection(teleporterCollection);
         // #3 infer Entites from collections and save them in EntityManager
         entityComponentManager.loadEntitiesFromCollections();
         // #4 load level specific data to global variable?
@@ -67,6 +66,7 @@ public class LevelManager {
         level.physicalBodyCollection = entityComponentManager.getPhysicalBodyCollection();
         level.colliderCollection = entityComponentManager.getColliderCollection();
         level.drawableCollection = entityComponentManager.getDrawableCollection();
+        level.teleporterCollection = entityComponentManager.getTeleporterCollection();
         // #2 save global variables that can change from level to level
         level.validSpawnPoints = new HashMap<>();
         level.validSpawnPoints.put(0,new Vector2(0,0));

@@ -1,5 +1,5 @@
 {
-  "levelID" : 1,
+  "levelID" : 2,
   "levelName" : null,
   "transformCollection" : {
     "entityIDToPosition" : {
@@ -45,163 +45,163 @@
     "transformComponents" : [ {
       "signature" : 1,
       "position" : {
-        "x" : 0.0,
-        "y" : -2.5
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 5.0,
-      "height" : 1.0
-    }, {
-      "signature" : 1,
-      "position" : {
         "x" : 5.0,
-        "y" : 1.125
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 2.5,
-      "height" : 2.5
-    }, {
-      "signature" : 1,
-      "position" : {
-        "x" : 10.0,
-        "y" : 2.5
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 5.0,
-      "height" : 2.5
-    }, {
-      "signature" : 1,
-      "position" : {
-        "x" : 12.5,
-        "y" : 2.5
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 1.25,
-      "height" : 10.0
-    }, {
-      "signature" : 1,
-      "position" : {
-        "x" : 17.5,
-        "y" : 2.5
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 1.25,
-      "height" : 17.5
-    }, {
-      "signature" : 1,
-      "position" : {
-        "x" : 17.5,
-        "y" : -10.0
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 12.5,
-      "height" : 1.25
-    }, {
-      "signature" : 1,
-      "position" : {
-        "x" : -6.0,
-        "y" : -5.0
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 30.0,
-      "height" : 0.5
-    }, {
-      "signature" : 1,
-      "position" : {
-        "x" : 20.0,
-        "y" : -6.0
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 2.5,
-      "height" : 0.5
-    }, {
-      "signature" : 1,
-      "position" : {
-        "x" : 22.5,
-        "y" : -2.0
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "width" : 2.5,
-      "height" : 0.5
-    }, {
-      "signature" : 1,
-      "position" : {
-        "x" : 20.0,
         "y" : 2.0
       },
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
       },
-      "width" : 2.5,
-      "height" : 0.5
+      "width" : 15.0,
+      "height" : 10.0
     }, {
       "signature" : 1,
       "position" : {
-        "x" : 22.5,
-        "y" : 6.0
+        "x" : 35.0,
+        "y" : 0.0
       },
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
       },
-      "width" : 2.5,
-      "height" : 0.5
+      "width" : 40.0,
+      "height" : 20.0
     }, {
       "signature" : 1,
       "position" : {
-        "x" : 20.0,
-        "y" : 10.0
+        "x" : 30.0,
+        "y" : 5.0
       },
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
       },
-      "width" : 2.5,
-      "height" : 0.5
+      "width" : 10.0,
+      "height" : 16.0
     }, {
       "signature" : 1,
       "position" : {
-        "x" : 22.5,
+        "x" : 40.0,
+        "y" : 14.5
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 5.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 50.0,
+        "y" : 12.5
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 10.0,
+      "height" : 15.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 65.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 30.0,
+      "height" : 15.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 65.0,
+        "y" : 35.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 30.0,
+      "height" : 15.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 82.5,
         "y" : 14.0
       },
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
       },
-      "width" : 2.5,
-      "height" : 0.5
+      "width" : 5.0,
+      "height" : 15.0
     }, {
       "signature" : 1,
       "position" : {
-        "x" : 17.5,
+        "x" : 87.5,
+        "y" : 12.5
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 15.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 92.5,
+        "y" : 13.5
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 15.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 97.5,
+        "y" : 12.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 15.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 87.5,
+        "y" : 35.5
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 15.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 97.5,
+        "y" : 32.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 15.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 107.5,
         "y" : 18.0
       },
       "previousPosition" : {
@@ -209,36 +209,36 @@
         "y" : 0.0
       },
       "width" : 5.0,
-      "height" : 0.5
+      "height" : 10.0
     }, {
       "signature" : 1,
       "position" : {
-        "x" : 17.5,
-        "y" : 22.0
+        "x" : 112.5,
+        "y" : 37.5
       },
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
       },
-      "width" : 2.5,
-      "height" : 0.5
+      "width" : 5.0,
+      "height" : 15.0
     }, {
       "signature" : 1,
       "position" : {
-        "x" : 17.5,
-        "y" : 26.0
+        "x" : 117.5,
+        "y" : 20.0
       },
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
       },
-      "width" : 1.25,
-      "height" : 0.5
+      "width" : 3.0,
+      "height" : 5.0
     }, {
       "signature" : 1,
       "position" : {
-        "x" : 17.5,
-        "y" : 27.5
+        "x" : 117.5,
+        "y" : 24.0
       },
       "previousPosition" : {
         "x" : 0.0,
@@ -970,7 +970,7 @@
     "lastLivePosition" : 0,
     "defaultSize" : 10,
     "teleporterComponents" : [ {
-      "targetLevelID" : 2,
+      "targetLevelID" : 3,
       "signature" : 32
     } ],
     "componentSignature" : 32

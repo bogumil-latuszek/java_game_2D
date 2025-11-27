@@ -56,10 +56,10 @@ public class GameManager extends ApplicationAdapter {
 //        entityComponentManager.createPlatform(17.5f, 18f,   5f,   0.5f);
 //        entityComponentManager.createPlatform(17.5f, 22f,   2.5f, 0.5f);
 //        entityComponentManager.createPlatform(17.5f, 26f,   1.25f,0.5f);
-
-//        levelManager.saveLevel(0);
-        // LEVEL 2
-
+//        entityComponentManager.createTeleporter(17.5f, 27.5f, 2f,2f, 2);
+//        levelManager.saveLevel(1);
+//        // LEVEL 2
+//
 //        entityComponentManager.createPlatform(5f,2f,15f,10f);
 //        entityComponentManager.createPlatform(35f, 0f, 40f,20f);
 //        entityComponentManager.createPlatform(30f, 5f, 10f,16f);
@@ -74,18 +74,24 @@ public class GameManager extends ApplicationAdapter {
 //        entityComponentManager.createPlatform(87.5f, 35.5f, 5f,15f);
 //        entityComponentManager.createPlatform(97.5f, 32f, 5f,15f);
 //        entityComponentManager.createPlatform(107.5f, 18f, 5f,10f);
-//        entityComponentManager.createPlatform(117.5f, 20f, 3f,5f);
 //        entityComponentManager.createPlatform(112.5f, 37.5f, 5f,15f);
+//        entityComponentManager.createPlatform(117.5f, 20f, 3f,5f);
+//        entityComponentManager.createTeleporter(117.5f, 24f, 2f,2f, 3);
 //
-//        levelManager.saveLevel(1);
+//        levelManager.saveLevel(2);
 
-        levelManager.loadLevel(0);
+        // LEVEL 3
+//
+//        entityComponentManager.createPlatform(10f, 25f, 20f,5f);
+//        entityComponentManager.createPlatform(10f, 5f, 20f,5f);
+//        entityComponentManager.createPlatform(0f, 15f, 5f,30f);
+//        entityComponentManager.createPlatform(20f, 15f, 5f,30f);
+//        entityComponentManager.createBackgroundElement(10f, 15f, 10f,10f);
+//        levelManager.saveLevel(3);
 
-        entityComponentManager.createTeleporter(17.5f, 27f, 1f,1f);
-
+        levelManager.loadLevel(1);
 
         previousTimeframe = System.currentTimeMillis();
-        renderingSystem.loadTextures();
     }
 
     // this function may be called "render"

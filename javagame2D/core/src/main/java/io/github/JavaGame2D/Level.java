@@ -1,10 +1,7 @@
 package io.github.JavaGame2D;
 
 import com.badlogic.gdx.math.Vector2;
-import io.github.JavaGame2D.Collections.ColliderComponentCollection;
-import io.github.JavaGame2D.Collections.DrawableComponentsCollection;
-import io.github.JavaGame2D.Collections.PhysicalBodyComponentsCollection;
-import io.github.JavaGame2D.Collections.TransformComponentsCollection;
+import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Systems.EntityManager;
 
 import java.util.ArrayList;
@@ -21,6 +18,7 @@ public class Level {
     public PhysicalBodyComponentsCollection physicalBodyCollection;
     public ColliderComponentCollection colliderCollection;
     public DrawableComponentsCollection drawableCollection;
+    public TeleporterComponentsCollection teleporterCollection;
 
     // level-specific settings:
     // boundary for camera

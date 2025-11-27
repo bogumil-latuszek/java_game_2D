@@ -1,10 +1,7 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.math.Vector2;
-import io.github.JavaGame2D.Collections.ColliderComponentCollection;
-import io.github.JavaGame2D.Collections.DrawableComponentsCollection;
-import io.github.JavaGame2D.Collections.PhysicalBodyComponentsCollection;
-import io.github.JavaGame2D.Collections.TransformComponentsCollection;
+import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
 
@@ -151,6 +148,24 @@ public class EntityComponentManager {
         return entityID;
     }
 
+    public int createBackgroundElement(float x, float y, float width, float height){
+        int entityID = entityManager.createEntity();
+
+        TransformComponent transform = new TransformComponent();
+        transform.position = new Vector2(x,y);
+        transform.width = width;
+        transform.height = height;
+        componentManager.addTransformComponent(transform, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
+
+        DrawableComponent drawable = new DrawableComponent();
+        drawable.textureID = 3;
+        componentManager.addDrawableComponent(drawable, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
+
+        return entityID;
+    }
+
     public TransformComponentsCollection getTransformCollection() {
         return componentManager.getTransformCollection();
     }
@@ -165,6 +180,10 @@ public class EntityComponentManager {
 
     public DrawableComponentsCollection getDrawableCollection() {
         return componentManager.getDrawableCollection();
+    }
+
+    public TeleporterComponentsCollection getTeleporterCollection() {
+        return componentManager.getTeleporterCollection();
     }
 
     public void loadEntitiesFromCollections() {
@@ -188,6 +207,10 @@ public class EntityComponentManager {
 
     public void setDrawableComponentCollection(DrawableComponentsCollection drawableCollection) {
         componentManager.setDrawableCollection(drawableCollection);
+    }
+
+    public void setTeleporterComponentCollection(TeleporterComponentsCollection teleporterCollection) {
+        componentManager.setTeleporterCollection(teleporterCollection);
     }
 
 }

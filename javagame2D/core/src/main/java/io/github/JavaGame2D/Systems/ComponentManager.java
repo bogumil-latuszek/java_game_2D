@@ -69,6 +69,7 @@ public class ComponentManager {
     public PhysicalBodyComponentsCollection getPhysicalBodyCollection() { return physicalBodyCollection; }
     public ColliderComponentCollection getColliderCollection() { return colliderCollection; }
     public DrawableComponentsCollection getDrawableCollection() { return drawableCollection; }
+    public TeleporterComponentsCollection getTeleporterCollection() { return teleporterCollection; }
 
     public void setTransformCollection(TransformComponentsCollection transformCollection) {
         this.transformCollection = transformCollection;
@@ -86,6 +87,10 @@ public class ComponentManager {
         this.drawableCollection = drawableCollection;
     }
 
+    public void setTeleporterCollection(TeleporterComponentsCollection teleporterCollection) {
+        this.teleporterCollection = teleporterCollection;
+    }
+
     public HashMap<Integer, Long> loadEntitiesFromCollections() {
         HashMap<Integer, Long> entityIDToSignature = new HashMap<>();
 //        for (ComponentCollection collection: collections){
@@ -95,6 +100,7 @@ public class ComponentManager {
         entityIDToSignature = drawableCollection.updateEntitySignature(entityIDToSignature);
         entityIDToSignature = colliderCollection.updateEntitySignature(entityIDToSignature);
         entityIDToSignature = physicalBodyCollection.updateEntitySignature(entityIDToSignature);
+        entityIDToSignature = teleporterCollection.updateEntitySignature(entityIDToSignature);
         return entityIDToSignature;
     }
 

@@ -43,6 +43,9 @@ public class EntityManager {
     }
 
     public void loadEntitiesFromHashMap(HashMap<Integer, Long> entitySignatures) {
+        // reset entities
+        entities = new HashMap<Integer, Entity>();
+
         this.nextEntityId = Collections.max(entitySignatures.keySet()) + 1;
         for (Integer entityID : entitySignatures.keySet()){
             Entity entity = new Entity(entityID);

@@ -78,7 +78,8 @@ public class GameManager extends ApplicationAdapter {
 //
 //        levelManager.saveLevel(1);
 
-        levelManager.loadLevel(1);
+        levelManager.loadLevel(0);
+        entityComponentManager.createTeleporter(17.5f, 27f, 1f,1f);
 
         int playerID = entityComponentManager.createPlayer();
         Entity player = entityComponentManager.getEntity(playerID);

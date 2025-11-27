@@ -1,13 +1,7 @@
 package io.github.JavaGame2D.Systems;
 
-import io.github.JavaGame2D.Collections.ColliderComponentCollection;
-import io.github.JavaGame2D.Collections.DrawableComponentsCollection;
-import io.github.JavaGame2D.Collections.PhysicalBodyComponentsCollection;
-import io.github.JavaGame2D.Collections.TransformComponentsCollection;
-import io.github.JavaGame2D.Components.ColliderComponent;
-import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Components.PhysicalBodyComponent;
-import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.Collections.*;
+import io.github.JavaGame2D.Components.*;
 
 import java.util.HashMap;
 
@@ -16,6 +10,7 @@ public class ComponentManager {
     private TransformComponentsCollection transformCollection;
     private PhysicalBodyComponentsCollection physicalBodyCollection;
     private ColliderComponentCollection colliderCollection;
+    private TeleporterComponentsCollection teleporterCollection;
 
 
     public ComponentManager() {
@@ -23,6 +18,7 @@ public class ComponentManager {
         this.transformCollection = new TransformComponentsCollection();
         this.physicalBodyCollection = new PhysicalBodyComponentsCollection();
         this.colliderCollection = new ColliderComponentCollection();
+        this.teleporterCollection = new TeleporterComponentsCollection();
     }
 
     public TransformComponent getTransformComponent(int entityID){
@@ -41,6 +37,10 @@ public class ComponentManager {
         return drawableCollection.getDrawableComponent(entityID);
     }
 
+    public TeleporterComponent getTeleporterComponent(int entityID) {
+        return teleporterCollection.getTeleporterComponent(entityID);
+    }
+
     public void addTransformComponent(TransformComponent transform, int entityID){
         transformCollection.addComponent(transform, entityID);
     }
@@ -55,6 +55,10 @@ public class ComponentManager {
 
     public void addDrawableComponent(DrawableComponent drawable, int entityID){
         drawableCollection.addComponent(drawable, entityID);
+    }
+
+    public void addTeleporterComponent(TeleporterComponent teleporter, int entityID) {
+        teleporterCollection.addComponent(teleporter, entityID);
     }
 
     public DrawableComponent[] getAllDrawableComponents(){
@@ -93,4 +97,5 @@ public class ComponentManager {
         entityIDToSignature = physicalBodyCollection.updateEntitySignature(entityIDToSignature);
         return entityIDToSignature;
     }
+
 }

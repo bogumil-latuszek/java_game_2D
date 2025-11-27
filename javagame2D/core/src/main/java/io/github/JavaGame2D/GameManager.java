@@ -1,6 +1,7 @@
 package io.github.JavaGame2D;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import io.github.JavaGame2D.Events.PlayerIDChanged;
 import io.github.JavaGame2D.Systems.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -79,12 +80,9 @@ public class GameManager extends ApplicationAdapter {
 //        levelManager.saveLevel(1);
 
         levelManager.loadLevel(0);
+
         entityComponentManager.createTeleporter(17.5f, 27f, 1f,1f);
 
-        int playerID = entityComponentManager.createPlayer();
-        Entity player = entityComponentManager.getEntity(playerID);
-        playerCharacterController.setPlayerCharacter(player);
-        renderingSystem.setEntityFollowedByCamera(playerID);
 
         previousTimeframe = System.currentTimeMillis();
         renderingSystem.loadTextures();

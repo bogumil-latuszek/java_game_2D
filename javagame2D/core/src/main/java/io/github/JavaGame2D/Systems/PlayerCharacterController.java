@@ -6,30 +6,33 @@ import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerActionEvent;
+import io.github.JavaGame2D.Events.PlayerIDChanged;
 import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 
 public class PlayerCharacterController {
-    private Entity playerCharacter;
+    private boolean playerNotSpecified = true;
+    private int playerEntityID;
     private float jumpTimer;
     EntityComponentManager entityComponentManager;
 
     public PlayerCharacterController(EntityComponentManager entityComponentManager){
         this.entityComponentManager = entityComponentManager;
         EventBus.getInstance().subscribe(PlayerActionEvent.class, this::handlePlayerAction);
+        EventBus.getInstance().subscribe(PlayerIDChanged.class, this::handlePlayerIDChanged);
         this.jumpTimer = 0;
     }
 
-    public void setPlayerCharacter(Entity newPlayerCharacter){
-        this.playerCharacter = newPlayerCharacter;
+    public void handlePlayerIDChanged(PlayerIDChanged event){
+        this.playerEntityID = event.playerEntityID;
+        this.playerNotSpecified = false;
     }
 
     public void handlePlayerAction(PlayerActionEvent event){
-        if (playerCharacter == null){
+        if (playerNotSpecified){
             return;
         }
         float deltaTime = event.deltaTime;
-        PhysicalBodyComponent body = entityComponentManager.getPhysicalBodyComponent(playerCharacter.ID);
-
+        PhysicalBodyComponent body = entityComponentManager.getPhysicalBodyComponent(playerEntityID);
 
         switch (event.action){
             case GO_LEFT:

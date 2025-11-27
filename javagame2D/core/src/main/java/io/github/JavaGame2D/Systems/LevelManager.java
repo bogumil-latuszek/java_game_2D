@@ -8,6 +8,7 @@ import io.github.JavaGame2D.Collections.TransformComponentsCollection;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.FinishedLoadingLevelEvent;
 import io.github.JavaGame2D.Events.LoadingNewLevelEvent;
+import io.github.JavaGame2D.Events.PlayerIDChanged;
 import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 import io.github.JavaGame2D.Level;
 
@@ -43,6 +44,9 @@ public class LevelManager {
         // #3 infer Entites from collections and save them in EntityManager
         entityComponentManager.loadEntitiesFromCollections();
         // #4 load level specific data to global variable?
+        // load Player?
+        int playerID = entityComponentManager.createPlayer();
+        EventBus.getInstance().publish(new PlayerIDChanged(playerID));
 
     }
 

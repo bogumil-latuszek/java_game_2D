@@ -10,6 +10,8 @@ import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ComponentType;
+import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.PlayerIDChanged;
 
 public class RenderingSystem {
     private SpriteBatch batch;
@@ -25,6 +27,11 @@ public class RenderingSystem {
         this.entityComponentManager = entityComponentManager;
         stalkingCamera = new StalkingCamera();
         missingTexture = new Texture("autumnBrick1.png");
+        EventBus.getInstance().subscribe(PlayerIDChanged.class, this::handlePlayerIDChanged);
+    }
+
+    public void handlePlayerIDChanged(PlayerIDChanged event){
+        setEntityFollowedByCamera(event.playerEntityID);
     }
 
     public void loadTextures(){

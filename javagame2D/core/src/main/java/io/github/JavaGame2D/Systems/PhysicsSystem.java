@@ -2,6 +2,7 @@ package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.math.Vector2;
 //import com.sun.org.apache.bcel.internal.generic.IfInstruction;
+import io.github.JavaGame2D.Collision;
 import io.github.JavaGame2D.Components.ColliderComponent;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
@@ -19,11 +20,13 @@ public class PhysicsSystem {
     //TODO: dependency injection
     private EntityComponentManager entityComponentManager;
     private float groundCheckDepth;
+    private TeleporterSystem teleporterSystem;
 
     public PhysicsSystem(EntityComponentManager entityComponentManager, GameSettings settings) {
         this.entityComponentManager = entityComponentManager;
         this.gravity = settings.gravity;
         this.groundCheckDepth = settings.groundCheckDepth;
+        this.teleporterSystem = new TeleporterSystem(entityComponentManager);
     }
 
     public void update(float deltaTime){
@@ -166,6 +169,14 @@ public class PhysicsSystem {
                 // we know that entity is dynamic
                 // now if other entity is static:
                 PhysicalBodyComponent otherBody = entityComponentManager.getPhysicalBodyComponent(otherEntityID);
+
+                //TODO: change this to work on set of collisions, not every single collision separately
+                Entity entity = entityComponentManager.getEntity(entityID);
+                Entity otherEntity = entityComponentManager.getEntity(otherEntityID);
+                Collision collision = new Collision(entity,otherEntity);
+                Collision[] collisions = new Collision[]{collision};
+                teleporterSystem.detectTeleporterActivation(collisions);
+
                 if (otherBody.dynamic){
                     // resolve collision between 2 dynamic entities
                 }

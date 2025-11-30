@@ -2,6 +2,7 @@ package io.github.JavaGame2D;
 
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Collections.*;
+import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Systems.EntityManager;
 
 import java.util.ArrayList;
@@ -14,11 +15,16 @@ public class Level {
     public String levelName;
 
     // component collections:
-    public TransformComponentsCollection transformCollection;
-    public PhysicalBodyComponentsCollection physicalBodyCollection;
-    public ColliderComponentCollection colliderCollection;
-    public DrawableComponentsCollection drawableCollection;
-    public TeleporterComponentsCollection teleporterCollection;
+    public ComponentCollection<TransformComponent> transformCollection;
+    public ComponentCollection<PhysicalBodyComponent>  physicalBodyCollection;
+    public ComponentCollection<ColliderComponent>  colliderCollection;
+    public ComponentCollection<DrawableComponent>  drawableCollection;
+    public ComponentCollection<TeleporterComponent>  teleporterCollection;
+//    public TransformComponentsCollection transformCollection;
+//    public PhysicalBodyComponentsCollection physicalBodyCollection;
+//    public ColliderComponentCollection colliderCollection;
+//    public DrawableComponentsCollection drawableCollection;
+//    public TeleporterComponentsCollection teleporterCollection;
 
     // level-specific settings:
     // boundary for camera
@@ -29,6 +35,13 @@ public class Level {
     public int defaultSpawnPointID;
 
     public Level() {
+
         validSpawnPoints = new HashMap<>();
+        transformCollection = new ComponentCollection<>(TransformComponent.class,ComponentSignatures.TRANSFORM);
+        drawableCollection = new ComponentCollection<>(DrawableComponent.class,ComponentSignatures.DRAWABLE);
+        physicalBodyCollection = new ComponentCollection<>(PhysicalBodyComponent.class,ComponentSignatures.PHYSICAL_BODY);
+        colliderCollection = new ComponentCollection<>(ColliderComponent.class,ComponentSignatures.COLLIDER);
+        teleporterCollection = new ComponentCollection<>(TeleporterComponent.class,ComponentSignatures.TELEPORTER);
+
     }
 }

@@ -1,11 +1,14 @@
 package io.github.JavaGame2D.Collections;
 
+import io.github.JavaGame2D.Components.ComponentSignatures;
+import io.github.JavaGame2D.Components.TransformComponent;
+
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.HashMap;
 
 
-public class ComponentCollection<ComponentType> {
+public class ComponentCollection<ComponentType> implements ComponentCollectionInterface {
     public HashMap<Integer, Integer> entityIDToPosition;
     public HashMap<Integer, Integer> positionToEntityID;
     public int lastLivePosition;
@@ -13,6 +16,18 @@ public class ComponentCollection<ComponentType> {
     public ComponentType[] collectionOfComponents;
     public Long componentSignature;
     private final Class<ComponentType> componentClass;
+
+    @SuppressWarnings("unchecked")
+    private ComponentCollection() {
+        // Jackson will set these via setters or constructor
+        this.componentClass = null;
+        this.componentSignature = 0L;
+        // Initialize arrays to avoid NPE, they'll be replaced during deserialization
+        this.collectionOfComponents = (ComponentType[]) new Object[0];
+        this.lastLivePosition = -1;
+        this.entityIDToPosition = new HashMap<>();
+        this.positionToEntityID = new HashMap<>();
+    }
 
     public ComponentCollection(Class<ComponentType> componentClass, long signature){
         this.componentClass = componentClass;

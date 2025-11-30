@@ -18,7 +18,7 @@
     },
     "lastLivePosition" : 4,
     "defaultSize" : 10,
-    "transformComponents" : [ {
+    "collectionOfComponents" : [ {
       "signature" : 1,
       "position" : {
         "x" : 10.0,
@@ -78,8 +78,69 @@
       },
       "width" : 10.0,
       "height" : 10.0
-    } ],
-    "componentSignature" : 1
+    }, null, null, null, null, null ],
+    "componentSignature" : 1,
+    "allComponents" : [ {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 25.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 20.0,
+      "height" : 5.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 5.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 20.0,
+      "height" : 5.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 0.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 30.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 20.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 30.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 10.0,
+      "height" : 10.0
+    } ]
   },
   "physicalBodyCollection" : {
     "entityIDToPosition" : {
@@ -96,7 +157,7 @@
     },
     "lastLivePosition" : 3,
     "defaultSize" : 10,
-    "physicsComponents" : [ {
+    "collectionOfComponents" : [ {
       "signature" : 4,
       "velocity" : {
         "x" : 0.0,
@@ -142,7 +203,7 @@
       "jumpForce" : 26.0
     }, null, null, null, null, null, null ],
     "componentSignature" : 4,
-    "physicalBodyComponents" : [ {
+    "allComponents" : [ {
       "signature" : 4,
       "velocity" : {
         "x" : 0.0,
@@ -203,7 +264,7 @@
     },
     "lastLivePosition" : 3,
     "defaultSize" : 10,
-    "colliderComponents" : [ {
+    "collectionOfComponents" : [ {
       "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
@@ -239,8 +300,45 @@
       "width" : 0.0,
       "height" : 0.0,
       "sizeFromTransform" : true
-    } ],
-    "componentSignature" : 8
+    }, null, null, null, null, null, null ],
+    "componentSignature" : 8,
+    "allComponents" : [ {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    } ]
   },
   "drawableCollection" : {
     "entityIDToPosition" : {
@@ -259,7 +357,7 @@
     },
     "lastLivePosition" : 4,
     "defaultSize" : 10,
-    "drawableComponents" : [ {
+    "collectionOfComponents" : [ {
       "signature" : 2,
       "textureID" : 0
     }, {
@@ -274,16 +372,33 @@
     }, {
       "signature" : 2,
       "textureID" : 3
-    } ],
-    "componentSignature" : 2
+    }, null, null, null, null, null ],
+    "componentSignature" : 2,
+    "allComponents" : [ {
+      "signature" : 2,
+      "textureID" : 0
+    }, {
+      "signature" : 2,
+      "textureID" : 0
+    }, {
+      "signature" : 2,
+      "textureID" : 0
+    }, {
+      "signature" : 2,
+      "textureID" : 0
+    }, {
+      "signature" : 2,
+      "textureID" : 3
+    } ]
   },
   "teleporterCollection" : {
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,
     "defaultSize" : 10,
-    "teleporterComponents" : [ ],
-    "componentSignature" : 32
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 32,
+    "allComponents" : [ ]
   },
   "lowerLeftCorner" : null,
   "upperRightCorner" : null,

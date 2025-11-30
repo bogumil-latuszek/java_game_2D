@@ -179,11 +179,11 @@ public class EntityComponentManager {
         return entityID;
     }
 
-//    public void loadEntitiesFromCollections() {
-//        // component collections store entityID-s as keys in mappings
-//        // so, using that info, add them to EntityManager and rebuild their signatures
-//        HashMap<Integer, Long> entities = componentManager.loadEntitiesFromCollections();
-//        entityManager.loadEntitiesFromHashMap(entities);
-//    }
+    public void loadEntitiesFromCollections() {
+        // component collections store entityID-s as keys in mappings
+        // so, using that info, add them to EntityManager and rebuild their signatures
+        HashMap<Integer, Long> entities = componentManager.loadEntitiesFromCollections();
+        entityManager.loadEntitiesFromHashMap(entities);
+    }
 
 }

@@ -23,7 +23,8 @@ public class ComponentCollection<ComponentType> implements ComponentCollectionIn
         this.componentClass = null;
         this.componentSignature = 0L;
         // Initialize arrays to avoid NPE, they'll be replaced during deserialization
-        this.collectionOfComponents = (ComponentType[]) new Object[0];
+        //this.collectionOfComponents = (ComponentType[]) new Object[0];
+        this.collectionOfComponents = null;
         this.lastLivePosition = -1;
         this.entityIDToPosition = new HashMap<>();
         this.positionToEntityID = new HashMap<>();

@@ -37,7 +37,7 @@ public class FileSystem {
         }
     }
     public Level loadLevel(int levelID){
-        if (!Gdx.files.local("levels/"+levelID+".json").exists()) {
+        if (!Gdx.files.internal("levels/"+levelID+".json").exists()) {
             return null; // Return defaults if no save file
         }
         try {
@@ -46,7 +46,7 @@ public class FileSystem {
             mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
             mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
 
-            String jsonText = Gdx.files.local("levels/"+levelID+".json").readString();
+            String jsonText = Gdx.files.internal("levels/"+levelID+".json").readString();
             return mapper.readValue(jsonText, Level.class);
 
         } catch (Exception e) {
@@ -57,7 +57,7 @@ public class FileSystem {
 
     public Entity loadEntityJackson(String filename) {
         try {
-            FileHandle file = Gdx.files.local(filename);
+            FileHandle file = Gdx.files.internal(filename);
             if (!file.exists()) {
                 return null;
             }

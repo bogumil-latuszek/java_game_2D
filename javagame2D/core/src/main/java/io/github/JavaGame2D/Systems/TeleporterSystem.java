@@ -47,7 +47,7 @@ public class TeleporterSystem {
 
         Collision c = playerCollisionsWithTeleporters.get(0);
         int teleporterID = c.entity.ID == playerID ? c.otherEntity.ID : c.entity.ID;
-        TeleporterComponent teleporter = entityComponentManager.getTeleporterComponent(teleporterID);
+        TeleporterComponent teleporter = entityComponentManager.getComponent(TeleporterComponent.class, teleporterID);
 
         TeleportPlayerEvent teleportEvent = new TeleportPlayerEvent();
         teleportEvent.targetLevelID = teleporter.targetLevelID;

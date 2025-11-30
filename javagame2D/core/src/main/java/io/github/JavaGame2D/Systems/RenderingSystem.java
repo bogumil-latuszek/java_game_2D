@@ -64,7 +64,7 @@ public class RenderingSystem {
     }
 
     public void setEntityFollowedByCamera(int entityID){
-        TransformComponent transformComponent = entityComponentManager.getTransformComponent(entityID);
+        TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
         this.stalkingCamera.followTransformComponent(transformComponent);
     }
 
@@ -86,8 +86,8 @@ public class RenderingSystem {
 
         // draw each entity in list:
         for ( int entityID : drawableEntities){
-            TransformComponent transformComponent = entityComponentManager.getTransformComponent(entityID);
-            DrawableComponent drawableComponent = entityComponentManager.getDrawableComponent(entityID);
+            TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
+            DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
 
             int textureID = drawableComponent.textureID;
             Texture texture = getTexture(textureID);

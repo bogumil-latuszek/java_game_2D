@@ -48,15 +48,15 @@ public class PhysicsSystem {
 
         // move them:
         for(int entityID: physicalEntities){
-            TransformComponent transform = entityComponentManager.getTransformComponent(entityID);
-            PhysicalBodyComponent body = entityComponentManager.getPhysicalBodyComponent(entityID);
+            TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class, entityID);
+            PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class,entityID);
             Vector2 position = transform.position;
             Vector2 previousPosition = transform.previousPosition;
             Vector2 velocity = body.velocity;
             //TODO: ground checks should be made for all entities capable of movement and grounded, but before the moveEntities step
             if (body.usesGravity && body.onGround){
                 //do the ground check:
-                ColliderComponent collider = entityComponentManager.getColliderComponent(entityID);
+                ColliderComponent collider = entityComponentManager.getComponent(ColliderComponent.class,entityID);
                 boolean stillOnGround = groundCheck(collider, transform, entityID);
                 if (!stillOnGround){
                     body.onGround = false;
@@ -109,12 +109,12 @@ public class PhysicsSystem {
             if (entityID == otherEntityID){
                 continue;
             }
-            ColliderComponent otherCollider = entityComponentManager.getColliderComponent(otherEntityID);
+            ColliderComponent otherCollider = entityComponentManager.getComponent(ColliderComponent.class,otherEntityID);
             // impossible for entities on different layers to collide
             if (collider.layer != otherCollider.layer){
                 continue;
             }
-            TransformComponent otherTransform = entityComponentManager.getTransformComponent(otherEntityID);
+            TransformComponent otherTransform = entityComponentManager.getComponent(TransformComponent.class, otherEntityID);
             if (otherCollider.colliderType == ColliderType.AABB){
                 AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
                 boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
@@ -140,7 +140,7 @@ public class PhysicsSystem {
             // if it's not dynamic, it can't move by itself
             // therefore it didn't INITIATE any collisions
             // * what about collisions if it was pushed?
-            PhysicalBodyComponent body = entityComponentManager.getPhysicalBodyComponent(entityID);
+            PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class,entityID);
             if (!body.dynamic){
                 continue;
             }
@@ -150,16 +150,16 @@ public class PhysicsSystem {
                 if (entityID == otherEntityID){
                     continue;
                 }
-                ColliderComponent collider1 = entityComponentManager.getColliderComponent(entityID);
-                ColliderComponent collider2 = entityComponentManager.getColliderComponent(otherEntityID);
+                ColliderComponent collider1 = entityComponentManager.getComponent(ColliderComponent.class,entityID);
+                ColliderComponent collider2 = entityComponentManager.getComponent(ColliderComponent.class,otherEntityID);
                 // impossible for entities on different layers to collide
                 if (collider1.layer != collider2.layer){
                     continue;
                 }
 
                 // check if objects are colliding
-                TransformComponent transform1 = entityComponentManager.getTransformComponent(entityID);
-                TransformComponent transform2 = entityComponentManager.getTransformComponent(otherEntityID);
+                TransformComponent transform1 = entityComponentManager.getComponent(TransformComponent.class, entityID);
+                TransformComponent transform2 = entityComponentManager.getComponent(TransformComponent.class, otherEntityID);
                 boolean collisionDetected = detectCollision(transform1, collider1, transform2, collider2);
 
                 if (!collisionDetected){
@@ -168,7 +168,7 @@ public class PhysicsSystem {
                 // resolve collision
                 // we know that entity is dynamic
                 // now if other entity is static:
-                PhysicalBodyComponent otherBody = entityComponentManager.getPhysicalBodyComponent(otherEntityID);
+                PhysicalBodyComponent otherBody = entityComponentManager.getComponent(PhysicalBodyComponent.class,otherEntityID);
 
                 //TODO: change this to work on set of collisions, not every single collision separately
                 Entity entity = entityComponentManager.getEntity(entityID);

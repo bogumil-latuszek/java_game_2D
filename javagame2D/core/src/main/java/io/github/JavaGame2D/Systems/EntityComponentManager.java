@@ -17,6 +17,39 @@ public class EntityComponentManager {
         this.componentManager = new ComponentManager();
     }
 
+    public <T> ComponentCollection<T> getComponentCollection(Class<T> componentType) {
+        return  componentManager.getComponentCollection(componentType);
+    }
+
+    public <T> void registerComponentCollection(Class<T> componentType, ComponentCollection<T> collection) {
+        componentManager.registerComponentCollection(componentType, collection);
+    }
+
+    public <T> T getComponent(Class<T> componentType, int entityID) {
+        return componentManager.getComponent(componentType, entityID);
+    }
+
+    public <T> T[] getAllComponents(Class<T> componentType) {
+        return componentManager.getAllComponents(componentType);
+    }
+
+    public <T> void addComponent(Class<T> componentType, T component, int entityID) {
+        componentManager.addComponent(componentType, component, entityID);
+    }
+
+    public <T> void removeComponentFromEntity(Class<T> componentType, int entityID) {
+        getComponentCollection(componentType).removeComponentFromEntity(entityID);
+    }
+
+    // Check if a component type is registered
+    public boolean hasComponentType(Class<?> componentType) {
+        return componentManager.hasComponentType(componentType);
+    }
+
+    // Get all registered component types
+    public Class<?>[] getRegisteredComponentTypes() {
+        return componentManager.getRegisteredComponentTypes();
+    }
 
     public int getPlayerEntityID(){
         return playerEntityID;
@@ -30,28 +63,8 @@ public class EntityComponentManager {
         return entityManager.getEntitiesMatchingSignature(signature);
     }
 
-    public TransformComponent getTransformComponent(int entityID){
-        return componentManager.getTransformComponent(entityID);
-    }
-
-    public PhysicalBodyComponent getPhysicalBodyComponent(int entityID){
-        return  componentManager.getPhysicalBodyComponent(entityID);
-    }
-
-    public ColliderComponent getColliderComponent(int entityID){
-        return componentManager.getColliderComponent(entityID);
-    }
-
-    public DrawableComponent getDrawableComponent(int entityID){
-        return componentManager.getDrawableComponent(entityID);
-    }
-
-    public TeleporterComponent getTeleporterComponent(int entityID) {
-        return componentManager.getTeleporterComponent(entityID);
-    }
-
     public DrawableComponent[] getAllDrawableComponents(){
-        return componentManager.getAllDrawableComponents();
+        return componentManager.getAllComponents(DrawableComponent.class);
     }
 
     public int createPlatform(float x, float y, float width, float height){
@@ -61,57 +74,57 @@ public class EntityComponentManager {
         transform.position = new Vector2(x,y);
         transform.width = width;
         transform.height = height;
-        componentManager.addTransformComponent(transform, entityID);
+        componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
         PhysicalBodyComponent body = new PhysicalBodyComponent();
         body.dynamic = false;
         body.usesGravity = false;
-        componentManager.addBodyComponent(body, entityID);
+        componentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 0;
-        componentManager.addDrawableComponent(drawable, entityID);
+        componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
-        componentManager.addColliderComponent(collider, entityID);
+        componentManager.addComponent(ColliderComponent.class, collider, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
         return entityID;
     }
 
     public int createPlayer(){
-        int playerID = entityManager.createEntity();
+        int entityID = entityManager.createEntity();
 
         TransformComponent transform = new TransformComponent();
         transform.position = new Vector2(10f, 20f);
         transform.width = 1f;
         transform.height = 1.7f;
-        componentManager.addTransformComponent(transform, playerID);
-        entityManager.addSignature(playerID, ComponentSignatures.TRANSFORM);
+        componentManager.addComponent(TransformComponent.class, transform, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
         PhysicalBodyComponent body = new PhysicalBodyComponent();
         body.dynamic = true;
         body.usesGravity = true;
-        componentManager.addBodyComponent(body, playerID);
-        entityManager.addSignature(playerID, ComponentSignatures.PHYSICAL_BODY);
+        componentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 1;
-        componentManager.addDrawableComponent(drawable, playerID);
-        entityManager.addSignature(playerID, ComponentSignatures.DRAWABLE);
+        componentManager.addComponent(DrawableComponent.class, drawable, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
         collider.sizeFromTransform = false;
         collider.width = transform.width/2;
         collider.height = transform.height;
-        componentManager.addColliderComponent(collider, playerID);
-        entityManager.addSignature(playerID,ComponentSignatures.COLLIDER);
+        componentManager.addComponent(ColliderComponent.class, collider, entityID);
+        entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
         System.out.println("player created");
-        this.playerEntityID = playerID;
+        this.playerEntityID = entityID;
         return this.playerEntityID;
     }
 
@@ -122,27 +135,27 @@ public class EntityComponentManager {
         transform.position = new Vector2(x,y);
         transform.width = width;
         transform.height = height;
-        componentManager.addTransformComponent(transform, entityID);
+        componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
         PhysicalBodyComponent body = new PhysicalBodyComponent();
         body.dynamic = false;
         body.usesGravity = false;
-        componentManager.addBodyComponent(body, entityID);
+        componentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 2;
-        componentManager.addDrawableComponent(drawable, entityID);
+        componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
-        componentManager.addColliderComponent(collider, entityID);
+        componentManager.addComponent(ColliderComponent.class, collider, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
         TeleporterComponent teleporter = new TeleporterComponent();
         teleporter.targetLevelID = targetLevel;
-        componentManager.addTeleporterComponent(teleporter, entityID);
+        componentManager.addComponent(TeleporterComponent.class, teleporter, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.TELEPORTER);
 
         return entityID;
@@ -155,62 +168,22 @@ public class EntityComponentManager {
         transform.position = new Vector2(x,y);
         transform.width = width;
         transform.height = height;
-        componentManager.addTransformComponent(transform, entityID);
+        componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 3;
-        componentManager.addDrawableComponent(drawable, entityID);
+        componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
         return entityID;
     }
 
-    public TransformComponentsCollection getTransformCollection() {
-        return componentManager.getTransformCollection();
-    }
-
-    public PhysicalBodyComponentsCollection getPhysicalBodyCollection() {
-        return componentManager.getPhysicalBodyCollection();
-    }
-
-    public ColliderComponentCollection getColliderCollection() {
-        return componentManager.getColliderCollection();
-    }
-
-    public DrawableComponentsCollection getDrawableCollection() {
-        return componentManager.getDrawableCollection();
-    }
-
-    public TeleporterComponentsCollection getTeleporterCollection() {
-        return componentManager.getTeleporterCollection();
-    }
-
-    public void loadEntitiesFromCollections() {
-        // component collections store entityID-s as keys in mappings
-        // so, using that info, add them to EntityManager and rebuild their signatures
-        HashMap<Integer, Long> entities = componentManager.loadEntitiesFromCollections();
-        entityManager.loadEntitiesFromHashMap(entities);
-    }
-
-    public void setTransformComponentCollection(TransformComponentsCollection transformCollection) {
-        componentManager.setTransformCollection(transformCollection);
-    }
-
-    public void setPhysicalBodyComponentCollection(PhysicalBodyComponentsCollection bodyCollection) {
-        componentManager.setPhysicalBodyCollection(bodyCollection);
-    }
-
-    public void setColliderComponentCollection(ColliderComponentCollection colliderCollection) {
-        componentManager.setColliderCollection(colliderCollection);
-    }
-
-    public void setDrawableComponentCollection(DrawableComponentsCollection drawableCollection) {
-        componentManager.setDrawableCollection(drawableCollection);
-    }
-
-    public void setTeleporterComponentCollection(TeleporterComponentsCollection teleporterCollection) {
-        componentManager.setTeleporterCollection(teleporterCollection);
-    }
+//    public void loadEntitiesFromCollections() {
+//        // component collections store entityID-s as keys in mappings
+//        // so, using that info, add them to EntityManager and rebuild their signatures
+//        HashMap<Integer, Long> entities = componentManager.loadEntitiesFromCollections();
+//        entityManager.loadEntitiesFromHashMap(entities);
+//    }
 
 }

@@ -1,13 +1,9 @@
 package io.github.JavaGame2D.Systems;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Matrix4;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import io.github.JavaGame2D.Components.TransformComponent;
-import io.github.JavaGame2D.Entity;
-import io.github.JavaGame2D.Enums.ComponentType;
 
 public class StalkingCamera {
     private TransformComponent followedTransformComponent;

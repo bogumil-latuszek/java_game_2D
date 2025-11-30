@@ -1,7 +1,6 @@
 package io.github.JavaGame2D.Components;
 
 import com.badlogic.gdx.math.Vector2;
-import io.github.JavaGame2D.Enums.ComponentType;
 
 public class TransformComponent implements Component{
 

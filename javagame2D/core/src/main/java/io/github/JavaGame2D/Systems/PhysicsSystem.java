@@ -9,7 +9,6 @@ import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ColliderType;
-import io.github.JavaGame2D.Enums.ComponentType;
 import io.github.JavaGame2D.GameSettings;
 //import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
 

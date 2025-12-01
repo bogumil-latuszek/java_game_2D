@@ -20,11 +20,7 @@ public class Level {
     public ComponentCollection<ColliderComponent>  colliderCollection;
     public ComponentCollection<DrawableComponent>  drawableCollection;
     public ComponentCollection<TeleporterComponent>  teleporterCollection;
-//    public TransformComponentsCollection transformCollection;
-//    public PhysicalBodyComponentsCollection physicalBodyCollection;
-//    public ColliderComponentCollection colliderCollection;
-//    public DrawableComponentsCollection drawableCollection;
-//    public TeleporterComponentsCollection teleporterCollection;
+    public ComponentCollection<HealthComponent>  healthCollection;
 
     // level-specific settings:
     // boundary for camera
@@ -42,6 +38,6 @@ public class Level {
         physicalBodyCollection = new ComponentCollection<>(PhysicalBodyComponent.class,ComponentSignatures.PHYSICAL_BODY);
         colliderCollection = new ComponentCollection<>(ColliderComponent.class,ComponentSignatures.COLLIDER);
         teleporterCollection = new ComponentCollection<>(TeleporterComponent.class,ComponentSignatures.TELEPORTER);
-
+        healthCollection = new ComponentCollection<>(HealthComponent.class,ComponentSignatures.HEALTH);
     }
 }

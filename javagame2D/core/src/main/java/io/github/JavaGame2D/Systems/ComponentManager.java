@@ -17,6 +17,7 @@ public class ComponentManager {
         registerComponentCollection(PhysicalBodyComponent.class, new ComponentCollection<>(PhysicalBodyComponent.class, ComponentSignatures.PHYSICAL_BODY));
         registerComponentCollection(ColliderComponent.class, new ComponentCollection<>(ColliderComponent.class, ComponentSignatures.COLLIDER));
         registerComponentCollection(TeleporterComponent.class, new ComponentCollection<>(TeleporterComponent.class, ComponentSignatures.TELEPORTER));
+        registerComponentCollection(HealthComponent.class, new ComponentCollection<>(HealthComponent.class, ComponentSignatures.HEALTH));
     }
 
     // Get a component collection by type (type-safe)

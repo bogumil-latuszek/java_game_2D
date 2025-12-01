@@ -7,4 +7,5 @@ public final class ComponentSignatures {
     public static final long COLLIDER       = 1L << 3;
     public static final long ANIMATION      = 1L << 4;
     public static final long TELEPORTER     = 1L << 5;
+    public static final long HEALTH         = 1L << 6;
 }

@@ -51,11 +51,13 @@ public class LevelManager {
         ComponentCollection<ColliderComponent> colliderCollection = level.colliderCollection;
         ComponentCollection<DrawableComponent> drawableCollection = level.drawableCollection;
         ComponentCollection<TeleporterComponent> teleporterCollection = level.teleporterCollection;
+        ComponentCollection<HealthComponent> healthCollection = level.healthCollection;
         entityComponentManager.registerComponentCollection(TransformComponent.class,transformCollection);
         entityComponentManager.registerComponentCollection(DrawableComponent.class,drawableCollection);
         entityComponentManager.registerComponentCollection(PhysicalBodyComponent.class,bodyCollection);
         entityComponentManager.registerComponentCollection(ColliderComponent.class,colliderCollection);
         entityComponentManager.registerComponentCollection(TeleporterComponent.class,teleporterCollection);
+        entityComponentManager.registerComponentCollection(HealthComponent.class,healthCollection);
 
         // #3 infer Entites from collections and save them in EntityManager
         entityComponentManager.loadEntitiesFromCollections();
@@ -78,6 +80,7 @@ public class LevelManager {
         level.colliderCollection = entityComponentManager.getComponentCollection(ColliderComponent.class);
         level.drawableCollection = entityComponentManager.getComponentCollection(DrawableComponent.class);
         level.teleporterCollection = entityComponentManager.getComponentCollection(TeleporterComponent.class);
+        level.healthCollection = entityComponentManager.getComponentCollection(HealthComponent.class);
         // #2 save global variables that can change from level to level
         level.validSpawnPoints = this.spawnPointIDtoPosition;
         level.defaultSpawnPointID = this.defaultSpawnPoint;

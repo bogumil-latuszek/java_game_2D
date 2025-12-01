@@ -11,10 +11,10 @@ public class StalkingCamera {
     private ExtendViewport viewport;
 
 
-    public StalkingCamera() {
+    public StalkingCamera(float minWorldWidth, float minWorldHeight) {
         camera = new OrthographicCamera();
         //viewport = new ExtendViewport(50,35, camera);
-        viewport = new ExtendViewport(14,9.8f, camera);
+        viewport = new ExtendViewport(minWorldWidth,minWorldHeight, camera);
     }
 
     public void followTransformComponent(TransformComponent transformComponent){

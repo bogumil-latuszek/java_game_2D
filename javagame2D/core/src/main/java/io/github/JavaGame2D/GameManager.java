@@ -25,9 +25,9 @@ public class GameManager extends ApplicationAdapter {
         FileSystem fileSystem = new FileSystem();
         entityComponentManager = new EntityComponentManager();
 
-        renderingSystem = new RenderingSystem(entityComponentManager);
-        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
         userInterface = new UserInterface();
+        renderingSystem = new RenderingSystem(entityComponentManager, userInterface);
+        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
         inputSystem = new InputSystem();
         playerCharacterController = new PlayerCharacterController(entityComponentManager);
         levelManager = new LevelManager(fileSystem,entityComponentManager);

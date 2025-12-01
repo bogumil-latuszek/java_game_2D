@@ -95,11 +95,11 @@ public class EntityComponentManager {
         return entityID;
     }
 
-    public int createPlayer(){
+    public int createPlayer(Vector2 position){
         int entityID = entityManager.createEntity();
 
         TransformComponent transform = new TransformComponent();
-        transform.position = new Vector2(10f, 20f);
+        transform.position = position;
         transform.width = 1f;
         transform.height = 1.7f;
         componentManager.addComponent(TransformComponent.class, transform, entityID);

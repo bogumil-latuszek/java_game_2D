@@ -13,6 +13,9 @@ import io.github.JavaGame2D.Level;
 import java.util.HashMap;
 
 public class LevelManager {
+    public HashMap<Integer,Vector2> spawnPointIDtoPosition;
+    public int defaultSpawnPoint;
+
     //private Level currentLevel;
     private int currentLevelID;
     private FileSystem fileSystem;
@@ -23,6 +26,9 @@ public class LevelManager {
         this.fileSystem = fileSystem;
         this.entityComponentManager = entityComponentManager;
         EventBus.getInstance().subscribe(TeleportPlayerEvent.class, this::handleTeleportEvent);
+        this.defaultSpawnPoint = 0;
+        this.spawnPointIDtoPosition = new HashMap<>();
+        this.spawnPointIDtoPosition.put(0, new Vector2(0,0));
     }
 
     // level manager can load level when given its ID
@@ -54,8 +60,12 @@ public class LevelManager {
         // #3 infer Entites from collections and save them in EntityManager
         entityComponentManager.loadEntitiesFromCollections();
         // #4 load level specific data to global variable?
+        // load spawn positions:
+        this.defaultSpawnPoint = level.defaultSpawnPointID;
+        this.spawnPointIDtoPosition = level.validSpawnPoints;
         // load Player?
-        int playerID = entityComponentManager.createPlayer();
+        Vector2 playerSpawnPosition = this.spawnPointIDtoPosition.get(defaultSpawnPoint);
+        int playerID = entityComponentManager.createPlayer(playerSpawnPosition);
         EventBus.getInstance().publish(new PlayerIDChanged(playerID));
     }
 
@@ -69,8 +79,8 @@ public class LevelManager {
         level.drawableCollection = entityComponentManager.getComponentCollection(DrawableComponent.class);
         level.teleporterCollection = entityComponentManager.getComponentCollection(TeleporterComponent.class);
         // #2 save global variables that can change from level to level
-        level.validSpawnPoints = new HashMap<>();
-        level.validSpawnPoints.put(0,new Vector2(0,0));
+        level.validSpawnPoints = this.spawnPointIDtoPosition;
+        level.defaultSpawnPointID = this.defaultSpawnPoint;
         // #3 serialize level and save it
         fileSystem.saveLevel(level);
     }

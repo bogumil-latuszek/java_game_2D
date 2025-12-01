@@ -1,6 +1,7 @@
 package io.github.JavaGame2D;
 
 import com.badlogic.gdx.ApplicationAdapter;
+import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Events.PlayerIDChanged;
 import io.github.JavaGame2D.Systems.*;
 
@@ -78,16 +79,20 @@ public class GameManager extends ApplicationAdapter {
 //        entityComponentManager.createPlatform(112.5f, 37.5f, 5f,15f);
 //        entityComponentManager.createPlatform(117.5f, 20f, 3f,5f);
 //        entityComponentManager.createTeleporter(117.5f, 24f, 2f,2f, 3);
-//
+//        levelManager.spawnPointIDtoPosition.put(0,new Vector2(5,10));
+//        levelManager.defaultSpawnPoint = 0;
 //        levelManager.saveLevel(2);
 
 //         LEVEL 3
-//
+
 //        entityComponentManager.createPlatform(10f, 25f, 20f,5f);
 //        entityComponentManager.createPlatform(10f, 5f, 20f,5f);
 //        entityComponentManager.createPlatform(0f, 15f, 5f,30f);
 //        entityComponentManager.createPlatform(20f, 15f, 5f,30f);
+//        entityComponentManager.createPlatform(10f, 11f, 2f,0.5f);
 //        entityComponentManager.createBackgroundElement(10f, 15f, 10f,10f);
+//        levelManager.spawnPointIDtoPosition.put(0,new Vector2(10,16));
+//        levelManager.defaultSpawnPoint = 0;
 //        levelManager.saveLevel(3);
 
         levelManager.loadLevel(1);

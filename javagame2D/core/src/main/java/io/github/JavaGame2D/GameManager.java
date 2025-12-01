@@ -16,18 +16,12 @@ public class GameManager extends ApplicationAdapter {
     LevelManager levelManager;
     EntityComponentManager entityComponentManager;
 
-
-
-    @Override
-    public void create() {
-
-        //TODO: change to static method
+    private void initializeSystems(){
         gameSettings = new GameSettings();
         gameSettings = gameSettings.loadSettings();
         gameSettings.saveSettings();
 
         FileSystem fileSystem = new FileSystem();
-        // initialize systems
         entityComponentManager = new EntityComponentManager();
 
         renderingSystem = new RenderingSystem(entityComponentManager);
@@ -36,8 +30,14 @@ public class GameManager extends ApplicationAdapter {
         inputSystem = new InputSystem();
         playerCharacterController = new PlayerCharacterController(entityComponentManager);
         levelManager = new LevelManager(fileSystem,entityComponentManager);
+    }
 
 
+
+    @Override
+    public void create() {
+
+       this.initializeSystems();
 
         // LEVEL 1
 //        entityComponentManager.createPlatform(0f,    -2.5f, 5f,   1f);

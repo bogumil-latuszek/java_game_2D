@@ -82,13 +82,13 @@ public class GameManager extends ApplicationAdapter {
 //        levelManager.saveLevel(2);
 
 //         LEVEL 3
-
-        entityComponentManager.createPlatform(10f, 25f, 20f,5f);
-        entityComponentManager.createPlatform(10f, 5f, 20f,5f);
-        entityComponentManager.createPlatform(0f, 15f, 5f,30f);
-        entityComponentManager.createPlatform(20f, 15f, 5f,30f);
-        entityComponentManager.createBackgroundElement(10f, 15f, 10f,10f);
-        levelManager.saveLevel(3);
+//
+//        entityComponentManager.createPlatform(10f, 25f, 20f,5f);
+//        entityComponentManager.createPlatform(10f, 5f, 20f,5f);
+//        entityComponentManager.createPlatform(0f, 15f, 5f,30f);
+//        entityComponentManager.createPlatform(20f, 15f, 5f,30f);
+//        entityComponentManager.createBackgroundElement(10f, 15f, 10f,10f);
+//        levelManager.saveLevel(3);
 
         levelManager.loadLevel(1);
 

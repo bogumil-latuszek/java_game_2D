@@ -16,9 +16,7 @@ import java.util.ArrayList;
 
 
 public class PhysicsSystem {
-    // TODO: load this from settings
     private float gravity; //acceleration: unit/s in y direction
-    //TODO: dependency injection
     private EntityComponentManager entityComponentManager;
     private float groundCheckDepth;
     private TeleporterSystem teleporterSystem;
@@ -55,7 +53,6 @@ public class PhysicsSystem {
             Vector2 position = transform.position;
             Vector2 previousPosition = transform.previousPosition;
             Vector2 velocity = body.velocity;
-            //TODO: ground checks should be made for all entities capable of movement and grounded, but before the moveEntities step
             if (body.usesGravity && body.onGround){
                 //do the ground check:
                 ColliderComponent collider = entityComponentManager.getComponent(ColliderComponent.class,entityID);
@@ -323,8 +320,6 @@ public class PhysicsSystem {
         return overlap;
     }
 
-    //TODO: check why you can't use "record" instead. Is it because of Java versioning problem?
-    //public record AABBCollider (Vector2 position, float width, float height) {}
     public class AABBCollider{
         Vector2 position;
         float width;

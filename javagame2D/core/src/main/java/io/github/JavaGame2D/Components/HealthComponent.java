@@ -1,6 +1,6 @@
 package io.github.JavaGame2D.Components;
 
-public class HealthComponent {
+public class HealthComponent implements Component {
     private int currentHp;
     private int maxHp;
 
@@ -17,6 +17,11 @@ public class HealthComponent {
     public HealthComponent(int maxHp) {
         this.maxHp = maxHp;
         this.currentHp = maxHp;
+    }
+
+    @Override
+    public long getSignature() {
+        return ComponentSignatures.HEALTH;
     }
 
     // Getters and setters...

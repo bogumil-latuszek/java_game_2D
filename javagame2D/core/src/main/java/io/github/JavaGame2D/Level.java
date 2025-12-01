@@ -21,6 +21,7 @@ public class Level {
     public ComponentCollection<DrawableComponent>  drawableCollection;
     public ComponentCollection<TeleporterComponent>  teleporterCollection;
     public ComponentCollection<HealthComponent>  healthCollection;
+    public ComponentCollection<DamageEmitterComponent>  damageEmitterCollection;
 
     // level-specific settings:
     // boundary for camera
@@ -31,7 +32,6 @@ public class Level {
     public int defaultSpawnPointID;
 
     public Level() {
-
         validSpawnPoints = new HashMap<>();
         transformCollection = new ComponentCollection<>(TransformComponent.class,ComponentSignatures.TRANSFORM);
         drawableCollection = new ComponentCollection<>(DrawableComponent.class,ComponentSignatures.DRAWABLE);
@@ -39,5 +39,6 @@ public class Level {
         colliderCollection = new ComponentCollection<>(ColliderComponent.class,ComponentSignatures.COLLIDER);
         teleporterCollection = new ComponentCollection<>(TeleporterComponent.class,ComponentSignatures.TELEPORTER);
         healthCollection = new ComponentCollection<>(HealthComponent.class,ComponentSignatures.HEALTH);
+        damageEmitterCollection = new ComponentCollection<>(DamageEmitterComponent.class, ComponentSignatures.DAMAGE_EMITTER);
     }
 }

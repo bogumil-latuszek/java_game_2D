@@ -20,12 +20,14 @@ public class PhysicsSystem {
     private EntityComponentManager entityComponentManager;
     private float groundCheckDepth;
     private TeleporterSystem teleporterSystem;
+    private DamageSystem damageSystem;
 
     public PhysicsSystem(EntityComponentManager entityComponentManager, GameSettings settings) {
         this.entityComponentManager = entityComponentManager;
         this.gravity = settings.gravity;
         this.groundCheckDepth = settings.groundCheckDepth;
         this.teleporterSystem = new TeleporterSystem(entityComponentManager);
+        this.damageSystem = new DamageSystem(entityComponentManager);
     }
 
     public void update(float deltaTime){
@@ -37,6 +39,7 @@ public class PhysicsSystem {
         // #4 send collided items to systems that use them:
         this.resolveNormalCollisions(detectedCollisions);
         teleporterSystem.detectTeleporterActivation(detectedCollisions);
+        damageSystem.detectDamage(detectedCollisions);
         // TrapSystem.resolveTraps(detectedCollisions)
         // TeleportSystem.resolveTeleports(detectedCollisions);
     }
@@ -168,7 +171,7 @@ public class PhysicsSystem {
                     Entity otherEntity = entityComponentManager.getEntity(otherEntityID);
                     Collision collision = new Collision(entity,otherEntity);
                     detectedCollisions.add(collision);
-                    System.out.println("collision detected between" + entityID + " and " + otherEntityID);
+                    //System.out.println("collision detected between" + entityID + " and " + otherEntityID);
                 }
             }
         }
@@ -253,7 +256,7 @@ public class PhysicsSystem {
             int pushDirection = sPreviousPosition.x < dPreviousPosition.x ? 1 : -1;
             float xAxisPushLength = (xAxisOverlap + pushOffset)*pushDirection;
             dTransform.position.x += xAxisPushLength;
-            System.out.println("pushing on x by "+xAxisPushLength);
+            //System.out.println("pushing on x by "+xAxisPushLength);
             dBody.velocity.x = 0;
         }
         else{
@@ -268,7 +271,7 @@ public class PhysicsSystem {
 
             float yAxisPushLength = (yAxisOverlap + pushOffset)*pushDirection ;
             dTransform.position.y += yAxisPushLength;
-            System.out.println("pushing on y by "+yAxisPushLength);
+            //System.out.println("pushing on y by "+yAxisPushLength);
 
             if(pushDirection > 0){
                 // pushed on top => stands on Ground
@@ -338,7 +341,7 @@ public class PhysicsSystem {
 
     public AABBCollider createAABBCollider(TransformComponent transform, ColliderComponent collider, boolean usePreviousPosition){
         Vector2 transformPosition = usePreviousPosition ? transform.previousPosition : transform.position;
-        Vector2 position = collider.usesOffset ? transformPosition.add(collider.offset): transformPosition;
+        Vector2 position = collider.usesOffset ? new Vector2(transformPosition.x + collider.offset.x, transformPosition.y + collider.offset.y) : transformPosition;
         float width = collider.sizeFromTransform ? transform.width : collider.width;
         float height = collider.sizeFromTransform ? transform.height : collider.height;
         return new AABBCollider(position, width, height);

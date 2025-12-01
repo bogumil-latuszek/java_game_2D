@@ -39,6 +39,7 @@ public class RenderingSystem {
         textureIDtoTexturePath.put(1,"playerSprite.png");
         textureIDtoTexturePath.put(2,"teleporter.png");
         textureIDtoTexturePath.put(3, "YOU_WIN!!!.png");
+        textureIDtoTexturePath.put(4, "spikes.png");
     }
 
     public void handlePlayerIDChanged(PlayerIDChanged event){

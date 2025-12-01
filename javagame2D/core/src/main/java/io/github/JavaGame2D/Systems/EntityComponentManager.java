@@ -166,6 +166,43 @@ public class EntityComponentManager {
         return entityID;
     }
 
+    public int createSpikes(float x, float y, float width, float height){
+        int entityID = entityManager.createEntity();
+
+        TransformComponent transform = new TransformComponent();
+        transform.position = new Vector2(x,y);
+        transform.width = width;
+        transform.height = height;
+        componentManager.addComponent(TransformComponent.class, transform, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
+
+        PhysicalBodyComponent body = new PhysicalBodyComponent();
+        body.dynamic = false;
+        body.usesGravity = false;
+        componentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
+
+        DrawableComponent drawable = new DrawableComponent();
+        drawable.textureID = 4;
+        componentManager.addComponent(DrawableComponent.class, drawable, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
+
+        ColliderComponent collider = new ColliderComponent();
+        collider.sizeFromTransform = false;
+        collider.width = width*0.9f;
+        collider.height = height*0.4f;
+        collider.usesOffset = true;
+        collider.offset = new Vector2(0,-0.3f);
+        componentManager.addComponent(ColliderComponent.class, collider, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.COLLIDER);
+
+        DamageEmitterComponent damageEmitter = new DamageEmitterComponent();
+        componentManager.addComponent(DamageEmitterComponent.class, damageEmitter, entityID );
+        entityManager.addSignature(entityID, ComponentSignatures.DAMAGE_EMITTER);
+
+        return entityID;
+    }
+
     public int createBackgroundElement(float x, float y, float width, float height){
         int entityID = entityManager.createEntity();
 

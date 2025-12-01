@@ -19,7 +19,11 @@
       "13" : 13,
       "14" : 14,
       "15" : 15,
-      "16" : 16
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20
     },
     "positionToEntityID" : {
       "0" : 0,
@@ -38,9 +42,13 @@
       "13" : 13,
       "14" : 14,
       "15" : 15,
-      "16" : 16
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20
     },
-    "lastLivePosition" : 16,
+    "lastLivePosition" : 20,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
       "signature" : 1,
@@ -126,6 +134,54 @@
       },
       "width" : 30.0,
       "height" : 0.5
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 7.0,
+        "y" : -4.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 5.0,
+        "y" : -4.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 3.0,
+        "y" : -4.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 1.0,
+        "y" : -4.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
     }, {
       "signature" : 1,
       "position" : {
@@ -246,7 +302,7 @@
       },
       "width" : 2.0,
       "height" : 2.0
-    }, null, null, null ],
+    }, null, null, null, null, null, null, null, null, null ],
     "componentSignature" : 1,
     "allComponents" : [ {
       "signature" : 1,
@@ -332,6 +388,54 @@
       },
       "width" : 30.0,
       "height" : 0.5
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 7.0,
+        "y" : -4.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 5.0,
+        "y" : -4.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 3.0,
+        "y" : -4.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 1.0,
+        "y" : -4.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0
     }, {
       "signature" : 1,
       "position" : {
@@ -472,7 +576,11 @@
       "13" : 13,
       "14" : 14,
       "15" : 15,
-      "16" : 16
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20
     },
     "positionToEntityID" : {
       "0" : 0,
@@ -491,9 +599,13 @@
       "13" : 13,
       "14" : 14,
       "15" : 15,
-      "16" : 16
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20
     },
-    "lastLivePosition" : 16,
+    "lastLivePosition" : 20,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
       "signature" : 4,
@@ -682,9 +794,97 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0
-    }, null, null, null ],
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    }, null, null, null, null, null, null, null, null, null ],
     "componentSignature" : 4,
     "allComponents" : [ {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0
+    }, {
       "signature" : 4,
       "velocity" : {
         "x" : 0.0,
@@ -891,7 +1091,11 @@
       "13" : 13,
       "14" : 14,
       "15" : 15,
-      "16" : 16
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20
     },
     "positionToEntityID" : {
       "0" : 0,
@@ -910,9 +1114,13 @@
       "13" : 13,
       "14" : 14,
       "15" : 15,
-      "16" : 16
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20
     },
-    "lastLivePosition" : 16,
+    "lastLivePosition" : 20,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
       "signature" : 8,
@@ -981,11 +1189,50 @@
       "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
-      "usesOffset" : false,
-      "offset" : null,
-      "width" : 0.0,
-      "height" : 0.0,
-      "sizeFromTransform" : true
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "sizeFromTransform" : false
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "sizeFromTransform" : false
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "sizeFromTransform" : false
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "sizeFromTransform" : false
     }, {
       "signature" : 8,
       "layer" : 0,
@@ -1067,7 +1314,16 @@
       "width" : 0.0,
       "height" : 0.0,
       "sizeFromTransform" : true
-    }, null, null, null ],
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 0.0,
+      "height" : 0.0,
+      "sizeFromTransform" : true
+    }, null, null, null, null, null, null, null, null, null ],
     "componentSignature" : 8,
     "allComponents" : [ {
       "signature" : 8,
@@ -1132,6 +1388,54 @@
       "width" : 0.0,
       "height" : 0.0,
       "sizeFromTransform" : true
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "sizeFromTransform" : false
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "sizeFromTransform" : false
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "sizeFromTransform" : false
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "sizeFromTransform" : false
     }, {
       "signature" : 8,
       "layer" : 0,
@@ -1242,7 +1546,11 @@
       "13" : 13,
       "14" : 14,
       "15" : 15,
-      "16" : 16
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20
     },
     "positionToEntityID" : {
       "0" : 0,
@@ -1261,9 +1569,13 @@
       "13" : 13,
       "14" : 14,
       "15" : 15,
-      "16" : 16
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20
     },
-    "lastLivePosition" : 16,
+    "lastLivePosition" : 20,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
       "signature" : 2,
@@ -1286,6 +1598,18 @@
     }, {
       "signature" : 2,
       "textureID" : 0
+    }, {
+      "signature" : 2,
+      "textureID" : 4
+    }, {
+      "signature" : 2,
+      "textureID" : 4
+    }, {
+      "signature" : 2,
+      "textureID" : 4
+    }, {
+      "signature" : 2,
+      "textureID" : 4
     }, {
       "signature" : 2,
       "textureID" : 0
@@ -1316,7 +1640,7 @@
     }, {
       "signature" : 2,
       "textureID" : 2
-    }, null, null, null ],
+    }, null, null, null, null, null, null, null, null, null ],
     "componentSignature" : 2,
     "allComponents" : [ {
       "signature" : 2,
@@ -1339,6 +1663,18 @@
     }, {
       "signature" : 2,
       "textureID" : 0
+    }, {
+      "signature" : 2,
+      "textureID" : 4
+    }, {
+      "signature" : 2,
+      "textureID" : 4
+    }, {
+      "signature" : 2,
+      "textureID" : 4
+    }, {
+      "signature" : 2,
+      "textureID" : 4
     }, {
       "signature" : 2,
       "textureID" : 0
@@ -1373,10 +1709,10 @@
   },
   "teleporterCollection" : {
     "entityIDToPosition" : {
-      "16" : 0
+      "20" : 0
     },
     "positionToEntityID" : {
-      "0" : 16
+      "0" : 20
     },
     "lastLivePosition" : 0,
     "defaultSize" : 10,
@@ -1388,6 +1724,66 @@
     "allComponents" : [ {
       "targetLevelID" : 2,
       "signature" : 32
+    } ]
+  },
+  "healthCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 64,
+    "allComponents" : [ ]
+  },
+  "damageEmitterCollection" : {
+    "entityIDToPosition" : {
+      "7" : 0,
+      "8" : 1,
+      "9" : 2,
+      "10" : 3
+    },
+    "positionToEntityID" : {
+      "0" : 7,
+      "1" : 8,
+      "2" : 9,
+      "3" : 10
+    },
+    "lastLivePosition" : 3,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "signature" : 128
+    }, null, null, null, null, null, null ],
+    "componentSignature" : 128,
+    "allComponents" : [ {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "signature" : 128
     } ]
   },
   "lowerLeftCorner" : null,

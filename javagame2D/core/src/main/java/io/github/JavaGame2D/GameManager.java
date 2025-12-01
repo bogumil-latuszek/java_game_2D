@@ -48,6 +48,10 @@ public class GameManager extends ApplicationAdapter {
 //        entityComponentManager.createPlatform(17.5f, 2.5f,  1.25f,17.5f);
 //        entityComponentManager.createPlatform(17.5f, -10f,  12.5f,1.25f);
 //        entityComponentManager.createPlatform(-6f,   -5f,   30f,  0.5f);
+//        entityComponentManager.createSpikes(7f, -4f,  2f,2f);
+//        entityComponentManager.createSpikes(5f, -4f,  2f,2f);
+//        entityComponentManager.createSpikes(3f, -4f,  2f,2f);
+//        entityComponentManager.createSpikes(1f, -4f,  2f,2f);
 //        entityComponentManager.createPlatform(20f,   -6f,   2.5f, 0.5f);
 //        entityComponentManager.createPlatform(22.5f, -2f,   2.5f, 0.5f);
 //        entityComponentManager.createPlatform(20f,   2f,    2.5f, 0.5f);

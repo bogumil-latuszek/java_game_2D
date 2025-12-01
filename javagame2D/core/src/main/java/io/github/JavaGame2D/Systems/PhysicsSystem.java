@@ -10,6 +10,8 @@ import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ColliderType;
 import io.github.JavaGame2D.GameSettings;
+
+import java.util.ArrayList;
 //import jdk.javadoc.internal.doclets.toolkit.util.DocFinder;
 
 
@@ -33,11 +35,12 @@ public class PhysicsSystem {
         // #2 move entites
         moveEntities(deltaTime);
         // #3 detect collisions
-        // #4 send list of collided items to systems like:
-        // PhysicsSystem.resolveCollisions(list);
-        // TrapSystem.resolveTraps(list)
-        // TeleportSystem.resolveTeleports(list);
-        detectAndResolveCollisions();
+        Collision[] detectedCollisions = detectAllCollisions();
+        // #4 send collided items to systems that use them:
+        this.resolveNormalCollisions(detectedCollisions);
+        teleporterSystem.detectTeleporterActivation(detectedCollisions);
+        // TrapSystem.resolveTraps(detectedCollisions)
+        // TeleportSystem.resolveTeleports(detectedCollisions);
     }
 
     private void moveEntities(float deltaTime){
@@ -128,7 +131,9 @@ public class PhysicsSystem {
         return groundCollisionDetected;
     }
 
-    private void detectAndResolveCollisions(){
+    private Collision[] detectAllCollisions(){
+
+        ArrayList<Collision> detectedCollisions = new ArrayList<>();
 
         long signature = ComponentSignatures.PHYSICAL_BODY |
                          ComponentSignatures.TRANSFORM |
@@ -161,32 +166,48 @@ public class PhysicsSystem {
                 TransformComponent transform2 = entityComponentManager.getComponent(TransformComponent.class, otherEntityID);
                 boolean collisionDetected = detectCollision(transform1, collider1, transform2, collider2);
 
-                if (!collisionDetected){
-                    continue;
+                if (collisionDetected){
+                    Entity entity = entityComponentManager.getEntity(entityID);
+                    Entity otherEntity = entityComponentManager.getEntity(otherEntityID);
+                    Collision collision = new Collision(entity,otherEntity);
+                    detectedCollisions.add(collision);
+                    System.out.println("collision detected between" + entityID + " and " + otherEntityID);
                 }
-                // resolve collision
-                // we know that entity is dynamic
-                // now if other entity is static:
-                PhysicalBodyComponent otherBody = entityComponentManager.getComponent(PhysicalBodyComponent.class,otherEntityID);
-
-                //TODO: change this to work on set of collisions, not every single collision separately
-                Entity entity = entityComponentManager.getEntity(entityID);
-                Entity otherEntity = entityComponentManager.getEntity(otherEntityID);
-                Collision collision = new Collision(entity,otherEntity);
-                Collision[] collisions = new Collision[]{collision};
-                teleporterSystem.detectTeleporterActivation(collisions);
-
-                if (otherBody.dynamic){
-                    // resolve collision between 2 dynamic entities
-                }
-                else {
-                    resolveDynamicxStaticAABBCollision(transform1, body, collider1,
-                                                       transform2, otherBody, collider2);
-                }
-                System.out.println("collision detected between" + entityID + " and " + otherEntityID);
             }
         }
+        Collision[] output = new Collision[detectedCollisions.size()];
+        output = detectedCollisions.toArray(output);
+        return output;
+    }
 
+    public void resolveNormalCollisions(Collision[] collisions){
+        for(Collision collision : collisions){
+            Entity entity1 = collision.entity;
+            Entity entity2 = collision.otherEntity;
+
+            // we know from "detect collisions step" that all entities in collisions
+            // need to have Transform, Body, and Collider
+            // so there's no need to check for it again!
+            TransformComponent transform1 = entityComponentManager.getComponent(TransformComponent.class, entity1.ID);
+            TransformComponent transform2 = entityComponentManager.getComponent(TransformComponent.class, entity2.ID);
+            PhysicalBodyComponent body1 = entityComponentManager.getComponent(PhysicalBodyComponent.class, entity1.ID);
+            PhysicalBodyComponent body2 = entityComponentManager.getComponent(PhysicalBodyComponent.class, entity2.ID);
+            ColliderComponent collider1 = entityComponentManager.getComponent(ColliderComponent.class, entity1.ID);
+            ColliderComponent collider2 = entityComponentManager.getComponent(ColliderComponent.class, entity2.ID);
+
+            if (body1.dynamic && body2.dynamic){
+                //resolve collision between 2 dynamic bodies
+            }
+            else if (body1.dynamic && !body2.dynamic){
+                resolveDynamicxStaticAABBCollision(transform1,body1,collider1,transform2,body2,collider2);
+            }
+            else if (!body1.dynamic && body2.dynamic){
+                resolveDynamicxStaticAABBCollision(transform2,body2,collider2,transform1,body1,collider1);
+            }
+            else {
+                throw new RuntimeException("two static bodies can't collide");
+            }
+        }
     }
 
     public boolean detectCollision(TransformComponent transformA, ColliderComponent colliderA,

@@ -131,10 +131,10 @@ public class RenderingSystem {
 
     private void drawHpBar(){
         HpBar hpBar = this.userInterface.hpBar;
-        float current_width = hpBar.width * (float)(hpBar.currentSize/hpBar.maxSize);
+        float current_width = hpBar.width * ((float)hpBar.currentSize/hpBar.maxSize);
         float height = hpBar.height;
         Vector2 position = hpBar.position;
-        Vector2 lowerLeftCorner = new Vector2(position.x-current_width/2, position.y-height/2);
+        Vector2 lowerLeftCorner = new Vector2(position.x, position.y);
 
         int hp_bar_id = hpBar.hp_bar_id;
         Texture barTexture = getTexture(hp_bar_id);

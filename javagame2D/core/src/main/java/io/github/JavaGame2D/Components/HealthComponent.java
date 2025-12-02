@@ -1,14 +1,14 @@
 package io.github.JavaGame2D.Components;
 
 public class HealthComponent implements Component {
-    private int currentHp;
-    private int maxHp;
+    public int currentHp;
+    public int maxHp;
 
     // optional fields:
-    private boolean isInvulnerable = false;
-    private float invulnerabilityTimer = 0f;
+    public boolean isInvulnerable = false;
+    public float invulnerabilityTimer = 0f;
     //private float lastDamageTime = 0f;
-    private boolean isDead = false;
+    public boolean isDead = false;
 
     private HealthComponent(){
         this.maxHp = 1;

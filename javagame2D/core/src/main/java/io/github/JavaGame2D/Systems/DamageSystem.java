@@ -3,8 +3,10 @@ package io.github.JavaGame2D.Systems;
 import io.github.JavaGame2D.Collision;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DamageEmitterComponent;
+import io.github.JavaGame2D.Components.HealthComponent;
 import io.github.JavaGame2D.Components.TeleporterComponent;
 import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.PlayerHpChanged;
 import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 
 import java.util.ArrayList;
@@ -46,9 +48,13 @@ public class DamageSystem {
         // finally, resolve each player collision with damage emitter
         for(Collision c : playerCollisionsWithDamageEmitters){
             int damageEmitterID = c.entity.ID == playerID ? c.otherEntity.ID : c.entity.ID;
-            //DamageEmitterComponent damageEmitter = entityComponentManager.getComponent(DamageEmitterComponent.class, damageEmitterID);
+            DamageEmitterComponent damageEmitter = entityComponentManager.getComponent(DamageEmitterComponent.class, damageEmitterID);
 
+            HealthComponent playerHealth = entityComponentManager.getComponent(HealthComponent.class, playerID);
+            playerHealth.currentHp -= damageEmitter.damageAmount;
             System.out.println("player damaged by entity with id: " + damageEmitterID);
+            PlayerHpChanged event = new PlayerHpChanged(playerHealth.currentHp);
+            EventBus.getInstance().publish(event);
         }
     }
 }

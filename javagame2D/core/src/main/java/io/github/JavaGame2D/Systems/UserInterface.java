@@ -1,5 +1,9 @@
 package io.github.JavaGame2D.Systems;
 
+import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.PlayerHpChanged;
+import io.github.JavaGame2D.Events.TeleportPlayerEvent;
+
 public class UserInterface {
 
     public FPSCounter fpsCounter;
@@ -7,11 +11,16 @@ public class UserInterface {
 
     public UserInterface(){
         fpsCounter = new FPSCounter();
-        hpBar = new HpBar(1);
+        hpBar = new HpBar(100);
+        EventBus.getInstance().subscribe(PlayerHpChanged.class, this::handlePlayerHPChange);
     }
 
     public void update(float deltaTime){
         fpsCounter.update(deltaTime);
+    }
+
+    public void handlePlayerHPChange(PlayerHpChanged event){
+        this.hpBar.update(event.currentHP);
     }
 
     //TODO: outsource rendering to rendering system

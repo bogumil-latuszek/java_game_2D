@@ -3,14 +3,15 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Animation {
-    private boolean looping = true;
+    public boolean looping = true;
+    public int framesPerSecond = 30;
     private final Texture[] animationFrames;
 
     public Animation(Texture[] animationFrames) {
         this.animationFrames = animationFrames;
     }
 
-    public Texture getFrame(int frameNumber){
+    public Texture getFrameByNumber(int frameNumber){
         //if number out of bounds, then:
         if(frameNumber >= animationFrames.length){
             if (this.looping){
@@ -21,5 +22,12 @@ public class Animation {
             }
         }
         return animationFrames[frameNumber];
+    }
+
+    public Texture getFrameByDuration(float durationInMilliseconds){
+        //if number out of bounds, then:
+        float durationInSeconds = durationInMilliseconds/1000;
+        int frameNumber = (int)(framesPerSecond*durationInSeconds);
+        return  getFrameByNumber(frameNumber);
     }
 }

@@ -14,12 +14,28 @@ public class AnimationManager {
         this.animations = new EnumMap<>(CharacterType.class);
     }
 
-    public Texture getAnimationFrame(CharacterType characterType, AnimationType animationType, int frameNumber){
+    public void addAnimation(CharacterType characterType, AnimationType animationType, Animation animation){
+        if (!animations.containsKey(characterType)){
+            AnimationCollection animationCollection = new AnimationCollection();
+            animations.put(characterType,animationCollection);
+        }
+        animations.get(characterType).addAnimation(animationType, animation);
+    }
+
+    public Texture getAnimationFrameByNumber(CharacterType characterType, AnimationType animationType, int frameNumber){
         AnimationCollection characterAnimations = animations.get(characterType);
         if (characterAnimations == null){
             return null;
         }
-        return characterAnimations.getFrame(animationType, frameNumber);
+        return characterAnimations.getFrameByNumber(animationType, frameNumber);
+    }
+
+    public Texture getAnimationFrameByDuration(CharacterType characterType, AnimationType animationType, float durationInMilliseconds){
+        AnimationCollection characterAnimations = animations.get(characterType);
+        if (characterAnimations == null){
+            return null;
+        }
+        return characterAnimations.getFrameByDuration(animationType, durationInMilliseconds);
     }
 }
 

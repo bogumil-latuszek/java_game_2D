@@ -5,10 +5,10 @@ import io.github.JavaGame2D.Enums.AnimationType;
 
 import java.util.EnumMap;
 
-public class AnimationCollection {
+public class BodySegmentAnimations {
     private final EnumMap<AnimationType, Animation> animations;
 
-    public AnimationCollection() {
+    public BodySegmentAnimations() {
         this.animations = new EnumMap<>(AnimationType.class);
     }
 

@@ -1,9 +1,9 @@
 package io.github.JavaGame2D.Events;
 
 import io.github.JavaGame2D.Enums.PlayerAction;
-import io.github.JavaGame2D.Systems.InputSystem;
 
 public class PlayerActionEvent {
-    public PlayerAction action;
-    public float deltaTime;
+    public PlayerAction horizontalMovementAction = PlayerAction.NONE;
+    public PlayerAction verticalMovementAction = PlayerAction.NONE;
+    public PlayerAction specialAction = PlayerAction.NONE;
 }

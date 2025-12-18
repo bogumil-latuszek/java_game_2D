@@ -6,5 +6,7 @@ public enum PlayerAction{
     GO_LEFT,
     JUMP,
     EXTEND_JUMP,
-    CHANGE_LEVEL
+    CHANGE_LEVEL,
+    INTERACT,
+    ATTACK
 }

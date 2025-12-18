@@ -5,18 +5,14 @@ import io.github.JavaGame2D.Enums.PlayerAction;
 
 public class DecidingFactorsForPlayer {
     // PLAYER INPUT:
-
-    // DirectionCommand: LEFT, RIGHT, UP, DOWN
-    // MovementCommand: RUN, CROUCH, JUMP
-    // ActionCommand: ATTACK, BLOCK, USE_ITEM_1, USE_ITEM_2
+    PlayerAction horizontalMovementAction = PlayerAction.NONE;
+    PlayerAction verticalMovementAction = PlayerAction.NONE;
+    PlayerAction specialAction = PlayerAction.NONE;
 
     // STATE FROM COMPONENTS:
-
     boolean grounded = false;
     boolean canMove = true;
     boolean invincible = false;
     Vector2 direction = new Vector2();
     int currentHP = 1;
-    PlayerAction playerAction;
-
 }

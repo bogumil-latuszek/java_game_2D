@@ -6,63 +6,95 @@ import io.github.JavaGame2D.Enums.PlayerAction;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerActionEvent;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class InputSystem {
     private boolean space_previously_pressed;
-
-    private HashMap<Integer, PlayerAction> keyBindings;
+    // could be good idea to separate it further into KeyPressedBindings, and KeyReleasedBindings
+    private HashMap<Integer, PlayerAction> keyToActionBindings;
+    private HashMap<PlayerAction, Integer> actionToKeyBindings;
 
     public InputSystem(){
-        keyBindings = new HashMap<>();
-        keyBindings.put(Input.Keys.RIGHT, PlayerAction.GO_RIGHT);
-        keyBindings.put(Input.Keys.LEFT, PlayerAction.GO_LEFT);
-        keyBindings.put(Input.Keys.SPACE, PlayerAction.JUMP);
-        keyBindings.put(Input.Keys.P, PlayerAction.CHANGE_LEVEL);
+        keyToActionBindings = new HashMap<>();
+        actionToKeyBindings = new HashMap<>();
+        addBinding(Input.Keys.RIGHT, PlayerAction.GO_RIGHT);
+        addBinding(Input.Keys.LEFT, PlayerAction.GO_LEFT);
+        addBinding(Input.Keys.SPACE, PlayerAction.JUMP);
+        addBinding(Input.Keys.P, PlayerAction.CHANGE_LEVEL);
         space_previously_pressed = false;
+    }
+
+    private void addBinding(int keyCode, PlayerAction action){
+        this.actionToKeyBindings.put(action,keyCode);
+        this.keyToActionBindings.put(keyCode,action);
+    }
+
+    private PlayerAction getExclusiveAction (PlayerAction[] exclusiveActions){
+        ArrayList<PlayerAction> currentlyChosenExclusiveActions = new ArrayList<>();
+        for (PlayerAction action: exclusiveActions){
+            int keyCode = actionToKeyBindings.get(action);
+            if( Gdx.input.isKeyPressed(keyCode) ){
+                currentlyChosenExclusiveActions.add(action);
+            }
+        }
+        if (currentlyChosenExclusiveActions.size() == 1){
+            return currentlyChosenExclusiveActions.get(0);
+        }
+        // in case of no action or multiple conflicting actions, return none
+        return PlayerAction.NONE;
     }
 
     public void update(float deltaTime){
 
-        PlayerAction horizontal_movement = null;
-        PlayerAction jump_action = null;
+        // the player can take many independent actions at once, but only one in each category
+        PlayerAction horizontalMovementAction = getExclusiveAction(new PlayerAction[]{PlayerAction.GO_LEFT, PlayerAction.GO_RIGHT});
+        PlayerAction verticalMovementAction = getExclusiveAction(new PlayerAction[]{PlayerAction.JUMP});
+        //PlayerAction specialAction = getExclusiveAction(new PlayerAction[]{PlayerAction.ATTACK, PlayerAction.INTERACT});
 
-        // independent system - directional movement
-        horizontal_movement = Gdx.input.isKeyPressed(Input.Keys.RIGHT) ? keyBindings.get(Input.Keys.RIGHT) : null;
-        horizontal_movement = Gdx.input.isKeyPressed(Input.Keys.LEFT) ? keyBindings.get(Input.Keys.LEFT) : horizontal_movement;
-
-        // independent system - jumping
-        boolean spacePressed = Gdx.input.isKeyPressed(Input.Keys.SPACE);
-        if(spacePressed){
-            if (!space_previously_pressed){
-                space_previously_pressed = true;
-                jump_action = keyBindings.get(Input.Keys.SPACE);
-            }
-            else{
-                jump_action = PlayerAction.EXTEND_JUMP;
-            }
-        }
-        else {
-            space_previously_pressed = false;
-        }
-        // independent system - changing level
-        if (Gdx.input.isKeyJustPressed(Input.Keys.P)){
-            PlayerActionEvent playerAction = new PlayerActionEvent();
-            playerAction.action = keyBindings.get(Input.Keys.P);
-            EventBus.getInstance().publish(playerAction);
-        }
-        //find action bound to that key
-        if (horizontal_movement != null){
-            PlayerActionEvent playerAction = new PlayerActionEvent();
-            playerAction.action = horizontal_movement;
-            playerAction.deltaTime = deltaTime;
-            EventBus.getInstance().publish(playerAction);
-        }
-        if (jump_action != null){
-            PlayerActionEvent playerAction = new PlayerActionEvent();
-            playerAction.action = jump_action;
-            playerAction.deltaTime = deltaTime;
-            EventBus.getInstance().publish(playerAction);
-        }
+        // extend jumping
+//        boolean spacePressed = Gdx.input.isKeyPressed(Input.Keys.SPACE);
+//        if(spacePressed){
+//            if (!space_previously_pressed){
+//                space_previously_pressed = true;
+//                jump_action = keyToActionBindings.get(Input.Keys.SPACE);
+//            }
+//            else{
+//                jump_action = PlayerAction.EXTEND_JUMP;
+//            }
+//        }
+//        else {
+//            space_previously_pressed = false;
+//        }
+        // changing level
+//        if (Gdx.input.isKeyJustPressed(Input.Keys.P)){
+//            PlayerActionEvent playerAction = new PlayerActionEvent();
+//            playerAction.action = keyBindings.get(Input.Keys.P);
+//            EventBus.getInstance().publish(playerAction);
+//        }
+        PlayerActionEvent event = new PlayerActionEvent();
+        event.horizontalMovementAction = horizontalMovementAction;
+        event.verticalMovementAction = verticalMovementAction;
+        EventBus.getInstance().publish(event);
     }
+
+//    private ArrayList<Integer> getAllPressedKeys() {
+//        ArrayList<Integer> pressedKeys = new ArrayList<>();
+//        for (int keyCode : keyToActionBindings.keySet()) {
+//            if (Gdx.input.isKeyPressed(keyCode)) {
+//                pressedKeys.add(keyCode);
+//            }
+//        }
+//        return pressedKeys;
+//    }
+//
+//    private ArrayList<PlayerAction> getAllPlayerActions(ArrayList<Integer> keys) {
+//        ArrayList<PlayerAction> playerActions = new ArrayList<>();
+//        for (int keyCode : keys) {
+//            PlayerAction playerAction = keyToActionBindings.get(keyCode);
+//            playerActions.add(playerAction);
+//        }
+//        return playerActions;
+//    }
+
 }

@@ -15,7 +15,10 @@ public class PlayerCharacterController {
     private int playerEntityID;
     private float jumpTimer;
     EntityComponentManager entityComponentManager;
-    public PlayerAction currentPlayerAction = PlayerAction.NONE;
+    //public PlayerAction currentPlayerAction = PlayerAction.NONE;
+    public PlayerAction horizontalMovement = PlayerAction.NONE;
+    public PlayerAction verticalMovement = PlayerAction.NONE;
+    public PlayerAction specialAction = PlayerAction.NONE;
     private int playerActionEventsSinceLastUpdate = 0;
 
     public PlayerCharacterController(EntityComponentManager entityComponentManager){
@@ -33,9 +36,12 @@ public class PlayerCharacterController {
     public void update(float deltaTimeInMilliseconds){
         PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class, playerEntityID);
         if (playerActionEventsSinceLastUpdate <= 0){
-            currentPlayerAction = PlayerAction.NONE;
+            //currentPlayerAction = PlayerAction.NONE;
+            horizontalMovement = PlayerAction.NONE;
+            verticalMovement = PlayerAction.NONE;
+            specialAction = PlayerAction.NONE;
         }
-        switch (currentPlayerAction) {
+        switch (horizontalMovement) {
             case GO_LEFT:
                 if (body.onGround) {
                     body.velocity.x = -body.moveSpeed * deltaTimeInMilliseconds;
@@ -50,6 +56,8 @@ public class PlayerCharacterController {
                     body.velocity.x = (body.moveSpeed * deltaTimeInMilliseconds) / 1.0f;
                 }
                 break;
+        }
+        switch (verticalMovement) {
             case JUMP:
                 if (body.onGround) {
                     body.onGround = false;
@@ -65,11 +73,6 @@ public class PlayerCharacterController {
                     body.velocity.y += (body.jumpForce * deltaTimeInMilliseconds);
                 }
                 break;
-            case CHANGE_LEVEL:
-                TeleportPlayerEvent teleportEvent = new TeleportPlayerEvent();
-                teleportEvent.targetLevelID = 0;
-                EventBus.getInstance().publish(teleportEvent);
-                break;
         }
         playerActionEventsSinceLastUpdate = 0;
     }
@@ -78,8 +81,10 @@ public class PlayerCharacterController {
         if (playerNotSpecified){
             return;
         }
-        this.currentPlayerAction = event.action;
         this.playerActionEventsSinceLastUpdate += 1;
+        this.horizontalMovement = event.horizontalMovementAction;
+        this.verticalMovement = event.verticalMovementAction;
+        this.specialAction = event.specialAction;
     }
 
 }

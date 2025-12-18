@@ -45,7 +45,9 @@ public class PlayerStateMachine {
 
         decidingFactors.direction = body.velocity;
         decidingFactors.grounded = body.onGround;
-        decidingFactors.playerAction = playerController.currentPlayerAction;
+        decidingFactors.horizontalMovementAction = playerController.horizontalMovement;
+        decidingFactors.verticalMovementAction = playerController.verticalMovement;
+        decidingFactors.specialAction = playerController.specialAction;
         updateLowerBodyState(decidingFactors, deltaTimeInMilliseconds);
         updateUpperBodyState(decidingFactors, deltaTimeInMilliseconds);
         //updateReactionState(decidingFactors);
@@ -57,18 +59,17 @@ public class PlayerStateMachine {
         AnimationType nextAnimation = currentAnimation;
         if(decidingFactors.grounded){
             // player on the ground
-            if (decidingFactors.playerAction == PlayerAction.GO_LEFT || decidingFactors.playerAction == PlayerAction.GO_RIGHT){
-                nextAnimation = AnimationType.WALKING;
+            switch (decidingFactors.horizontalMovementAction){
+                case GO_LEFT:
+                    nextAnimation = AnimationType.WALKING;
+                    break;
+                case GO_RIGHT:
+                    nextAnimation = AnimationType.WALKING;
+                    break;
+                case NONE:
+                    nextAnimation = AnimationType.IDLE;
+                    break;
             }
-            else{
-                nextAnimation = AnimationType.IDLE;
-            }
-//            if (decidingFactors.direction.x > 0.0001f || decidingFactors.direction.x < - 0.0001f){
-//                nextAnimation = AnimationType.WALKING;
-//            }
-//            else {
-//                nextAnimation = AnimationType.IDLE;
-//            }
         }
         else {
             // player in the air
@@ -97,18 +98,17 @@ public class PlayerStateMachine {
         AnimationType nextAnimation = currentAnimation;
         if(decidingFactors.grounded){
             // player on the ground
-            if (decidingFactors.playerAction == PlayerAction.GO_LEFT || decidingFactors.playerAction == PlayerAction.GO_RIGHT){
-                nextAnimation = AnimationType.WALKING;
+            switch (decidingFactors.horizontalMovementAction){
+                case GO_LEFT:
+                    nextAnimation = AnimationType.WALKING;
+                    break;
+                case GO_RIGHT:
+                    nextAnimation = AnimationType.WALKING;
+                    break;
+                case NONE:
+                    nextAnimation = AnimationType.IDLE;
+                    break;
             }
-            else{
-                nextAnimation = AnimationType.IDLE;
-            }
-//            if (decidingFactors.direction.x > 0.0001f || decidingFactors.direction.x < - 0.0001f){
-//                nextAnimation = AnimationType.WALKING;
-//            }
-//            else {
-//                nextAnimation = AnimationType.IDLE;
-//            }
         }
         else {
             // player in the air

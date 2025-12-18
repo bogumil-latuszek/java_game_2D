@@ -120,6 +120,7 @@ public class GameManager extends ApplicationAdapter {
         previousTimeframe = currentTime;
 
         inputSystem.update(deltaTimeInSeconds);
+        playerCharacterController.update(deltaTimeInSeconds);
         userInterface.update(deltaTimeInMilliseconds);
         physicsSystem.update(deltaTimeInSeconds);
         animationSystem.update(deltaTimeInMilliseconds);

@@ -15,7 +15,8 @@ public class PlayerCharacterController {
     private int playerEntityID;
     private float jumpTimer;
     EntityComponentManager entityComponentManager;
-    public PlayerAction currentPlayerAction;
+    public PlayerAction currentPlayerAction = PlayerAction.NONE;
+    private int playerActionEventsSinceLastUpdate = 0;
 
     public PlayerCharacterController(EntityComponentManager entityComponentManager){
         this.entityComponentManager = entityComponentManager;
@@ -29,44 +30,39 @@ public class PlayerCharacterController {
         this.playerNotSpecified = false;
     }
 
-    public void handlePlayerAction(PlayerActionEvent event){
-        if (playerNotSpecified){
-            return;
-        }
-        float deltaTime = event.deltaTime;
+    public void update(float deltaTimeInMilliseconds){
         PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class, playerEntityID);
-
-        currentPlayerAction = event.action;
-        switch (currentPlayerAction){
+        if (playerActionEventsSinceLastUpdate <= 0){
+            currentPlayerAction = PlayerAction.NONE;
+        }
+        switch (currentPlayerAction) {
             case GO_LEFT:
-                if (body.onGround){
-                    body.velocity.x = -body.moveSpeed*deltaTime;
-                }
-                else{
-                    body.velocity.x = -(body.moveSpeed*deltaTime)/1.0f;
+                if (body.onGround) {
+                    body.velocity.x = -body.moveSpeed * deltaTimeInMilliseconds;
+                } else {
+                    body.velocity.x = -(body.moveSpeed * deltaTimeInMilliseconds) / 1.0f;
                 }
                 break;
             case GO_RIGHT:
-                if (body.onGround){
-                    body.velocity.x = body.moveSpeed*deltaTime;
-                }
-                else{
-                    body.velocity.x = (body.moveSpeed*deltaTime)/1.0f;
+                if (body.onGround) {
+                    body.velocity.x = body.moveSpeed * deltaTimeInMilliseconds;
+                } else {
+                    body.velocity.x = (body.moveSpeed * deltaTimeInMilliseconds) / 1.0f;
                 }
                 break;
             case JUMP:
-                if (body.onGround){
+                if (body.onGround) {
                     body.onGround = false;
-                    jumpTimer = deltaTime;
+                    jumpTimer = deltaTimeInMilliseconds;
                     //body.velocity.y += body.jumpForce*deltaTime/jumpTimer;
-                    body.velocity.y += body.jumpForce/5;
+                    body.velocity.y += body.jumpForce / 5;
                 }
                 break;
             case EXTEND_JUMP:
-                if (!body.onGround && body.velocity.y > 0 && jumpTimer < 0.2f){
-                    jumpTimer += deltaTime;
+                if (!body.onGround && body.velocity.y > 0 && jumpTimer < 0.2f) {
+                    jumpTimer += deltaTimeInMilliseconds;
                     //body.velocity.y += (body.jumpForce*deltaTime)/(jumpTimer*2);
-                    body.velocity.y += (body.jumpForce*deltaTime);
+                    body.velocity.y += (body.jumpForce * deltaTimeInMilliseconds);
                 }
                 break;
             case CHANGE_LEVEL:
@@ -75,6 +71,15 @@ public class PlayerCharacterController {
                 EventBus.getInstance().publish(teleportEvent);
                 break;
         }
+        playerActionEventsSinceLastUpdate = 0;
+    }
+
+    public void handlePlayerAction(PlayerActionEvent event){
+        if (playerNotSpecified){
+            return;
+        }
+        this.currentPlayerAction = event.action;
+        this.playerActionEventsSinceLastUpdate += 1;
     }
 
 }

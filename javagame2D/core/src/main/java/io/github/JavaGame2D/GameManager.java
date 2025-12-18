@@ -16,6 +16,7 @@ public class GameManager extends ApplicationAdapter {
     GameSettings gameSettings;
     LevelManager levelManager;
     EntityComponentManager entityComponentManager;
+    AnimationSystem animationSystem;
 
     private void initializeSystems(){
         gameSettings = new GameSettings();
@@ -26,10 +27,11 @@ public class GameManager extends ApplicationAdapter {
         entityComponentManager = new EntityComponentManager();
 
         userInterface = new UserInterface();
+        playerCharacterController = new PlayerCharacterController(entityComponentManager);
+        animationSystem = new AnimationSystem(entityComponentManager, fileSystem, playerCharacterController);
         renderingSystem = new RenderingSystem(entityComponentManager, userInterface);
         physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
         inputSystem = new InputSystem();
-        playerCharacterController = new PlayerCharacterController(entityComponentManager);
         levelManager = new LevelManager(fileSystem,entityComponentManager);
     }
 
@@ -112,14 +114,15 @@ public class GameManager extends ApplicationAdapter {
     @Override
     public void render() {
         Long currentTime = System.currentTimeMillis();
-        float deltaTime = (float)(currentTime - previousTimeframe);
+        float deltaTimeInMilliseconds = (float)(currentTime - previousTimeframe);
         // TODO: make delta time uses consistent across the system!
-        float deltaTimeInSeconds = deltaTime/1000;
+        float deltaTimeInSeconds = deltaTimeInMilliseconds/1000;
         previousTimeframe = currentTime;
 
         inputSystem.update(deltaTimeInSeconds);
-        userInterface.update(deltaTime);
+        userInterface.update(deltaTimeInMilliseconds);
         physicsSystem.update(deltaTimeInSeconds);
+        animationSystem.update(deltaTimeInMilliseconds);
 
         renderingSystem.render();
         userInterface.render();

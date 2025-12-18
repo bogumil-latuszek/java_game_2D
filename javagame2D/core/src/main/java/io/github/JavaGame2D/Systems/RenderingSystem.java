@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.Drawable;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerIDChanged;
 
@@ -99,16 +100,33 @@ public class RenderingSystem {
             TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
             DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
 
-            int textureID = drawableComponent.textureID;
-            Texture texture = getTexture(textureID);
+            if (drawableComponent.drawableSegments.isEmpty()){
+                int textureID = drawableComponent.textureID;
+                Texture texture = getTexture(textureID);
 
-            float centerX = transformComponent.position.x;
-            float centerY = transformComponent.position.y;
-            float width = transformComponent.width;
-            float height = transformComponent.height;
-            // this system needs x,y coords of the lower left corner, not center!
-            Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
-            worldBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+                float centerX = transformComponent.position.x;
+                float centerY = transformComponent.position.y;
+                float width = transformComponent.width;
+                float height = transformComponent.height;
+                // this system needs x,y coords of the lower left corner, not center!
+                Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
+                worldBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+            }
+            else{
+                for (Drawable segment: drawableComponent.drawableSegments.values()){
+                    Texture segmentTexture = segment.texture;
+                    if (segmentTexture == null){
+                        segmentTexture = missingTexture;
+                    }
+                    float centerX = transformComponent.position.x;
+                    float centerY = transformComponent.position.y;
+                    float width = transformComponent.width;
+                    float height = transformComponent.height;
+                    // this system needs x,y coords of the lower left corner, not center!
+                    Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
+                    worldBatch.draw(segmentTexture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+                }
+            }
         }
 
         worldBatch.end();

@@ -3,7 +3,9 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
+import io.github.JavaGame2D.Drawable;
 import io.github.JavaGame2D.Entity;
+import io.github.JavaGame2D.Enums.BodySegmentType;
 
 import java.util.HashMap;
 
@@ -113,6 +115,7 @@ public class EntityComponentManager {
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 1;
+        drawable.drawableSegments.put(BodySegmentType.UPPER_BODY,new Drawable());
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
@@ -127,6 +130,10 @@ public class EntityComponentManager {
         HealthComponent health = new HealthComponent(maxHp);
         componentManager.addComponent(HealthComponent.class, health, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.HEALTH);
+
+        AnimationComponent animationComponent = new AnimationComponent();
+        componentManager.addComponent(AnimationComponent.class, animationComponent, entityID);
+        entityManager.addSignature(entityID,ComponentSignatures.ANIMATION);
 
         System.out.println("player created");
         this.playerEntityID = entityID;

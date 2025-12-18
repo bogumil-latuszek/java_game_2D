@@ -7,7 +7,10 @@ import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.CharacterType;
+import io.github.JavaGame2D.Enums.PlayerAction;
+import io.github.JavaGame2D.Systems.AnimationState;
 import io.github.JavaGame2D.Systems.EntityComponentManager;
+import io.github.JavaGame2D.Systems.PlayerCharacterController;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -19,17 +22,20 @@ public class PlayerStateMachine {
     // UpperBodyState upperBodyState <= can be null
     // lowerBodyState <= can be null
     // fullBodyState <= can be null
-    public EnumMap<BodySegmentType, AnimationType> bodySegmentAnimations;
+    public EnumMap<BodySegmentType, AnimationState> bodySegmentAnimations;
+    private PlayerCharacterController playerController;
 
     // StateMachine upperBodyStateMachine; = new StateMachine(UpperBodyState);
-    public PlayerStateMachine(EntityComponentManager entityComponentManager){
+    public PlayerStateMachine(EntityComponentManager entityComponentManager, PlayerCharacterController playerController){
         this.entityComponentManager = entityComponentManager;
         this.bodySegmentAnimations = new EnumMap<>(BodySegmentType.class);
-        this.bodySegmentAnimations.put(BodySegmentType.UPPER_BODY, AnimationType.IDLE);
-        this.bodySegmentAnimations.put(BodySegmentType.LOWER_BODY, AnimationType.IDLE);
+        this.bodySegmentAnimations.put(BodySegmentType.UPPER_BODY, new AnimationState());
+        this.bodySegmentAnimations.put(BodySegmentType.LOWER_BODY, new AnimationState());
+        this.decidingFactors = new DecidingFactorsForPlayer();
+        this.playerController = playerController;
     }
 
-    public void update(){
+    public void update(float deltaTimeInMilliseconds){
         // 1. get player entity
         int playerID = entityComponentManager.getPlayerEntityID();
         // 2. we're always going to assume that player entity has certain components;
@@ -39,61 +45,90 @@ public class PlayerStateMachine {
 
         decidingFactors.direction = body.velocity;
         decidingFactors.grounded = body.onGround;
-        updateLowerBodyState(decidingFactors);
-        updateUpperBodyState(decidingFactors);
+        decidingFactors.playerAction = playerController.currentPlayerAction;
+        updateLowerBodyState(decidingFactors, deltaTimeInMilliseconds);
+        updateUpperBodyState(decidingFactors, deltaTimeInMilliseconds);
         //updateReactionState(decidingFactors);
     }
 
-    private void updateLowerBodyState(DecidingFactorsForPlayer decidingFactors){
-        AnimationType currentState;
+    private void updateLowerBodyState(DecidingFactorsForPlayer decidingFactors, float deltaTimeInMilliseconds){
+        AnimationState currentAnimationState = bodySegmentAnimations.get(BodySegmentType.LOWER_BODY);
+        AnimationType currentAnimation = currentAnimationState.animationType;
+        AnimationType nextAnimation = currentAnimation;
         if(decidingFactors.grounded){
             // player on the ground
-            if (decidingFactors.direction.x > 0.0001f || decidingFactors.direction.x < - 0.0001f){
-                currentState = AnimationType.WALKING;
+            if (decidingFactors.playerAction == PlayerAction.GO_LEFT || decidingFactors.playerAction == PlayerAction.GO_RIGHT){
+                nextAnimation = AnimationType.WALKING;
             }
-            else {
-                currentState = AnimationType.IDLE;
+            else{
+                nextAnimation = AnimationType.IDLE;
             }
+//            if (decidingFactors.direction.x > 0.0001f || decidingFactors.direction.x < - 0.0001f){
+//                nextAnimation = AnimationType.WALKING;
+//            }
+//            else {
+//                nextAnimation = AnimationType.IDLE;
+//            }
         }
         else {
             // player in the air
             if (decidingFactors.direction.y >= 0){
                 //player rising
-                currentState = AnimationType.JUMPING;
+                nextAnimation = AnimationType.JUMPING;
             }
             else{
                 // player falling
-                currentState = AnimationType.FALLING;
+                nextAnimation = AnimationType.FALLING;
             }
         }
-        this.bodySegmentAnimations.put(BodySegmentType.LOWER_BODY, currentState);
+        if (nextAnimation == currentAnimation){
+            currentAnimationState.durationInMilliseconds += deltaTimeInMilliseconds;
+        }
+        else{
+            currentAnimationState.durationInMilliseconds = 0;
+            currentAnimationState.animationType = nextAnimation;
+        }
+        //this.bodySegmentAnimations.put(BodySegmentType.LOWER_BODY, currentAnimationState );
     }
 
-    private void updateUpperBodyState(DecidingFactorsForPlayer decidingFactors){
-        AnimationType currentState;
+    private void updateUpperBodyState(DecidingFactorsForPlayer decidingFactors, float deltaTimeInMilliseconds){
+        AnimationState currentAnimationState = bodySegmentAnimations.get(BodySegmentType.UPPER_BODY);
+        AnimationType currentAnimation = currentAnimationState.animationType;
+        AnimationType nextAnimation = currentAnimation;
         if(decidingFactors.grounded){
             // player on the ground
-            if (decidingFactors.direction.x > 0.0001f || decidingFactors.direction.x < - 0.0001f){
-                currentState = AnimationType.WALKING;
+            if (decidingFactors.playerAction == PlayerAction.GO_LEFT || decidingFactors.playerAction == PlayerAction.GO_RIGHT){
+                nextAnimation = AnimationType.WALKING;
             }
-            else {
-                currentState = AnimationType.IDLE;
+            else{
+                nextAnimation = AnimationType.IDLE;
             }
+//            if (decidingFactors.direction.x > 0.0001f || decidingFactors.direction.x < - 0.0001f){
+//                nextAnimation = AnimationType.WALKING;
+//            }
+//            else {
+//                nextAnimation = AnimationType.IDLE;
+//            }
         }
         else {
             // player in the air
             if (decidingFactors.direction.y >= 0){
                 //player rising
-                currentState = AnimationType.JUMPING;
+                nextAnimation = AnimationType.JUMPING;
             }
             else{
                 // player falling
-                currentState = AnimationType.FALLING;
+                nextAnimation = AnimationType.FALLING;
             }
         }
-        this.bodySegmentAnimations.put(BodySegmentType.UPPER_BODY, currentState);
+        if (nextAnimation == currentAnimation){
+            currentAnimationState.durationInMilliseconds += deltaTimeInMilliseconds;
+        }
+        else{
+            currentAnimationState.durationInMilliseconds = 0;
+            currentAnimationState.animationType = nextAnimation;
+        }
+        //this.bodySegmentAnimations.put(BodySegmentType.UPPER_BODY, currentAnimationState );
     }
-
-
 
 }

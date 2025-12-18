@@ -4,6 +4,7 @@ import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 
 import io.github.JavaGame2D.Entity;
+import io.github.JavaGame2D.Enums.PlayerAction;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerActionEvent;
 import io.github.JavaGame2D.Events.PlayerIDChanged;
@@ -14,6 +15,7 @@ public class PlayerCharacterController {
     private int playerEntityID;
     private float jumpTimer;
     EntityComponentManager entityComponentManager;
+    public PlayerAction currentPlayerAction;
 
     public PlayerCharacterController(EntityComponentManager entityComponentManager){
         this.entityComponentManager = entityComponentManager;
@@ -34,7 +36,8 @@ public class PlayerCharacterController {
         float deltaTime = event.deltaTime;
         PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class, playerEntityID);
 
-        switch (event.action){
+        currentPlayerAction = event.action;
+        switch (currentPlayerAction){
             case GO_LEFT:
                 if (body.onGround){
                     body.velocity.x = -body.moveSpeed*deltaTime;

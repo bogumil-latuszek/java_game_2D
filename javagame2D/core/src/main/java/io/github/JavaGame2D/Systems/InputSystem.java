@@ -2,6 +2,7 @@ package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import io.github.JavaGame2D.Enums.PlayerAction;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerActionEvent;
 
@@ -10,28 +11,21 @@ import java.util.HashMap;
 public class InputSystem {
     private boolean space_previously_pressed;
 
-    public enum Action{
-        GO_RIGHT,
-        GO_LEFT,
-        JUMP,
-        EXTEND_JUMP,
-        CHANGE_LEVEL
-    }
-    private HashMap<Integer, Action> keyBindings;
+    private HashMap<Integer, PlayerAction> keyBindings;
 
     public InputSystem(){
         keyBindings = new HashMap<>();
-        keyBindings.put(Input.Keys.RIGHT, Action.GO_RIGHT);
-        keyBindings.put(Input.Keys.LEFT, Action.GO_LEFT);
-        keyBindings.put(Input.Keys.SPACE, Action.JUMP);
-        keyBindings.put(Input.Keys.P, Action.CHANGE_LEVEL);
+        keyBindings.put(Input.Keys.RIGHT, PlayerAction.GO_RIGHT);
+        keyBindings.put(Input.Keys.LEFT, PlayerAction.GO_LEFT);
+        keyBindings.put(Input.Keys.SPACE, PlayerAction.JUMP);
+        keyBindings.put(Input.Keys.P, PlayerAction.CHANGE_LEVEL);
         space_previously_pressed = false;
     }
 
     public void update(float deltaTime){
 
-        Action horizontal_movement = null;
-        Action jump_action = null;
+        PlayerAction horizontal_movement = null;
+        PlayerAction jump_action = null;
 
         // independent system - directional movement
         horizontal_movement = Gdx.input.isKeyPressed(Input.Keys.RIGHT) ? keyBindings.get(Input.Keys.RIGHT) : null;
@@ -45,7 +39,7 @@ public class InputSystem {
                 jump_action = keyBindings.get(Input.Keys.SPACE);
             }
             else{
-                jump_action = Action.EXTEND_JUMP;
+                jump_action = PlayerAction.EXTEND_JUMP;
             }
         }
         else {

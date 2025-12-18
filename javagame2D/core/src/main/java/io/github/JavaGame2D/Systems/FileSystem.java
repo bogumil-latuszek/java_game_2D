@@ -2,6 +2,7 @@ package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonValue;
@@ -13,6 +14,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.github.JavaGame2D.Components.Component;
 import io.github.JavaGame2D.Entity;
+import io.github.JavaGame2D.Enums.AnimationType;
+import io.github.JavaGame2D.Enums.BodySegmentType;
+import io.github.JavaGame2D.Enums.CharacterType;
 import io.github.JavaGame2D.GameSettings;
 import io.github.JavaGame2D.Level;
 
@@ -52,6 +56,28 @@ public class FileSystem {
         } catch (Exception e) {
             Gdx.app.error("SaveManager", "Failed to load level: "+ levelID, e);
             return null;
+        }
+    }
+
+    public void loadPlayerAnimations(AnimationManager animationManager){
+        try {
+            String directory = "animations/Player/";
+            String fileExtension = ".png";
+            Texture idleFrame1 = new Texture(directory+"idle1"+fileExtension);
+            Texture walkingFrame1 = new Texture(directory+"walking1"+fileExtension);
+            Texture walkingFrame2 = new Texture(directory+"walking2"+fileExtension);
+            Texture jumpingFrame1 = new Texture(directory+"jumping1"+fileExtension);
+            Texture fallingFrame1 = new Texture(directory+"falling1"+fileExtension);
+            Animation idle = new Animation(new Texture[]{idleFrame1});
+            Animation walking = new Animation(new Texture[]{walkingFrame1,walkingFrame2});
+            Animation jumping = new Animation(new Texture[]{jumpingFrame1});
+            Animation falling = new Animation(new Texture[]{fallingFrame1});
+            animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.IDLE, idle);
+            animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.WALKING, walking);
+            animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.JUMPING, jumping);
+            animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.FALLING, falling);
+        } catch (Exception e) {
+            Gdx.app.error("SaveManager", "Failed to load player animation");
         }
     }
 

@@ -70,6 +70,7 @@ public class FileSystem {
             Texture fallingFrame1 = new Texture(directory+"falling1"+fileExtension);
             Animation idle = new Animation(new Texture[]{idleFrame1});
             Animation walking = new Animation(new Texture[]{walkingFrame1,walkingFrame2});
+            walking.framesPerSecond = 3;
             Animation jumping = new Animation(new Texture[]{jumpingFrame1});
             Animation falling = new Animation(new Texture[]{fallingFrame1});
             animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.IDLE, idle);

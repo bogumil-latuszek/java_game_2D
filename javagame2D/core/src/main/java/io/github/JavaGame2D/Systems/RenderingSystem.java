@@ -114,18 +114,12 @@ public class RenderingSystem {
             }
             else{
                 for (Drawable segment: drawableComponent.drawableSegments.values()){
-//                    Texture segmentTexture = segment.texture;
-//                    if (segmentTexture == null){
-//                        segmentTexture = missingTexture;
-//                    }
-//                    boolean mirrorVertical = segment.mirrorVertical;
                     float centerX = transformComponent.position.x;
                     float centerY = transformComponent.position.y;
                     float width = transformComponent.width;
                     float height = transformComponent.height;
                     // this system needs x,y coords of the lower left corner, not center!
                     Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
-                    //worldBatch.draw(segmentTexture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
                     drawDrawable(worldBatch, segment, lowerLeftCorner, width, height);
                 }
             }
@@ -148,6 +142,8 @@ public class RenderingSystem {
         int texturePixelWidth = texture.getWidth();
         float x = drawable.offset.x + position.x;
         float y = drawable.offset.y + position.y;
+        width = drawable.usesTransformWidth ? width*drawable.transformWidthMultiplier : drawable.width;
+        height = drawable.usesTransformHeight ? height*drawable.transformHeightMultiplier : drawable.height;
         boolean mirrorVertical = drawable.mirrorVertical;
         boolean mirrorHorizontal = drawable.mirrorHorizontal;
         //draw (Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)

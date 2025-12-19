@@ -8,6 +8,7 @@ import io.github.JavaGame2D.Drawable;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.CharacterType;
+import io.github.JavaGame2D.Enums.FacingDirection;
 import io.github.JavaGame2D.StateMachines.PlayerStateMachine;
 
 import java.util.EnumMap;
@@ -46,10 +47,18 @@ public class AnimationSystem {
             if(drawableComp.drawableSegments.containsKey(segmentType)){
                 AnimationState animationState = currentPlayerState.get(segmentType);
                 AnimationType animationType = animationState.animationType;
+                FacingDirection facingDirection = animationState.facingDirection;
                 float durationInMillis = animationState.durationInMilliseconds;
+                //TODO: change animation frame to Drawable
                 Texture texture = animationManager.getAnimationFrameByDuration(CharacterType.PLAYER, segmentType, animationType, durationInMillis);
                 Drawable drawableSegment = drawableComp.drawableSegments.get(segmentType);
                 drawableSegment.texture = texture;
+                if (facingDirection == FacingDirection.LEFT){
+                    drawableSegment.mirrorVertical = true;
+                }
+                else{
+                    drawableSegment.mirrorVertical = false;
+                }
             }
         }
         // updated DrawableComponents using data from AnimationComponents

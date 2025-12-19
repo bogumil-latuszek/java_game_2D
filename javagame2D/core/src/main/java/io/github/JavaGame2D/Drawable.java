@@ -12,4 +12,6 @@ public class Drawable{
     public boolean usesTransformHeight = true;
     public float transformHeightMultiplier = 1;
     public float height = 1;
+    public boolean mirrorVertical = false;
+    public boolean mirrorHorizontal = false;
 }

@@ -4,10 +4,7 @@ import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
-import io.github.JavaGame2D.Enums.AnimationType;
-import io.github.JavaGame2D.Enums.BodySegmentType;
-import io.github.JavaGame2D.Enums.CharacterType;
-import io.github.JavaGame2D.Enums.PlayerAction;
+import io.github.JavaGame2D.Enums.*;
 import io.github.JavaGame2D.Systems.AnimationState;
 import io.github.JavaGame2D.Systems.EntityComponentManager;
 import io.github.JavaGame2D.Systems.PlayerCharacterController;
@@ -53,57 +50,21 @@ public class PlayerStateMachine {
         //updateReactionState(decidingFactors);
     }
 
-    private void updateLowerBodyState(DecidingFactorsForPlayer decidingFactors, float deltaTimeInMilliseconds){
-        AnimationState currentAnimationState = bodySegmentAnimations.get(BodySegmentType.LOWER_BODY);
-        AnimationType currentAnimation = currentAnimationState.animationType;
-        AnimationType nextAnimation = currentAnimation;
-        if(decidingFactors.grounded){
-            // player on the ground
-            switch (decidingFactors.horizontalMovementAction){
-                case GO_LEFT:
-                    nextAnimation = AnimationType.WALKING;
-                    break;
-                case GO_RIGHT:
-                    nextAnimation = AnimationType.WALKING;
-                    break;
-                case NONE:
-                    nextAnimation = AnimationType.IDLE;
-                    break;
-            }
-        }
-        else {
-            // player in the air
-            if (decidingFactors.direction.y >= 0){
-                //player rising
-                nextAnimation = AnimationType.JUMPING;
-            }
-            else{
-                // player falling
-                nextAnimation = AnimationType.FALLING;
-            }
-        }
-        if (nextAnimation == currentAnimation){
-            currentAnimationState.durationInMilliseconds += deltaTimeInMilliseconds;
-        }
-        else{
-            currentAnimationState.durationInMilliseconds = 0;
-            currentAnimationState.animationType = nextAnimation;
-        }
-        //this.bodySegmentAnimations.put(BodySegmentType.LOWER_BODY, currentAnimationState );
-    }
-
     private void updateUpperBodyState(DecidingFactorsForPlayer decidingFactors, float deltaTimeInMilliseconds){
         AnimationState currentAnimationState = bodySegmentAnimations.get(BodySegmentType.UPPER_BODY);
         AnimationType currentAnimation = currentAnimationState.animationType;
         AnimationType nextAnimation = currentAnimation;
+        FacingDirection facingDirection = FacingDirection.NONE;
         if(decidingFactors.grounded){
             // player on the ground
             switch (decidingFactors.horizontalMovementAction){
                 case GO_LEFT:
                     nextAnimation = AnimationType.WALKING;
+                    facingDirection = FacingDirection.LEFT;
                     break;
                 case GO_RIGHT:
                     nextAnimation = AnimationType.WALKING;
+                    facingDirection = FacingDirection.RIGHT;
                     break;
                 case NONE:
                     nextAnimation = AnimationType.IDLE;
@@ -115,20 +76,98 @@ public class PlayerStateMachine {
             if (decidingFactors.direction.y >= 0){
                 //player rising
                 nextAnimation = AnimationType.JUMPING;
+                switch (decidingFactors.horizontalMovementAction){
+                    case GO_LEFT:
+                        facingDirection = FacingDirection.LEFT;
+                        break;
+                    case GO_RIGHT:
+                        facingDirection = FacingDirection.RIGHT;
+                        break;
+                }
             }
             else{
                 // player falling
                 nextAnimation = AnimationType.FALLING;
+                switch (decidingFactors.horizontalMovementAction){
+                    case GO_LEFT:
+                        facingDirection = FacingDirection.LEFT;
+                        break;
+                    case GO_RIGHT:
+                        facingDirection = FacingDirection.RIGHT;
+                        break;
+                }
             }
         }
         if (nextAnimation == currentAnimation){
             currentAnimationState.durationInMilliseconds += deltaTimeInMilliseconds;
+            currentAnimationState.facingDirection = facingDirection;
         }
         else{
             currentAnimationState.durationInMilliseconds = 0;
             currentAnimationState.animationType = nextAnimation;
+            currentAnimationState.facingDirection = facingDirection;
         }
         //this.bodySegmentAnimations.put(BodySegmentType.UPPER_BODY, currentAnimationState );
+    }
+
+    private void updateLowerBodyState(DecidingFactorsForPlayer decidingFactors, float deltaTimeInMilliseconds){
+        AnimationState currentAnimationState = bodySegmentAnimations.get(BodySegmentType.LOWER_BODY);
+        AnimationType currentAnimation = currentAnimationState.animationType;
+        AnimationType nextAnimation = currentAnimation;
+        FacingDirection facingDirection = FacingDirection.NONE;
+        if(decidingFactors.grounded){
+            // player on the ground
+            switch (decidingFactors.horizontalMovementAction){
+                case GO_LEFT:
+                    nextAnimation = AnimationType.WALKING;
+                    facingDirection = FacingDirection.LEFT;
+                    break;
+                case GO_RIGHT:
+                    nextAnimation = AnimationType.WALKING;
+                    facingDirection = FacingDirection.RIGHT;
+                    break;
+                case NONE:
+                    nextAnimation = AnimationType.IDLE;
+                    break;
+            }
+        }
+        else {
+            // player in the air
+            if (decidingFactors.direction.y >= 0){
+                //player rising
+                nextAnimation = AnimationType.JUMPING;
+                switch (decidingFactors.horizontalMovementAction){
+                    case GO_LEFT:
+                        facingDirection = FacingDirection.LEFT;
+                        break;
+                    case GO_RIGHT:
+                        facingDirection = FacingDirection.RIGHT;
+                        break;
+                }
+            }
+            else{
+                // player falling
+                nextAnimation = AnimationType.FALLING;
+                switch (decidingFactors.horizontalMovementAction){
+                    case GO_LEFT:
+                        facingDirection = FacingDirection.LEFT;
+                        break;
+                    case GO_RIGHT:
+                        facingDirection = FacingDirection.RIGHT;
+                        break;
+                }
+            }
+        }
+        if (nextAnimation == currentAnimation){
+            currentAnimationState.durationInMilliseconds += deltaTimeInMilliseconds;
+            currentAnimationState.facingDirection = facingDirection;
+        }
+        else{
+            currentAnimationState.durationInMilliseconds = 0;
+            currentAnimationState.animationType = nextAnimation;
+            currentAnimationState.facingDirection = facingDirection;
+        }
+        //this.bodySegmentAnimations.put(BodySegmentType.LOWER_BODY, currentAnimationState );
     }
 
 }

@@ -114,21 +114,22 @@ public class RenderingSystem {
             }
             else{
                 for (Drawable segment: drawableComponent.drawableSegments.values()){
-                    Texture segmentTexture = segment.texture;
-                    if (segmentTexture == null){
-                        segmentTexture = missingTexture;
-                    }
+//                    Texture segmentTexture = segment.texture;
+//                    if (segmentTexture == null){
+//                        segmentTexture = missingTexture;
+//                    }
+//                    boolean mirrorVertical = segment.mirrorVertical;
                     float centerX = transformComponent.position.x;
                     float centerY = transformComponent.position.y;
                     float width = transformComponent.width;
                     float height = transformComponent.height;
                     // this system needs x,y coords of the lower left corner, not center!
                     Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
-                    worldBatch.draw(segmentTexture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+                    //worldBatch.draw(segmentTexture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+                    drawDrawable(worldBatch, segment, lowerLeftCorner, width, height);
                 }
             }
         }
-
         worldBatch.end();
 
         //draw User Interface
@@ -136,6 +137,22 @@ public class RenderingSystem {
         userInterfaceBatch.begin();
         this.drawHpBar();
         userInterfaceBatch.end();
+    }
+
+    private void drawDrawable(SpriteBatch spriteBatch, Drawable drawable, Vector2 position, float width, float height){
+        Texture texture = drawable.texture;
+        if (texture == null){
+            texture = missingTexture;
+        }
+        int texturePixelHeight = texture.getHeight();
+        int texturePixelWidth = texture.getWidth();
+        float x = drawable.offset.x + position.x;
+        float y = drawable.offset.y + position.y;
+        boolean mirrorVertical = drawable.mirrorVertical;
+        boolean mirrorHorizontal = drawable.mirrorHorizontal;
+        //draw (Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
+        spriteBatch.draw(drawable.texture, x, y, width, height, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
+       // spriteBatch.draw(texture, position.x, position.y, width, height);
     }
 
     public void resizeViewport(int width, int height){

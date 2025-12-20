@@ -2,6 +2,7 @@ package io.github.JavaGame2D;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import io.github.JavaGame2D.Enums.FacingDirection;
 
 public class Drawable{
     public Vector2 offset = new Vector2();
@@ -14,4 +15,13 @@ public class Drawable{
     public float height = 1;
     public boolean mirrorVertical = false;
     public boolean mirrorHorizontal = false;
+    public FacingDirection facingDirection = FacingDirection.NONE; // this field should be kept accurate to drawable visual direction
+
+    public Drawable(){}
+
+    public Drawable(Texture texture, FacingDirection facingDirection){
+        this.texture = texture;
+        this.facingDirection = facingDirection;
+    }
+
 }

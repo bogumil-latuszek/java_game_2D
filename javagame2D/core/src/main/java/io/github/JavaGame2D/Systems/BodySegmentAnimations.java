@@ -1,6 +1,7 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.graphics.Texture;
+import io.github.JavaGame2D.Drawable;
 import io.github.JavaGame2D.Enums.AnimationType;
 
 import java.util.EnumMap;
@@ -16,7 +17,7 @@ public class BodySegmentAnimations {
         animations.put(animationType,animation);
     }
 
-    public Texture getFrameByNumber(AnimationType animationType, int frameNumber){
+    public Drawable getFrameByNumber(AnimationType animationType, int frameNumber){
         Animation animation = animations.get(animationType);
         if ( animation == null ){
             return null;
@@ -24,7 +25,7 @@ public class BodySegmentAnimations {
         return animation.getFrameByNumber(frameNumber);
     }
 
-    public Texture getFrameByDuration(AnimationType animationType, float durationInMilliseconds){
+    public Drawable getFrameByDuration(AnimationType animationType, float durationInMilliseconds){
         Animation animation = animations.get(animationType);
         if ( animation == null ){
             return null;

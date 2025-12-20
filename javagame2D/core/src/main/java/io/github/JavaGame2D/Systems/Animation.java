@@ -1,17 +1,18 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.graphics.Texture;
+import io.github.JavaGame2D.Drawable;
 
 public class Animation {
     public boolean looping = true;
     public int framesPerSecond = 30;
-    private final Texture[] animationFrames;
+    private final Drawable[] animationFrames;
 
-    public Animation(Texture[] animationFrames) {
+    public Animation(Drawable[] animationFrames) {
         this.animationFrames = animationFrames;
     }
 
-    public Texture getFrameByNumber(int frameNumber){
+    public Drawable getFrameByNumber(int frameNumber){
         //if number out of bounds, then:
         if(frameNumber >= animationFrames.length){
             if (this.looping){
@@ -24,7 +25,7 @@ public class Animation {
         return animationFrames[frameNumber];
     }
 
-    public Texture getFrameByDuration(float durationInMilliseconds){
+    public Drawable getFrameByDuration(float durationInMilliseconds){
         //if number out of bounds, then:
         float durationInSeconds = durationInMilliseconds/1000;
         int frameNumber = (int)(framesPerSecond*durationInSeconds);

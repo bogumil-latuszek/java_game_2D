@@ -11,5 +11,6 @@ import java.util.EnumMap;
 import java.util.HashMap;
 
 public class AnimationComponent {
+    public CharacterType characterType = CharacterType.PLAYER;
     public EnumMap<BodySegmentType, AnimationState> segmentAnimations = new EnumMap<>(BodySegmentType.class);
 }

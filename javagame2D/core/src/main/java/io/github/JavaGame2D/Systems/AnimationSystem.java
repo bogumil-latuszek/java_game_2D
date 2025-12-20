@@ -36,32 +36,47 @@ public class AnimationSystem {
         // 2. using data from animation component match it with state machine
         // #1 player is a special case
         int playerID = this.entityComponentManager.getPlayerEntityID();
-        AnimationComponent animComp = entityComponentManager.getComponent(AnimationComponent.class, playerID);
-        DrawableComponent drawableComp = entityComponentManager.getComponent(DrawableComponent.class, playerID);
+        AnimationComponent animationComponent = entityComponentManager.getComponent(AnimationComponent.class, playerID);
+        DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, playerID);
+
         playerStateMachine.update(deltaTimeInMilliseconds);
         EnumMap<BodySegmentType, AnimationState> currentPlayerState = playerStateMachine.bodySegmentAnimations;
         BodySegmentType[] allSegments = currentPlayerState.keySet().toArray(new BodySegmentType[currentPlayerState.size()]);
 
-        CharacterType charType = CharacterType.PLAYER;
+        CharacterType characterType = animationComponent.characterType;
         for (BodySegmentType segmentType : allSegments){
-            if(drawableComp.drawableSegments.containsKey(segmentType)){
+            if(drawableComponent.drawableSegments.containsKey(segmentType)){
                 AnimationState animationState = currentPlayerState.get(segmentType);
                 AnimationType animationType = animationState.animationType;
-                FacingDirection facingDirection = animationState.facingDirection;
                 float durationInMillis = animationState.durationInMilliseconds;
-                //TODO: change animation frame to Drawable
-                Texture texture = animationManager.getAnimationFrameByDuration(CharacterType.PLAYER, segmentType, animationType, durationInMillis);
-                Drawable drawableSegment = drawableComp.drawableSegments.get(segmentType);
-                drawableSegment.texture = texture;
-                if (facingDirection == FacingDirection.LEFT){
-                    drawableSegment.mirrorVertical = true;
-                }
-                else{
-                    drawableSegment.mirrorVertical = false;
-                }
+                Drawable animationFrame = animationManager.getAnimationFrameByDuration(characterType, segmentType, animationType, durationInMillis);
+                animationFrame = mirrorAnimationFrameIfFacingWrongDirection(animationFrame, animationState.facingDirection);
+                drawableComponent.drawableSegments.put(segmentType, animationFrame);
             }
         }
-        // updated DrawableComponents using data from AnimationComponents
+    }
+
+    private Drawable mirrorAnimationFrameIfFacingWrongDirection(Drawable animationFrame, FacingDirection direction){
+        // instead of having separate frames for left/right, up/down, we're going to mirror existing ones
+        // never mirror frames that don't face any direction:
+        if (animationFrame.facingDirection != FacingDirection.NONE){
+            // only mirror frame if it's facing an opposite direction than the animation:
+            if (direction == FacingDirection.LEFT ||
+                direction == FacingDirection.RIGHT){
+                if (direction != animationFrame.facingDirection){
+                    animationFrame.mirrorVertical = true;
+                }
+                else  animationFrame.mirrorVertical = false;
+            }
+            if (direction == FacingDirection.UP ||
+                direction == FacingDirection.DOWN){
+                if (direction != animationFrame.facingDirection){
+                    animationFrame.mirrorHorizontal = true;
+                }
+                else  animationFrame.mirrorHorizontal = false;
+            }
+        }
+        return  animationFrame;
     }
 
 

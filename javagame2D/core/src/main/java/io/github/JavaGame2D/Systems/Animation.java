@@ -7,6 +7,7 @@ public class Animation {
     public boolean looping = true;
     public int framesPerSecond = 30;
     private final Drawable[] animationFrames;
+    int pixelsToUnit = 900;
 
     public Animation(Drawable[] animationFrames) {
         this.animationFrames = animationFrames;
@@ -29,6 +30,8 @@ public class Animation {
         //if number out of bounds, then:
         float durationInSeconds = durationInMilliseconds/1000;
         int frameNumber = (int)(framesPerSecond*durationInSeconds);
-        return  getFrameByNumber(frameNumber);
+        Drawable animationFrame =  getFrameByNumber(frameNumber);
+        animationFrame.pixelsPerUnit = this.pixelsToUnit;
+        return animationFrame;
     }
 }

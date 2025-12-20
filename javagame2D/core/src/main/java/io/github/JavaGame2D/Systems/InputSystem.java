@@ -18,10 +18,12 @@ public class InputSystem {
     public InputSystem(){
         keyToActionBindings = new HashMap<>();
         actionToKeyBindings = new HashMap<>();
-        addBinding(Input.Keys.RIGHT, PlayerAction.GO_RIGHT);
-        addBinding(Input.Keys.LEFT, PlayerAction.GO_LEFT);
+        addBinding(Input.Keys.D, PlayerAction.GO_RIGHT);
+        addBinding(Input.Keys.A, PlayerAction.GO_LEFT);
         addBinding(Input.Keys.SPACE, PlayerAction.JUMP);
         addBinding(Input.Keys.P, PlayerAction.CHANGE_LEVEL);
+        addBinding(Input.Keys.E, PlayerAction.INTERACT);
+        addBinding(Input.Keys.LEFT, PlayerAction.ATTACK);
         space_previously_pressed = false;
     }
 
@@ -50,22 +52,9 @@ public class InputSystem {
         // the player can take many independent actions at once, but only one in each category
         PlayerAction horizontalMovementAction = getExclusiveAction(new PlayerAction[]{PlayerAction.GO_LEFT, PlayerAction.GO_RIGHT});
         PlayerAction verticalMovementAction = getExclusiveAction(new PlayerAction[]{PlayerAction.JUMP});
-        //PlayerAction specialAction = getExclusiveAction(new PlayerAction[]{PlayerAction.ATTACK, PlayerAction.INTERACT});
+        PlayerAction specialAction = getExclusiveAction(new PlayerAction[]{PlayerAction.ATTACK, PlayerAction.INTERACT});
 
-        // extend jumping
-//        boolean spacePressed = Gdx.input.isKeyPressed(Input.Keys.SPACE);
-//        if(spacePressed){
-//            if (!space_previously_pressed){
-//                space_previously_pressed = true;
-//                jump_action = keyToActionBindings.get(Input.Keys.SPACE);
-//            }
-//            else{
-//                jump_action = PlayerAction.EXTEND_JUMP;
-//            }
-//        }
-//        else {
-//            space_previously_pressed = false;
-//        }
+
         // changing level
 //        if (Gdx.input.isKeyJustPressed(Input.Keys.P)){
 //            PlayerActionEvent playerAction = new PlayerActionEvent();
@@ -75,6 +64,7 @@ public class InputSystem {
         PlayerActionEvent event = new PlayerActionEvent();
         event.horizontalMovementAction = horizontalMovementAction;
         event.verticalMovementAction = verticalMovementAction;
+        event.specialAction = specialAction;
         EventBus.getInstance().publish(event);
     }
 

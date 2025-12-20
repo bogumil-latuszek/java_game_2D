@@ -70,20 +70,27 @@ public class FileSystem {
             Texture walkingFrame2Texture = new Texture(directory+"walking2"+fileExtension);
             Texture jumpingFrame1Texture = new Texture(directory+"jumping1"+fileExtension);
             Texture fallingFrame1Texture = new Texture(directory+"falling1"+fileExtension);
+            Texture attackFrame1Texture = new Texture(directory+"attack1"+fileExtension);
             Drawable idleFrame1 = new Drawable(idleFrame1Texture, FacingDirection.NONE);
             Drawable walkingFrame1 = new Drawable(walkingFrame1Texture, FacingDirection.RIGHT);
             Drawable walkingFrame2 = new Drawable(walkingFrame2Texture, FacingDirection.RIGHT);
             Drawable jumpingFrame1 = new Drawable(jumpingFrame1Texture, FacingDirection.RIGHT);
             Drawable fallingFrame1 = new Drawable(fallingFrame1Texture, FacingDirection.RIGHT);
+            Drawable attackFrame1 = new Drawable(attackFrame1Texture, FacingDirection.RIGHT);
+            attackFrame1.usesTransformWidth = false;
+            attackFrame1.usesTransformHeight = false;
+            attackFrame1.offset = new Vector2(500, 0);
             Animation idle = new Animation(new Drawable[]{idleFrame1});
             Animation walking = new Animation(new Drawable[]{walkingFrame1,walkingFrame2});
             walking.framesPerSecond = 3;
             Animation jumping = new Animation(new Drawable[]{jumpingFrame1});
             Animation falling = new Animation(new Drawable[]{fallingFrame1});
+            Animation attack = new Animation(new Drawable[]{attackFrame1});
             animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.IDLE, idle);
             animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.WALKING, walking);
             animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.JUMPING, jumping);
             animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.FALLING, falling);
+            animationManager.addAnimation(CharacterType.PLAYER, BodySegmentType.UPPER_BODY, AnimationType.ATTACKING, attack);
         } catch (Exception e) {
             Gdx.app.error("SaveManager", "Failed to load player animation");
         }

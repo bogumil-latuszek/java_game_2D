@@ -16,6 +16,7 @@ public class Drawable{
     public boolean mirrorVertical = false;
     public boolean mirrorHorizontal = false;
     public FacingDirection facingDirection = FacingDirection.NONE; // this field should be kept accurate to drawable visual direction
+    public int pixelsPerUnit = 1;
 
     public Drawable(){}
 

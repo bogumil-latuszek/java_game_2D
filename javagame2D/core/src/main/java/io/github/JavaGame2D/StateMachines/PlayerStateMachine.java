@@ -98,6 +98,20 @@ public class PlayerStateMachine {
                 }
             }
         }
+        if (decidingFactors.specialAction == PlayerAction.ATTACK){
+            nextAnimation = AnimationType.ATTACKING;
+            switch (decidingFactors.horizontalMovementAction){
+                case GO_LEFT:
+                    facingDirection = FacingDirection.LEFT;
+                    break;
+                case GO_RIGHT:
+                    facingDirection = FacingDirection.RIGHT;
+                    break;
+                default:
+                    //use saved last_faced_direction
+                    break;
+            }
+        }
         if (nextAnimation == currentAnimation){
             currentAnimationState.durationInMilliseconds += deltaTimeInMilliseconds;
             currentAnimationState.facingDirection = facingDirection;

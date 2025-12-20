@@ -12,7 +12,7 @@ public class PlayerCharacterController {
     private int playerEntityID;
     private float jumpTimer = 0;
     private float maxJumpDuration = 0.22f;
-    boolean canExtendJump = true;
+    private boolean canExtendJump;
     EntityComponentManager entityComponentManager;
     //public PlayerAction currentPlayerAction = PlayerAction.NONE;
     public PlayerAction horizontalMovement = PlayerAction.NONE;
@@ -64,25 +64,25 @@ public class PlayerCharacterController {
                     jumpTimer = deltaTimeInMilliseconds;
                     //body.velocity.y += body.jumpForce*deltaTime/jumpTimer;
                     body.velocity.y += body.jumpForce / 5;
+                    canExtendJump = true;
                 }
                 else{
                     // extend jump
-                    if (!canExtendJump){
-                        break;
-                    }
-                    jumpTimer += deltaTimeInMilliseconds;
-                    if (jumpTimer >= maxJumpDuration){
-                        jumpTimer = maxJumpDuration;
-                        canExtendJump = false;
-                    }
-                    if (body.velocity.y > 0 && canExtendJump){
-                        body.velocity.y += body.jumpForce * deltaTimeInMilliseconds;
+                    if (canExtendJump){
+                        jumpTimer += deltaTimeInMilliseconds;
+                        if (jumpTimer >= maxJumpDuration){
+                            jumpTimer = maxJumpDuration;
+                            canExtendJump = false;
+                        }
+                        if (body.velocity.y > 0 && canExtendJump){
+                            body.velocity.y += body.jumpForce * deltaTimeInMilliseconds;
+                        }
                     }
                 }
                 break;
             default:
                 jumpTimer = 0;
-                canExtendJump = true;
+                canExtendJump = false;
         }
         playerActionEventsSinceLastUpdate = 0;
     }

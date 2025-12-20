@@ -11,7 +11,7 @@ public class PlayerCharacterController {
     private boolean playerNotSpecified = true;
     private int playerEntityID;
     private float jumpTimer = 0;
-    private float maxJumpDuration = 0.2f;
+    private float maxJumpDuration = 0.22f;
     boolean canExtendJump = true;
     EntityComponentManager entityComponentManager;
     //public PlayerAction currentPlayerAction = PlayerAction.NONE;

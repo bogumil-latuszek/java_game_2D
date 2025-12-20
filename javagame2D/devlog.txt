@@ -1,0 +1,3 @@
+detected bugs:
+
+#1 player can extend jump indefinitely by standing very close to a wall, then jumping

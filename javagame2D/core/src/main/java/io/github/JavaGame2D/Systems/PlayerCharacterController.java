@@ -1,19 +1,18 @@
 package io.github.JavaGame2D.Systems;
 
-import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 
-import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.PlayerAction;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerActionEvent;
 import io.github.JavaGame2D.Events.PlayerIDChanged;
-import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 
 public class PlayerCharacterController {
     private boolean playerNotSpecified = true;
     private int playerEntityID;
-    private float jumpTimer;
+    private float jumpTimer = 0;
+    private float maxJumpDuration = 0.2f;
+    boolean canExtendJump = true;
     EntityComponentManager entityComponentManager;
     //public PlayerAction currentPlayerAction = PlayerAction.NONE;
     public PlayerAction horizontalMovement = PlayerAction.NONE;
@@ -60,19 +59,30 @@ public class PlayerCharacterController {
         switch (verticalMovement) {
             case JUMP:
                 if (body.onGround) {
+                    // initial burst
                     body.onGround = false;
                     jumpTimer = deltaTimeInMilliseconds;
                     //body.velocity.y += body.jumpForce*deltaTime/jumpTimer;
                     body.velocity.y += body.jumpForce / 5;
                 }
-                break;
-            case EXTEND_JUMP:
-                if (!body.onGround && body.velocity.y > 0 && jumpTimer < 0.2f) {
+                else{
+                    // extend jump
+                    if (!canExtendJump){
+                        break;
+                    }
                     jumpTimer += deltaTimeInMilliseconds;
-                    //body.velocity.y += (body.jumpForce*deltaTime)/(jumpTimer*2);
-                    body.velocity.y += (body.jumpForce * deltaTimeInMilliseconds);
+                    if (jumpTimer >= maxJumpDuration){
+                        jumpTimer = maxJumpDuration;
+                        canExtendJump = false;
+                    }
+                    if (body.velocity.y > 0 && canExtendJump){
+                        body.velocity.y += body.jumpForce * deltaTimeInMilliseconds;
+                    }
                 }
                 break;
+            default:
+                jumpTimer = 0;
+                canExtendJump = true;
         }
         playerActionEventsSinceLastUpdate = 0;
     }

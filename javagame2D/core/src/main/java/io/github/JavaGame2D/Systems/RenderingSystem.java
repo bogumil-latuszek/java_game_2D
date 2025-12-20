@@ -50,6 +50,7 @@ public class RenderingSystem {
         textureIDtoTexturePath.put(4, "spikes.png");
         textureIDtoTexturePath.put(5, "health_bar.png");
         textureIDtoTexturePath.put(6, "health_bar_frame.png");
+        textureIDtoTexturePath.put(7, "crate.png");
     }
 
     public void handlePlayerIDChanged(PlayerIDChanged event){

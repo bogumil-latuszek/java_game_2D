@@ -97,6 +97,39 @@ public class EntityComponentManager {
         return entityID;
     }
 
+    public int createDestructibleCrate(float x, float y, float width, float height){
+        int entityID = entityManager.createEntity();
+
+        TransformComponent transform = new TransformComponent();
+        transform.position = new Vector2(x,y);
+        transform.width = width;
+        transform.height = height;
+        componentManager.addComponent(TransformComponent.class, transform, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
+
+        PhysicalBodyComponent body = new PhysicalBodyComponent();
+        body.dynamic = false;
+        body.usesGravity = false;
+        componentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
+
+        DrawableComponent drawable = new DrawableComponent();
+        drawable.textureID = 7;
+        componentManager.addComponent(DrawableComponent.class, drawable, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
+
+        ColliderComponent collider = new ColliderComponent();
+        componentManager.addComponent(ColliderComponent.class, collider, entityID);
+        entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
+
+        int maxHp = 1;
+        HealthComponent health = new HealthComponent(maxHp);
+        componentManager.addComponent(HealthComponent.class, health, entityID);
+        entityManager.addSignature(entityID,ComponentSignatures.HEALTH);
+
+        return entityID;
+    }
+
     public int createPlayer(Vector2 position){
         int entityID = entityManager.createEntity();
 

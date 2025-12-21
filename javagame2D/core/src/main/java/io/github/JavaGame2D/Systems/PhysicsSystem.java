@@ -22,12 +22,12 @@ public class PhysicsSystem {
     private TeleporterSystem teleporterSystem;
     private DamageSystem damageSystem;
 
-    public PhysicsSystem(EntityComponentManager entityComponentManager, GameSettings settings) {
+    public PhysicsSystem(EntityComponentManager entityComponentManager, GameSettings settings, DamageSystem damageSystem) {
         this.entityComponentManager = entityComponentManager;
         this.gravity = settings.gravity;
         this.groundCheckDepth = settings.groundCheckDepth;
         this.teleporterSystem = new TeleporterSystem(entityComponentManager);
-        this.damageSystem = new DamageSystem(entityComponentManager);
+        this.damageSystem = damageSystem;
     }
 
     public void update(float deltaTime){
@@ -39,7 +39,7 @@ public class PhysicsSystem {
         // #4 send collided items to systems that use them:
         this.resolveNormalCollisions(detectedCollisions);
         teleporterSystem.detectTeleporterActivation(detectedCollisions);
-        damageSystem.detectDamage(detectedCollisions);
+        damageSystem.detectAndResolveDamage(detectedCollisions);
         // TrapSystem.resolveTraps(detectedCollisions)
         // TeleportSystem.resolveTeleports(detectedCollisions);
     }

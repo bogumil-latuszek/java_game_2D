@@ -2,6 +2,7 @@ package io.github.JavaGame2D.Systems;
 
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
+import io.github.JavaGame2D.Entity;
 
 import java.util.HashMap;
 
@@ -55,6 +56,12 @@ public class ComponentManager {
         getComponentCollection(componentType).removeComponentFromEntity(entityID);
     }
 
+    public void removeAllComponentsFromEntity(int entityID) {
+        for (ComponentCollectionInterface collection : this.componentCollections.values()){
+            collection.removeComponentFromEntity(entityID);
+        }
+    }
+
     // Check if a component type is registered
     public boolean hasComponentType(Class<?> componentType) {
         return componentCollections.containsKey(componentType);
@@ -74,5 +81,4 @@ public class ComponentManager {
         entityIDToSignature = collection.updateEntitySignature(entityIDToSignature);
         return entityIDToSignature;
     }
-
 }

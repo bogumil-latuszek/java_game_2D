@@ -43,7 +43,7 @@ public class EntityComponentManager {
         getComponentCollection(componentType).removeComponentFromEntity(entityID);
     }
 
-    // Check if a component type is registered
+    // Check if a component type is registereda
     public boolean hasComponentType(Class<?> componentType) {
         return componentManager.hasComponentType(componentType);
     }
@@ -59,6 +59,11 @@ public class EntityComponentManager {
 
     public Entity getEntity(int entityID){
         return entityManager.getEntity(entityID);
+    }
+
+    public void deleteEntity(int entityID) {
+        componentManager.removeAllComponentsFromEntity(entityID);
+        entityManager.removeEntity(entityID);
     }
 
     public int[] getEntitiesMatchingSignature(long signature){
@@ -167,6 +172,11 @@ public class EntityComponentManager {
         AnimationComponent animationComponent = new AnimationComponent();
         componentManager.addComponent(AnimationComponent.class, animationComponent, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.ANIMATION);
+
+        DamageEmitterComponent damageEmitter = new DamageEmitterComponent();
+        damageEmitter.damageAmount = 1;
+        componentManager.addComponent(DamageEmitterComponent.class, damageEmitter, entityID );
+        entityManager.addSignature(entityID, ComponentSignatures.DAMAGE_EMITTER);
 
         System.out.println("player created");
         this.playerEntityID = entityID;

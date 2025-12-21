@@ -54,16 +54,8 @@ public class EntityManager {
         }
     }
 
-//    public int addEntity(Entity entity){
-//        int id = nextEntityId;
-//        nextEntityId++;
-//        entity.setID(id);
-//        entities.put(id,entity);
-//        return id;
-//    }
-
-//    public void removeEntity(int ID){
-//        entities.remove(ID);
-//    }
+    public void removeEntity(int entityID) {
+        entities.remove(entityID);
+    }
 
 }

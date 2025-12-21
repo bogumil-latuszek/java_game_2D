@@ -17,6 +17,7 @@ public class GameManager extends ApplicationAdapter {
     LevelManager levelManager;
     EntityComponentManager entityComponentManager;
     AnimationSystem animationSystem;
+    DamageSystem damageSystem;
 
     private void initializeSystems(){
         gameSettings = new GameSettings();
@@ -30,7 +31,8 @@ public class GameManager extends ApplicationAdapter {
         playerCharacterController = new PlayerCharacterController(entityComponentManager);
         animationSystem = new AnimationSystem(entityComponentManager, fileSystem, playerCharacterController);
         renderingSystem = new RenderingSystem(entityComponentManager, userInterface);
-        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
+        damageSystem = new DamageSystem(entityComponentManager);
+        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings, damageSystem);
         inputSystem = new InputSystem();
         levelManager = new LevelManager(fileSystem,entityComponentManager);
     }
@@ -42,7 +44,7 @@ public class GameManager extends ApplicationAdapter {
 
        this.initializeSystems();
 
-        // LEVEL 1
+//         LEVEL 1
 //        entityComponentManager.createPlatform(0f,    -2.5f, 5f,   1f);
 //        entityComponentManager.createPlatform(5f,    1.125f,2.5f, 2.5f);
 //        entityComponentManager.createPlatform(10f,   2.5f,  5f,   2.5f);
@@ -54,6 +56,9 @@ public class GameManager extends ApplicationAdapter {
 //        entityComponentManager.createSpikes(5f, -4f,  2f,2f);
 //        entityComponentManager.createSpikes(3f, -4f,  2f,2f);
 //        entityComponentManager.createSpikes(1f, -4f,  2f,2f);
+//        entityComponentManager.createDestructibleCrate(-7f, -4f, 2f,2f);
+//        entityComponentManager.createDestructibleCrate(-7f, -2f, 2f,2f);
+//        entityComponentManager.createDestructibleCrate(-9f, -4f, 2f,2f);
 //        entityComponentManager.createPlatform(20f,   -6f,   2.5f, 0.5f);
 //        entityComponentManager.createPlatform(22.5f, -2f,   2.5f, 0.5f);
 //        entityComponentManager.createPlatform(20f,   2f,    2.5f, 0.5f);
@@ -129,6 +134,7 @@ public class GameManager extends ApplicationAdapter {
         userInterface.render();
 
         levelManager.loadLevelIfChanged();
+        damageSystem.update();
     }
 
     @Override

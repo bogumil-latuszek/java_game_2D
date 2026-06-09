@@ -4,4 +4,5 @@ import java.util.HashMap;
 
 public interface ComponentCollectionInterface {
     HashMap<Integer, Long> updateEntitySignature(HashMap<Integer,Long> entityIDtoSignature);
+    void removeComponentFromEntity(int entityID);
 }

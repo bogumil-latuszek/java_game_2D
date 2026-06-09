@@ -3,7 +3,9 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
+import io.github.JavaGame2D.Drawable;
 import io.github.JavaGame2D.Entity;
+import io.github.JavaGame2D.Enums.BodySegmentType;
 
 import java.util.HashMap;
 
@@ -41,7 +43,7 @@ public class EntityComponentManager {
         getComponentCollection(componentType).removeComponentFromEntity(entityID);
     }
 
-    // Check if a component type is registered
+    // Check if a component type is registereda
     public boolean hasComponentType(Class<?> componentType) {
         return componentManager.hasComponentType(componentType);
     }
@@ -57,6 +59,11 @@ public class EntityComponentManager {
 
     public Entity getEntity(int entityID){
         return entityManager.getEntity(entityID);
+    }
+
+    public void deleteEntity(int entityID) {
+        componentManager.removeAllComponentsFromEntity(entityID);
+        entityManager.removeEntity(entityID);
     }
 
     public int[] getEntitiesMatchingSignature(long signature){
@@ -95,6 +102,39 @@ public class EntityComponentManager {
         return entityID;
     }
 
+    public int createDestructibleCrate(float x, float y, float width, float height){
+        int entityID = entityManager.createEntity();
+
+        TransformComponent transform = new TransformComponent();
+        transform.position = new Vector2(x,y);
+        transform.width = width;
+        transform.height = height;
+        componentManager.addComponent(TransformComponent.class, transform, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
+
+        PhysicalBodyComponent body = new PhysicalBodyComponent();
+        body.dynamic = false;
+        body.usesGravity = false;
+        componentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
+
+        DrawableComponent drawable = new DrawableComponent();
+        drawable.textureID = 7;
+        componentManager.addComponent(DrawableComponent.class, drawable, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
+
+        ColliderComponent collider = new ColliderComponent();
+        componentManager.addComponent(ColliderComponent.class, collider, entityID);
+        entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
+
+        int maxHp = 1;
+        HealthComponent health = new HealthComponent(maxHp);
+        componentManager.addComponent(HealthComponent.class, health, entityID);
+        entityManager.addSignature(entityID,ComponentSignatures.HEALTH);
+
+        return entityID;
+    }
+
     public int createPlayer(Vector2 position){
         int entityID = entityManager.createEntity();
 
@@ -113,6 +153,7 @@ public class EntityComponentManager {
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 1;
+        drawable.drawableSegments.put(BodySegmentType.UPPER_BODY,new Drawable());
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
@@ -127,6 +168,15 @@ public class EntityComponentManager {
         HealthComponent health = new HealthComponent(maxHp);
         componentManager.addComponent(HealthComponent.class, health, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.HEALTH);
+
+        AnimationComponent animationComponent = new AnimationComponent();
+        componentManager.addComponent(AnimationComponent.class, animationComponent, entityID);
+        entityManager.addSignature(entityID,ComponentSignatures.ANIMATION);
+
+        DamageEmitterComponent damageEmitter = new DamageEmitterComponent();
+        damageEmitter.damageAmount = 1;
+        componentManager.addComponent(DamageEmitterComponent.class, damageEmitter, entityID );
+        entityManager.addSignature(entityID, ComponentSignatures.DAMAGE_EMITTER);
 
         System.out.println("player created");
         this.playerEntityID = entityID;

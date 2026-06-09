@@ -16,6 +16,8 @@ public class GameManager extends ApplicationAdapter {
     GameSettings gameSettings;
     LevelManager levelManager;
     EntityComponentManager entityComponentManager;
+    AnimationSystem animationSystem;
+    DamageSystem damageSystem;
 
     private void initializeSystems(){
         gameSettings = new GameSettings();
@@ -26,10 +28,12 @@ public class GameManager extends ApplicationAdapter {
         entityComponentManager = new EntityComponentManager();
 
         userInterface = new UserInterface();
-        renderingSystem = new RenderingSystem(entityComponentManager, userInterface);
-        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
-        inputSystem = new InputSystem();
         playerCharacterController = new PlayerCharacterController(entityComponentManager);
+        animationSystem = new AnimationSystem(entityComponentManager, fileSystem, playerCharacterController);
+        renderingSystem = new RenderingSystem(entityComponentManager, userInterface);
+        damageSystem = new DamageSystem(entityComponentManager);
+        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings, damageSystem);
+        inputSystem = new InputSystem();
         levelManager = new LevelManager(fileSystem,entityComponentManager);
     }
 
@@ -40,7 +44,7 @@ public class GameManager extends ApplicationAdapter {
 
        this.initializeSystems();
 
-        // LEVEL 1
+//         LEVEL 1
 //        entityComponentManager.createPlatform(0f,    -2.5f, 5f,   1f);
 //        entityComponentManager.createPlatform(5f,    1.125f,2.5f, 2.5f);
 //        entityComponentManager.createPlatform(10f,   2.5f,  5f,   2.5f);
@@ -52,6 +56,9 @@ public class GameManager extends ApplicationAdapter {
 //        entityComponentManager.createSpikes(5f, -4f,  2f,2f);
 //        entityComponentManager.createSpikes(3f, -4f,  2f,2f);
 //        entityComponentManager.createSpikes(1f, -4f,  2f,2f);
+//        entityComponentManager.createDestructibleCrate(-7f, -4f, 2f,2f);
+//        entityComponentManager.createDestructibleCrate(-7f, -2f, 2f,2f);
+//        entityComponentManager.createDestructibleCrate(-9f, -4f, 2f,2f);
 //        entityComponentManager.createPlatform(20f,   -6f,   2.5f, 0.5f);
 //        entityComponentManager.createPlatform(22.5f, -2f,   2.5f, 0.5f);
 //        entityComponentManager.createPlatform(20f,   2f,    2.5f, 0.5f);
@@ -112,19 +119,22 @@ public class GameManager extends ApplicationAdapter {
     @Override
     public void render() {
         Long currentTime = System.currentTimeMillis();
-        float deltaTime = (float)(currentTime - previousTimeframe);
+        float deltaTimeInMilliseconds = (float)(currentTime - previousTimeframe);
         // TODO: make delta time uses consistent across the system!
-        float deltaTimeInSeconds = deltaTime/1000;
+        float deltaTimeInSeconds = deltaTimeInMilliseconds/1000;
         previousTimeframe = currentTime;
 
         inputSystem.update(deltaTimeInSeconds);
-        userInterface.update(deltaTime);
+        playerCharacterController.update(deltaTimeInSeconds);
+        userInterface.update(deltaTimeInMilliseconds);
         physicsSystem.update(deltaTimeInSeconds);
+        animationSystem.update(deltaTimeInMilliseconds);
 
         renderingSystem.render();
         userInterface.render();
 
         levelManager.loadLevelIfChanged();
+        damageSystem.update();
     }
 
     @Override

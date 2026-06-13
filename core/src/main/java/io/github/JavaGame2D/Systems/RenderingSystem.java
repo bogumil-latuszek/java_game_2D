@@ -72,7 +72,9 @@ public class RenderingSystem {
     }
 
     public Texture loadTexture(String texturePath){
-        return new Texture(texturePath);
+        Texture texture = new Texture(texturePath);
+        texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+        return texture;
     }
 
     public void setEntityFollowedByCamera(int entityID){

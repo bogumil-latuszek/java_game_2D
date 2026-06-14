@@ -118,17 +118,14 @@ public class RenderingSystem {
                     texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
                     texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 
-                    float ppu = 32f;
-                    int totalPixels = (int)(width * ppu);
-                    int totalPixelsHeight = (int)(height * ppu);
+                    float ppu = 32f; // pixel per world unit
+                    int totalPixelWidth = (int)(width * ppu);
+                    int totalPixelHeight = (int)(height * ppu);
 
                     TextureRegion tiledRegion = new TextureRegion(texture);
-                    tiledRegion.setRegion(0, 0, totalPixels, totalPixelsHeight);
+                    tiledRegion.setRegion(0, 0, totalPixelWidth, totalPixelHeight);
 
                     worldBatch.draw(tiledRegion,lowerLeftCorner.x, lowerLeftCorner.y, width, height);
-
-                    //TiledDrawable tiledDrawable = new TiledDrawable(tiledRegion);
-                    //tiledDrawable.draw(worldBatch, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
                 }
                 else{
                     worldBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);

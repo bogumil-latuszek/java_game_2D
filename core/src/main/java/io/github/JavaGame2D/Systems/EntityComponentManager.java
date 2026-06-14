@@ -140,8 +140,8 @@ public class EntityComponentManager {
 
         TransformComponent transform = new TransformComponent();
         transform.position = position;
-        transform.width = 1f;
-        transform.height = 1.7f;
+        transform.width = 1.5f;
+        transform.height = 1.5f;
         componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 

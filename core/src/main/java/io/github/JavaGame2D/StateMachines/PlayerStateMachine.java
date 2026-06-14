@@ -114,11 +114,14 @@ public class PlayerStateMachine {
         }
         if (nextAnimation == currentAnimation){
             currentAnimationState.durationInMilliseconds += deltaTimeInMilliseconds;
-            currentAnimationState.facingDirection = facingDirection;
         }
         else{
             currentAnimationState.durationInMilliseconds = 0;
             currentAnimationState.animationType = nextAnimation;
+        }
+        if (facingDirection != FacingDirection.NONE){
+            //this is a HACK of sorts, it's not very intuitive why it works
+            //TODO:refactor facing direction logic, is there really a need for more directions then left-right for animations?
             currentAnimationState.facingDirection = facingDirection;
         }
         //this.bodySegmentAnimations.put(BodySegmentType.UPPER_BODY, currentAnimationState );

@@ -92,6 +92,7 @@ public class EntityComponentManager {
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 0;
+        drawable.tiledTexture = true;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 

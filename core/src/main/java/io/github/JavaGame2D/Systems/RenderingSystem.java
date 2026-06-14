@@ -3,6 +3,7 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.ComponentSignatures;
@@ -43,7 +44,7 @@ public class RenderingSystem {
     }
 
     public void loadTextureIDToTexturePathMapping(){
-        textureIDtoTexturePath.put(0,"autumnBrick1.png");
+        textureIDtoTexturePath.put(0,"tile.png");
         textureIDtoTexturePath.put(1,"playerSprite.png");
         textureIDtoTexturePath.put(2,"teleporter.png");
         textureIDtoTexturePath.put(3, "YOU_WIN!!!.png");
@@ -106,14 +107,32 @@ public class RenderingSystem {
             if (drawableComponent.drawableSegments.isEmpty()){
                 int textureID = drawableComponent.textureID;
                 Texture texture = getTexture(textureID);
-
                 float centerX = transformComponent.position.x;
                 float centerY = transformComponent.position.y;
                 float width = transformComponent.width;
                 float height = transformComponent.height;
                 // this system needs x,y coords of the lower left corner, not center!
                 Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
-                worldBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+
+                if (drawableComponent.tiledTexture){
+                    texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+                    texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+
+                    float ppu = 32f;
+                    int totalPixels = (int)(width * ppu);
+                    int totalPixelsHeight = (int)(height * ppu);
+
+                    TextureRegion tiledRegion = new TextureRegion(texture);
+                    tiledRegion.setRegion(0, 0, totalPixels, totalPixelsHeight);
+
+                    worldBatch.draw(tiledRegion,lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+
+                    //TiledDrawable tiledDrawable = new TiledDrawable(tiledRegion);
+                    //tiledDrawable.draw(worldBatch, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+                }
+                else{
+                    worldBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+                }
             }
             else{
                 for (Drawable segment: drawableComponent.drawableSegments.values()){

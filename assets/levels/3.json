@@ -431,42 +431,66 @@
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 3
+      "textureID" : 3,
+      "tiledTexture" : false,
+      "drawableSegments" : { }
     }, null, null, null, null ],
     "componentSignature" : 2,
     "allComponents" : [ {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 3
+      "textureID" : 3,
+      "tiledTexture" : false,
+      "drawableSegments" : { }
     } ]
   },
   "teleporterCollection" : {
@@ -476,6 +500,24 @@
     "defaultSize" : 10,
     "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
     "componentSignature" : 32,
+    "allComponents" : [ ]
+  },
+  "healthCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 64,
+    "allComponents" : [ ]
+  },
+  "damageEmitterCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 128,
     "allComponents" : [ ]
   },
   "lowerLeftCorner" : null,

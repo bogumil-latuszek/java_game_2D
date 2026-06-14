@@ -1267,108 +1267,176 @@
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 2
+      "textureID" : 2,
+      "tiledTexture" : false,
+      "drawableSegments" : { }
     }, null, null, null ],
     "componentSignature" : 2,
     "allComponents" : [ {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 0
+      "textureID" : 0,
+      "tiledTexture" : true,
+      "drawableSegments" : { }
     }, {
       "signature" : 2,
-      "textureID" : 2
+      "textureID" : 2,
+      "tiledTexture" : false,
+      "drawableSegments" : { }
     } ]
   },
   "teleporterCollection" : {
@@ -1389,6 +1457,24 @@
       "targetLevelID" : 3,
       "signature" : 32
     } ]
+  },
+  "healthCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 64,
+    "allComponents" : [ ]
+  },
+  "damageEmitterCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 128,
+    "allComponents" : [ ]
   },
   "lowerLeftCorner" : null,
   "upperRightCorner" : null,

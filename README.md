@@ -1,13 +1,25 @@
 # JavaGame2D
 
-A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://github.com/libgdx/gdx-liftoff).
+## About 
 
-This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
+This is a 2d platformer, built on top of LibGDX. It has extensive, modular features, such as:
+- ECS for game object management, 
+- custom rendering pipeline, 
+- custom animation state machines
+- custom entity serialization/deserialization
+
+Above all, it's an all-purpose base for creating 2d platformers. It also comes with a playable demo
 
 ![gameplay](docs/gameplay.gif)
 
 ## How to run
-### via IntelliJ
+
+### instlling pre-built version
+
+
+### running from source via IntelliJ IDEA
+
+Clone this repository, and open it in IntelliJ IDEA IDE
 IntelliJ should autodetect gradle settings. Run the game with:
 
 ![run via gradle](docs/gradle_run.png)

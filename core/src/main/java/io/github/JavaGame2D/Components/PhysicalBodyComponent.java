@@ -11,6 +11,7 @@ public class PhysicalBodyComponent implements Component{
     public boolean dynamic; // doesn't move by itself;
     public float moveSpeed;
     public float jumpForce;
+    public boolean ignoresPhysicalCollision = false;
 
     public PhysicalBodyComponent() {
         this.velocity = new Vector2(0f,0f);

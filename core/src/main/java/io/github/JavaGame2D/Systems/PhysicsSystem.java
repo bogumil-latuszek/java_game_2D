@@ -195,6 +195,9 @@ public class PhysicsSystem {
             ColliderComponent collider1 = entityComponentManager.getComponent(ColliderComponent.class, entity1.ID);
             ColliderComponent collider2 = entityComponentManager.getComponent(ColliderComponent.class, entity2.ID);
 
+            if (body1.ignoresPhysicalCollision || body2.ignoresPhysicalCollision){
+                continue;
+            }
             if (body1.dynamic && body2.dynamic){
                 //resolve collision between 2 dynamic bodies
             }

@@ -230,6 +230,7 @@ public class EntityComponentManager {
         PhysicalBodyComponent body = new PhysicalBodyComponent();
         body.dynamic = false;
         body.usesGravity = false;
+        body.ignoresPhysicalCollision = true;
         componentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 

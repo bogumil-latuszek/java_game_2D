@@ -701,7 +701,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -712,7 +713,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -723,7 +725,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -734,7 +737,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -745,7 +749,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -756,7 +761,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -767,7 +773,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -778,7 +785,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true
     }, {
       "signature" : 4,
       "velocity" : {
@@ -789,7 +797,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true
     }, {
       "signature" : 4,
       "velocity" : {
@@ -800,7 +809,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true
     }, {
       "signature" : 4,
       "velocity" : {
@@ -811,7 +821,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true
     }, {
       "signature" : 4,
       "velocity" : {
@@ -822,7 +833,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -833,7 +845,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -844,7 +857,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -855,7 +869,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -866,7 +881,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -877,7 +893,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -888,7 +905,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -899,7 +917,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -910,7 +929,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -921,7 +941,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -932,7 +953,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -943,7 +965,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -954,7 +977,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, null, null, null, null, null, null ],
     "componentSignature" : 4,
     "allComponents" : [ {
@@ -967,7 +991,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -978,7 +1003,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -989,7 +1015,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1000,7 +1027,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1011,7 +1039,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1022,7 +1051,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1033,7 +1063,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1044,7 +1075,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1055,7 +1087,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1066,7 +1099,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1077,7 +1111,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1088,7 +1123,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1099,7 +1135,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1110,7 +1147,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1121,7 +1159,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1132,7 +1171,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1143,7 +1183,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1154,7 +1195,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1165,7 +1207,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1176,7 +1219,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1187,7 +1231,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1198,7 +1243,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1209,7 +1255,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     }, {
       "signature" : 4,
       "velocity" : {
@@ -1220,7 +1267,8 @@
       "onGround" : false,
       "dynamic" : false,
       "moveSpeed" : 300.0,
-      "jumpForce" : 26.0
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
     } ]
   },
   "colliderCollection" : {
@@ -2133,36 +2181,44 @@
     "collectionOfComponents" : [ {
       "damageType" : "BURST",
       "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
       "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
       "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
       "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
       "signature" : 128
     }, null, null, null, null, null, null ],
     "componentSignature" : 128,
     "allComponents" : [ {
       "damageType" : "BURST",
       "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
       "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
       "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
       "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
       "signature" : 128
     } ]
   },

@@ -9,6 +9,7 @@ public class TransformComponent implements Component{
     public Vector2 position;
     // previous frame position
     public Vector2 previousPosition;
+    // used for sprites, optionally for colliders (platforms use it)
     public float width;
     public float height;
 

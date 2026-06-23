@@ -44,18 +44,6 @@ public class DamageSystem {
                 resolveDamage(otherEntity, entity);
             }
         }
-//        int playerID = entityComponentManager.getPlayerEntityID();
-//        // finally, resolve each player collision with damage emitter
-//        for(Collision c : playerCollisionsWithDamageEmitters){
-//            int damageEmitterID = c.entity.ID == playerID ? c.otherEntity.ID : c.entity.ID;
-//            DamageEmitterComponent damageEmitter = entityComponentManager.getComponent(DamageEmitterComponent.class, damageEmitterID);
-//
-//            HealthComponent playerHealth = entityComponentManager.getComponent(HealthComponent.class, playerID);
-//            playerHealth.currentHp -= damageEmitter.damageAmount;
-//            System.out.println("player damaged by entity with id: " + damageEmitterID);
-//            PlayerHpChanged event = new PlayerHpChanged(playerHealth.currentHp);
-//            EventBus.getInstance().publish(event);
-//        }
     }
 
     public boolean isDamageEmitter (Entity entity){
@@ -74,12 +62,16 @@ public class DamageSystem {
 
     public void resolveDamage(Entity damageEmitter, Entity damageReceiver){
         DamageEmitterComponent damageEmitterComponent = entityComponentManager.getComponent(DamageEmitterComponent.class, damageEmitter.ID);
-        HealthComponent healthComponent = entityComponentManager.getComponent(HealthComponent.class, damageReceiver.ID);
-        if (!healthComponent.isInvulnerable){
-            healthComponent.currentHp -= damageEmitterComponent.damageAmount;
-            if (healthComponent.currentHp < 0){
-                healthComponent.currentHp = 0;
+        HealthComponent damageReceiverHealth = entityComponentManager.getComponent(HealthComponent.class, damageReceiver.ID);
+        if (!damageReceiverHealth.isInvulnerable){
+            damageReceiverHealth.currentHp -= damageEmitterComponent.damageAmount;
+            if (damageReceiverHealth.currentHp < 0){
+                damageReceiverHealth.currentHp = 0;
             }
+        }
+        if (damageReceiver.ID == entityComponentManager.getPlayerEntityID()){
+            PlayerHpChanged event = new PlayerHpChanged(damageReceiverHealth.currentHp);
+            EventBus.getInstance().publish(event);
         }
     }
 }

@@ -21,6 +21,7 @@ public class UserInterface {
 
     public void handlePlayerHPChange(PlayerHpChanged event){
         this.hpBar.update(event.currentHP);
+        //System.out.println("playerHP: "+ event.currentHP);
     }
 
     //TODO: outsource rendering to rendering system

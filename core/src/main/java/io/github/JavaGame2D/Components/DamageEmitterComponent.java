@@ -6,6 +6,7 @@ public class DamageEmitterComponent implements Component{
 
     public DamageType damageType = DamageType.BURST;
     public int damageAmount = 1;
+    public boolean selfDestructsOnImpact = false;
 
     public DamageEmitterComponent() {
     }

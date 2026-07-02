@@ -3,6 +3,7 @@ package io.github.JavaGame2D.Systems;
 import io.github.JavaGame2D.Collision;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DamageEmitterComponent;
+import io.github.JavaGame2D.Components.DestructibleComponent;
 import io.github.JavaGame2D.Components.HealthComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.EventBus;
@@ -18,20 +19,18 @@ public class DamageSystem {
     public DamageSystem(EntityComponentManager entityComponentManager) {
         this.entityComponentManager = entityComponentManager;
         this.damageEmitterSignature = ComponentSignatures.DAMAGE_EMITTER;
-        this.canBeDamagedSignature = ComponentSignatures.HEALTH;
+        this.canBeDamagedSignature = ComponentSignatures.DESTRUCTIBLE | ComponentSignatures.HEALTH;
     }
 
-    public void update(){
+    public void update(float deltaTime){
         // #1 find all things with health component
         int[] livingEntities = entityComponentManager.getEntitiesMatchingSignature(canBeDamagedSignature);
-        // #2 for those whose hp <= 0 and aren't invincible, destroy them
-        for (int entityID : livingEntities){
-            HealthComponent healthComponent = entityComponentManager.getComponent(HealthComponent.class, entityID);
-            if (healthComponent.currentHp <= 0){
-                entityComponentManager.deleteEntity(entityID);
-            }
-        }
+        // #2 update iframes
+        updateIframes(livingEntities, deltaTime);
+        // #3 for those whose hp <= 0 and aren't invincible, destroy them
+        destroyEntitiesWithNoHpLeft(livingEntities);
     }
+
     public void detectAndResolveDamage(Collision[] collisions){
 
         for (Collision collision: collisions){
@@ -46,32 +45,60 @@ public class DamageSystem {
         }
     }
 
-    public boolean isDamageEmitter (Entity entity){
+    private boolean isDamageEmitter (Entity entity){
         if ((entity.signature & damageEmitterSignature) == damageEmitterSignature){
             return true;
         }
         return false;
     }
 
-    public boolean canBeDamaged (Entity entity){
+    private boolean canBeDamaged (Entity entity){
         if ((entity.signature & canBeDamagedSignature) == canBeDamagedSignature){
             return true;
         }
         return false;
     }
 
-    public void resolveDamage(Entity damageEmitter, Entity damageReceiver){
+    private void resolveDamage(Entity damageEmitter, Entity damageReceiver){
         DamageEmitterComponent damageEmitterComponent = entityComponentManager.getComponent(DamageEmitterComponent.class, damageEmitter.ID);
         HealthComponent damageReceiverHealth = entityComponentManager.getComponent(HealthComponent.class, damageReceiver.ID);
-        if (!damageReceiverHealth.isInvulnerable){
-            damageReceiverHealth.currentHp -= damageEmitterComponent.damageAmount;
-            if (damageReceiverHealth.currentHp < 0){
-                damageReceiverHealth.currentHp = 0;
-            }
+        if (damageReceiverHealth.isInvulnerable){
+            return;
+        }
+        if (damageReceiverHealth.iframeTimer >= 0){
+            return;
+        }
+        calculateAndApplyDamage(damageEmitterComponent, damageReceiverHealth);
+        if (damageReceiverHealth.damageTriggersiframes){
+            damageReceiverHealth.iframeTimer = damageReceiverHealth.iframeDuration;
         }
         if (damageReceiver.ID == entityComponentManager.getPlayerEntityID()){
             PlayerHpChanged event = new PlayerHpChanged(damageReceiverHealth.currentHp);
             EventBus.getInstance().publish(event);
         }
     }
+
+    private void calculateAndApplyDamage(DamageEmitterComponent emitter, HealthComponent receiver){
+        receiver.currentHp -= emitter.damageAmount;
+        receiver.currentHp = Math.max(0, receiver.currentHp);
+    }
+
+    private void updateIframes(int[] livingEntities, float deltaTime){
+        for (int entityID : livingEntities){
+            HealthComponent healthComponent = entityComponentManager.getComponent(HealthComponent.class, entityID);
+            if (healthComponent.iframeTimer >= 0){
+                healthComponent.iframeTimer -= deltaTime;
+            }
+        }
+    };
+
+    private void destroyEntitiesWithNoHpLeft(int[] livingEntities){
+        for (int entityID : livingEntities){
+            HealthComponent healthComponent = entityComponentManager.getComponent(HealthComponent.class, entityID);
+            DestructibleComponent destructible = entityComponentManager.getComponent(DestructibleComponent.class, entityID);
+            if (destructible.isAlive && healthComponent.currentHp <= 0){
+                destructible.isAlive = false;
+            }
+        }
+    };
 }

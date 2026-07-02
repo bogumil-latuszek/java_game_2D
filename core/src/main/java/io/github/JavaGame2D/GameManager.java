@@ -18,6 +18,7 @@ public class GameManager extends ApplicationAdapter {
     EntityComponentManager entityComponentManager;
     AnimationSystem animationSystem;
     DamageSystem damageSystem;
+    PlayerDeathHandler playerDeathHandler;
 
     private void initializeSystems(){
         gameSettings = new GameSettings();
@@ -35,6 +36,7 @@ public class GameManager extends ApplicationAdapter {
         physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings, damageSystem);
         inputSystem = new InputSystem();
         levelManager = new LevelManager(fileSystem,entityComponentManager);
+        playerDeathHandler = new PlayerDeathHandler();
     }
 
 
@@ -127,14 +129,17 @@ public class GameManager extends ApplicationAdapter {
         inputSystem.update(deltaTimeInSeconds);
         playerCharacterController.update(deltaTimeInSeconds);
         userInterface.update(deltaTimeInMilliseconds);
+
+        damageSystem.update(deltaTimeInSeconds);
         physicsSystem.update(deltaTimeInSeconds);
         animationSystem.update(deltaTimeInMilliseconds);
 
         renderingSystem.render();
         userInterface.render();
 
+        playerDeathHandler.update(deltaTimeInSeconds);
+
         levelManager.loadLevelIfChanged();
-        damageSystem.update();
     }
 
     @Override

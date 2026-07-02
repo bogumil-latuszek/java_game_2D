@@ -2121,22 +2121,25 @@
       "currentHp" : 1,
       "maxHp" : 1,
       "isInvulnerable" : false,
-      "invulnerabilityTimer" : 0.0,
-      "isDead" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
       "signature" : 64
     }, {
       "currentHp" : 1,
       "maxHp" : 1,
       "isInvulnerable" : false,
-      "invulnerabilityTimer" : 0.0,
-      "isDead" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
       "signature" : 64
     }, {
       "currentHp" : 1,
       "maxHp" : 1,
       "isInvulnerable" : false,
-      "invulnerabilityTimer" : 0.0,
-      "isDead" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
       "signature" : 64
     }, null, null, null, null, null, null, null ],
     "componentSignature" : 64,
@@ -2144,22 +2147,25 @@
       "currentHp" : 1,
       "maxHp" : 1,
       "isInvulnerable" : false,
-      "invulnerabilityTimer" : 0.0,
-      "isDead" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
       "signature" : 64
     }, {
       "currentHp" : 1,
       "maxHp" : 1,
       "isInvulnerable" : false,
-      "invulnerabilityTimer" : 0.0,
-      "isDead" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
       "signature" : 64
     }, {
       "currentHp" : 1,
       "maxHp" : 1,
       "isInvulnerable" : false,
-      "invulnerabilityTimer" : 0.0,
-      "isDead" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
       "signature" : 64
     } ]
   },
@@ -2180,47 +2186,56 @@
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
       "damageType" : "BURST",
-      "damageAmount" : 1,
+      "damageAmount" : 20,
       "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
-      "damageAmount" : 1,
+      "damageAmount" : 20,
       "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
-      "damageAmount" : 1,
+      "damageAmount" : 20,
       "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
-      "damageAmount" : 1,
+      "damageAmount" : 20,
       "selfDestructsOnImpact" : false,
       "signature" : 128
     }, null, null, null, null, null, null ],
     "componentSignature" : 128,
     "allComponents" : [ {
       "damageType" : "BURST",
-      "damageAmount" : 1,
+      "damageAmount" : 20,
       "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
-      "damageAmount" : 1,
+      "damageAmount" : 20,
       "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
-      "damageAmount" : 1,
+      "damageAmount" : 20,
       "selfDestructsOnImpact" : false,
       "signature" : 128
     }, {
       "damageType" : "BURST",
-      "damageAmount" : 1,
+      "damageAmount" : 20,
       "selfDestructsOnImpact" : false,
       "signature" : 128
     } ]
+  },
+  "destructibleCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 256,
+    "allComponents" : [ ]
   },
   "lowerLeftCorner" : null,
   "upperRightCorner" : null,

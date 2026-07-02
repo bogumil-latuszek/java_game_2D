@@ -1,11 +1,13 @@
 package io.github.JavaGame2D.Systems;
 
+import io.github.JavaGame2D.Components.DestructibleComponent;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 
 import io.github.JavaGame2D.Enums.PlayerAction;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerActionEvent;
 import io.github.JavaGame2D.Events.PlayerIDChanged;
+import io.github.JavaGame2D.Events.PlayerIsDeadEvent;
 
 public class PlayerCharacterController {
     private boolean playerNotSpecified = true;
@@ -33,6 +35,31 @@ public class PlayerCharacterController {
     }
 
     public void update(float deltaTimeInMilliseconds){
+        if (isPlayerDead()){
+            PlayerIsDeadEvent playerIsDeadEvent = new PlayerIsDeadEvent();
+            EventBus.getInstance().publish(playerIsDeadEvent);
+        }
+        else{
+            updatePlayerMovement(deltaTimeInMilliseconds);
+        }
+    }
+
+    public void handlePlayerAction(PlayerActionEvent event){
+        if (playerNotSpecified){
+            return;
+        }
+        this.playerActionEventsSinceLastUpdate += 1;
+        this.horizontalMovement = event.horizontalMovementAction;
+        this.verticalMovement = event.verticalMovementAction;
+        this.specialAction = event.specialAction;
+    }
+
+    private boolean isPlayerDead(){
+        DestructibleComponent destructible = entityComponentManager.getComponent(DestructibleComponent.class, playerEntityID);
+        return !destructible.isAlive;
+    }
+
+    private void updatePlayerMovement(float deltaTimeInMilliseconds){
         PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class, playerEntityID);
         if (playerActionEventsSinceLastUpdate <= 0){
             //currentPlayerAction = PlayerAction.NONE;
@@ -87,14 +114,6 @@ public class PlayerCharacterController {
         playerActionEventsSinceLastUpdate = 0;
     }
 
-    public void handlePlayerAction(PlayerActionEvent event){
-        if (playerNotSpecified){
-            return;
-        }
-        this.playerActionEventsSinceLastUpdate += 1;
-        this.horizontalMovement = event.horizontalMovementAction;
-        this.verticalMovement = event.verticalMovementAction;
-        this.specialAction = event.specialAction;
-    }
+
 
 }

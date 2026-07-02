@@ -22,6 +22,7 @@ public class Level {
     public ComponentCollection<TeleporterComponent>  teleporterCollection;
     public ComponentCollection<HealthComponent>  healthCollection;
     public ComponentCollection<DamageEmitterComponent>  damageEmitterCollection;
+    public ComponentCollection<DestructibleComponent>  destructibleCollection;
 
     // level-specific settings:
     // boundary for camera
@@ -40,5 +41,6 @@ public class Level {
         teleporterCollection = new ComponentCollection<>(TeleporterComponent.class,ComponentSignatures.TELEPORTER);
         healthCollection = new ComponentCollection<>(HealthComponent.class,ComponentSignatures.HEALTH);
         damageEmitterCollection = new ComponentCollection<>(DamageEmitterComponent.class, ComponentSignatures.DAMAGE_EMITTER);
+        destructibleCollection = new ComponentCollection<>(DestructibleComponent.class, ComponentSignatures.DESTRUCTIBLE);
     }
 }

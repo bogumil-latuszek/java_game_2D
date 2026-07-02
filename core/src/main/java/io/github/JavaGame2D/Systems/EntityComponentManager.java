@@ -165,8 +165,15 @@ public class EntityComponentManager {
         componentManager.addComponent(ColliderComponent.class, collider, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
+        DestructibleComponent destructible = new DestructibleComponent();
+        destructible.destructionDelay = 10f;
+        componentManager.addComponent(DestructibleComponent.class, destructible, entityID);
+        entityManager.addSignature(entityID,ComponentSignatures.DESTRUCTIBLE);
+
         int maxHp = 100;
         HealthComponent health = new HealthComponent(maxHp);
+        health.damageTriggersiframes = true;
+        health.iframeDuration = 1f;
         componentManager.addComponent(HealthComponent.class, health, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.HEALTH);
 
@@ -249,6 +256,7 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.COLLIDER);
 
         DamageEmitterComponent damageEmitter = new DamageEmitterComponent();
+        damageEmitter.damageAmount = 20;
         componentManager.addComponent(DamageEmitterComponent.class, damageEmitter, entityID );
         entityManager.addSignature(entityID, ComponentSignatures.DAMAGE_EMITTER);
 

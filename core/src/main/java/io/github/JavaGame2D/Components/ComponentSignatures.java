@@ -9,4 +9,5 @@ public final class ComponentSignatures {
     public static final long TELEPORTER     = 1L << 5;
     public static final long HEALTH         = 1L << 6;
     public static final long DAMAGE_EMITTER = 1l << 7;
+    public static final long DESTRUCTIBLE   = 1l << 8;
 }

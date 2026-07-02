@@ -6,9 +6,10 @@ public class HealthComponent implements Component {
 
     // optional fields:
     public boolean isInvulnerable = false;
-    public float invulnerabilityTimer = 0f;
+    public float iframeTimer = 0f;
+    public float iframeDuration = 1f;
+    public boolean damageTriggersiframes = false;
     //private float lastDamageTime = 0f;
-    public boolean isDead = false;
 
     private HealthComponent(){
         this.maxHp = 1;

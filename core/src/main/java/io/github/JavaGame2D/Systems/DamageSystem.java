@@ -7,6 +7,7 @@ import io.github.JavaGame2D.Components.DestructibleComponent;
 import io.github.JavaGame2D.Components.HealthComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.DetectedCollisionsEvent;
 import io.github.JavaGame2D.Events.PlayerHpChanged;
 
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class DamageSystem {
         this.entityComponentManager = entityComponentManager;
         this.damageEmitterSignature = ComponentSignatures.DAMAGE_EMITTER;
         this.canBeDamagedSignature = ComponentSignatures.DESTRUCTIBLE | ComponentSignatures.HEALTH;
+        EventBus.getInstance().subscribe(DetectedCollisionsEvent.class, this::handlePotentialDamage);
+    }
+
+    private void handlePotentialDamage(DetectedCollisionsEvent event){
+        detectAndResolveDamage(event.collisions);
     }
 
     public void update(float deltaTime){

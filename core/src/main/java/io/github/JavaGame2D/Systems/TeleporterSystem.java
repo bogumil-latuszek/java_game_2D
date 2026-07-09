@@ -5,6 +5,7 @@ import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.TeleporterComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.DetectedCollisionsEvent;
 import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 
 import java.util.ArrayList;
@@ -14,6 +15,11 @@ public class TeleporterSystem {
 
     public TeleporterSystem(EntityComponentManager entityComponentManager) {
         this.entityComponentManager = entityComponentManager;
+        EventBus.getInstance().subscribe(DetectedCollisionsEvent.class, this::handlePotentialTeleporterActivation);
+    }
+
+    private void handlePotentialTeleporterActivation(DetectedCollisionsEvent event){
+        detectTeleporterActivation(event.collisions);
     }
 
     public void detectTeleporterActivation(Collision[] collisions){

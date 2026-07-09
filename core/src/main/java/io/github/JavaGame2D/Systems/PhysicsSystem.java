@@ -9,6 +9,9 @@ import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ColliderType;
+import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.DetectedCollisionsEvent;
+import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 import io.github.JavaGame2D.GameSettings;
 
 import java.util.ArrayList;
@@ -19,29 +22,23 @@ public class PhysicsSystem {
     private float gravity; //acceleration: unit/s in y direction
     private EntityComponentManager entityComponentManager;
     private float groundCheckDepth;
-    private TeleporterSystem teleporterSystem;
-    private DamageSystem damageSystem;
 
-    public PhysicsSystem(EntityComponentManager entityComponentManager, GameSettings settings, DamageSystem damageSystem) {
+    public PhysicsSystem(EntityComponentManager entityComponentManager, GameSettings settings) {
         this.entityComponentManager = entityComponentManager;
         this.gravity = settings.gravity;
         this.groundCheckDepth = settings.groundCheckDepth;
-        this.teleporterSystem = new TeleporterSystem(entityComponentManager);
-        this.damageSystem = damageSystem;
     }
 
     public void update(float deltaTime){
-        // #1 do the GroundCheck
-        // #2 move entites
+        // #1 move entites
         moveEntities(deltaTime);
-        // #3 detect collisions
+        // #2 detect collisions
         Collision[] detectedCollisions = detectAllCollisions();
-        // #4 send collided items to systems that use them:
+        // #3 resolve physical collisions
         this.resolveNormalCollisions(detectedCollisions);
-        teleporterSystem.detectTeleporterActivation(detectedCollisions);
-        damageSystem.detectAndResolveDamage(detectedCollisions);
-        // TrapSystem.resolveTraps(detectedCollisions)
-        // TeleportSystem.resolveTeleports(detectedCollisions);
+        // #4 notify systems that use collisions about detected collisions
+        DetectedCollisionsEvent event = new DetectedCollisionsEvent(detectedCollisions);
+        EventBus.getInstance().publish(event);
     }
 
     private void moveEntities(float deltaTime){

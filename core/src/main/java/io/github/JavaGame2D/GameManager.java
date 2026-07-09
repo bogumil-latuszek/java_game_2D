@@ -2,11 +2,14 @@ package io.github.JavaGame2D;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.math.Vector2;
-import io.github.JavaGame2D.Events.PlayerIDChanged;
+import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class GameManager extends ApplicationAdapter {
+
+    GameMode gameMode;
+
     RenderingSystem renderingSystem;
     PhysicsSystem physicsSystem;
     UserInterface userInterface;
@@ -20,23 +23,9 @@ public class GameManager extends ApplicationAdapter {
     DamageSystem damageSystem;
     PlayerDeathHandler playerDeathHandler;
 
-    private void initializeSystems(){
-        gameSettings = new GameSettings();
-        gameSettings = gameSettings.loadSettings();
-        gameSettings.saveSettings();
-
-        FileSystem fileSystem = new FileSystem();
-        entityComponentManager = new EntityComponentManager();
-
-        userInterface = new UserInterface();
-        playerCharacterController = new PlayerCharacterController(entityComponentManager);
-        animationSystem = new AnimationSystem(entityComponentManager, fileSystem, playerCharacterController);
-        renderingSystem = new RenderingSystem(entityComponentManager, userInterface);
-        damageSystem = new DamageSystem(entityComponentManager);
-        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings, damageSystem);
-        inputSystem = new InputSystem();
-        levelManager = new LevelManager(fileSystem,entityComponentManager);
-        playerDeathHandler = new PlayerDeathHandler();
+    public GameManager(GameMode mode){
+        gameMode = mode;
+        System.out.println("starting game in mode: "+gameMode);
     }
 
 

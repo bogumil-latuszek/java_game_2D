@@ -2,17 +2,26 @@ package io.github.JavaGame2D.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.GameManager;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
     public static void main(String[] args) {
         if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
-        createApplication();
+
+        GameMode mode = GameMode.STANDARD_GAMEPLAY;
+        for(String arg : args){
+            if (arg.equals("--edit")){
+                mode = GameMode.LEVEL_EDIT;
+            }
+        }
+
+        createApplication(mode);
     }
 
-    private static Lwjgl3Application createApplication() {
-        return new Lwjgl3Application(new GameManager(), getDefaultConfiguration());
+    private static Lwjgl3Application createApplication(GameMode mode) {
+        return new Lwjgl3Application(new GameManager(mode), getDefaultConfiguration());
     }
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {

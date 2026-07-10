@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class RenderingSystem {
     private SpriteBatch worldBatch;
-    private SpriteBatch userInterfaceBatch;
+    //private SpriteBatch userInterfaceBatch;
     private EntityComponentManager entityComponentManager;
     private int signature;
     private StalkingCamera stalkingCamera;
@@ -25,12 +25,12 @@ public class RenderingSystem {
     private Texture missingTexture;
     private HashMap<Integer, Texture> textureIDtoTexture;
     private HashMap<Integer, String> textureIDtoTexturePath;
-    private UserInterface userInterface;
+    //private UserInterface userInterface;
     private Vector2 cameraViewSizeInGameUnits = new Vector2(14f, 9.8f);
 
-    public RenderingSystem(EntityComponentManager entityComponentManager, UserInterface userInterface){
+    public RenderingSystem(EntityComponentManager entityComponentManager){
         worldBatch = new SpriteBatch();
-        userInterfaceBatch = new SpriteBatch();
+        //userInterfaceBatch = new SpriteBatch();
         this.entityComponentManager = entityComponentManager;
         stalkingCamera = new StalkingCamera(cameraViewSizeInGameUnits.x, cameraViewSizeInGameUnits.y);
         uiCamera = new OrthographicCamera();
@@ -40,7 +40,7 @@ public class RenderingSystem {
         textureIDtoTexturePath = new HashMap<>();
         missingTexture = new Texture("missingTexture.png");
         loadTextureIDToTexturePathMapping();
-        this.userInterface = userInterface;
+        //this.userInterface = userInterface;
     }
 
     public void loadTextureIDToTexturePathMapping(){
@@ -152,10 +152,10 @@ public class RenderingSystem {
         worldBatch.end();
 
         //draw User Interface
-        userInterfaceBatch.setProjectionMatrix(uiCamera.combined);
-        userInterfaceBatch.begin();
-        this.drawHpBar();
-        userInterfaceBatch.end();
+//        userInterfaceBatch.setProjectionMatrix(uiCamera.combined);
+//        userInterfaceBatch.begin();
+//        this.drawHpBar();
+//        userInterfaceBatch.end();
     }
 
     private void drawDrawable(SpriteBatch spriteBatch, Drawable drawable, Vector2 center, float width, float height){
@@ -217,22 +217,22 @@ public class RenderingSystem {
 
     public void dispose(){
         worldBatch.dispose();
-        userInterfaceBatch.dispose();
+        //userInterfaceBatch.dispose();
     }
 
-    private void drawHpBar(){
-        HpBar hpBar = this.userInterface.hpBar;
-        float current_width = hpBar.width * ((float)hpBar.currentSize/hpBar.maxSize);
-        float height = hpBar.height;
-        Vector2 position = hpBar.position;
-        Vector2 lowerLeftCorner = new Vector2(position.x, position.y);
-
-        int hp_bar_id = hpBar.hp_bar_id;
-        Texture barTexture = getTexture(hp_bar_id);
-        this.userInterfaceBatch.draw(barTexture, lowerLeftCorner.x, lowerLeftCorner.y, current_width, height);
-
-        int hp_bar_frame_id = hpBar.hp_bar_frame_id;
-        Texture frameTexture = getTexture(hp_bar_frame_id);
-        this.userInterfaceBatch.draw(frameTexture, lowerLeftCorner.x, lowerLeftCorner.y, hpBar.width, height);
-    }
+//    private void drawHpBar(){
+//        HpBar hpBar = this.userInterface.hpBar;
+//        float current_width = hpBar.width * ((float)hpBar.currentSize/hpBar.maxSize);
+//        float height = hpBar.height;
+//        Vector2 position = hpBar.position;
+//        Vector2 lowerLeftCorner = new Vector2(position.x, position.y);
+//
+//        int hp_bar_id = hpBar.hp_bar_id;
+//        Texture barTexture = getTexture(hp_bar_id);
+//        this.userInterfaceBatch.draw(barTexture, lowerLeftCorner.x, lowerLeftCorner.y, current_width, height);
+//
+//        int hp_bar_frame_id = hpBar.hp_bar_frame_id;
+//        Texture frameTexture = getTexture(hp_bar_frame_id);
+//        this.userInterfaceBatch.draw(frameTexture, lowerLeftCorner.x, lowerLeftCorner.y, hpBar.width, height);
+//    }
 }

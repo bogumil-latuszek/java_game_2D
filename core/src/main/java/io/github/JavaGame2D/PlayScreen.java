@@ -88,7 +88,7 @@ public class PlayScreen implements Screen {
             playerDeathHandler.update(delta);
         }
         // Render Game World
-        renderingSystem.render(GameMode.STANDARD_GAMEPLAY);
+        renderingSystem.render();
         playerInterface.render();
 
         // Render HUD

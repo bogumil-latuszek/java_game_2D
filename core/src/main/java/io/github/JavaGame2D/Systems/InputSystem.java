@@ -47,7 +47,7 @@ public class InputSystem {
         return PlayerAction.NONE;
     }
 
-    public void update(float deltaTime){
+    public void update(){
 
         // the player can take many independent actions at once, but only one in each category
         PlayerAction horizontalMovementAction = getExclusiveAction(new PlayerAction[]{PlayerAction.GO_LEFT, PlayerAction.GO_RIGHT});

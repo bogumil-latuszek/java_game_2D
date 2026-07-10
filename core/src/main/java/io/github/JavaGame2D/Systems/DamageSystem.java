@@ -28,11 +28,11 @@ public class DamageSystem {
         detectAndResolveDamage(event.collisions);
     }
 
-    public void update(float deltaTime){
+    public void update(float deltaTimeInSeconds){
         // #1 find all things with health component
         int[] livingEntities = entityComponentManager.getEntitiesMatchingSignature(canBeDamagedSignature);
         // #2 update iframes
-        updateIframes(livingEntities, deltaTime);
+        updateIframes(livingEntities, deltaTimeInSeconds);
         // #3 for those whose hp <= 0 and aren't invincible, destroy them
         destroyEntitiesWithNoHpLeft(livingEntities);
     }

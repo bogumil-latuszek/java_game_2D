@@ -29,9 +29,9 @@ public class PhysicsSystem {
         this.groundCheckDepth = settings.groundCheckDepth;
     }
 
-    public void update(float deltaTime){
+    public void update(float deltaTimeInSeconds){
         // #1 move entites
-        moveEntities(deltaTime);
+        moveEntities(deltaTimeInSeconds);
         // #2 detect collisions
         Collision[] detectedCollisions = detectAllCollisions();
         // #3 resolve physical collisions

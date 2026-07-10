@@ -14,8 +14,9 @@ public class PlayerInterface {
         EventBus.getInstance().subscribe(PlayerHpChanged.class, this::handlePlayerHPChange);
     }
 
-    public void update(float deltaTime){
-        fpsCounter.update(deltaTime);
+    public void update(float deltaTimeInSeconds){
+        float deltaTimeInMilliseconds = deltaTimeInSeconds * 1000;
+        fpsCounter.update(deltaTimeInMilliseconds);
     }
 
     public void handlePlayerHPChange(PlayerHpChanged event){

@@ -77,7 +77,7 @@ public class PlayScreen implements Screen {
     public void render(float delta) {
         if (!isPaused){
             // update Game World
-            inputSystem.update(delta);
+            inputSystem.update();
             playerCharacterController.update(delta);
             playerInterface.update(delta);
 

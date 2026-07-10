@@ -27,7 +27,7 @@ public class AnimationSystem {
         fileSystem.loadPlayerAnimations(this.animationManager);
     }
 
-    public void update(float deltaTimeInMilliseconds){
+    public void update(float deltaTimeInSeconds){
         // updates AnimationComponents using data from StateMachine:
         // 1. get all entities with drawable, transform, and animation components
 //        long signature = ComponentSignatures.ANIMATION | ComponentSignatures.DRAWABLE;
@@ -39,7 +39,7 @@ public class AnimationSystem {
         AnimationComponent animationComponent = entityComponentManager.getComponent(AnimationComponent.class, playerID);
         DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, playerID);
 
-        playerStateMachine.update(deltaTimeInMilliseconds);
+        playerStateMachine.update(deltaTimeInSeconds);
         EnumMap<BodySegmentType, AnimationState> currentPlayerState = playerStateMachine.bodySegmentAnimations;
         BodySegmentType[] allSegments = currentPlayerState.keySet().toArray(new BodySegmentType[currentPlayerState.size()]);
 

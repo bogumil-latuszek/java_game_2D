@@ -34,13 +34,13 @@ public class PlayerCharacterController {
         this.playerNotSpecified = false;
     }
 
-    public void update(float deltaTimeInMilliseconds){
+    public void update(float deltaTimeInSeconds){
         if (isPlayerDead()){
             PlayerIsDeadEvent playerIsDeadEvent = new PlayerIsDeadEvent();
             EventBus.getInstance().publish(playerIsDeadEvent);
         }
         else{
-            updatePlayerMovement(deltaTimeInMilliseconds);
+            updatePlayerMovement(deltaTimeInSeconds);
         }
     }
 
@@ -59,7 +59,7 @@ public class PlayerCharacterController {
         return !destructible.isAlive;
     }
 
-    private void updatePlayerMovement(float deltaTimeInMilliseconds){
+    private void updatePlayerMovement(float deltaTimeInSeconds){
         PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class, playerEntityID);
         if (playerActionEventsSinceLastUpdate <= 0){
             //currentPlayerAction = PlayerAction.NONE;
@@ -70,16 +70,16 @@ public class PlayerCharacterController {
         switch (horizontalMovement) {
             case GO_LEFT:
                 if (body.onGround) {
-                    body.velocity.x = -body.moveSpeed * deltaTimeInMilliseconds;
+                    body.velocity.x = -body.moveSpeed * deltaTimeInSeconds;
                 } else {
-                    body.velocity.x = -(body.moveSpeed * deltaTimeInMilliseconds) / 1.0f;
+                    body.velocity.x = -(body.moveSpeed * deltaTimeInSeconds) / 1.0f;
                 }
                 break;
             case GO_RIGHT:
                 if (body.onGround) {
-                    body.velocity.x = body.moveSpeed * deltaTimeInMilliseconds;
+                    body.velocity.x = body.moveSpeed * deltaTimeInSeconds;
                 } else {
-                    body.velocity.x = (body.moveSpeed * deltaTimeInMilliseconds) / 1.0f;
+                    body.velocity.x = (body.moveSpeed * deltaTimeInSeconds) / 1.0f;
                 }
                 break;
         }
@@ -88,7 +88,7 @@ public class PlayerCharacterController {
                 if (body.onGround) {
                     // initial burst
                     body.onGround = false;
-                    jumpTimer = deltaTimeInMilliseconds;
+                    jumpTimer = deltaTimeInSeconds;
                     //body.velocity.y += body.jumpForce*deltaTime/jumpTimer;
                     body.velocity.y += body.jumpForce / 5;
                     canExtendJump = true;
@@ -96,13 +96,13 @@ public class PlayerCharacterController {
                 else{
                     // extend jump
                     if (canExtendJump){
-                        jumpTimer += deltaTimeInMilliseconds;
+                        jumpTimer += deltaTimeInSeconds;
                         if (jumpTimer >= maxJumpDuration){
                             jumpTimer = maxJumpDuration;
                             canExtendJump = false;
                         }
                         if (body.velocity.y > 0 && canExtendJump){
-                            body.velocity.y += body.jumpForce * deltaTimeInMilliseconds;
+                            body.velocity.y += body.jumpForce * deltaTimeInSeconds;
                         }
                     }
                 }

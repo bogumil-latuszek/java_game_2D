@@ -32,7 +32,8 @@ public class PlayerStateMachine {
         this.playerController = playerController;
     }
 
-    public void update(float deltaTimeInMilliseconds){
+    public void update(float deltaTimeInSeconds){
+        float deltaTimeInMilliseconds = deltaTimeInSeconds * 1000;
         // 1. get player entity
         int playerID = entityComponentManager.getPlayerEntityID();
         // 2. we're always going to assume that player entity has certain components;

@@ -2,14 +2,13 @@ package io.github.JavaGame2D.Systems;
 
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerHpChanged;
-import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 
-public class UserInterface {
+public class PlayerInterface {
 
     public FPSCounter fpsCounter;
     public HpBar hpBar;
 
-    public UserInterface(){
+    public PlayerInterface(){
         fpsCounter = new FPSCounter();
         hpBar = new HpBar(100);
         EventBus.getInstance().subscribe(PlayerHpChanged.class, this::handlePlayerHPChange);

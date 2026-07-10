@@ -175,7 +175,7 @@ public class RenderingSystem {
         boolean mirrorVertical = drawable.mirrorVertical;
         boolean mirrorHorizontal = drawable.mirrorHorizontal;
         //draw (Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
-        spriteBatch.draw(drawable.texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
+        spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
        // spriteBatch.draw(texture, position.x, position.y, width, height);
     }
 

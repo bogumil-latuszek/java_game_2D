@@ -44,7 +44,7 @@ public class FPSCounter {
     public void render(){
         batch.begin();
         // Draw FPS in top-left corner
-        font.draw(batch, "FPS: " + fps, 20, Gdx.graphics.getHeight() - 20);
+        font.draw(batch, "FPS: " + fps, 20, Gdx.graphics.getHeight() - 50);
         batch.end();
     }
 

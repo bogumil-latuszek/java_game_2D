@@ -6,6 +6,8 @@ import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Drawable;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.BodySegmentType;
+import io.github.JavaGame2D.EventBus;
+import io.github.JavaGame2D.Events.PlayerHpChanged;
 
 import java.util.HashMap;
 
@@ -176,6 +178,8 @@ public class EntityComponentManager {
         health.iframeDuration = 1f;
         componentManager.addComponent(HealthComponent.class, health, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.HEALTH);
+
+        EventBus.getInstance().publish(new PlayerHpChanged(maxHp,maxHp));
 
         AnimationComponent animationComponent = new AnimationComponent();
         componentManager.addComponent(AnimationComponent.class, animationComponent, entityID);

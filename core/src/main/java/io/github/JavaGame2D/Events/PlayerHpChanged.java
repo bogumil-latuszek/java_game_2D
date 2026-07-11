@@ -5,5 +5,6 @@ public class PlayerHpChanged {
     public int maxHP;
     public PlayerHpChanged(int currentHP, int maxHP) {
         this.currentHP = currentHP;
+        this.maxHP = maxHP;
     }
 }

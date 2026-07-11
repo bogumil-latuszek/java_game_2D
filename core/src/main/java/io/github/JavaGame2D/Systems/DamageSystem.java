@@ -79,7 +79,7 @@ public class DamageSystem {
             damageReceiverHealth.iframeTimer = damageReceiverHealth.iframeDuration;
         }
         if (damageReceiver.ID == entityComponentManager.getPlayerEntityID()){
-            PlayerHpChanged event = new PlayerHpChanged(damageReceiverHealth.currentHp);
+            PlayerHpChanged event = new PlayerHpChanged(damageReceiverHealth.currentHp, damageReceiverHealth.maxHp);
             EventBus.getInstance().publish(event);
         }
     }

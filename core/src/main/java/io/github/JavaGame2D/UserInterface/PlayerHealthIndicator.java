@@ -1,5 +1,6 @@
 package io.github.JavaGame2D.UserInterface;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
@@ -22,14 +23,14 @@ public class PlayerHealthIndicator {
         healthBar.setWidth(150);
         healthBar.setHeight(20);
         // create health numerical value label
-        healthLabel = new Label("HP: 100/?", uiSkin);
+        healthLabel = new Label("HP: ?/?", uiSkin);
         // register method to follow player's hp
         EventBus.getInstance().subscribe(PlayerHpChanged.class, this::handlePlayerHpChange);
     }
 
     private void handlePlayerHpChange(PlayerHpChanged event){
         healthBar.setValue(event.currentHP);
-        healthLabel.setText("HP: "+event.currentHP+"/?");
+        healthLabel.setText("HP: "+event.currentHP+"/"+event.maxHP);
     }
 
     public void attachToTable(Table table){

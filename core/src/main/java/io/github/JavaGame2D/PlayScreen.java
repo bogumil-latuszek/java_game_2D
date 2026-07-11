@@ -4,14 +4,17 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
+import io.github.JavaGame2D.UserInterface.GameHUD;
 
 public class PlayScreen implements Screen {
 
     private final GameManager gameManager;
-    private Stage inGameHUD; // handles and draws Hp bar, mini-menu, etc.
+    //private Stage inGameHUD; // handles and draws Hp bar, mini-menu, etc.
+    private GameHUD inGameHUD;
     private Stage gameOverlay; // handles and draws menu, dialogue, inventory, etc.
     private boolean isPaused = false;
 
@@ -43,10 +46,11 @@ public class PlayScreen implements Screen {
         fileSystem = gameManager.fileSystem;
 
         // create HUD stage
-        inGameHUD = new Stage(new ScreenViewport());
         // ... add your health bar, score labels ...
+        Skin uiskin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+        inGameHUD = new GameHUD(uiskin);
 
-        // create HUD stage
+        // create overlay stage
         gameOverlay = new Stage(new ScreenViewport());
         // ... add your menu, inventory, dialogue...
 
@@ -68,7 +72,7 @@ public class PlayScreen implements Screen {
         // Set input processor (UI first, then game controls)
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(gameOverlay);
-        multiplexer.addProcessor(inGameHUD);
+        multiplexer.addProcessor(inGameHUD.getStage());
         //multiplexer.addProcessor(gameInputProcessor);// since game doesn't eat the same input as overlay/hud this isn't important FOR NOW
         Gdx.input.setInputProcessor(multiplexer);
     }
@@ -92,8 +96,8 @@ public class PlayScreen implements Screen {
         playerInterface.render();
 
         // Render HUD
-        inGameHUD.act(delta);
-        inGameHUD.draw();
+        inGameHUD.update(delta);
+        inGameHUD.render();
 
         // render overlay
         gameOverlay.act(delta);
@@ -105,7 +109,7 @@ public class PlayScreen implements Screen {
 
     @Override
     public void resize(int width, int height) {
-        inGameHUD.getViewport().update(width, height, true);
+        inGameHUD.resizeViewport(width, height, true);
         gameOverlay.getViewport().update(width, height, true);
         this.renderingSystem.resizeViewport(width, height); //Should it be "this"? I sense a discrepency between Screen and GameManager
     }

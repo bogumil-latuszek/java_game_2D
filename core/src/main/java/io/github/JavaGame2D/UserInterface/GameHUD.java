@@ -11,8 +11,8 @@ public class GameHUD{
 
     private Stage stage;
     private Skin uiSkin;
-    private ProgressBar healthBar;
-    private Label healthLabel;
+
+    PlayerHealthIndicator hpIndicator;
 
     public GameHUD(Skin uiSkin) {
         this.uiSkin = uiSkin;
@@ -49,21 +49,9 @@ public class GameHUD{
         rootTable.top().left(); // Align to top-left corner
         rootTable.pad(10);      // Add 10px padding from screen edges
 
-        // Create the Health Label
-        healthLabel = new Label("HP: 100/100", uiSkin);
-
-        // Create the Health Progress Bar
-        ProgressBar.ProgressBarStyle style = new ProgressBar.ProgressBarStyle(
-            uiSkin.get("default-horizontal", ProgressBar.ProgressBarStyle.class)
-        );
-        healthBar = new ProgressBar(0, 100, 1, false, style);
-        healthBar.setValue(100);
-        healthBar.setWidth(150); // Set a fixed width
-        healthBar.setHeight(20);
-
-        // Add them to the table
-        rootTable.add(healthLabel).padRight(10);
-        rootTable.add(healthBar).width(150).height(20);
+        hpIndicator = new PlayerHealthIndicator(uiSkin);
+        //TODO: hpIndicator shouldn't attach itself, change it so that other widgets can use it any way THEY like
+        hpIndicator.attachToTable(rootTable);
 
         // Add the table to the stage
         stage.addActor(rootTable);

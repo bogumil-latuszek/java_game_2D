@@ -3,6 +3,8 @@ package io.github.JavaGame2D;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
@@ -24,6 +26,8 @@ public class PlayScreen implements Screen {
     private LevelManager levelManager;
     private EntityComponentManager entityComponentManager;
     private FileSystem fileSystem;
+    private OrthographicCamera camera;
+    private Vector2 screenSizeInGameUnits;
 
     private PlayerInterface playerInterface;
     private InputSystem inputSystem;
@@ -32,6 +36,7 @@ public class PlayScreen implements Screen {
     private DamageSystem damageSystem;
     private PlayerDeathHandler playerDeathHandler;
     private TeleporterSystem teleporterSystem;
+    private PlayerCameraController cameraController;
 
 
     public PlayScreen(GameManager gameManager){
@@ -44,6 +49,9 @@ public class PlayScreen implements Screen {
         levelManager = gameManager.levelManager;
         entityComponentManager = gameManager.entityComponentManager;
         fileSystem = gameManager.fileSystem;
+        camera = gameManager.camera;
+        screenSizeInGameUnits = gameManager.screenSizeInGameUnits;
+
 
         // create HUD stage
         // ... add your health bar, score labels ...
@@ -62,6 +70,8 @@ public class PlayScreen implements Screen {
         damageSystem = new DamageSystem(entityComponentManager);
         playerDeathHandler = new PlayerDeathHandler();
         teleporterSystem = new TeleporterSystem(entityComponentManager);
+        cameraController = new PlayerCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y, entityComponentManager);
+
 
         levelManager.loadLevel(1);
 
@@ -88,6 +98,7 @@ public class PlayScreen implements Screen {
             damageSystem.update(delta);
             physicsSystem.update(delta);
             animationSystem.update(delta);
+            cameraController.update();
 
             playerDeathHandler.update(delta);
         }
@@ -111,7 +122,7 @@ public class PlayScreen implements Screen {
     public void resize(int width, int height) {
         inGameHUD.resizeViewport(width, height, true);
         gameOverlay.getViewport().update(width, height, true);
-        this.renderingSystem.resizeViewport(width, height); //Should it be "this"? I sense a discrepency between Screen and GameManager
+        cameraController.resizeViewport(width, height);
     }
 
     @Override

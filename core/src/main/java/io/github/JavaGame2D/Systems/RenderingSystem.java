@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.ComponentSignatures;
@@ -17,30 +18,23 @@ import java.util.HashMap;
 
 public class RenderingSystem {
     private SpriteBatch worldBatch;
-    //private SpriteBatch userInterfaceBatch;
     private EntityComponentManager entityComponentManager;
     private int signature;
-    private StalkingCamera stalkingCamera;
-    private OrthographicCamera uiCamera;
+
     private Texture missingTexture;
     private HashMap<Integer, Texture> textureIDtoTexture;
     private HashMap<Integer, String> textureIDtoTexturePath;
-    //private UserInterface userInterface;
-    private Vector2 cameraViewSizeInGameUnits = new Vector2(14f, 9.8f);
 
-    public RenderingSystem(EntityComponentManager entityComponentManager){
+    private OrthographicCamera camera;
+
+    public RenderingSystem(EntityComponentManager entityComponentManager, OrthographicCamera camera){
         worldBatch = new SpriteBatch();
-        //userInterfaceBatch = new SpriteBatch();
         this.entityComponentManager = entityComponentManager;
-        stalkingCamera = new StalkingCamera(cameraViewSizeInGameUnits.x, cameraViewSizeInGameUnits.y);
-        uiCamera = new OrthographicCamera();
-        uiCamera.setToOrtho(false, cameraViewSizeInGameUnits.x, cameraViewSizeInGameUnits.y);
-        EventBus.getInstance().subscribe(PlayerIDChanged.class, this::handlePlayerIDChanged);
         textureIDtoTexture = new HashMap<>();
         textureIDtoTexturePath = new HashMap<>();
         missingTexture = new Texture("missingTexture.png");
         loadTextureIDToTexturePathMapping();
-        //this.userInterface = userInterface;
+        this.camera = camera;
     }
 
     public void loadTextureIDToTexturePathMapping(){
@@ -52,10 +46,6 @@ public class RenderingSystem {
         textureIDtoTexturePath.put(5, "health_bar.png");
         textureIDtoTexturePath.put(6, "health_bar_frame.png");
         textureIDtoTexturePath.put(7, "crate.png");
-    }
-
-    public void handlePlayerIDChanged(PlayerIDChanged event){
-        setEntityFollowedByCamera(event.playerEntityID);
     }
 
     public Texture getTexture(int textureID){
@@ -78,17 +68,11 @@ public class RenderingSystem {
         return texture;
     }
 
-    public void setEntityFollowedByCamera(int entityID){
-        TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
-        this.stalkingCamera.followTransformComponent(transformComponent);
-    }
-
     public void render(){
         //clear screen
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
 
-        stalkingCamera.update();
-        worldBatch.setProjectionMatrix(stalkingCamera.getProjectionMatrix());
+        worldBatch.setProjectionMatrix(this.getProjectionMatrix(this.camera));
 
         worldBatch.begin();
 
@@ -150,12 +134,6 @@ public class RenderingSystem {
             }
         }
         worldBatch.end();
-
-        //draw User Interface
-//        userInterfaceBatch.setProjectionMatrix(uiCamera.combined);
-//        userInterfaceBatch.begin();
-//        this.drawHpBar();
-//        userInterfaceBatch.end();
     }
 
     private void drawDrawable(SpriteBatch spriteBatch, Drawable drawable, Vector2 center, float width, float height){
@@ -211,13 +189,12 @@ public class RenderingSystem {
         // spriteBatch.draw(texture, position.x, position.y, width, height);
     }
 
-    public void resizeViewport(int width, int height){
-        this.stalkingCamera.resizeViewport(width, height);
-    }
-
     public void dispose(){
         worldBatch.dispose();
-        //userInterfaceBatch.dispose();
+    }
+
+    public Matrix4 getProjectionMatrix(OrthographicCamera orthographicCamera){
+        return orthographicCamera.combined;
     }
 
 //    private void drawHpBar(){

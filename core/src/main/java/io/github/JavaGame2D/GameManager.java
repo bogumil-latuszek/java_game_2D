@@ -1,6 +1,7 @@
 package io.github.JavaGame2D;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
@@ -16,6 +17,8 @@ public class GameManager extends Game {
     LevelManager levelManager;
     EntityComponentManager entityComponentManager;
     FileSystem fileSystem;
+    OrthographicCamera camera;
+    Vector2 screenSizeInGameUnits = new Vector2(14f, 9.8f);
 
     public GameManager(GameMode mode){
         gameMode = mode;
@@ -40,11 +43,12 @@ public class GameManager extends Game {
         gameSettings = new GameSettings();
         gameSettings = gameSettings.loadSettings();
         gameSettings.saveSettings();
+        camera = new OrthographicCamera();
 
         fileSystem = new FileSystem();
         entityComponentManager = new EntityComponentManager();
 
-        renderingSystem = new RenderingSystem(entityComponentManager);
+        renderingSystem = new RenderingSystem(entityComponentManager, camera);
         physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
         levelManager = new LevelManager(fileSystem,entityComponentManager);
     }

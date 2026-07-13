@@ -11,6 +11,7 @@ public class EditorCameraController implements InputProcessor {
     private ExtendViewport viewport;
     private boolean isDragging = false;
     private int lastScreenX, lastScreenY;
+    float cameraSpeedModifier = 0.01f;
 
     public EditorCameraController(OrthographicCamera camera, float minWorldWidth, float minWorldHeight) {
         this.camera = camera;
@@ -49,7 +50,7 @@ public class EditorCameraController implements InputProcessor {
             // Apply movement to the camera.
             // We multiply by camera.zoom so that the pan speed feels "natural"
             // at different zoom levels (dragging 1 pixel = 1 world unit * zoom).
-            camera.translate(-deltaX * camera.zoom*0.01f, deltaY * camera.zoom*0.01f);
+            camera.translate(-deltaX * camera.zoom*cameraSpeedModifier, deltaY * camera.zoom*cameraSpeedModifier);
 
             // Update the last known position
             lastScreenX = screenX;

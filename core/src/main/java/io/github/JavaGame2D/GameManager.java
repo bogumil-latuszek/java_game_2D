@@ -34,8 +34,14 @@ public class GameManager extends Game {
         //legacyCreateLevels();
 
         levelManager.loadLevel(1);
-
-        setScreen(new PlayScreen(this));
+        switch (gameMode){
+            case STANDARD_GAMEPLAY:
+                setScreen(new PlayScreen(this));
+                break;
+            case LEVEL_EDIT:
+                setScreen(new EditScreen(this));
+                break;
+        }
     }
 
 

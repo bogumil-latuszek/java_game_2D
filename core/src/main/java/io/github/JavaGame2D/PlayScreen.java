@@ -20,6 +20,7 @@ public class PlayScreen implements Screen {
     private Stage gameOverlay; // handles and draws menu, dialogue, inventory, etc.
     private boolean isPaused = false;
 
+    // shared systems
     private RenderingSystem renderingSystem;
     private PhysicsSystem physicsSystem;
     private GameSettings gameSettings;
@@ -29,6 +30,7 @@ public class PlayScreen implements Screen {
     private OrthographicCamera camera;
     private Vector2 screenSizeInGameUnits;
 
+    // play-only systems
     private PlayerInterface playerInterface;
     private InputSystem inputSystem;
     private PlayerCharacterController playerCharacterController;

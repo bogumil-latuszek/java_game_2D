@@ -1,9 +1,11 @@
 package io.github.JavaGame2D;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 public class EditorCameraController implements InputProcessor {
@@ -15,6 +17,8 @@ public class EditorCameraController implements InputProcessor {
     private static final float ZOOM_SPEED = 1.15f; // Multiplier per scroll step
     private static final float MIN_ZOOM = 0.05f;   // 5% zoom (very close)
     private static final float MAX_ZOOM = 20.0f;   // 2000% zoom (very far)
+    // Temporary vector for math operations (avoid GC)
+    private final Vector3 mouseWorldPos = new Vector3();
 
     // Drag settings
     private boolean isDragging = false;
@@ -71,6 +75,46 @@ public class EditorCameraController implements InputProcessor {
         return false;
     }
 
+    @Override
+    public boolean scrolled(float amountX, float amountY) {
+        // amountY > 0 = scroll UP (zoom in)
+        // amountY < 0 = scroll DOWN (zoom out)
+        float newZoom = camera.zoom;
+
+        if (amountY < 0) {
+            // --- ZOOM IN: Toward the mouse cursor ---
+            // 1. Store the world position under the mouse BEFORE zooming
+            mouseWorldPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(mouseWorldPos);
+
+            // 2. Apply zoom in
+            newZoom = camera.zoom / ZOOM_SPEED;
+            newZoom = MathUtils.clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
+            camera.zoom = newZoom;
+            camera.update();
+
+            // 3. Calculate the new world position under the mouse AFTER zooming
+            Vector3 newMouseWorldPos = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            camera.unproject(newMouseWorldPos);
+
+            // 4. Pan the camera to keep the original mouse world position fixed
+            camera.translate(
+                mouseWorldPos.x - newMouseWorldPos.x,
+                mouseWorldPos.y - newMouseWorldPos.y
+            );
+            camera.update();
+
+        } else if (amountY > 0) {
+            // --- ZOOM OUT: Centered ---
+            newZoom = camera.zoom * ZOOM_SPEED;
+            newZoom = MathUtils.clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
+            camera.zoom = newZoom;
+            camera.update();
+        }
+
+        return true; // Consume the event
+    }
+
     public void resizeViewport(int width, int height){
         this.viewport.update(width,height);
     }
@@ -98,27 +142,5 @@ public class EditorCameraController implements InputProcessor {
     @Override
     public boolean mouseMoved(int screenX, int screenY) {
         return false;
-    }
-
-    @Override
-    public boolean scrolled(float amountX, float amountY) {
-        // amountY > 0 = scroll UP (zoom in)
-        // amountY < 0 = scroll DOWN (zoom out)
-        float newZoom = camera.zoom;
-
-        if (amountY > 0) {
-            newZoom = newZoom * ZOOM_SPEED; // Zoom in (smaller number = closer)
-        } else if (amountY < 0) {
-            newZoom = newZoom / ZOOM_SPEED; // Zoom out (larger number = farther)
-        }
-
-        // Clamp to prevent extreme zoom values
-        newZoom = MathUtils.clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
-
-        // Apply and update
-        camera.zoom = newZoom;
-        camera.update();
-
-        return true; // Consume the event
     }
 }

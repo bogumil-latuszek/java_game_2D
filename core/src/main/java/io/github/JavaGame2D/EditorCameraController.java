@@ -107,9 +107,9 @@ public class EditorCameraController implements InputProcessor {
         float newZoom = camera.zoom;
 
         if (amountY > 0) {
-            newZoom = newZoom / ZOOM_SPEED; // Zoom in (smaller number = closer)
+            newZoom = newZoom * ZOOM_SPEED; // Zoom in (smaller number = closer)
         } else if (amountY < 0) {
-            newZoom = newZoom * ZOOM_SPEED; // Zoom out (larger number = farther)
+            newZoom = newZoom / ZOOM_SPEED; // Zoom out (larger number = farther)
         }
 
         // Clamp to prevent extreme zoom values

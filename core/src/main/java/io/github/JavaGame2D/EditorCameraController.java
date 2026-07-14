@@ -3,12 +3,20 @@ package io.github.JavaGame2D;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 public class EditorCameraController implements InputProcessor {
 
     private OrthographicCamera camera;
     private ExtendViewport viewport;
+
+    // Zoom settings
+    private static final float ZOOM_SPEED = 1.15f; // Multiplier per scroll step
+    private static final float MIN_ZOOM = 0.05f;   // 5% zoom (very close)
+    private static final float MAX_ZOOM = 20.0f;   // 2000% zoom (very far)
+
+    // Drag settings
     private boolean isDragging = false;
     private int lastScreenX, lastScreenY;
     float cameraSpeedModifier = 0.01f;
@@ -94,6 +102,23 @@ public class EditorCameraController implements InputProcessor {
 
     @Override
     public boolean scrolled(float amountX, float amountY) {
-        return false;
+        // amountY > 0 = scroll UP (zoom in)
+        // amountY < 0 = scroll DOWN (zoom out)
+        float newZoom = camera.zoom;
+
+        if (amountY > 0) {
+            newZoom = newZoom / ZOOM_SPEED; // Zoom in (smaller number = closer)
+        } else if (amountY < 0) {
+            newZoom = newZoom * ZOOM_SPEED; // Zoom out (larger number = farther)
+        }
+
+        // Clamp to prevent extreme zoom values
+        newZoom = MathUtils.clamp(newZoom, MIN_ZOOM, MAX_ZOOM);
+
+        // Apply and update
+        camera.zoom = newZoom;
+        camera.update();
+
+        return true; // Consume the event
     }
 }

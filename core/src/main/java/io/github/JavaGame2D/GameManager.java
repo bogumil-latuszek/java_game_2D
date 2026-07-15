@@ -59,6 +59,19 @@ public class GameManager extends Game {
         levelManager = new LevelManager(fileSystem,entityComponentManager);
     }
 
+    public void switchToDifferentGameMode(GameMode gameMode){
+        switch (gameMode){
+            case LEVEL_EDIT:
+                this.setScreen(new EditScreen(this));
+                break;
+            case STANDARD_GAMEPLAY:
+                this.setScreen(new PlayScreen(this));
+                break;
+            default:
+                break;
+        }
+    }
+
     private void legacyCreateLevels(){
         // TODO: add migrations so that this method becomes a fallback option, not the main way to update levels after major changes to component structure
         // LEVEL 1

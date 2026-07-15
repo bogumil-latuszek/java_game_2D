@@ -1,12 +1,14 @@
 package io.github.JavaGame2D;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
 
 public class EditScreen implements Screen {
@@ -74,8 +76,17 @@ public class EditScreen implements Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
+    // this function may be called "render"
+    // but this is actually one frame of our main loop
     @Override
     public void render(float delta) {
+
+        // --- SWITCH TO PLAY MODE ---
+        if (Gdx.input.isKeyJustPressed(Input.Keys.F4)) {
+            gameManager.switchToDifferentGameMode(GameMode.STANDARD_GAMEPLAY);
+            return; // Stop processing this frame (screen will be replaced)
+        }
+
         // Render Game World
         renderingSystem.render();
 

@@ -89,8 +89,17 @@ public class PlayScreen implements Screen {
         Gdx.input.setInputProcessor(multiplexer);
     }
 
+    // this function may be called "render"
+    // but this is actually one frame of our main loop
     @Override
     public void render(float delta) {
+
+        // --- SWITCH TO EDIT MODE ---
+        if (Gdx.input.isKeyJustPressed(Input.Keys.F4)) {
+            gameManager.switchToDifferentGameMode(GameMode.LEVEL_EDIT);
+            return; // Stop processing this frame (screen will be replaced)
+        }
+
         if (!isPaused){
             // update Game World
             inputSystem.update();

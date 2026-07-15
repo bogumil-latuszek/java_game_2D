@@ -17,6 +17,7 @@ public class PlayerCameraController{
         this.viewport = new ExtendViewport(minWorldWidth,minWorldHeight, camera);
         this.entityComponentManager = entityComponentManager;
         EventBus.getInstance().subscribe(PlayerIDChanged.class, this::handlePlayerIDChanged);
+        this.camera.zoom = 1f; //reset camera zoom that may have changed in Editor Mode
     }
 
     private void handlePlayerIDChanged(PlayerIDChanged event){

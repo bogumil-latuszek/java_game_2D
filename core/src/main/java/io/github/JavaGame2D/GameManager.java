@@ -33,7 +33,8 @@ public class GameManager extends Game {
 
         //legacyCreateLevels();
 
-        levelManager.loadLevel(1);
+        levelManager.changeCurrentLevel(1);
+
         switch (gameMode){
             case STANDARD_GAMEPLAY:
                 setScreen(new PlayScreen(this));

@@ -8,6 +8,7 @@ import io.github.JavaGame2D.Events.FinishedLoadingLevelEvent;
 import io.github.JavaGame2D.Events.LoadingNewLevelEvent;
 import io.github.JavaGame2D.Events.PlayerIDChanged;
 import io.github.JavaGame2D.Events.TeleportPlayerEvent;
+import io.github.JavaGame2D.Events.PlayerHpChanged;
 import io.github.JavaGame2D.Level;
 
 import java.util.HashMap;
@@ -21,6 +22,7 @@ public class LevelManager {
     private FileSystem fileSystem;
     EntityComponentManager entityComponentManager;
     TeleportPlayerEvent teleportEventToResolve;
+    private int playerID = -1; // -1 for null
 
     public LevelManager(FileSystem fileSystem, EntityComponentManager entityComponentManager) {
         this.fileSystem = fileSystem;
@@ -70,9 +72,22 @@ public class LevelManager {
         this.defaultSpawnPoint = level.defaultSpawnPointID;
         this.spawnPointIDtoPosition = level.validSpawnPoints;
         // load Player?
+//        Vector2 playerSpawnPosition = this.spawnPointIDtoPosition.get(defaultSpawnPoint);
+//        int playerID = entityComponentManager.createPlayer(playerSpawnPosition);
+//        EventBus.getInstance().publish(new PlayerIDChanged(playerID));
+    }
+
+    public void loadPlayer(){
         Vector2 playerSpawnPosition = this.spawnPointIDtoPosition.get(defaultSpawnPoint);
-        int playerID = entityComponentManager.createPlayer(playerSpawnPosition);
-        EventBus.getInstance().publish(new PlayerIDChanged(playerID));
+        this.playerID = entityComponentManager.createPlayer(playerSpawnPosition);
+        triggerPlayerDataUpdate();
+    }
+
+    public void triggerPlayerDataUpdate(){
+        // Update existing player-oriented systems about player character's ID and Health change
+        EventBus.getInstance().publish(new PlayerIDChanged(this.playerID));
+        HealthComponent playerHealth = entityComponentManager.getComponent(HealthComponent.class, playerID);
+        EventBus.getInstance().publish(new PlayerHpChanged(playerHealth.currentHp,playerHealth.maxHp));
     }
 
     public void saveLevel (int levelID){
@@ -100,6 +115,8 @@ public class LevelManager {
         // #1 unload current level?
         // #2 load new level
         loadLevel(newLevelID);
+        // #3 load Player
+        loadPlayer();
         // #4 publish an Event "finished loading level"
         EventBus.getInstance().publish(new FinishedLoadingLevelEvent());
     }
@@ -110,7 +127,7 @@ public class LevelManager {
 
     public void handleTeleportEvent(TeleportPlayerEvent event){
         this.teleportEventToResolve = event;
-        int newLevelID = event.targetLevelID;
-        changeCurrentLevel(newLevelID);
+//        int newLevelID = event.targetLevelID;
+//        changeCurrentLevel(newLevelID);
     }
 }

@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
 import io.github.JavaGame2D.UserInterface.GameHUD;
+import com.badlogic.gdx.Input;
 
 public class PlayScreen implements Screen {
 
@@ -74,9 +75,8 @@ public class PlayScreen implements Screen {
         teleporterSystem = new TeleporterSystem(entityComponentManager);
         cameraController = new PlayerCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y, entityComponentManager);
 
-
-        levelManager.loadLevel(1);
-
+        // Update newly created player-oriented systems about existing player character's ID and Health
+        levelManager.triggerPlayerDataUpdate();
     }
 
     @Override

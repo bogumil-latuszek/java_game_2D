@@ -33,7 +33,7 @@ public class PlayScreen implements Screen {
 
     // play-only systems
     private PlayerInterface playerInterface;
-    private InputSystem inputSystem;
+    private PlayerInputSystem playerInputSystem;
     private PlayerCharacterController playerCharacterController;
     private AnimationSystem animationSystem;
     private DamageSystem damageSystem;
@@ -69,7 +69,7 @@ public class PlayScreen implements Screen {
         playerInterface = new PlayerInterface();
         playerCharacterController = new PlayerCharacterController(entityComponentManager);
         animationSystem = new AnimationSystem(entityComponentManager, fileSystem, playerCharacterController);
-        inputSystem = new InputSystem();
+        playerInputSystem = new PlayerInputSystem();
         damageSystem = new DamageSystem(entityComponentManager);
         playerDeathHandler = new PlayerDeathHandler();
         teleporterSystem = new TeleporterSystem(entityComponentManager);
@@ -102,7 +102,7 @@ public class PlayScreen implements Screen {
 
         if (!isPaused){
             // update Game World
-            inputSystem.update();
+            playerInputSystem.update();
             playerCharacterController.update(delta);
             playerInterface.update(delta);
 

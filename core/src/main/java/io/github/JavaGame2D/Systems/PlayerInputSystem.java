@@ -9,13 +9,13 @@ import io.github.JavaGame2D.Events.PlayerActionEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class InputSystem {
+public class PlayerInputSystem {
     private boolean space_previously_pressed;
     // could be good idea to separate it further into KeyPressedBindings, and KeyReleasedBindings
     private HashMap<Integer, PlayerAction> keyToActionBindings;
     private HashMap<PlayerAction, Integer> actionToKeyBindings;
 
-    public InputSystem(){
+    public PlayerInputSystem(){
         keyToActionBindings = new HashMap<>();
         actionToKeyBindings = new HashMap<>();
         addBinding(Input.Keys.D, PlayerAction.GO_RIGHT);

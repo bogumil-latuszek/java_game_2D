@@ -1,4 +1,4 @@
-package io.github.JavaGame2D;
+package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;

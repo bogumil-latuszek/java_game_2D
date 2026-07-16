@@ -1,9 +1,9 @@
-package io.github.JavaGame2D;
+package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerIDChanged;
-import io.github.JavaGame2D.Systems.EntityComponentManager;
 
 public class PlayerCameraController{
 

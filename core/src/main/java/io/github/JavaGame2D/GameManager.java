@@ -1,8 +1,10 @@
 package io.github.JavaGame2D;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
 
@@ -20,6 +22,8 @@ public class GameManager extends Game {
     OrthographicCamera camera;
     Vector2 screenSizeInGameUnits = new Vector2(14f, 9.8f);
 
+    RuntimeDataOverlay runtimeDataOverlay;
+
     public GameManager(GameMode mode){
         gameMode = mode;
         System.out.println("starting game in mode: "+gameMode);
@@ -30,6 +34,9 @@ public class GameManager extends Game {
     public void create() {
 
         initializeSharedSystems();
+
+        Skin uiskin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+        runtimeDataOverlay = new RuntimeDataOverlay(uiskin);
 
         //legacyCreateLevels();
 

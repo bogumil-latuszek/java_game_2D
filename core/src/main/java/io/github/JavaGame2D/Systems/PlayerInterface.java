@@ -5,18 +5,18 @@ import io.github.JavaGame2D.Events.PlayerHpChanged;
 
 public class PlayerInterface {
 
-    public FPSCounter fpsCounter;
+    //public FPSCounter fpsCounter;
     public HpBar hpBar;
 
     public PlayerInterface(){
-        fpsCounter = new FPSCounter();
+        //fpsCounter = new FPSCounter();
         hpBar = new HpBar(100);
         EventBus.getInstance().subscribe(PlayerHpChanged.class, this::handlePlayerHPChange);
     }
 
     public void update(float deltaTimeInSeconds){
         float deltaTimeInMilliseconds = deltaTimeInSeconds * 1000;
-        fpsCounter.update(deltaTimeInMilliseconds);
+        //fpsCounter.update(deltaTimeInMilliseconds);
     }
 
     public void handlePlayerHPChange(PlayerHpChanged event){
@@ -26,10 +26,10 @@ public class PlayerInterface {
 
     //TODO: outsource rendering to rendering system
     public void render(){
-        fpsCounter.render();
+//        fpsCounter.render();
     }
 
     public void dispose(){
-        fpsCounter.dispose();
+//        fpsCounter.dispose();
     }
 }

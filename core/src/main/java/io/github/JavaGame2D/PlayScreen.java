@@ -125,6 +125,9 @@ public class PlayScreen implements Screen {
         gameOverlay.act(delta);
         gameOverlay.draw();
 
+        gameManager.runtimeDataOverlay.update(delta);
+        gameManager.runtimeDataOverlay.render();
+
         // Load new level if changed
         levelManager.loadLevelIfChanged();
     }
@@ -134,6 +137,7 @@ public class PlayScreen implements Screen {
         inGameHUD.resizeViewport(width, height, true);
         gameOverlay.getViewport().update(width, height, true);
         cameraController.resizeViewport(width, height);
+        gameManager.runtimeDataOverlay.resizeViewport(width, height, true);
     }
 
     @Override

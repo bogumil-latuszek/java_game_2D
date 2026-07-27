@@ -55,6 +55,14 @@ configure(subprojects) {
 }
 
 subprojects {
+
+  // use JDK v17 for all subprojects
+  java {
+    toolchain {
+      languageVersion = JavaLanguageVersion.of(17)
+    }
+  }
+
   version = "$projectVersion"
   ext.appName = 'JavaGame2D'
   repositories {

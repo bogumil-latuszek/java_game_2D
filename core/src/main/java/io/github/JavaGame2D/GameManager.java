@@ -14,6 +14,7 @@ public class GameManager extends Game {
     GameMode gameMode;
 
     RenderingSystem renderingSystem;
+    TextureManager textureManager;
     PhysicsSystem physicsSystem;
     GameSettings gameSettings;
     LevelManager levelManager;
@@ -59,8 +60,9 @@ public class GameManager extends Game {
         fileSystem = new FileSystem();
         gameSettings = fileSystem.loadGameSettings();
         entityComponentManager = new EntityComponentManager();
+        textureManager = new TextureManager();
 
-        renderingSystem = new RenderingSystem(entityComponentManager, camera);
+        renderingSystem = new RenderingSystem(entityComponentManager, camera, textureManager);
         physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
         levelManager = new LevelManager(fileSystem,entityComponentManager);
     }

@@ -18,52 +18,17 @@ import java.util.HashMap;
 public class RenderingSystem {
     private SpriteBatch worldBatch;
     private EntityComponentManager entityComponentManager;
+    private TextureManager textureManager;
 
-    private Texture missingTexture;
-    private HashMap<Integer, Texture> textureIDtoTexture;
-    private HashMap<Integer, String> textureIDtoTexturePath;
+
 
     private OrthographicCamera camera;
 
-    public RenderingSystem(EntityComponentManager entityComponentManager, OrthographicCamera camera){
+    public RenderingSystem(EntityComponentManager entityComponentManager, OrthographicCamera camera, TextureManager textureManager){
         worldBatch = new SpriteBatch();
         this.entityComponentManager = entityComponentManager;
-        textureIDtoTexture = new HashMap<>();
-        textureIDtoTexturePath = new HashMap<>();
-        missingTexture = new Texture("missingTexture.png");
-        loadTextureIDToTexturePathMapping();
+        this.textureManager = textureManager;
         this.camera = camera;
-    }
-
-    public void loadTextureIDToTexturePathMapping(){
-        textureIDtoTexturePath.put(0,"tile.png");
-        textureIDtoTexturePath.put(1,"playerSprite.png");
-        textureIDtoTexturePath.put(2,"teleporter.png");
-        textureIDtoTexturePath.put(3, "YOU_WIN!!!.png");
-        textureIDtoTexturePath.put(4, "spikes.png");
-        textureIDtoTexturePath.put(5, "health_bar.png");
-        textureIDtoTexturePath.put(6, "health_bar_frame.png");
-        textureIDtoTexturePath.put(7, "crate.png");
-    }
-
-    public Texture getTexture(int textureID){
-        if(this.textureIDtoTexture.containsKey(textureID)){
-            return textureIDtoTexture.get(textureID);
-        }
-        if(this.textureIDtoTexturePath.containsKey(textureID)){
-            String texturePath = textureIDtoTexturePath.get(textureID);
-            System.out.println("texture:"+ textureID+" loaded");
-            Texture textureLoaded = loadTexture(texturePath);
-            textureIDtoTexture.put(textureID, textureLoaded);
-            return textureLoaded;
-        }
-        return missingTexture;
-    }
-
-    public Texture loadTexture(String texturePath){
-        Texture texture = new Texture(texturePath);
-        texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
-        return texture;
     }
 
     public void renderGameWorld(){
@@ -118,7 +83,7 @@ public class RenderingSystem {
         boolean mirrorVertical = sprite.mirrorVertical;
         boolean mirrorHorizontal = sprite.mirrorHorizontal;
 
-        Texture texture = getTexture(textureID);
+        Texture texture = textureManager.getTexture(textureID);
 
         // this system needs x,y coords of the lower left corner, not center!
         Vector2 lowerLeftCorner = new Vector2(center.x-sprite.width/2, center.y-sprite.height/2);

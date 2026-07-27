@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
+import io.github.JavaGame2D.Components.SegmentedDrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.SpriteData;
 
@@ -17,7 +18,6 @@ import java.util.HashMap;
 public class RenderingSystem {
     private SpriteBatch worldBatch;
     private EntityComponentManager entityComponentManager;
-    private int signature;
 
     private Texture missingTexture;
     private HashMap<Integer, Texture> textureIDtoTexture;
@@ -90,90 +90,77 @@ public class RenderingSystem {
             TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
             DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
 
-            if (drawableComponent.drawableSegments.isEmpty()){
-                int textureID = drawableComponent.textureID;
-                Texture texture = getTexture(textureID);
-                float centerX = transformComponent.position.x;
-                float centerY = transformComponent.position.y;
-                float width = transformComponent.width;
-                float height = transformComponent.height;
-                // this system needs x,y coords of the lower left corner, not center!
-                Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
-
-                if (drawableComponent.tiledTexture){
-                    texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
-                    texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
-
-                    float ppu = 32f; // pixel per world unit
-                    int totalPixelWidth = (int)(width * ppu);
-                    int totalPixelHeight = (int)(height * ppu);
-
-                    TextureRegion tiledRegion = new TextureRegion(texture);
-                    tiledRegion.setRegion(0, 0, totalPixelWidth, totalPixelHeight);
-
-                    worldBatch.draw(tiledRegion,lowerLeftCorner.x, lowerLeftCorner.y, width, height);
-                }
-                else{
-                    worldBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
-                }
+            if (drawableComponent.hasSegmentedBody){
+                SegmentedDrawableComponent segmentedDrawable = entityComponentManager.getComponent(SegmentedDrawableComponent.class, entityID);
+                // used for big bosses, player, some enemies, etc.
+                this.drawSegments(worldBatch, segmentedDrawable, transformComponent.position);
             }
             else{
-                for (Drawable segment: drawableComponent.drawableSegments.values()){
-//                    float centerX = transformComponent.position.x;
-//                    float centerY = transformComponent.position.y;
-                    Vector2 center = transformComponent.position;
-                    float width = transformComponent.width;
-                    float height = transformComponent.height;
-                    // this system needs x,y coords of the lower left corner, not center!
-                   // Vector2 lowerLeftCorner = new Vector2(centerX-width/2, centerY-height/2);
-                    if (!segment.usesTransformWidth && !segment.usesTransformHeight){
-                        drawDrawable(worldBatch, segment, center);
-                    }
-                    else{
-                        drawDrawable(worldBatch, segment, center, width, height);
-                    }
-                }
+                // used for platforms, simple enemies, items, obstacles, background setpieces, etc.
+                this.drawSprite(worldBatch, drawableComponent.spriteData, transformComponent.position);
             }
         }
         worldBatch.end();
     }
 
-    private void drawDrawable(SpriteBatch spriteBatch, Drawable drawable, Vector2 center, float width, float height){
-        Texture texture = drawable.texture;
-        if (texture == null){
-            texture = missingTexture;
+    private void drawSegments(SpriteBatch spriteBatch, SegmentedDrawableComponent segmentedDrawable, Vector2 center){
+        for (SpriteData segment: segmentedDrawable.drawableSegments.values()){
+            drawSprite(worldBatch, segment, center);
         }
-
-        int texturePixelHeight = texture.getHeight();
-        int texturePixelWidth = texture.getWidth();
-        float offsetHeightInUnits = spriteData.offset.y/ spriteData.pixelsPerUnit;
-        float offsetWidthInUnits = spriteData.offset.x/ spriteData.pixelsPerUnit;
-        Vector2 offsetCenter = new Vector2(center.x+offsetWidthInUnits, center.y+offsetHeightInUnits);
-        //SpriteBatch.draw() draws from lower left corner, so correction is needed:
-        Vector2 lowerLeftCorner = new Vector2(offsetCenter.x-width/2, center.y-height/2);
-
-        boolean mirrorVertical = spriteData.mirrorVertical;
-        boolean mirrorHorizontal = spriteData.mirrorHorizontal;
-        //draw (Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
-        spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
-       // spriteBatch.draw(texture, position.x, position.y, width, height);
     }
 
-    private void drawDrawable(SpriteBatch spriteBatch, Drawable drawable, Vector2 center){
-        Texture texture = drawable.texture;
-        if (texture == null){
-            texture = missingTexture;
+    private void drawSprite(SpriteBatch spriteBatch, SpriteData sprite, Vector2 center){
+        this.drawSprite(spriteBatch, sprite, center, false);
+    }
+
+    private void drawSprite(SpriteBatch spriteBatch, SpriteData sprite, Vector2 center, boolean drawOutline){
+        int textureID = sprite.textureID;
+        boolean mirrorVertical = sprite.mirrorVertical;
+        boolean mirrorHorizontal = sprite.mirrorHorizontal;
+
+        Texture texture = getTexture(textureID);
+
+        // this system needs x,y coords of the lower left corner, not center!
+        Vector2 lowerLeftCorner = new Vector2(center.x-sprite.width/2, center.y-sprite.height/2);
+
+        // draw Sprite's texture
+        if (sprite.textureIsTiled){
+            drawTiledTexture(spriteBatch, texture, 32f, sprite.width, sprite.height, lowerLeftCorner);
         }
+        else{
+            drawTexture(spriteBatch, texture, 32f, sprite.offset, center, mirrorHorizontal, mirrorVertical);
+            //spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, sprite.width, sprite.height);
+        }
+
+        // *optional: draw texture outline (used in edit mode)
+        if (drawOutline){
+            // draw outline
+        }
+    }
+
+    private void drawTiledTexture(SpriteBatch spriteBatch, Texture texture, float pixelsPerWorldUnit,  float width, float height, Vector2 lowerLeftCorner){
+        texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
+        texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+
+        int totalPixelWidth = (int)(width * pixelsPerWorldUnit);
+        int totalPixelHeight = (int)(height * pixelsPerWorldUnit);
+
+        TextureRegion tiledRegion = new TextureRegion(texture);
+        tiledRegion.setRegion(0, 0, totalPixelWidth, totalPixelHeight);
+
+        // TODO: check how to add mirroring
+        spriteBatch.draw(tiledRegion,lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+    }
+
+    private void drawTexture(SpriteBatch spriteBatch, Texture texture, float pixelsPerUnit, Vector2 offset, Vector2 center, boolean mirrorHorizontal, boolean mirrorVertical){
 
         int texturePixelHeight = texture.getHeight();
         int texturePixelWidth = texture.getWidth();
-        float textureUnitHeight = ((float)texturePixelHeight)/ spriteData.pixelsPerUnit;
-        float textureUnitWidth = ((float)texturePixelWidth)/ spriteData.pixelsPerUnit;
-        float offsetHeightInUnits = spriteData.offset.y/ spriteData.pixelsPerUnit;
-        float offsetWidthInUnits = spriteData.offset.x/ spriteData.pixelsPerUnit;
+        float textureUnitHeight = ((float)texturePixelHeight)/ pixelsPerUnit;
+        float textureUnitWidth = ((float)texturePixelWidth)/ pixelsPerUnit;
+        float offsetHeightInUnits = offset.y/ pixelsPerUnit;
+        float offsetWidthInUnits = offset.x/ pixelsPerUnit;
 
-        boolean mirrorVertical = spriteData.mirrorVertical;
-        boolean mirrorHorizontal = spriteData.mirrorHorizontal;
         if (mirrorHorizontal){
             offsetHeightInUnits = -offsetHeightInUnits;
         }
@@ -185,10 +172,7 @@ public class RenderingSystem {
         //SpriteBatch.draw() draws from lower left corner, so correction is needed:
         Vector2 lowerLeftCorner = new Vector2(offsetCenter.x-textureUnitWidth/2, center.y-textureUnitHeight/2);
 
-
-        //draw (Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
-        spriteBatch.draw(spriteData.texture, lowerLeftCorner.x, lowerLeftCorner.y, textureUnitWidth, textureUnitHeight, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
-        // spriteBatch.draw(texture, position.x, position.y, width, height);
+        spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, textureUnitWidth, textureUnitHeight, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
     }
 
     public void dispose(){
@@ -198,20 +182,4 @@ public class RenderingSystem {
     public Matrix4 getProjectionMatrix(OrthographicCamera orthographicCamera){
         return orthographicCamera.combined;
     }
-
-//    private void drawHpBar(){
-//        HpBar hpBar = this.userInterface.hpBar;
-//        float current_width = hpBar.width * ((float)hpBar.currentSize/hpBar.maxSize);
-//        float height = hpBar.height;
-//        Vector2 position = hpBar.position;
-//        Vector2 lowerLeftCorner = new Vector2(position.x, position.y);
-//
-//        int hp_bar_id = hpBar.hp_bar_id;
-//        Texture barTexture = getTexture(hp_bar_id);
-//        this.userInterfaceBatch.draw(barTexture, lowerLeftCorner.x, lowerLeftCorner.y, current_width, height);
-//
-//        int hp_bar_frame_id = hpBar.hp_bar_frame_id;
-//        Texture frameTexture = getTexture(hp_bar_frame_id);
-//        this.userInterfaceBatch.draw(frameTexture, lowerLeftCorner.x, lowerLeftCorner.y, hpBar.width, height);
-//    }
 }

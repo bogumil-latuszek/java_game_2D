@@ -93,8 +93,8 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.textureID = 0;
-        drawable.tiledTexture = true;
+        drawable.spriteData.textureID = 0;
+        drawable.spriteData.textureIsTiled = true;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
@@ -122,7 +122,7 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.textureID = 7;
+        drawable.spriteData.textureID = 7;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
@@ -155,10 +155,14 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.textureID = 1;
-        drawable.drawableSegments.put(BodySegmentType.UPPER_BODY,new SpriteData());
+        drawable.hasSegmentedBody = true;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
+
+        SegmentedDrawableComponent segmentedDrawable = new SegmentedDrawableComponent();
+        segmentedDrawable.drawableSegments.put(BodySegmentType.UPPER_BODY,new SpriteData());
+        componentManager.addComponent(SegmentedDrawableComponent.class, segmentedDrawable, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.SEGMENTED_DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
         collider.sizeFromTransform = false;
@@ -212,7 +216,7 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.textureID = 2;
+        drawable.spriteData.textureID = 2;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
@@ -246,7 +250,7 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.textureID = 4;
+        drawable.spriteData.textureID = 4;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
@@ -278,7 +282,7 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.textureID = 3;
+        drawable.spriteData.textureID = 3;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 

@@ -4,7 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Enums.FacingDirection;
 
-public class Drawable{
+// It's called "SpriteData" to avoid confusion with LibGDX's own "Sprite" class
+public class SpriteData {
     public Vector2 offset = new Vector2();
     public Texture texture = null;
     public boolean usesTransformWidth = true;
@@ -18,9 +19,9 @@ public class Drawable{
     public FacingDirection facingDirection = FacingDirection.NONE; // this field should be kept accurate to drawable visual direction
     public int pixelsPerUnit = 1;
 
-    public Drawable(){}
+    public SpriteData(){}
 
-    public Drawable(Texture texture, FacingDirection facingDirection){
+    public SpriteData(Texture texture, FacingDirection facingDirection){
         this.texture = texture;
         this.facingDirection = facingDirection;
     }

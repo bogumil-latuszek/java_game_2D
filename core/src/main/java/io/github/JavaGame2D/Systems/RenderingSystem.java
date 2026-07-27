@@ -10,9 +10,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
-import io.github.JavaGame2D.Drawable;
-import io.github.JavaGame2D.EventBus;
-import io.github.JavaGame2D.Events.PlayerIDChanged;
+import io.github.JavaGame2D.SpriteData;
 
 import java.util.HashMap;
 
@@ -144,14 +142,14 @@ public class RenderingSystem {
 
         int texturePixelHeight = texture.getHeight();
         int texturePixelWidth = texture.getWidth();
-        float offsetHeightInUnits = drawable.offset.y/drawable.pixelsPerUnit;
-        float offsetWidthInUnits = drawable.offset.x/drawable.pixelsPerUnit;
+        float offsetHeightInUnits = spriteData.offset.y/ spriteData.pixelsPerUnit;
+        float offsetWidthInUnits = spriteData.offset.x/ spriteData.pixelsPerUnit;
         Vector2 offsetCenter = new Vector2(center.x+offsetWidthInUnits, center.y+offsetHeightInUnits);
         //SpriteBatch.draw() draws from lower left corner, so correction is needed:
         Vector2 lowerLeftCorner = new Vector2(offsetCenter.x-width/2, center.y-height/2);
 
-        boolean mirrorVertical = drawable.mirrorVertical;
-        boolean mirrorHorizontal = drawable.mirrorHorizontal;
+        boolean mirrorVertical = spriteData.mirrorVertical;
+        boolean mirrorHorizontal = spriteData.mirrorHorizontal;
         //draw (Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
         spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
        // spriteBatch.draw(texture, position.x, position.y, width, height);
@@ -165,13 +163,13 @@ public class RenderingSystem {
 
         int texturePixelHeight = texture.getHeight();
         int texturePixelWidth = texture.getWidth();
-        float textureUnitHeight = ((float)texturePixelHeight)/drawable.pixelsPerUnit;
-        float textureUnitWidth = ((float)texturePixelWidth)/drawable.pixelsPerUnit;
-        float offsetHeightInUnits = drawable.offset.y/drawable.pixelsPerUnit;
-        float offsetWidthInUnits = drawable.offset.x/drawable.pixelsPerUnit;
+        float textureUnitHeight = ((float)texturePixelHeight)/ spriteData.pixelsPerUnit;
+        float textureUnitWidth = ((float)texturePixelWidth)/ spriteData.pixelsPerUnit;
+        float offsetHeightInUnits = spriteData.offset.y/ spriteData.pixelsPerUnit;
+        float offsetWidthInUnits = spriteData.offset.x/ spriteData.pixelsPerUnit;
 
-        boolean mirrorVertical = drawable.mirrorVertical;
-        boolean mirrorHorizontal = drawable.mirrorHorizontal;
+        boolean mirrorVertical = spriteData.mirrorVertical;
+        boolean mirrorHorizontal = spriteData.mirrorHorizontal;
         if (mirrorHorizontal){
             offsetHeightInUnits = -offsetHeightInUnits;
         }
@@ -185,7 +183,7 @@ public class RenderingSystem {
 
 
         //draw (Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
-        spriteBatch.draw(drawable.texture, lowerLeftCorner.x, lowerLeftCorner.y, textureUnitWidth, textureUnitHeight, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
+        spriteBatch.draw(spriteData.texture, lowerLeftCorner.x, lowerLeftCorner.y, textureUnitWidth, textureUnitHeight, 0, 0, texturePixelWidth, texturePixelHeight, mirrorVertical, mirrorHorizontal);
         // spriteBatch.draw(texture, position.x, position.y, width, height);
     }
 

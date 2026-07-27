@@ -1,19 +1,18 @@
 package io.github.JavaGame2D.Systems;
 
-import com.badlogic.gdx.graphics.Texture;
-import io.github.JavaGame2D.Drawable;
+import io.github.JavaGame2D.SpriteData;
 
 public class Animation {
     public boolean looping = true;
     public int framesPerSecond = 30;
-    private final Drawable[] animationFrames;
+    private final SpriteData[] animationFrames;
     int pixelsToUnit = 900;
 
-    public Animation(Drawable[] animationFrames) {
+    public Animation(SpriteData[] animationFrames) {
         this.animationFrames = animationFrames;
     }
 
-    public Drawable getFrameByNumber(int frameNumber){
+    public SpriteData getFrameByNumber(int frameNumber){
         //if number out of bounds, then:
         if(frameNumber >= animationFrames.length){
             if (this.looping){
@@ -26,11 +25,11 @@ public class Animation {
         return animationFrames[frameNumber];
     }
 
-    public Drawable getFrameByDuration(float durationInMilliseconds){
+    public SpriteData getFrameByDuration(float durationInMilliseconds){
         //if number out of bounds, then:
         float durationInSeconds = durationInMilliseconds/1000;
         int frameNumber = (int)(framesPerSecond*durationInSeconds);
-        Drawable animationFrame =  getFrameByNumber(frameNumber);
+        SpriteData animationFrame =  getFrameByNumber(frameNumber);
         animationFrame.pixelsPerUnit = this.pixelsToUnit;
         return animationFrame;
     }

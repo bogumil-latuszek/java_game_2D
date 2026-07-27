@@ -1,10 +1,8 @@
 package io.github.JavaGame2D.Systems;
 
-import com.badlogic.gdx.graphics.Texture;
 import io.github.JavaGame2D.Components.AnimationComponent;
-import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Drawable;
+import io.github.JavaGame2D.SpriteData;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.CharacterType;
@@ -12,7 +10,6 @@ import io.github.JavaGame2D.Enums.FacingDirection;
 import io.github.JavaGame2D.StateMachines.PlayerStateMachine;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 
 public class AnimationSystem {
 
@@ -49,14 +46,14 @@ public class AnimationSystem {
                 AnimationState animationState = currentPlayerState.get(segmentType);
                 AnimationType animationType = animationState.animationType;
                 float durationInMillis = animationState.durationInMilliseconds;
-                Drawable animationFrame = animationManager.getAnimationFrameByDuration(characterType, segmentType, animationType, durationInMillis);
+                SpriteData animationFrame = animationManager.getAnimationFrameByDuration(characterType, segmentType, animationType, durationInMillis);
                 animationFrame = mirrorAnimationFrameIfFacingWrongDirection(animationFrame, animationState.facingDirection);
                 drawableComponent.drawableSegments.put(segmentType, animationFrame);
             }
         }
     }
 
-    private Drawable mirrorAnimationFrameIfFacingWrongDirection(Drawable animationFrame, FacingDirection direction){
+    private SpriteData mirrorAnimationFrameIfFacingWrongDirection(SpriteData animationFrame, FacingDirection direction){
         // instead of having separate frames for left/right, up/down, we're going to mirror existing ones
         // never mirror frames that don't face any direction:
         if (animationFrame.facingDirection != FacingDirection.NONE){

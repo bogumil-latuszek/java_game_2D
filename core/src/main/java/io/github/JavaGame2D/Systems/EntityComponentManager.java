@@ -3,7 +3,7 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
-import io.github.JavaGame2D.Drawable;
+import io.github.JavaGame2D.SpriteData;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.EventBus;
@@ -156,7 +156,7 @@ public class EntityComponentManager {
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 1;
-        drawable.drawableSegments.put(BodySegmentType.UPPER_BODY,new Drawable());
+        drawable.drawableSegments.put(BodySegmentType.UPPER_BODY,new SpriteData());
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 

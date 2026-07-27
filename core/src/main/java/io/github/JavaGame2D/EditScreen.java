@@ -47,20 +47,6 @@ public class EditScreen implements Screen {
         // 1. Set up the Editor UI Stage
         editorStage = new Stage(new ScreenViewport());
 
-        // TEMPORARY: Add a "Back to Play" button
-//        TextButton backBtn = new TextButton("Back to Play", getUISkin());
-//        backBtn.addListener(new ClickListener() {
-//            @Override
-//            public void clicked(InputEvent event, float x, float y) {
-//                game.setScreen(new PlayScreen(game));
-//            }
-//        });
-//        Table table = new Table();
-//        table.setFillParent(true);
-//        table.top().left();
-//        table.add(backBtn);
-//        editorStage.addActor(table);
-
         // 2. Create the camera controller
         cameraController = new EditorCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y);
 
@@ -88,7 +74,7 @@ public class EditScreen implements Screen {
         }
 
         // Render Game World
-        renderingSystem.render();
+        renderingSystem.renderGameWorld();
 
         // Render Editor UI
         editorStage.act(delta);

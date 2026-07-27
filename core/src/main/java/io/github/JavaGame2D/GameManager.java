@@ -54,12 +54,10 @@ public class GameManager extends Game {
 
 
     private void initializeSharedSystems(){
-        gameSettings = new GameSettings();
-        gameSettings = gameSettings.loadSettings();
-        gameSettings.saveSettings();
         camera = new OrthographicCamera();
 
         fileSystem = new FileSystem();
+        gameSettings = fileSystem.loadGameSettings();
         entityComponentManager = new EntityComponentManager();
 
         renderingSystem = new RenderingSystem(entityComponentManager, camera);

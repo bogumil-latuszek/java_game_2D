@@ -29,6 +29,30 @@ import java.io.IOException;
 
 public class FileSystem {
 
+    public GameSettings loadGameSettings(){
+        if (!Gdx.files.local("game_settings.json").exists()) {
+            GameSettings gameSettings = new GameSettings();
+            this.saveGameSettings(gameSettings);
+            return gameSettings; // Return defaults if no save file
+        }
+
+        String jsonText = Gdx.files.local("game_settings.json").readString();
+        return json.fromJson(GameSettings.class, jsonText); // Convert back to object
+    }
+
+    public void saveGameSettings(GameSettings gameSettings){
+        Json json = new Json();
+
+        json.setTypeName(null);
+        json.setUsePrototypes(false);
+        json.setIgnoreUnknownFields(true);
+        json.setOutputType(JsonWriter.OutputType.json);
+
+        String jsonText = json.toJson(gameSettings, gameSettings.getClass());
+        Gdx.files.local("game_settings.json").writeString(jsonText, false);
+        Gdx.app.log("Save", "Settings saved!");
+    }
+
     public void saveLevel(Level level){
         ObjectMapper mapper = new ObjectMapper();
         // add special rules for Vector2 class
@@ -42,6 +66,7 @@ public class FileSystem {
             Gdx.app.error("JacksonSerializer", "Failed to serialize component: " + level.getClass().getSimpleName(), e);
         }
     }
+
     public Level loadLevel(int levelID){
         if (!Gdx.files.internal("levels/"+levelID+".json").exists()) {
             return null; // Return defaults if no save file

@@ -56,6 +56,7 @@ public class LevelManager {
         ComponentCollection<HealthComponent> healthCollection = level.healthCollection;
         ComponentCollection<DamageEmitterComponent> damageEmitterCollection = level.damageEmitterCollection;
         ComponentCollection<DestructibleComponent> destructibleCollection = level.destructibleCollection;
+        ComponentCollection<SegmentedDrawableComponent> segmentedDrawableCollection = level.segmentedDrawableCollection;
         entityComponentManager.registerComponentCollection(TransformComponent.class,transformCollection);
         entityComponentManager.registerComponentCollection(DrawableComponent.class,drawableCollection);
         entityComponentManager.registerComponentCollection(PhysicalBodyComponent.class,bodyCollection);
@@ -64,6 +65,7 @@ public class LevelManager {
         entityComponentManager.registerComponentCollection(HealthComponent.class,healthCollection);
         entityComponentManager.registerComponentCollection(DamageEmitterComponent.class,damageEmitterCollection);
         entityComponentManager.registerComponentCollection(DestructibleComponent.class,destructibleCollection);
+        entityComponentManager.registerComponentCollection(SegmentedDrawableComponent.class,segmentedDrawableCollection);
 
         // #3 infer Entites from collections and save them in EntityManager
         entityComponentManager.loadEntitiesFromCollections();

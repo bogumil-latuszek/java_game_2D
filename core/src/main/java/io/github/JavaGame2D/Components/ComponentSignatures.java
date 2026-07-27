@@ -8,7 +8,8 @@ public final class ComponentSignatures {
     public static final long ANIMATION      = 1L << 4;
     public static final long TELEPORTER     = 1L << 5;
     public static final long HEALTH         = 1L << 6;
-    public static final long DAMAGE_EMITTER = 1l << 7;
-    public static final long DESTRUCTIBLE   = 1l << 8;
-    public static final long LIFETIME       = 1l << 9;
+    public static final long DAMAGE_EMITTER = 1L << 7;
+    public static final long DESTRUCTIBLE   = 1L << 8;
+    public static final long LIFETIME       = 1L << 9;
+    public static final long SEGMENTED_DRAWABLE = 1L << 10;
 }

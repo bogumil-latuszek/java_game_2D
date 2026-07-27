@@ -7,22 +7,22 @@ import io.github.JavaGame2D.Enums.FacingDirection;
 // It's called "SpriteData" to avoid confusion with LibGDX's own "Sprite" class
 public class SpriteData {
     public Vector2 offset = new Vector2();
-    public Texture texture = null;
-    public boolean usesTransformWidth = true;
-    public float transformWidthMultiplier = 1;
+    public int textureID = -1; // missing texture by default
+
+    public boolean textureIsTiled = false;
+    public int pixelsPerUnit = 1; //used for pixel-perfect texture tiling
+
     public float width = 1;
-    public boolean usesTransformHeight = true;
-    public float transformHeightMultiplier = 1;
     public float height = 1;
     public boolean mirrorVertical = false;
     public boolean mirrorHorizontal = false;
     public FacingDirection facingDirection = FacingDirection.NONE; // this field should be kept accurate to drawable visual direction
-    public int pixelsPerUnit = 1;
+
 
     public SpriteData(){}
 
-    public SpriteData(Texture texture, FacingDirection facingDirection){
-        this.texture = texture;
+    public SpriteData(int textureID, FacingDirection facingDirection){
+        this.textureID = textureID;
         this.facingDirection = facingDirection;
     }
 

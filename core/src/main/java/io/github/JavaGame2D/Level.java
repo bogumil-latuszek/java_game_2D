@@ -3,9 +3,7 @@ package io.github.JavaGame2D;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
-import io.github.JavaGame2D.Systems.EntityManager;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Level {
@@ -23,6 +21,7 @@ public class Level {
     public ComponentCollection<HealthComponent>  healthCollection;
     public ComponentCollection<DamageEmitterComponent>  damageEmitterCollection;
     public ComponentCollection<DestructibleComponent>  destructibleCollection;
+    public ComponentCollection<SegmentedDrawableComponent>  segmentedDrawableCollection;
 
     // level-specific settings:
     // boundary for camera
@@ -42,5 +41,6 @@ public class Level {
         healthCollection = new ComponentCollection<>(HealthComponent.class,ComponentSignatures.HEALTH);
         damageEmitterCollection = new ComponentCollection<>(DamageEmitterComponent.class, ComponentSignatures.DAMAGE_EMITTER);
         destructibleCollection = new ComponentCollection<>(DestructibleComponent.class, ComponentSignatures.DESTRUCTIBLE);
+        segmentedDrawableCollection = new ComponentCollection<>(SegmentedDrawableComponent.class, ComponentSignatures.SEGMENTED_DRAWABLE);
     }
 }

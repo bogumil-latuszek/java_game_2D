@@ -21,6 +21,8 @@ public class ComponentManager {
         registerComponentCollection(HealthComponent.class, new ComponentCollection<>(HealthComponent.class, ComponentSignatures.HEALTH));
         registerComponentCollection(DamageEmitterComponent.class, new ComponentCollection<>(DamageEmitterComponent.class, ComponentSignatures.DAMAGE_EMITTER));
         registerComponentCollection(AnimationComponent.class, new ComponentCollection<>(AnimationComponent.class, ComponentSignatures.ANIMATION));
+        registerComponentCollection(DestructibleComponent.class, new ComponentCollection<>(DestructibleComponent.class, ComponentSignatures.DESTRUCTIBLE));
+        registerComponentCollection(SegmentedDrawableComponent.class, new ComponentCollection<>(SegmentedDrawableComponent.class, ComponentSignatures.SEGMENTED_DRAWABLE));
     }
 
     // Get a component collection by type (type-safe)
@@ -77,8 +79,10 @@ public class ComponentManager {
 //        for (ComponentCollection collection: collections){
 //            entityIDToSignature = collection.loadSignatures(entityIDToSignature);
 //        }
-        for (ComponentCollectionInterface collection : this.componentCollections.values())
-        entityIDToSignature = collection.updateEntitySignature(entityIDToSignature);
+        for (ComponentCollectionInterface collection : this.componentCollections.values()){
+            entityIDToSignature = collection.updateEntitySignature(entityIDToSignature);
+        }
+
         return entityIDToSignature;
     }
 }

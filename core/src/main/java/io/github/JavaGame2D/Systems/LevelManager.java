@@ -103,6 +103,9 @@ public class LevelManager {
         level.teleporterCollection = entityComponentManager.getComponentCollection(TeleporterComponent.class);
         level.healthCollection = entityComponentManager.getComponentCollection(HealthComponent.class);
         level.damageEmitterCollection = entityComponentManager.getComponentCollection(DamageEmitterComponent.class);
+        level.destructibleCollection = entityComponentManager.getComponentCollection(DestructibleComponent.class);
+        level.segmentedDrawableCollection = entityComponentManager.getComponentCollection(SegmentedDrawableComponent.class);
+
         // #2 save global variables that can change from level to level
         level.validSpawnPoints = this.spawnPointIDtoPosition;
         level.defaultSpawnPointID = this.defaultSpawnPoint;

@@ -10,7 +10,7 @@ public class Level {
     // levelID
     public int levelID;
     // level name
-    public String levelName;
+    // public String levelName;
 
     // component collections:
     public ComponentCollection<TransformComponent> transformCollection;
@@ -25,8 +25,8 @@ public class Level {
 
     // level-specific settings:
     // boundary for camera
-    public Vector2 lowerLeftCorner;
-    public Vector2 upperRightCorner;
+//    public Vector2 lowerLeftCorner;
+//    public Vector2 upperRightCorner;
     // spawn point coordinates
     public HashMap<Integer, Vector2> validSpawnPoints;
     public int defaultSpawnPointID;

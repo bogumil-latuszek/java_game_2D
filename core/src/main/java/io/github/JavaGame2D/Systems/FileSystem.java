@@ -57,7 +57,17 @@ public class FileSystem {
         mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
         // formats json for better reading
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        String path = "levels/"+ level.levelID+".json";
+
+        // Use LibGDX's local storage path (works on all platforms)
+        // Also, remember that assets are READ-ONLY when distributing the game
+        // so if we want to have custom level creation as a feature in the final game,
+        // then we need to move levels to saves/levels/
+        String path = "assets/levels/" + level.levelID + ".json";
+
+        FileHandle fileHandle = Gdx.files.local(path);
+        // Ensure the parent directory exists
+        fileHandle.file().getParentFile().mkdirs();
+
         try{
             mapper.writeValue(new File(path), level);
         } catch (Exception e) {

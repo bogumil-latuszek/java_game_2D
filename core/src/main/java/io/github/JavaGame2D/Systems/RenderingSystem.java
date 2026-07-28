@@ -93,7 +93,13 @@ public class RenderingSystem {
             drawTiledTexture(spriteBatch, texture, 32f, sprite.width, sprite.height, lowerLeftCorner);
         }
         else{
-            drawTexture(spriteBatch, texture, 32f, sprite.offset, center, mirrorHorizontal, mirrorVertical);
+            if (sprite.usesSizeFromTexture){
+                drawTexture(spriteBatch, texture, 32f, sprite.offset, center, mirrorHorizontal, mirrorVertical);
+            }
+            else{
+                drawStretchingTexture(spriteBatch, texture, sprite.width, sprite.height, sprite.offset, center, mirrorHorizontal, mirrorVertical);
+            }
+
             //spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, sprite.width, sprite.height);
         }
 
@@ -101,6 +107,26 @@ public class RenderingSystem {
         if (drawOutline){
             // draw outline
         }
+    }
+
+    private void drawStretchingTexture(SpriteBatch spriteBatch, Texture texture, float width, float height, Vector2 offset, Vector2 center, boolean mirrorHorizontal, boolean mirrorVertical){
+
+
+        float offsetHeightInUnits = offset.y;
+        float offsetWidthInUnits = offset.x;
+
+        if (mirrorHorizontal){
+            offsetHeightInUnits = -offsetHeightInUnits;
+        }
+        if (mirrorVertical){
+            offsetWidthInUnits = -offsetWidthInUnits;
+        }
+
+        Vector2 offsetCenter = new Vector2(center.x+offsetWidthInUnits, center.y+offsetHeightInUnits);
+        //SpriteBatch.draw() draws from lower left corner, so correction is needed:
+        Vector2 lowerLeftCorner = new Vector2(offsetCenter.x-width/2, center.y-height/2);
+
+        spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
     }
 
     private void drawTiledTexture(SpriteBatch spriteBatch, Texture texture, float pixelsPerWorldUnit,  float width, float height, Vector2 lowerLeftCorner){

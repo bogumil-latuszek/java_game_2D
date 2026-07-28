@@ -342,9 +342,7 @@ public class PhysicsSystem {
     public AABBCollider createAABBCollider(TransformComponent transform, ColliderComponent collider, boolean usePreviousPosition){
         Vector2 transformPosition = usePreviousPosition ? transform.previousPosition : transform.position;
         Vector2 position = collider.usesOffset ? new Vector2(transformPosition.x + collider.offset.x, transformPosition.y + collider.offset.y) : transformPosition;
-        float width = collider.sizeFromTransform ? transform.width : collider.width;
-        float height = collider.sizeFromTransform ? transform.height : collider.height;
-        return new AABBCollider(position, width, height);
+        return new AABBCollider(position, collider.width, collider.height);
     }
 
     public AABBCollider createAABBGroundCollider(AABBCollider collider){

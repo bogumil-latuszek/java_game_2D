@@ -12,7 +12,6 @@ public class ColliderComponent implements Component {
     public Vector2 offset;
     public float width;
     public float height;
-    public boolean sizeFromTransform = true;
 
     @Override
     public long getSignature() {

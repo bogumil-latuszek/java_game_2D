@@ -81,8 +81,6 @@ public class EntityComponentManager {
 
         TransformComponent transform = new TransformComponent();
         transform.position = new Vector2(x,y);
-        transform.width = width;
-        transform.height = height;
         componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
@@ -95,10 +93,14 @@ public class EntityComponentManager {
         DrawableComponent drawable = new DrawableComponent();
         drawable.spriteData.textureID = 0;
         drawable.spriteData.textureIsTiled = true;
+        drawable.spriteData.width = width;
+        drawable.spriteData.height = height;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
+        collider.width = width;
+        collider.height = height;
         componentManager.addComponent(ColliderComponent.class, collider, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
@@ -110,8 +112,6 @@ public class EntityComponentManager {
 
         TransformComponent transform = new TransformComponent();
         transform.position = new Vector2(x,y);
-        transform.width = width;
-        transform.height = height;
         componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
@@ -122,11 +122,16 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
+        drawable.spriteData.width = width;
+        drawable.spriteData.height = height;
         drawable.spriteData.textureID = 7;
+        drawable.spriteData.usesSizeFromTexture = false;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
+        collider.width = width;
+        collider.height = height;
         componentManager.addComponent(ColliderComponent.class, collider, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
@@ -143,8 +148,6 @@ public class EntityComponentManager {
 
         TransformComponent transform = new TransformComponent();
         transform.position = position;
-        transform.width = 1.5f;
-        transform.height = 1.5f;
         componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
@@ -165,9 +168,8 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.SEGMENTED_DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
-        collider.sizeFromTransform = false;
-        collider.width = transform.width/2;
-        collider.height = transform.height;
+        collider.width = 0.6f;
+        collider.height = 1.5f;
         componentManager.addComponent(ColliderComponent.class, collider, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
@@ -204,8 +206,6 @@ public class EntityComponentManager {
 
         TransformComponent transform = new TransformComponent();
         transform.position = new Vector2(x,y);
-        transform.width = width;
-        transform.height = height;
         componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
@@ -216,11 +216,16 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
+        drawable.spriteData.width = width;
+        drawable.spriteData.height = height;
         drawable.spriteData.textureID = 2;
+        drawable.spriteData.usesSizeFromTexture = false;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
+        collider.width = width;
+        collider.height = height;
         componentManager.addComponent(ColliderComponent.class, collider, entityID);
         entityManager.addSignature(entityID,ComponentSignatures.COLLIDER);
 
@@ -237,8 +242,6 @@ public class EntityComponentManager {
 
         TransformComponent transform = new TransformComponent();
         transform.position = new Vector2(x,y);
-        transform.width = width;
-        transform.height = height;
         componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
@@ -250,12 +253,14 @@ public class EntityComponentManager {
         entityManager.addSignature(entityID, ComponentSignatures.PHYSICAL_BODY);
 
         DrawableComponent drawable = new DrawableComponent();
+        drawable.spriteData.width = width;
+        drawable.spriteData.height = height;
         drawable.spriteData.textureID = 4;
+        drawable.spriteData.usesSizeFromTexture = false;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);
 
         ColliderComponent collider = new ColliderComponent();
-        collider.sizeFromTransform = false;
         collider.width = width*0.9f;
         collider.height = height*0.4f;
         collider.usesOffset = true;
@@ -276,12 +281,12 @@ public class EntityComponentManager {
 
         TransformComponent transform = new TransformComponent();
         transform.position = new Vector2(x,y);
-        transform.width = width;
-        transform.height = height;
         componentManager.addComponent(TransformComponent.class, transform, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
 
         DrawableComponent drawable = new DrawableComponent();
+        drawable.spriteData.width = width;
+        drawable.spriteData.height = height;
         drawable.spriteData.textureID = 3;
         componentManager.addComponent(DrawableComponent.class, drawable, entityID);
         entityManager.addSignature(entityID, ComponentSignatures.DRAWABLE);

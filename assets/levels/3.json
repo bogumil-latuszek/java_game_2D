@@ -1,0 +1,679 @@
+{
+  "levelID" : 3,
+  "transformCollection" : {
+    "entityIDToPosition" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5
+    },
+    "positionToEntityID" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5
+    },
+    "lastLivePosition" : 5,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 25.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 5.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 0.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 20.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 11.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, null, null, null, null ],
+    "componentSignature" : 1,
+    "allComponents" : [ {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 25.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 5.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 0.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 20.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 11.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    }, {
+      "signature" : 1,
+      "position" : {
+        "x" : 10.0,
+        "y" : 15.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    } ]
+  },
+  "physicalBodyCollection" : {
+    "entityIDToPosition" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4
+    },
+    "positionToEntityID" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4
+    },
+    "lastLivePosition" : 4,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, null, null, null, null, null ],
+    "componentSignature" : 4,
+    "allComponents" : [ {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }, {
+      "signature" : 4,
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    } ]
+  },
+  "colliderCollection" : {
+    "entityIDToPosition" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4
+    },
+    "positionToEntityID" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4
+    },
+    "lastLivePosition" : 4,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 20.0,
+      "height" : 5.0
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 20.0,
+      "height" : 5.0
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 5.0,
+      "height" : 30.0
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 5.0,
+      "height" : 30.0
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 2.0,
+      "height" : 0.5
+    }, null, null, null, null, null ],
+    "componentSignature" : 8,
+    "allComponents" : [ {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 20.0,
+      "height" : 5.0
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 20.0,
+      "height" : 5.0
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 5.0,
+      "height" : 30.0
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 5.0,
+      "height" : 30.0
+    }, {
+      "signature" : 8,
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : null,
+      "width" : 2.0,
+      "height" : 0.5
+    } ]
+  },
+  "drawableCollection" : {
+    "entityIDToPosition" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5
+    },
+    "positionToEntityID" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5
+    },
+    "lastLivePosition" : 5,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 20.0,
+        "height" : 5.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 20.0,
+        "height" : 5.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 5.0,
+        "height" : 30.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 5.0,
+        "height" : 30.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 3,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 10.0,
+        "height" : 10.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, null, null, null, null ],
+    "componentSignature" : 2,
+    "allComponents" : [ {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 20.0,
+        "height" : 5.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 20.0,
+        "height" : 5.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 5.0,
+        "height" : 30.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 5.0,
+        "height" : 30.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    }, {
+      "signature" : 2,
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 3,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 10.0,
+        "height" : 10.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
+    } ]
+  },
+  "teleporterCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 32,
+    "allComponents" : [ ]
+  },
+  "healthCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 64,
+    "allComponents" : [ ]
+  },
+  "damageEmitterCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 128,
+    "allComponents" : [ ]
+  },
+  "destructibleCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 256,
+    "allComponents" : [ ]
+  },
+  "segmentedDrawableCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 1024,
+    "allComponents" : [ ]
+  },
+  "validSpawnPoints" : {
+    "0" : {
+      "x" : 10.0,
+      "y" : 16.0
+    }
+  },
+  "defaultSpawnPointID" : 0
+}

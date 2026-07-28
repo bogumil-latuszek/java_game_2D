@@ -10,6 +10,7 @@ public class SpriteData {
     public int textureID = -1; // missing texture by default
 
     public boolean textureIsTiled = false;
+    public boolean usesSizeFromTexture = true; // true for pixel-perfect graphics, false when texture has to stretch
     public int pixelsPerUnit = 1; //used for pixel-perfect texture tiling
 
     public float width = 1;

@@ -1,6 +1,5 @@
 {
   "levelID" : 1,
-  "levelName" : null,
   "transformCollection" : {
     "entityIDToPosition" : {
       "0" : 0,
@@ -1843,246 +1842,822 @@
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 4,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 4,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 4,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 4,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 7,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 7,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 7,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 2,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 2,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, null, null, null, null, null, null ],
     "componentSignature" : 2,
     "allComponents" : [ {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 4,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 4,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 4,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 4,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 7,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 7,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 7,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 0,
-      "tiledTexture" : true,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     }, {
       "signature" : 2,
-      "textureID" : 2,
-      "tiledTexture" : false,
-      "drawableSegments" : { }
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 2,
+        "textureIsTiled" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false
     } ]
   },
   "teleporterCollection" : {
@@ -2237,8 +2812,15 @@
     "componentSignature" : 256,
     "allComponents" : [ ]
   },
-  "lowerLeftCorner" : null,
-  "upperRightCorner" : null,
+  "segmentedDrawableCollection" : {
+    "entityIDToPosition" : { },
+    "positionToEntityID" : { },
+    "lastLivePosition" : -1,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ null, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 1024,
+    "allComponents" : [ ]
+  },
   "validSpawnPoints" : {
     "0" : {
       "x" : 0.0,

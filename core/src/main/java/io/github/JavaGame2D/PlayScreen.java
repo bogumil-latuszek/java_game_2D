@@ -30,6 +30,7 @@ public class PlayScreen implements Screen {
     private FileSystem fileSystem;
     private OrthographicCamera camera;
     private Vector2 screenSizeInGameUnits;
+    private TextureManager textureManager;
 
     // play-only systems
     private PlayerInterface playerInterface;
@@ -54,6 +55,7 @@ public class PlayScreen implements Screen {
         fileSystem = gameManager.fileSystem;
         camera = gameManager.camera;
         screenSizeInGameUnits = gameManager.screenSizeInGameUnits;
+        textureManager = gameManager.textureManager;
 
 
         // create HUD stage
@@ -68,7 +70,7 @@ public class PlayScreen implements Screen {
         // Instantiate play-only systems
         playerInterface = new PlayerInterface();
         playerCharacterController = new PlayerCharacterController(entityComponentManager);
-        animationSystem = new AnimationSystem(entityComponentManager, fileSystem, playerCharacterController);
+        animationSystem = new AnimationSystem(entityComponentManager, fileSystem, playerCharacterController, textureManager);
         playerInputSystem = new PlayerInputSystem();
         damageSystem = new DamageSystem(entityComponentManager);
         playerDeathHandler = new PlayerDeathHandler();

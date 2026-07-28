@@ -7,7 +7,7 @@ import java.util.EnumMap;
 
 public class DrawableComponent implements Component{
     public final long signature = ComponentSignatures.DRAWABLE;
-    public SpriteData spriteData;
+    public SpriteData spriteData = new SpriteData();
     // every entity with SegmentedDrawableBodyComponent needs to have DrawableComponent
     // but not every entity with DrawableComponent has SegmentedDrawableBodyComponent
     public boolean hasSegmentedBody = false;

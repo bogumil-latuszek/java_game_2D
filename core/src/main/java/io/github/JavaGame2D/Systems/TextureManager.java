@@ -16,6 +16,7 @@ public class TextureManager {
         loadedTextures = new HashMap<>();
         registeredTextures = new HashMap<>();
         missingTexture = new Texture("missingTexture.png");
+        registerDefaultTextures();
         EventBus.getInstance().subscribe(LoadingNewLevelEvent.class, this::handleLevelChange);
     }
 
@@ -33,16 +34,18 @@ public class TextureManager {
         }
         if (this.registeredTextures.containsKey(textureID)){
             String texturePath = registeredTextures.get(textureID);
-            loadTexture(texturePath);
+            loadTexture(textureID, texturePath);
             System.out.println("texture:"+ textureID+" loaded");
             return loadedTextures.get(textureID);
         }
         return missingTexture;
     }
 
-    private void loadTexture(String texturePath){
+    private void loadTexture(int textureID, String texturePath){
         Texture texture = new Texture(texturePath);
         texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
+        loadedTextures.put(textureID, texture);
+
     }
 
     private void unloadAllTextures(){

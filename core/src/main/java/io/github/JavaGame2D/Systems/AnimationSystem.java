@@ -2,6 +2,7 @@ package io.github.JavaGame2D.Systems;
 
 import io.github.JavaGame2D.Components.AnimationComponent;
 import io.github.JavaGame2D.Components.DrawableComponent;
+import io.github.JavaGame2D.Components.SegmentedDrawableComponent;
 import io.github.JavaGame2D.SpriteData;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
@@ -17,11 +18,11 @@ public class AnimationSystem {
     private PlayerStateMachine playerStateMachine;
     private AnimationManager animationManager;
 
-    public AnimationSystem(EntityComponentManager entityComponentManager, FileSystem fileSystem, PlayerCharacterController playerController) {
+    public AnimationSystem(EntityComponentManager entityComponentManager, FileSystem fileSystem, PlayerCharacterController playerController, TextureManager textureManager) {
         this.entityComponentManager = entityComponentManager;
         playerStateMachine = new PlayerStateMachine(entityComponentManager, playerController);
         animationManager = new AnimationManager();
-        fileSystem.loadPlayerAnimations(this.animationManager);
+        fileSystem.loadPlayerAnimations(this.animationManager, textureManager);
     }
 
     public void update(float deltaTimeInSeconds){
@@ -34,7 +35,8 @@ public class AnimationSystem {
         // #1 player is a special case
         int playerID = this.entityComponentManager.getPlayerEntityID();
         AnimationComponent animationComponent = entityComponentManager.getComponent(AnimationComponent.class, playerID);
-        DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, playerID);
+        //DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, playerID);
+        SegmentedDrawableComponent segmentedDrawable = entityComponentManager.getComponent(SegmentedDrawableComponent.class, playerID);
 
         playerStateMachine.update(deltaTimeInSeconds);
         EnumMap<BodySegmentType, AnimationState> currentPlayerState = playerStateMachine.bodySegmentAnimations;
@@ -42,13 +44,13 @@ public class AnimationSystem {
 
         CharacterType characterType = animationComponent.characterType;
         for (BodySegmentType segmentType : allSegments){
-            if(drawableComponent.drawableSegments.containsKey(segmentType)){
+            if(segmentedDrawable.drawableSegments.containsKey(segmentType)){
                 AnimationState animationState = currentPlayerState.get(segmentType);
                 AnimationType animationType = animationState.animationType;
                 float durationInMillis = animationState.durationInMilliseconds;
                 SpriteData animationFrame = animationManager.getAnimationFrameByDuration(characterType, segmentType, animationType, durationInMillis);
                 animationFrame = mirrorAnimationFrameIfFacingWrongDirection(animationFrame, animationState.facingDirection);
-                drawableComponent.drawableSegments.put(segmentType, animationFrame);
+                segmentedDrawable.drawableSegments.put(segmentType, animationFrame);
             }
         }
     }

@@ -94,32 +94,30 @@ public class FileSystem {
         }
     }
 
-    public void loadPlayerAnimations(AnimationManager animationManager){
+    public void loadPlayerAnimations(AnimationManager animationManager, TextureManager textureManager){
         try {
             String directory = "animations/Player/";
             String fileExtension = ".png";
-            Texture idleFrame1Texture = new Texture(directory+"idle1"+fileExtension);
-            Texture walkingFrame1Texture = new Texture(directory+"walk1"+fileExtension);
-            Texture walkingFrame2Texture = new Texture(directory+"walk2"+fileExtension);
-            Texture walkingFrame3Texture = new Texture(directory+"walk3"+fileExtension);
-            Texture walkingFrame4Texture = new Texture(directory+"walk4"+fileExtension);
-            Texture walkingFrame5Texture = new Texture(directory+"walk5"+fileExtension);
-            Texture walkingFrame6Texture = new Texture(directory+"walk6"+fileExtension);
-            Texture jumpingFrame1Texture = new Texture(directory+"jumping1"+fileExtension);
-            Texture fallingFrame1Texture = new Texture(directory+"falling1"+fileExtension);
-            Texture attackFrame1Texture = new Texture(directory+"attack1"+fileExtension);
-            SpriteData idleFrame1 = new SpriteData(idleFrame1Texture, FacingDirection.RIGHT);
-            SpriteData walkingFrame1 = new SpriteData(walkingFrame1Texture, FacingDirection.RIGHT);
-            SpriteData walkingFrame2 = new SpriteData(walkingFrame2Texture, FacingDirection.RIGHT);
-            SpriteData walkingFrame3 = new SpriteData(walkingFrame3Texture, FacingDirection.RIGHT);
-            SpriteData walkingFrame4 = new SpriteData(walkingFrame4Texture, FacingDirection.RIGHT);
-            SpriteData walkingFrame5 = new SpriteData(walkingFrame5Texture, FacingDirection.RIGHT);
-            SpriteData walkingFrame6 = new SpriteData(walkingFrame6Texture, FacingDirection.RIGHT);
-            SpriteData jumpingFrame1 = new SpriteData(jumpingFrame1Texture, FacingDirection.RIGHT);
-            SpriteData fallingFrame1 = new SpriteData(fallingFrame1Texture, FacingDirection.RIGHT);
-            SpriteData attackFrame1 = new SpriteData(attackFrame1Texture, FacingDirection.RIGHT);
-            attackFrame1.usesTransformWidth = false;
-            attackFrame1.usesTransformHeight = false;
+            textureManager.registerTexture(8, directory+"idle1"+fileExtension);
+            textureManager.registerTexture(9, directory+"walk1"+fileExtension);
+            textureManager.registerTexture(10, directory+"walk2"+fileExtension);
+            textureManager.registerTexture(11, directory+"walk3"+fileExtension);
+            textureManager.registerTexture(12, directory+"walk4"+fileExtension);
+            textureManager.registerTexture(13, directory+"walk5"+fileExtension);
+            textureManager.registerTexture(14, directory+"walk6"+fileExtension);
+            textureManager.registerTexture(15, directory+"jumping1"+fileExtension);
+            textureManager.registerTexture(16, directory+"falling1"+fileExtension);
+            textureManager.registerTexture(17, directory+"attack1"+fileExtension);
+            SpriteData idleFrame1 = new SpriteData(8, FacingDirection.RIGHT);
+            SpriteData walkingFrame1 = new SpriteData(9, FacingDirection.RIGHT);
+            SpriteData walkingFrame2 = new SpriteData(10, FacingDirection.RIGHT);
+            SpriteData walkingFrame3 = new SpriteData(11, FacingDirection.RIGHT);
+            SpriteData walkingFrame4 = new SpriteData(12, FacingDirection.RIGHT);
+            SpriteData walkingFrame5 = new SpriteData(13, FacingDirection.RIGHT);
+            SpriteData walkingFrame6 = new SpriteData(14, FacingDirection.RIGHT);
+            SpriteData jumpingFrame1 = new SpriteData(15, FacingDirection.RIGHT);
+            SpriteData fallingFrame1 = new SpriteData(16, FacingDirection.RIGHT);
+            SpriteData attackFrame1 = new SpriteData(17, FacingDirection.RIGHT);
             attackFrame1.offset = new Vector2(500, 0);
             Animation idle = new Animation(new SpriteData[]{idleFrame1});
             Animation walking = new Animation(new SpriteData[]{walkingFrame1,walkingFrame2,walkingFrame3,

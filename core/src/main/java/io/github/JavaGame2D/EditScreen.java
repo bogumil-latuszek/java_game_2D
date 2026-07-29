@@ -28,6 +28,8 @@ public class EditScreen implements Screen {
     // edit-only systems
     private Stage editorStage;
     private EditorCameraController cameraController;
+    private EntityInspector entityInspector;
+    private EditorInputProcessor inputProcessor;
 
     public EditScreen(GameManager gameManager) {
         this.gameManager = gameManager;
@@ -46,6 +48,8 @@ public class EditScreen implements Screen {
         cameraController = new EditorCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y);
 
         // (Optional) Add any Editor-specific systems here later...
+        entityInspector = new EntityInspector(gameManager.entityComponentManager);
+        inputProcessor = new EditorInputProcessor(entityInspector,camera);
     }
 
     @Override
@@ -54,6 +58,7 @@ public class EditScreen implements Screen {
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(editorStage);
         multiplexer.addProcessor(cameraController);
+        multiplexer.addProcessor(inputProcessor);
         Gdx.input.setInputProcessor(multiplexer);
     }
 

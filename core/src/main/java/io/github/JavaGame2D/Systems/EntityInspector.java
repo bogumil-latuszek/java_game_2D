@@ -21,6 +21,7 @@ public class EntityInspector {
     public OptionalInt selectEntity(Vector2 pointer){
         OptionalInt foundEntity = findEntityTouchingPoint(pointer);
         selectedEntityID = foundEntity;
+        System.out.println("selected entity: "+selectedEntityID);
         return selectedEntityID;
     }
 

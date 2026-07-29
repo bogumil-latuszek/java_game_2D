@@ -74,7 +74,7 @@ public class EditScreen implements Screen {
         }
 
         // Render Game World
-        renderingSystem.renderGameWorld(true);
+        renderingSystem.renderGameWorld(true, true);
 
         // Render Editor UI
         editorStage.act(delta);

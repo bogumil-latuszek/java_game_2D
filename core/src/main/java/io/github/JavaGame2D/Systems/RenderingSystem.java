@@ -1,6 +1,8 @@
 package io.github.JavaGame2D.Systems;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -9,10 +11,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
-import io.github.JavaGame2D.Components.ComponentSignatures;
-import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Components.SegmentedDrawableComponent;
-import io.github.JavaGame2D.Components.TransformComponent;
+import com.fasterxml.jackson.databind.type.CollectionLikeType;
+import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.SpriteData;
 
@@ -39,11 +39,10 @@ public class RenderingSystem {
     }
 
     public void renderGameWorld(){
-        this.renderGameWorld(false);
+        this.renderGameWorld(false, false);
     }
 
-    public void renderGameWorld(boolean drawSpriteOutlines){
-        boolean drawColliderOutlines = false;
+    public void renderGameWorld(boolean drawSpriteOutlines, boolean drawColliders){
 
         //clear screen
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
@@ -78,15 +77,48 @@ public class RenderingSystem {
 
         // draw Sprite outlines
         if (drawSpriteOutlines){
-
             shapeRenderer.setProjectionMatrix(this.getProjectionMatrix(this.camera));
-            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
-            shapeRenderer.setColor(Color.BLUE);
-
             this.drawSpriteOutlines(drawableEntities, shapeRenderer);
-
-            shapeRenderer.end();
         }
+
+        if (drawColliders){
+
+            long entitiesWithCollidersSignature = ComponentSignatures.TRANSFORM | ComponentSignatures.COLLIDER;
+            int[] entitiesWithColliders = entityComponentManager.getEntitiesMatchingSignature(entitiesWithCollidersSignature);
+
+            shapeRenderer.setProjectionMatrix(this.getProjectionMatrix(this.camera)); // is this an unncecessary duplicate?
+            // Enable blending (if not already on)
+            Gdx.gl.glEnable(GL20.GL_BLEND);
+            Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+            this.drawColliders(entitiesWithColliders, shapeRenderer);
+        }
+    }
+
+    private void drawColliders(int[] entitiesWithColliders, ShapeRenderer renderer){
+        for ( int entityID : entitiesWithColliders){
+            TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,entityID);
+            ColliderComponent collider = entityComponentManager.getComponent(ColliderComponent.class, entityID);
+
+            Vector2 center = transform.position;
+            float width = collider.width;
+            float height = collider.height;
+
+            Vector2 lowerLeftCorner = new Vector2(center.x-width/2, center.y-height/2);
+
+            // Draw semi-transparent yellow rectangle
+            renderer.begin(ShapeRenderer.ShapeType.Filled);
+            renderer.setColor(1f, 1f, 0f, 0.5f);   // yellow, 50% opaque
+            renderer.rect(lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+            renderer.end();
+
+            // Draw fully opaque yellow outline
+            renderer.begin(ShapeRenderer.ShapeType.Line);
+            renderer.setColor(1f, 1f, 0f, 1f);     // yellow, fully opaque
+            renderer.rect(lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+            renderer.end();
+        }
+
     }
 
     private void drawSpriteOutlines(int[] drawableEntities, ShapeRenderer renderer){
@@ -118,16 +150,16 @@ public class RenderingSystem {
                 width = textureUnitWidth;
                 height = textureUnitHeight;
             }
-            this.drawOutline(renderer, width, height, center);
+
+            // this system needs x,y coords of the lower left corner, not center!
+            Vector2 lowerLeftCorner = new Vector2(center.x-width/2, center.y-height/2);
+
+            // Draw fully opaque blue outline
+            renderer.begin(ShapeRenderer.ShapeType.Line);
+            renderer.setColor(Color.BLUE);     // yellow, fully opaque
+            renderer.rect(lowerLeftCorner.x, lowerLeftCorner.y, width, height);
+            renderer.end();
         }
-    }
-
-    private void drawOutline(ShapeRenderer shapeRenderer, float width, float height, Vector2 center){
-
-        // this system needs x,y coords of the lower left corner, not center!
-        Vector2 lowerLeftCorner = new Vector2(center.x-width/2, center.y-height/2);
-
-        shapeRenderer.rect(lowerLeftCorner.x, lowerLeftCorner.y, width, height);
     }
 
     private void drawSegments(SpriteBatch spriteBatch, SegmentedDrawableComponent segmentedDrawable, Vector2 center){
@@ -230,6 +262,8 @@ public class RenderingSystem {
 
     public void dispose(){
         worldBatch.dispose();
+        shapeRenderer.dispose();
+        // also any textures, fonts, sounds you loaded here
     }
 
     public Matrix4 getProjectionMatrix(OrthographicCamera orthographicCamera){

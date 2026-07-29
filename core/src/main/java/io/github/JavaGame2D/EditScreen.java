@@ -36,11 +36,6 @@ public class EditScreen implements Screen {
         this.levelManager = gameManager.levelManager;
         this.entityComponentManager = gameManager.entityComponentManager;
         this.fileSystem = gameManager.fileSystem;
-
-        this.renderingSystem = gameManager.renderingSystem;
-        this.levelManager = gameManager.levelManager;
-        this.entityComponentManager = gameManager.entityComponentManager;
-        this.fileSystem = gameManager.fileSystem;
         this.camera = gameManager.camera;
         this.screenSizeInGameUnits = gameManager.screenSizeInGameUnits;
 

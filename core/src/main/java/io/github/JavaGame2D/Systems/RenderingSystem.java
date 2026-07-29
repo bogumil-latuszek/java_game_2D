@@ -1,9 +1,11 @@
 package io.github.JavaGame2D.Systems;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -11,6 +13,7 @@ import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.SegmentedDrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.SpriteData;
 
 import java.util.HashMap;
@@ -21,6 +24,8 @@ public class RenderingSystem {
     private TextureManager textureManager;
 
 
+    ShapeRenderer shapeRenderer; //used for drawing outlines in Edit mode
+
 
     private OrthographicCamera camera;
 
@@ -29,11 +34,15 @@ public class RenderingSystem {
         this.entityComponentManager = entityComponentManager;
         this.textureManager = textureManager;
         this.camera = camera;
+
+        shapeRenderer = new ShapeRenderer();
     }
 
     public void renderGameWorld(){
+        this.renderGameWorld(false);
+    }
 
-        boolean drawSpriteOutlines = false;
+    public void renderGameWorld(boolean drawSpriteOutlines){
         boolean drawColliderOutlines = false;
 
         //clear screen
@@ -66,6 +75,59 @@ public class RenderingSystem {
             }
         }
         worldBatch.end();
+
+        // draw Sprite outlines
+        if (drawSpriteOutlines){
+
+            shapeRenderer.setProjectionMatrix(this.getProjectionMatrix(this.camera));
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
+            shapeRenderer.setColor(Color.BLUE);
+
+            this.drawSpriteOutlines(drawableEntities, shapeRenderer);
+
+            shapeRenderer.end();
+        }
+    }
+
+    private void drawSpriteOutlines(int[] drawableEntities, ShapeRenderer renderer){
+        // outline each entity in list:
+        for ( int entityID : drawableEntities){
+            TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
+            DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
+
+            Vector2 center = transformComponent.position;
+
+            SpriteData spriteData = drawableComponent.spriteData;
+
+            if (drawableComponent.hasSegmentedBody){
+                SegmentedDrawableComponent segmentedDrawable = entityComponentManager.getComponent(SegmentedDrawableComponent.class, entityID);
+                spriteData = segmentedDrawable.drawableSegments.get(BodySegmentType.UPPER_BODY); //Hardcoded for the Player TODO: change this
+            }
+
+            float width = spriteData.width;
+            float height = spriteData.height;
+
+            if (spriteData.usesSizeFromTexture && !spriteData.textureIsTiled){
+                float pixelsPerUnit = 32f; //TODO: this should be System-wide variable loaded from settings
+                int textureID = spriteData.textureID;
+                Texture texture = textureManager.getTexture(textureID);
+                int texturePixelHeight = texture.getHeight();
+                int texturePixelWidth = texture.getWidth();
+                float textureUnitHeight = ((float)texturePixelHeight)/ pixelsPerUnit;
+                float textureUnitWidth = ((float)texturePixelWidth)/ pixelsPerUnit;
+                width = textureUnitWidth;
+                height = textureUnitHeight;
+            }
+            this.drawOutline(renderer, width, height, center);
+        }
+    }
+
+    private void drawOutline(ShapeRenderer shapeRenderer, float width, float height, Vector2 center){
+
+        // this system needs x,y coords of the lower left corner, not center!
+        Vector2 lowerLeftCorner = new Vector2(center.x-width/2, center.y-height/2);
+
+        shapeRenderer.rect(lowerLeftCorner.x, lowerLeftCorner.y, width, height);
     }
 
     private void drawSegments(SpriteBatch spriteBatch, SegmentedDrawableComponent segmentedDrawable, Vector2 center){

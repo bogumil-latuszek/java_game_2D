@@ -112,6 +112,12 @@ public class EditorInputProcessor implements InputProcessor {
         Vector2 dragVector = tempTouchWorldCoords.sub(lastDragPosition);
         transform.position = transform.position.add(dragVector);
 
+        // optionally, add Snapping to grid
+//        int gridSize = 16; // pixels
+//        transform.x = Math.round((worldX - dragOffsetX) / gridSize) * gridSize;
+//        transform.y = Math.round((worldY - dragOffsetY) / gridSize) * gridSize;
+
+
         lastDragPosition = touchWorldCoords;
 
         return true;

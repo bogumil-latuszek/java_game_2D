@@ -11,6 +11,8 @@ import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
 
+import java.util.OptionalInt;
+
 public class EditScreen implements Screen {
 
     private final GameManager gameManager;
@@ -74,7 +76,9 @@ public class EditScreen implements Screen {
         }
 
         // Render Game World
-        renderingSystem.renderGameWorld(true, true);
+        OptionalInt selectedEntityID = inputProcessor.getSelectedEntityID();
+        renderingSystem.setSelectedEntityID(selectedEntityID);
+        renderingSystem.renderGameWorld(true, true, true);
 
         // Render Editor UI
         editorStage.act(delta);

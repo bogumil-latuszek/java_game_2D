@@ -12,10 +12,15 @@ import java.util.OptionalInt;
 public class EntityInspector {
 
     EntityComponentManager entityComponentManager;
-    public OptionalInt selectedEntityID;
+    private OptionalInt selectedEntityID;
+
+    public OptionalInt getSelectedEntityID(){
+        return  this.selectedEntityID;
+    }
 
     public EntityInspector(EntityComponentManager entityComponentManager) {
         this.entityComponentManager = entityComponentManager;
+        this.selectedEntityID = OptionalInt.empty();
     }
 
     public OptionalInt selectEntity(Vector2 pointer){

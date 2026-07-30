@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 
+import java.util.OptionalInt;
+
 public class EditorInputProcessor implements InputProcessor {
 
     private EntityInspector entityInspector;
@@ -15,6 +17,10 @@ public class EditorInputProcessor implements InputProcessor {
     public EditorInputProcessor(EntityInspector entityInspector, OrthographicCamera camera) {
         this.entityInspector = entityInspector;
         this.camera = camera;
+    }
+
+    public OptionalInt getSelectedEntityID(){
+        return this.entityInspector.getSelectedEntityID();
     }
 
     @Override

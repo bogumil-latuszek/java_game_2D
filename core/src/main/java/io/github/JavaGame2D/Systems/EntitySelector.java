@@ -6,10 +6,9 @@ import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.SpriteData;
 
-import java.beans.beancontext.BeanContextChild;
 import java.util.OptionalInt;
 
-public class EntityInspector {
+public class EntitySelector {
 
     EntityComponentManager entityComponentManager;
     private OptionalInt selectedEntityID;
@@ -22,7 +21,7 @@ public class EntityInspector {
         return !this.selectedEntityID.isPresent();
     }
 
-    public EntityInspector(EntityComponentManager entityComponentManager) {
+    public EntitySelector(EntityComponentManager entityComponentManager) {
         this.entityComponentManager = entityComponentManager;
         this.selectedEntityID = OptionalInt.empty();
     }

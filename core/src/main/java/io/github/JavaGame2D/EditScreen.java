@@ -30,7 +30,7 @@ public class EditScreen implements Screen {
     // edit-only systems
     private Stage editorStage;
     private EditorCameraController cameraController;
-    private EntityInspector entityInspector;
+    private EntitySelector entitySelector;
     private EditorInputProcessor inputProcessor;
 
     public EditScreen(GameManager gameManager) {
@@ -50,8 +50,8 @@ public class EditScreen implements Screen {
         cameraController = new EditorCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y);
 
         // (Optional) Add any Editor-specific systems here later...
-        entityInspector = new EntityInspector(gameManager.entityComponentManager);
-        inputProcessor = new EditorInputProcessor(entityComponentManager, entityInspector, camera);
+        entitySelector = new EntitySelector(gameManager.entityComponentManager);
+        inputProcessor = new EditorInputProcessor(entityComponentManager, entitySelector, camera);
     }
 
     @Override

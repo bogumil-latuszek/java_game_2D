@@ -51,7 +51,7 @@ public class EditScreen implements Screen {
 
         // (Optional) Add any Editor-specific systems here later...
         entityInspector = new EntityInspector(gameManager.entityComponentManager);
-        inputProcessor = new EditorInputProcessor(entityInspector,camera);
+        inputProcessor = new EditorInputProcessor(entityComponentManager, entityInspector, camera);
     }
 
     @Override

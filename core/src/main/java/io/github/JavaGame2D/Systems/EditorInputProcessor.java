@@ -6,6 +6,9 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.sun.org.apache.bcel.internal.generic.IfInstruction;
+import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.Enums.SelectedTool;
 
 import java.util.OptionalInt;
 
@@ -13,10 +16,17 @@ public class EditorInputProcessor implements InputProcessor {
 
     private EntityInspector entityInspector;
     private OrthographicCamera camera;
+    private SelectedTool selectedTool;
+    private boolean isDragging = false;
+    private Vector2 lastDragPosition;
+    private EntityComponentManager entityComponentManager;
 
-    public EditorInputProcessor(EntityInspector entityInspector, OrthographicCamera camera) {
+    public EditorInputProcessor(EntityComponentManager entityComponentManager, EntityInspector entityInspector, OrthographicCamera camera) {
+        this.entityComponentManager = entityComponentManager;
         this.entityInspector = entityInspector;
         this.camera = camera;
+        this.selectedTool = SelectedTool.DRAGGING_TOOL;
+        lastDragPosition = new Vector2(0,0);
     }
 
     public OptionalInt getSelectedEntityID(){
@@ -42,10 +52,29 @@ public class EditorInputProcessor implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         // Only start dragging if right mouse button is pressed
         if (button == Input.Buttons.LEFT) {
+            if (selectedTool != SelectedTool.INSPECTION_TOOL &&
+                selectedTool != SelectedTool.DRAGGING_TOOL){
+                // currently used tool can't select
+                return false;
+            }
+//            Vector3 touchScreenCoords3D = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+//            Vector3 touchWorldCoords3D = camera.unproject(touchScreenCoords3D);
+//            Vector2 touchWorldCoords = new Vector2(touchScreenCoords3D.x, touchScreenCoords3D.y);
             Vector3 touchScreenCoords3D = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
             Vector3 touchWorldCoords3D = camera.unproject(touchScreenCoords3D);
-            Vector2 touchWorldCoords = new Vector2(touchScreenCoords3D.x, touchScreenCoords3D.y);
+            Vector2 touchWorldCoords = new Vector2(touchWorldCoords3D.x, touchWorldCoords3D.y);
             entityInspector.selectEntity(touchWorldCoords);
+
+            // if entity got selected, start dragging
+            if (entityInspector.getSelectedEntityID().isPresent()){
+                isDragging = true;
+                lastDragPosition = touchWorldCoords;
+            }
+            else {
+                isDragging = false;
+            }
+
+            return  true;
         }
         return false;
 
@@ -53,6 +82,10 @@ public class EditorInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        if (button == Input.Buttons.LEFT && isDragging) {
+            isDragging = false;
+            return true;
+        }
         return false;
     }
 
@@ -63,7 +96,25 @@ public class EditorInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
-        return false;
+        if (!isDragging || !entityInspector.getSelectedEntityID().isPresent()){
+            return false;
+        }
+        if (selectedTool != SelectedTool.DRAGGING_TOOL){
+            return false;
+        }
+        Vector3 touchScreenCoords3D = new Vector3(screenX, screenY, 0);
+        Vector3 touchWorldCoords3D = camera.unproject(touchScreenCoords3D);
+        Vector2 touchWorldCoords = new Vector2(touchWorldCoords3D.x, touchWorldCoords3D.y);
+
+        TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class, entityInspector.getSelectedEntityID().getAsInt());
+
+        Vector2 tempTouchWorldCoords = touchWorldCoords.cpy();
+        Vector2 dragVector = tempTouchWorldCoords.sub(lastDragPosition);
+        transform.position = transform.position.add(dragVector);
+
+        lastDragPosition = touchWorldCoords;
+
+        return true;
     }
 
     @Override

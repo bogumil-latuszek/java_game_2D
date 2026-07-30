@@ -18,6 +18,10 @@ public class EntityInspector {
         return  this.selectedEntityID;
     }
 
+    public boolean nothingSelected(){
+        return !this.selectedEntityID.isPresent();
+    }
+
     public EntityInspector(EntityComponentManager entityComponentManager) {
         this.entityComponentManager = entityComponentManager;
         this.selectedEntityID = OptionalInt.empty();

@@ -50,7 +50,7 @@ public class EditScreen implements Screen {
         cameraController = new EditorCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y);
 
         // (Optional) Add any Editor-specific systems here later...
-        entitySelector = new EntitySelector(gameManager.entityComponentManager);
+        entitySelector = new EntitySelector(gameManager.entityComponentManager, gameManager.textureManager );
         inputProcessor = new EditorInputProcessor(entityComponentManager, entitySelector, camera);
     }
 

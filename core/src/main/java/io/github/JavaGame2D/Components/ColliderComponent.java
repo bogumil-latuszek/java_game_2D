@@ -8,7 +8,7 @@ public class ColliderComponent implements Component {
     public int layer = 0;
     public ColliderType colliderType = ColliderType.AABB;
     public boolean usesOffset = false;
-    public Vector2 offset;
+    public Vector2 offset = new Vector2();
     public float width;
     public float height;
 

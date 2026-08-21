@@ -6,7 +6,6 @@ import io.github.JavaGame2D.Enums.BodySegmentType;
 import java.util.EnumMap;
 
 public class DrawableComponent implements Component{
-    public final long signature = ComponentSignatures.DRAWABLE;
     public SpriteData spriteData = new SpriteData();
     // every entity with SegmentedDrawableBodyComponent needs to have DrawableComponent
     // but not every entity with DrawableComponent has SegmentedDrawableBodyComponent
@@ -15,6 +14,6 @@ public class DrawableComponent implements Component{
 
     @Override
     public long getSignature() {
-        return this.signature;
+        return ComponentSignatures.DRAWABLE;
     }
 }

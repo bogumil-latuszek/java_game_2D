@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class PhysicalBodyComponent implements Component{
 
-    public final long signature = ComponentSignatures.PHYSICAL_BODY;
     public Vector2 velocity;
     public boolean usesGravity;
     public boolean onGround;
@@ -25,6 +24,6 @@ public class PhysicalBodyComponent implements Component{
 
     @Override
     public long getSignature() {
-        return this.signature;
+        return ComponentSignatures.PHYSICAL_BODY;
     }
 }

@@ -5,7 +5,6 @@ import io.github.JavaGame2D.Enums.ColliderType;
 
 public class ColliderComponent implements Component {
 
-    public final long signature = ComponentSignatures.COLLIDER;
     public int layer = 0;
     public ColliderType colliderType = ColliderType.AABB;
     public boolean usesOffset = false;
@@ -14,7 +13,5 @@ public class ColliderComponent implements Component {
     public float height;
 
     @Override
-    public long getSignature() {
-        return this.signature;
-    }
+    public long getSignature() { return ComponentSignatures.COLLIDER; }
 }

@@ -1,6 +1,7 @@
 {
   "levelID" : 3,
   "transformCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.TransformComponent",
     "entityIDToPosition" : {
       "0" : 0,
       "1" : 1,
@@ -20,7 +21,6 @@
     "lastLivePosition" : 5,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
-      "signature" : 1,
       "position" : {
         "x" : 10.0,
         "y" : 25.0
@@ -28,9 +28,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 10.0,
         "y" : 5.0
@@ -38,9 +38,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 0.0,
         "y" : 15.0
@@ -48,9 +48,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 20.0,
         "y" : 15.0
@@ -58,9 +58,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 10.0,
         "y" : 11.0
@@ -68,9 +68,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 10.0,
         "y" : 15.0
@@ -78,11 +78,11 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, null, null, null, null ],
     "componentSignature" : 1,
     "allComponents" : [ {
-      "signature" : 1,
       "position" : {
         "x" : 10.0,
         "y" : 25.0
@@ -90,9 +90,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 10.0,
         "y" : 5.0
@@ -100,9 +100,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 0.0,
         "y" : 15.0
@@ -110,9 +110,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 20.0,
         "y" : 15.0
@@ -120,9 +120,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 10.0,
         "y" : 11.0
@@ -130,9 +130,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 10.0,
         "y" : 15.0
@@ -140,10 +140,12 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     } ]
   },
   "physicalBodyCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.PhysicalBodyComponent",
     "entityIDToPosition" : {
       "0" : 0,
       "1" : 1,
@@ -161,7 +163,6 @@
     "lastLivePosition" : 4,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -171,9 +172,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -183,9 +184,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -195,9 +196,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -207,9 +208,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -219,11 +220,11 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, null, null, null, null, null ],
     "componentSignature" : 4,
     "allComponents" : [ {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -233,9 +234,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -245,9 +246,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -257,9 +258,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -269,9 +270,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -281,10 +282,12 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     } ]
   },
   "colliderCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.ColliderComponent",
     "entityIDToPosition" : {
       "0" : 0,
       "1" : 1,
@@ -302,90 +305,121 @@
     "lastLivePosition" : 4,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 20.0,
-      "height" : 5.0
+      "height" : 5.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 20.0,
-      "height" : 5.0
+      "height" : 5.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 30.0
+      "height" : 30.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 30.0
+      "height" : 30.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 2.0,
-      "height" : 0.5
+      "height" : 0.5,
+      "signature" : 8
     }, null, null, null, null, null ],
     "componentSignature" : 8,
     "allComponents" : [ {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 20.0,
-      "height" : 5.0
+      "height" : 5.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 20.0,
-      "height" : 5.0
+      "height" : 5.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 30.0
+      "height" : 30.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 30.0
+      "height" : 30.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 2.0,
-      "height" : 0.5
+      "height" : 0.5,
+      "signature" : 8
     } ]
   },
   "drawableCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DrawableComponent",
     "entityIDToPosition" : {
       "0" : 0,
       "1" : 1,
@@ -405,7 +439,6 @@
     "lastLivePosition" : 5,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -421,9 +454,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -439,9 +472,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -457,9 +490,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -475,9 +508,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -493,9 +526,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -511,11 +544,11 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, null, null, null, null ],
     "componentSignature" : 2,
     "allComponents" : [ {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -531,9 +564,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -549,9 +582,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -567,9 +600,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -585,9 +618,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -603,9 +636,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -621,10 +654,12 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     } ]
   },
   "teleporterCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.TeleporterComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,
@@ -634,6 +669,7 @@
     "allComponents" : [ ]
   },
   "healthCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.HealthComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,
@@ -643,6 +679,7 @@
     "allComponents" : [ ]
   },
   "damageEmitterCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DamageEmitterComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,
@@ -652,6 +689,7 @@
     "allComponents" : [ ]
   },
   "destructibleCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DestructibleComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,
@@ -661,6 +699,7 @@
     "allComponents" : [ ]
   },
   "segmentedDrawableCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.SegmentedDrawableComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,

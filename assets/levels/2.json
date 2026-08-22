@@ -1,6 +1,7 @@
 {
   "levelID" : 2,
   "transformCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.TransformComponent",
     "entityIDToPosition" : {
       "0" : 0,
       "1" : 1,
@@ -42,7 +43,6 @@
     "lastLivePosition" : 16,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
-      "signature" : 1,
       "position" : {
         "x" : 5.0,
         "y" : 2.0
@@ -50,9 +50,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 35.0,
         "y" : 0.0
@@ -60,9 +60,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 30.0,
         "y" : 5.0
@@ -70,9 +70,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 40.0,
         "y" : 14.5
@@ -80,9 +80,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 50.0,
         "y" : 12.5
@@ -90,9 +90,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 65.0,
         "y" : 15.0
@@ -100,9 +100,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 65.0,
         "y" : 35.0
@@ -110,9 +110,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 82.5,
         "y" : 14.0
@@ -120,9 +120,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 87.5,
         "y" : 12.5
@@ -130,9 +130,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 92.5,
         "y" : 13.5
@@ -140,9 +140,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 97.5,
         "y" : 12.0
@@ -150,9 +150,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 87.5,
         "y" : 35.5
@@ -160,9 +160,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 97.5,
         "y" : 32.0
@@ -170,9 +170,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 107.5,
         "y" : 18.0
@@ -180,9 +180,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 112.5,
         "y" : 37.5
@@ -190,9 +190,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 117.5,
         "y" : 20.0
@@ -200,9 +200,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 117.5,
         "y" : 24.0
@@ -210,11 +210,11 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, null, null, null ],
     "componentSignature" : 1,
     "allComponents" : [ {
-      "signature" : 1,
       "position" : {
         "x" : 5.0,
         "y" : 2.0
@@ -222,9 +222,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 35.0,
         "y" : 0.0
@@ -232,9 +232,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 30.0,
         "y" : 5.0
@@ -242,9 +242,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 40.0,
         "y" : 14.5
@@ -252,9 +252,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 50.0,
         "y" : 12.5
@@ -262,9 +262,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 65.0,
         "y" : 15.0
@@ -272,9 +272,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 65.0,
         "y" : 35.0
@@ -282,9 +282,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 82.5,
         "y" : 14.0
@@ -292,9 +292,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 87.5,
         "y" : 12.5
@@ -302,9 +302,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 92.5,
         "y" : 13.5
@@ -312,9 +312,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 97.5,
         "y" : 12.0
@@ -322,9 +322,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 87.5,
         "y" : 35.5
@@ -332,9 +332,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 97.5,
         "y" : 32.0
@@ -342,9 +342,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 107.5,
         "y" : 18.0
@@ -352,9 +352,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 112.5,
         "y" : 37.5
@@ -362,9 +362,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 117.5,
         "y" : 20.0
@@ -372,9 +372,9 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     }, {
-      "signature" : 1,
       "position" : {
         "x" : 117.5,
         "y" : 24.0
@@ -382,10 +382,12 @@
       "previousPosition" : {
         "x" : 0.0,
         "y" : 0.0
-      }
+      },
+      "signature" : 1
     } ]
   },
   "physicalBodyCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.PhysicalBodyComponent",
     "entityIDToPosition" : {
       "0" : 0,
       "1" : 1,
@@ -427,7 +429,6 @@
     "lastLivePosition" : 16,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -437,9 +438,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -449,9 +450,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -461,9 +462,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -473,9 +474,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -485,9 +486,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -497,9 +498,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -509,9 +510,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -521,9 +522,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -533,9 +534,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -545,9 +546,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -557,9 +558,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -569,9 +570,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -581,9 +582,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -593,9 +594,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -605,9 +606,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -617,9 +618,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -629,11 +630,11 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, null, null, null ],
     "componentSignature" : 4,
     "allComponents" : [ {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -643,9 +644,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -655,9 +656,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -667,9 +668,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -679,9 +680,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -691,9 +692,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -703,9 +704,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -715,9 +716,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -727,9 +728,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -739,9 +740,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -751,9 +752,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -763,9 +764,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -775,9 +776,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -787,9 +788,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -799,9 +800,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -811,9 +812,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -823,9 +824,9 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     }, {
-      "signature" : 4,
       "velocity" : {
         "x" : 0.0,
         "y" : 0.0
@@ -835,10 +836,12 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
     } ]
   },
   "colliderCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.ColliderComponent",
     "entityIDToPosition" : {
       "0" : 0,
       "1" : 1,
@@ -880,282 +883,385 @@
     "lastLivePosition" : 16,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 15.0,
-      "height" : 10.0
+      "height" : 10.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 40.0,
-      "height" : 20.0
+      "height" : 20.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 10.0,
-      "height" : 16.0
+      "height" : 16.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 5.0
+      "height" : 5.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 10.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 30.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 30.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 10.0
+      "height" : 10.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 3.0,
-      "height" : 5.0
+      "height" : 5.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 2.0,
-      "height" : 2.0
+      "height" : 2.0,
+      "signature" : 8
     }, null, null, null ],
     "componentSignature" : 8,
     "allComponents" : [ {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 15.0,
-      "height" : 10.0
+      "height" : 10.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 40.0,
-      "height" : 20.0
+      "height" : 20.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 10.0,
-      "height" : 16.0
+      "height" : 16.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 5.0
+      "height" : 5.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 10.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 30.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 30.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 10.0
+      "height" : 10.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 5.0,
-      "height" : 15.0
+      "height" : 15.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 3.0,
-      "height" : 5.0
+      "height" : 5.0,
+      "signature" : 8
     }, {
-      "signature" : 8,
       "layer" : 0,
       "colliderType" : "AABB",
       "usesOffset" : false,
-      "offset" : null,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
       "width" : 2.0,
-      "height" : 2.0
+      "height" : 2.0,
+      "signature" : 8
     } ]
   },
   "drawableCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DrawableComponent",
     "entityIDToPosition" : {
       "0" : 0,
       "1" : 1,
@@ -1197,7 +1303,6 @@
     "lastLivePosition" : 16,
     "defaultSize" : 10,
     "collectionOfComponents" : [ {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1213,9 +1318,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1231,9 +1336,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1249,9 +1354,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1267,9 +1372,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1285,9 +1390,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1303,9 +1408,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1321,9 +1426,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1339,9 +1444,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1357,9 +1462,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1375,9 +1480,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1393,9 +1498,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1411,9 +1516,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1429,9 +1534,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1447,9 +1552,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1465,9 +1570,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1483,9 +1588,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1501,11 +1606,11 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, null, null, null ],
     "componentSignature" : 2,
     "allComponents" : [ {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1521,9 +1626,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1539,9 +1644,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1557,9 +1662,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1575,9 +1680,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1593,9 +1698,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1611,9 +1716,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1629,9 +1734,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1647,9 +1752,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1665,9 +1770,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1683,9 +1788,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1701,9 +1806,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1719,9 +1824,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1737,9 +1842,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1755,9 +1860,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1773,9 +1878,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1791,9 +1896,9 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     }, {
-      "signature" : 2,
       "spriteData" : {
         "offset" : {
           "x" : 0.0,
@@ -1809,10 +1914,12 @@
         "mirrorHorizontal" : false,
         "facingDirection" : "NONE"
       },
-      "hasSegmentedBody" : false
+      "hasSegmentedBody" : false,
+      "signature" : 2
     } ]
   },
   "teleporterCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.TeleporterComponent",
     "entityIDToPosition" : {
       "16" : 0
     },
@@ -1832,6 +1939,7 @@
     } ]
   },
   "healthCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.HealthComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,
@@ -1841,6 +1949,7 @@
     "allComponents" : [ ]
   },
   "damageEmitterCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DamageEmitterComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,
@@ -1850,6 +1959,7 @@
     "allComponents" : [ ]
   },
   "destructibleCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DestructibleComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,
@@ -1859,6 +1969,7 @@
     "allComponents" : [ ]
   },
   "segmentedDrawableCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.SegmentedDrawableComponent",
     "entityIDToPosition" : { },
     "positionToEntityID" : { },
     "lastLivePosition" : -1,

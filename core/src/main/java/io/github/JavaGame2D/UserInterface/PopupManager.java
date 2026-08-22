@@ -2,22 +2,28 @@ package io.github.JavaGame2D.UserInterface;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.util.Optional;
 
 public class PopupManager {
 
     //only one shown at a time
-    private Optional<Window> activePopup;
+    private Optional<Table> activePopup;
     private final Skin uiskin;
     private Stage stage;
 
@@ -33,8 +39,16 @@ public class PopupManager {
         closePopup();
 
         // Create new popup
-        Window popup = new Window("", uiskin);
-        //popup.setBackground(uiskin.getDrawable("tooltip"));
+        Table popup = new Table(uiskin);
+
+        // TODO: define this background in uiskin
+        Pixmap pixmap = new Pixmap(1, 1, Pixmap.Format.RGBA8888);
+        pixmap.setColor(0.2f, 0.2f, 0.2f, 1f); // dark gray
+        pixmap.fill();
+        TextureRegionDrawable background = new TextureRegionDrawable(new TextureRegion(new Texture(pixmap)));
+        pixmap.dispose();
+
+        popup.setBackground(background);
         //popup.setModal(false); // doesn't block input
 
         // Add the full name with optional wrapping
@@ -52,15 +66,6 @@ public class PopupManager {
         popup.add(content).width(Math.min(300, actualTextWidth + 20));
         popup.pack();
 
-//        // Position it relative to the source label
-//        Vector2 pos = sourceLabel.localToStageCoordinates(new Vector2(0, 0));
-//        float x = pos.x;
-//        float y = pos.y - popup.getHeight() - 5; // try below first (5px gap)
-//
-//        // If below would go off‑screen, place it above
-//        if (y < 0) {
-//            y = pos.y + sourceLabel.getHeight() + 5;
-//        }
         // Position it over source label
         Vector2 pos = sourceLabel.localToStageCoordinates(new Vector2(0, 0));
         float x = pos.x;
@@ -71,6 +76,17 @@ public class PopupManager {
             x = stage.getWidth() - popup.getWidth();
         }
         if (x < 0) x = 0;
+
+        // if wrapped, correct position
+        if (popup.getHeight() > sourceLabel.getHeight()){
+            y = y -(popup.getHeight() - sourceLabel.getHeight());
+        }
+
+        // if it went off‑screen, place it above
+        if (y < 0) {
+            //y = pos.y + sourceLabel.getHeight() + 5;
+            y = 0;
+        }
 
         popup.setPosition(x, y);
 

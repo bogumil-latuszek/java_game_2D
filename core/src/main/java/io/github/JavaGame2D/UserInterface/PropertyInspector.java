@@ -45,8 +45,8 @@ public class PropertyInspector {
         contentTable.top().left();
         contentTable.pad(10);
 
-        // Wrap it in a ScrollPane so we can scroll if entity has many components
-        scrollPane = new ScrollPane(contentTable, skin);
+        // Wrap it in a ScrollPane
+        scrollPane = new AutoFocusScrollPane(contentTable, skin);
         scrollPane.setFadeScrollBars(false);
         scrollPane.setScrollingDisabled(true, false); // Horizontal scroll off, vertical on
     }

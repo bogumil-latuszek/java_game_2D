@@ -73,7 +73,7 @@ public class EditScreen implements Screen {
         //leftPanel.setBackground(uiskin.getDrawable("default-rect")); // optional
 
         // Right side: The Property Inspector
-        propertyInspector = new PropertyInspector(entityComponentManager, skin);
+        propertyInspector = new PropertyInspector(this.editorStage, entityComponentManager, skin);
         inspectorPanel = new Table();
         inspectorPanel.setBackground(skin.getDrawable("default-rect")); // optional
         inspectorPanel.add(propertyInspector.getActor()).expand().fill();

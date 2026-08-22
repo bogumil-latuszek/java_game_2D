@@ -1,9 +1,14 @@
 package io.github.JavaGame2D.UserInterface;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import io.github.JavaGame2D.Annotations.InspectorIgnore;
 import io.github.JavaGame2D.SpriteData;
 import io.github.JavaGame2D.Systems.EntityComponentManager;
@@ -17,12 +22,23 @@ public class PropertyInspector {
     private final ScrollPane scrollPane;   // Wraps the table so it scrolls
     private final Skin skin;
     private final EntityComponentManager entityComponentManager;
+    private final PopupManager popupManager;
 
     private int selectedEntityId = -1;      // Track what we're currently showing
 
-    public PropertyInspector(EntityComponentManager entityComponentManager, Skin skin) {
+    public PropertyInspector(Stage stage, EntityComponentManager entityComponentManager, Skin skin) {
         this.skin = skin;
         this.entityComponentManager = entityComponentManager;
+        this.popupManager = new PopupManager(skin, stage);
+
+        stage.addListener(new ClickListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                popupManager.closePopup();
+                // Return false so the event propagates to parent actors and the Stage
+                return false;
+            }
+        });
 
         // Create the table that holds all the property rows
         contentTable = new Table(skin);
@@ -116,9 +132,15 @@ public class PropertyInspector {
             Label fieldLabel = new Label(field.getName() + ":", skin);
             fieldLabel.setEllipsis(true); // <-- This automatically adds "..." when text is too long
 
-            // Create the TextTooltip and attach it to the label in one line!
-//            TextTooltip tooltip = new TextTooltip(field.getName(), skin);
-//            fieldLabel.addListener(tooltip); // The tooltip itself is the listener
+            fieldLabel.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    // Only show popup if the text is actually truncated
+                    if (isTruncated(fieldLabel)) {
+                        popupManager.showFullNamePopup(fieldLabel, field.getName());
+                    }
+                }
+            });
 
             // --- DISPATCH TO SPECIFIC RENDERERS ---
             try {
@@ -151,11 +173,6 @@ public class PropertyInspector {
             }
         }
     }
-//
-//    private void renderField(){
-//
-//        renderComponentFields();
-//    }
 
     private void renderVector2Field(Label nameLabel, Vector2 vec, Field field, Object componentInstance) {
         // If the vector is null, show "null"
@@ -449,7 +466,7 @@ public class PropertyInspector {
     }
 
     // Helper class to bundle field + component for the listener
-    private static class FieldBinding {
+    private class FieldBinding {
         final Field field;
         final Object component;
 
@@ -457,5 +474,24 @@ public class PropertyInspector {
             this.field = field;
             this.component = component;
         }
+    }
+
+    //check if text inside label is truncated (tooLongText) -> (tooLon...)
+    private boolean isTruncated(Label label){
+        // 1. Get the font from the label's style
+        BitmapFont font = label.getStyle().font;
+
+        // 2. Measure full text width (without ellipsis)
+        GlyphLayout measurement = new GlyphLayout();
+        String fullText = label.getText().toString();
+        measurement.setText(font, fullText);
+        float actualTextWidth = measurement.width;
+
+        // 3. Get the width of the text as actually rendered (with ellipsis if needed)
+        float displayedWidth = label.getGlyphLayout().width;
+
+        // 4. If displayed width is noticeably smaller, truncation occurred
+        //    Tolerance of 1 pixel for floating-point / rounding errors
+        return actualTextWidth - displayedWidth > 1f;
     }
 }

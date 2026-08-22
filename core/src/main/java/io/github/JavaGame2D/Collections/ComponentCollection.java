@@ -1,29 +1,30 @@
 package io.github.JavaGame2D.Collections;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.TransformComponent;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.lang.reflect.Array;
 import java.util.HashMap;
 
 
-public class ComponentCollection<ComponentType> implements ComponentCollectionInterface {
+public class ComponentCollection<ComponentType> implements ComponentCollectionInterface<ComponentType> {
     public HashMap<Integer, Integer> entityIDToPosition;
     public HashMap<Integer, Integer> positionToEntityID;
     public int lastLivePosition;
     public int defaultSize = 10;
     public ComponentType[] collectionOfComponents;
     public Long componentSignature;
-    private final Class<ComponentType> componentClass;
+    private final Class<ComponentType> componentType;
 
     @SuppressWarnings("unchecked")
-    private ComponentCollection() {
-        // Jackson will set these via setters or constructor
-        this.componentClass = null;
+    private ComponentCollection(@JsonProperty("componentType") Class<ComponentType> componentType) {
+        this.componentType = componentType;
         this.componentSignature = 0L;
         // Initialize arrays to avoid NPE, they'll be replaced during deserialization
-        //this.collectionOfComponents = (ComponentType[]) new Object[0];
         this.collectionOfComponents = null;
         this.lastLivePosition = -1;
         this.entityIDToPosition = new HashMap<>();
@@ -31,7 +32,7 @@ public class ComponentCollection<ComponentType> implements ComponentCollectionIn
     }
 
     public ComponentCollection(Class<ComponentType> componentClass, long signature){
-        this.componentClass = componentClass;
+        this.componentType = componentClass;
         // Create a ComponentType[] array of size defaultSize using reflection
         @SuppressWarnings("unchecked")
         ComponentType[] tmp = (ComponentType[]) Array.newInstance(componentClass, defaultSize);
@@ -56,15 +57,24 @@ public class ComponentCollection<ComponentType> implements ComponentCollectionIn
         return entityIDtoSignature;
     }
 
+    // much slower then signature check, use sparingly
+    public boolean hasEntityID(int entityID){
+        return this.entityIDToPosition.containsKey(entityID);
+    }
+
     public ComponentType getComponent(int entityID){
         int position = entityIDToPosition.get(entityID);
         return collectionOfComponents[position];
     }
 
+    public Class<ComponentType> getComponentType() {
+        return componentType;
+    }
+
     public ComponentType[] getAllComponents(){
         if (lastLivePosition < 0){
             @SuppressWarnings("unchecked")
-            ComponentType[] empty = (ComponentType[]) Array.newInstance(this.componentClass, 0);
+            ComponentType[] empty = (ComponentType[]) Array.newInstance(this.componentType, 0);
             return empty;
         }
         return Arrays.copyOfRange(collectionOfComponents, 0, lastLivePosition+1);
@@ -126,7 +136,7 @@ public class ComponentCollection<ComponentType> implements ComponentCollectionIn
     private void enlargeComponentArray(){
         int newSize = collectionOfComponents.length + 10;
         @SuppressWarnings("unchecked")
-        ComponentType[] newCollection = (ComponentType[]) Array.newInstance(this.componentClass, newSize);
+        ComponentType[] newCollection = (ComponentType[]) Array.newInstance(this.componentType, newSize);
         for (int i = 0; i < collectionOfComponents.length; i++){
             newCollection[i] = collectionOfComponents[i];
         }

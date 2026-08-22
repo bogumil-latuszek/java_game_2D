@@ -5,16 +5,13 @@ import io.github.JavaGame2D.Enums.ColliderType;
 
 public class ColliderComponent implements Component {
 
-    public final long signature = ComponentSignatures.COLLIDER;
     public int layer = 0;
     public ColliderType colliderType = ColliderType.AABB;
     public boolean usesOffset = false;
-    public Vector2 offset;
+    public Vector2 offset = new Vector2();
     public float width;
     public float height;
 
     @Override
-    public long getSignature() {
-        return this.signature;
-    }
+    public long getSignature() { return ComponentSignatures.COLLIDER; }
 }

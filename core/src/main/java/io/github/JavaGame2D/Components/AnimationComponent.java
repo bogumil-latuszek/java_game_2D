@@ -10,7 +10,10 @@ import io.github.JavaGame2D.Systems.BodySegmentAnimations;
 import java.util.EnumMap;
 import java.util.HashMap;
 
-public class AnimationComponent {
+public class AnimationComponent implements Component{
     public CharacterType characterType = CharacterType.PLAYER;
     public EnumMap<BodySegmentType, AnimationState> segmentAnimations = new EnumMap<>(BodySegmentType.class);
+
+    @Override
+    public long getSignature() { return ComponentSignatures.ANIMATION; }
 }

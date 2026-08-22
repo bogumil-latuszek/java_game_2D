@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class TransformComponent implements Component{
 
-    public final long signature = ComponentSignatures.TRANSFORM;
     // position of the center
     public Vector2 position;
     // previous frame position
@@ -17,6 +16,6 @@ public class TransformComponent implements Component{
 
     @Override
     public long getSignature() {
-        return this.signature;
+        return ComponentSignatures.TRANSFORM;
     }
 }

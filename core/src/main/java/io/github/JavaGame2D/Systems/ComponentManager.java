@@ -1,5 +1,6 @@
 package io.github.JavaGame2D.Systems;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
@@ -46,6 +47,19 @@ public class ComponentManager {
 
     public <T> T[] getAllComponents(Class<T> componentType) {
         return getComponentCollection(componentType).getAllComponents();
+    }
+
+    //@SuppressWarnings("unchecked")
+    public HashMap<Class<?>, Object> getEntityComponents(int entityID) {
+        HashMap<Class<?>, Object> entityComponents = new HashMap<>();
+        for ( ComponentCollectionInterface  componentCollection : this.componentCollections.values()){
+            if(componentCollection.hasEntityID(entityID) ){
+                Object component = componentCollection.getComponent(entityID);
+                Class<?> componentType = componentCollection.getComponentType();
+                entityComponents.put(componentType, component);
+            }
+        }
+        return entityComponents;
     }
 
     public <T> void addComponent(Class<T> componentType, T component, int entityID) {

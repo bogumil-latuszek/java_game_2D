@@ -36,8 +36,8 @@ public class EntityComponentManager {
         return componentManager.getComponent(componentType, entityID);
     }
 
-    public <T> T[] getAllComponents(Class<T> componentType) {
-        return componentManager.getAllComponents(componentType);
+    public HashMap<Class<?>, Object> getEntityComponents(int entityID) {
+        return componentManager.getEntityComponents(entityID);
     }
 
     public <T> void addComponent(Class<T> componentType, T component, int entityID) {

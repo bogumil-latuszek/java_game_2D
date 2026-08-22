@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Enums.SelectedTool;
+import io.github.JavaGame2D.UserInterface.PropertyInspector;
 
 import java.util.OptionalInt;
 
@@ -19,10 +20,12 @@ public class EditorInputProcessor implements InputProcessor {
     private boolean isDragging = false;
     private Vector2 lastDragPosition;
     private EntityComponentManager entityComponentManager;
+    private PropertyInspector propertyInspector;
 
-    public EditorInputProcessor(EntityComponentManager entityComponentManager, EntitySelector entitySelector, OrthographicCamera camera) {
+    public EditorInputProcessor(EntityComponentManager entityComponentManager, EntitySelector entitySelector, PropertyInspector propertyInspector, OrthographicCamera camera) {
         this.entityComponentManager = entityComponentManager;
         this.entitySelector = entitySelector;
+        this.propertyInspector = propertyInspector;
         this.camera = camera;
         this.selectedTool = SelectedTool.DRAGGING_TOOL;
         lastDragPosition = new Vector2(0,0);
@@ -63,6 +66,9 @@ public class EditorInputProcessor implements InputProcessor {
             Vector3 touchWorldCoords3D = camera.unproject(touchScreenCoords3D);
             Vector2 touchWorldCoords = new Vector2(touchWorldCoords3D.x, touchWorldCoords3D.y);
             entitySelector.selectEntity(touchWorldCoords);
+
+
+            propertyInspector.inspectEntity(entitySelector.getSelectedEntityID());
 
             // if entity got selected, start dragging
             if (entitySelector.getSelectedEntityID().isPresent()){

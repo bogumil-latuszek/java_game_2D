@@ -6,10 +6,14 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
+import io.github.JavaGame2D.UserInterface.PropertyInspector;
 
 import java.util.OptionalInt;
 
@@ -19,11 +23,8 @@ public class EditScreen implements Screen {
 
     // shared systems
     private RenderingSystem renderingSystem;
-    //private PhysicsSystem physicsSystem;
-    //private GameSettings gameSettings;
     private LevelManager levelManager;
     private EntityComponentManager entityComponentManager;
-    private FileSystem fileSystem;
     private Vector2 screenSizeInGameUnits;
     private OrthographicCamera camera;
 
@@ -31,7 +32,11 @@ public class EditScreen implements Screen {
     private Stage editorStage;
     private EditorCameraController cameraController;
     private EntitySelector entitySelector;
+    private PropertyInspector propertyInspector;
     private EditorInputProcessor inputProcessor;
+
+    private Table rootLayout;
+    private Table inspectorPanel;
 
     public EditScreen(GameManager gameManager) {
         this.gameManager = gameManager;
@@ -39,19 +44,46 @@ public class EditScreen implements Screen {
         this.renderingSystem = gameManager.renderingSystem;
         this.levelManager = gameManager.levelManager;
         this.entityComponentManager = gameManager.entityComponentManager;
-        this.fileSystem = gameManager.fileSystem;
         this.camera = gameManager.camera;
         this.screenSizeInGameUnits = gameManager.screenSizeInGameUnits;
 
         // 1. Set up the Editor UI Stage
         editorStage = new Stage(new ScreenViewport());
 
-        // 2. Create the camera controller
+        Skin uiskin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+
+        // Add the root layout to the stage
+        Actor editorUI = createEditorUI(uiskin);
+        editorStage.addActor(editorUI);
+
+        // Create the camera controller
         cameraController = new EditorCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y);
 
-        // (Optional) Add any Editor-specific systems here later...
         entitySelector = new EntitySelector(gameManager.entityComponentManager, gameManager.textureManager );
-        inputProcessor = new EditorInputProcessor(entityComponentManager, entitySelector, camera);
+        inputProcessor = new EditorInputProcessor(entityComponentManager, entitySelector, propertyInspector, camera);
+    }
+
+    private Actor createEditorUI(Skin skin){
+        // Create a root Table that fills the entire screen
+        rootLayout = new Table();
+        rootLayout.setFillParent(true);
+
+        // Left side: Empty area for the game world (or toolbar later)
+        Table leftPanel = new Table();
+        //leftPanel.setBackground(uiskin.getDrawable("default-rect")); // optional
+
+        // Right side: The Property Inspector
+        propertyInspector = new PropertyInspector(entityComponentManager, skin);
+        inspectorPanel = new Table();
+        inspectorPanel.setBackground(skin.getDrawable("default-rect")); // optional
+        inspectorPanel.add(propertyInspector.getActor()).expand().fill();
+        inspectorPanel.setWidth(260); // Fixed width for the inspector
+
+        // Add panels to the root layout
+        rootLayout.add(leftPanel).expand().fill(); // Left takes all remaining space
+        rootLayout.add(inspectorPanel).width(260).fillY(); // Right is 260px wide
+
+        return rootLayout;
     }
 
     @Override
@@ -59,8 +91,8 @@ public class EditScreen implements Screen {
         // Set input processor (UI first, then game controls)
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(editorStage);
-        multiplexer.addProcessor(cameraController);
         multiplexer.addProcessor(inputProcessor);
+        multiplexer.addProcessor(cameraController);
         Gdx.input.setInputProcessor(multiplexer);
     }
 

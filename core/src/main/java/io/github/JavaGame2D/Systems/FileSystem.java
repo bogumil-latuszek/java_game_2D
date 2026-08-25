@@ -11,19 +11,17 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import io.github.JavaGame2D.SpriteData;
-import io.github.JavaGame2D.Entity;
+import io.github.JavaGame2D.*;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.CharacterType;
 import io.github.JavaGame2D.Enums.FacingDirection;
-import io.github.JavaGame2D.GameSettings;
-import io.github.JavaGame2D.Level;
 
 import static com.badlogic.gdx.net.HttpRequestBuilder.json;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class FileSystem {
 
@@ -50,6 +48,46 @@ public class FileSystem {
         Gdx.files.local("game_settings.json").writeString(jsonText, false);
         Gdx.app.log("Save", "Settings saved!");
     }
+
+    public void savePrefab(String prefabName, Prefab prefab){
+        ObjectMapper mapper = new ObjectMapper();
+        // add special rules for Vector2 class
+        mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
+        // formats json for better reading
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+
+        String path = "assets/prefabs/" + prefabName + ".json";
+        FileHandle fileHandle = Gdx.files.local(path);
+        // Ensure the parent directory exists
+        fileHandle.file().getParentFile().mkdirs();
+
+        try{
+            mapper.writeValue(new File(path), prefab);
+        } catch (Exception e) {
+            Gdx.app.error("JacksonSerializer", "Failed to serialize prefab: " + prefabName, e);
+        }
+    }
+
+    public Optional<Prefab> loadPrefab(String prefabName){
+        if (!Gdx.files.internal("assets/prefabs/" + prefabName + ".json").exists()) {
+            return Optional.empty();
+        }
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.enable(SerializationFeature.INDENT_OUTPUT);
+            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+            mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
+
+            String jsonText = Gdx.files.internal("prefabs/"+prefabName+".json").readString();
+            Prefab prefab = mapper.readValue(jsonText, Prefab.class);
+            return Optional.of(prefab);
+
+        } catch (Exception e) {
+            Gdx.app.error("SaveManager", "Failed to load prefab: "+ prefabName, e);
+            return Optional.empty();
+        }
+    }
+
 
     public void saveLevel(Level level){
         ObjectMapper mapper = new ObjectMapper();

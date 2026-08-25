@@ -7,9 +7,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Dialog;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
@@ -30,6 +34,8 @@ public class EditScreen implements Screen {
 
     // edit-only systems
     private Stage editorStage;
+    private Skin uiskin;
+
     private EditorCameraController cameraController;
     private EntitySelector entitySelector;
     private PropertyInspector propertyInspector;
@@ -37,6 +43,11 @@ public class EditScreen implements Screen {
 
     private Table rootLayout;
     private Table inspectorPanel;
+    private Table leftPanel;
+    private Table topLeftPanel;
+    private Table bottomLeftPanel;
+    private Table gameWorld;
+    private Table toolPicker;
 
     public EditScreen(GameManager gameManager) {
         this.gameManager = gameManager;
@@ -50,7 +61,7 @@ public class EditScreen implements Screen {
         // 1. Set up the Editor UI Stage
         editorStage = new Stage(new ScreenViewport());
 
-        Skin uiskin = new Skin(Gdx.files.internal("ui/uiskin.json"));
+        uiskin = new Skin(Gdx.files.internal("ui/uiskin.json"));
 
         // Add the root layout to the stage
         Actor editorUI = createEditorUI(uiskin);
@@ -69,7 +80,38 @@ public class EditScreen implements Screen {
         rootLayout.setFillParent(true);
 
         // Left side: Empty area for the game world (or toolbar later)
-        Table leftPanel = new Table();
+        leftPanel = new Table();
+
+        topLeftPanel = new Table();
+        topLeftPanel.setBackground(skin.getDrawable("default-rect")); // optional
+        topLeftPanel.setHeight(100);
+
+        TextButton saveButton = new TextButton("Save Level", skin);
+        saveButton.setHeight(40);
+        saveButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                showSaveConfirmationDialog();
+            }
+        });
+        topLeftPanel.add(saveButton).left();
+
+
+        bottomLeftPanel = new Table();
+
+        leftPanel.add(topLeftPanel).fillX().height(50);
+        leftPanel.row();
+        leftPanel.add(bottomLeftPanel).expand().fill();
+
+        gameWorld = new Table();
+
+        toolPicker = new Table();
+        toolPicker.setBackground(skin.getDrawable("default-rect"));
+        toolPicker.setWidth(200);
+
+        bottomLeftPanel.add(toolPicker).width(200).fillY();
+        bottomLeftPanel.add(gameWorld).expand().fillY();
+
         //leftPanel.setBackground(uiskin.getDrawable("default-rect")); // optional
 
         // Right side: The Property Inspector
@@ -83,7 +125,34 @@ public class EditScreen implements Screen {
         rootLayout.add(leftPanel).expand().fill(); // Left takes all remaining space
         rootLayout.add(inspectorPanel).width(260).fillY(); // Right is 260px wide
 
+
+
         return rootLayout;
+    }
+
+    private void showSaveConfirmationDialog() {
+        Dialog saveDialog = new Dialog("Save Level", uiskin) {
+            @Override
+            protected void result(Object object) {
+                // 'true' is returned if "Yes" is clicked, 'false' for "No"
+                if ((boolean) object) {
+                    levelManager.saveCurrentLevel();
+                    // show a small toast/notification that save succeeded
+                    System.out.println("Level saved successfully!");
+                } else {
+                    System.out.println("Save cancelled.");
+                }
+            }
+        };
+
+        saveDialog.text("Are you sure you want to save this level?");
+
+        // Adding buttons. The second parameter is the 'Object' passed to result()
+        saveDialog.button("Yes", true);
+        saveDialog.button("No", false);
+
+        // Show the dialog and make it modal (blocks input to the rest of the Stage)
+        saveDialog.show(editorStage);
     }
 
     @Override

@@ -1,0 +1,3628 @@
+{
+  "levelID" : 4,
+  "transformCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.TransformComponent",
+    "entityIDToPosition" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5,
+      "6" : 6,
+      "7" : 7,
+      "8" : 8,
+      "9" : 9,
+      "10" : 10,
+      "11" : 11,
+      "12" : 12,
+      "13" : 13,
+      "14" : 14,
+      "15" : 15,
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20,
+      "21" : 21,
+      "22" : 22,
+      "23" : 23,
+      "24" : 24,
+      "25" : 25,
+      "28" : 26,
+      "29" : 27
+    },
+    "positionToEntityID" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5,
+      "6" : 6,
+      "7" : 7,
+      "8" : 8,
+      "9" : 9,
+      "10" : 10,
+      "11" : 11,
+      "12" : 12,
+      "13" : 13,
+      "14" : 14,
+      "15" : 15,
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20,
+      "21" : 21,
+      "22" : 22,
+      "23" : 23,
+      "24" : 24,
+      "25" : 25,
+      "26" : 28,
+      "27" : 29
+    },
+    "lastLivePosition" : 27,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "position" : {
+        "x" : 1.0490345,
+        "y" : 6.742006
+      },
+      "previousPosition" : {
+        "x" : 1.0490345,
+        "y" : 6.742006
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 2.8269384,
+        "y" : 8.508711
+      },
+      "previousPosition" : {
+        "x" : 2.8269384,
+        "y" : 8.508711
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 10.04367,
+        "y" : 2.0215158
+      },
+      "previousPosition" : {
+        "x" : 10.04367,
+        "y" : 2.0215158
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 12.168366,
+        "y" : -1.7688253
+      },
+      "previousPosition" : {
+        "x" : 12.168366,
+        "y" : -1.7688253
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 18.21328,
+        "y" : -4.538863
+      },
+      "previousPosition" : {
+        "x" : 18.21328,
+        "y" : -4.538863
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 6.7963977,
+        "y" : -10.889032
+      },
+      "previousPosition" : {
+        "x" : 6.7963977,
+        "y" : -10.889032
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 5.464977,
+        "y" : -26.02124
+      },
+      "previousPosition" : {
+        "x" : 5.464977,
+        "y" : -26.02124
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 17.08635,
+        "y" : 4.7903266
+      },
+      "previousPosition" : {
+        "x" : 17.08635,
+        "y" : 4.7903266
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 16.608189,
+        "y" : 6.322988
+      },
+      "previousPosition" : {
+        "x" : 16.608189,
+        "y" : 6.322988
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 17.096268,
+        "y" : 9.664733
+      },
+      "previousPosition" : {
+        "x" : 17.096268,
+        "y" : 9.664733
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 17.080433,
+        "y" : 8.3290415
+      },
+      "previousPosition" : {
+        "x" : 17.080433,
+        "y" : 8.3290415
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 2.561709,
+        "y" : -5.7444587
+      },
+      "previousPosition" : {
+        "x" : 2.561709,
+        "y" : -5.7444587
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 1.6073204,
+        "y" : -3.7419894
+      },
+      "previousPosition" : {
+        "x" : 1.6073204,
+        "y" : -3.7419894
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 1.9581294,
+        "y" : -1.7309564
+      },
+      "previousPosition" : {
+        "x" : 1.9581294,
+        "y" : -1.7309564
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 13.794023,
+        "y" : 0.98223484
+      },
+      "previousPosition" : {
+        "x" : 13.794023,
+        "y" : 0.98223484
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 6.2925534,
+        "y" : -1.7886658
+      },
+      "previousPosition" : {
+        "x" : 6.2925534,
+        "y" : -1.7886658
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 6.495187,
+        "y" : -5.0503287
+      },
+      "previousPosition" : {
+        "x" : 6.495187,
+        "y" : -5.0503287
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -1.0936152,
+        "y" : 6.0168657
+      },
+      "previousPosition" : {
+        "x" : -1.0936152,
+        "y" : 6.0168657
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -2.6956806,
+        "y" : 5.5097847
+      },
+      "previousPosition" : {
+        "x" : -2.6956806,
+        "y" : 5.5097847
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 7.9296694,
+        "y" : 3.5409417
+      },
+      "previousPosition" : {
+        "x" : 7.9296694,
+        "y" : 3.5409417
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 0.040323645,
+        "y" : -0.7592126
+      },
+      "previousPosition" : {
+        "x" : 0.040323645,
+        "y" : -0.7592126
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 4.801184,
+        "y" : 6.9792438
+      },
+      "previousPosition" : {
+        "x" : 4.801184,
+        "y" : 6.9792438
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 6.15934,
+        "y" : 6.4455295
+      },
+      "previousPosition" : {
+        "x" : 6.15934,
+        "y" : 6.4455295
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -12.790315,
+        "y" : -11.781054
+      },
+      "previousPosition" : {
+        "x" : -12.790315,
+        "y" : -11.781054
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -0.75977635,
+        "y" : -13.771139
+      },
+      "previousPosition" : {
+        "x" : -0.75977635,
+        "y" : -13.771139
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -0.75977635,
+        "y" : -13.771139
+      },
+      "previousPosition" : {
+        "x" : -0.75977635,
+        "y" : -13.771139
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 2.4084723,
+        "y" : 0.019143343
+      },
+      "previousPosition" : {
+        "x" : 2.4084723,
+        "y" : 0.019143343
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 5.4084725,
+        "y" : -0.7885658
+      },
+      "previousPosition" : {
+        "x" : 5.4084725,
+        "y" : -0.7885658
+      },
+      "signature" : 1
+    }, null, null ],
+    "componentSignature" : 1,
+    "allComponents" : [ {
+      "position" : {
+        "x" : 1.0490345,
+        "y" : 6.742006
+      },
+      "previousPosition" : {
+        "x" : 1.0490345,
+        "y" : 6.742006
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 2.8269384,
+        "y" : 8.508711
+      },
+      "previousPosition" : {
+        "x" : 2.8269384,
+        "y" : 8.508711
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 10.04367,
+        "y" : 2.0215158
+      },
+      "previousPosition" : {
+        "x" : 10.04367,
+        "y" : 2.0215158
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 12.168366,
+        "y" : -1.7688253
+      },
+      "previousPosition" : {
+        "x" : 12.168366,
+        "y" : -1.7688253
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 18.21328,
+        "y" : -4.538863
+      },
+      "previousPosition" : {
+        "x" : 18.21328,
+        "y" : -4.538863
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 6.7963977,
+        "y" : -10.889032
+      },
+      "previousPosition" : {
+        "x" : 6.7963977,
+        "y" : -10.889032
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 5.464977,
+        "y" : -26.02124
+      },
+      "previousPosition" : {
+        "x" : 5.464977,
+        "y" : -26.02124
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 17.08635,
+        "y" : 4.7903266
+      },
+      "previousPosition" : {
+        "x" : 17.08635,
+        "y" : 4.7903266
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 16.608189,
+        "y" : 6.322988
+      },
+      "previousPosition" : {
+        "x" : 16.608189,
+        "y" : 6.322988
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 17.096268,
+        "y" : 9.664733
+      },
+      "previousPosition" : {
+        "x" : 17.096268,
+        "y" : 9.664733
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 17.080433,
+        "y" : 8.3290415
+      },
+      "previousPosition" : {
+        "x" : 17.080433,
+        "y" : 8.3290415
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 2.561709,
+        "y" : -5.7444587
+      },
+      "previousPosition" : {
+        "x" : 2.561709,
+        "y" : -5.7444587
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 1.6073204,
+        "y" : -3.7419894
+      },
+      "previousPosition" : {
+        "x" : 1.6073204,
+        "y" : -3.7419894
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 1.9581294,
+        "y" : -1.7309564
+      },
+      "previousPosition" : {
+        "x" : 1.9581294,
+        "y" : -1.7309564
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 13.794023,
+        "y" : 0.98223484
+      },
+      "previousPosition" : {
+        "x" : 13.794023,
+        "y" : 0.98223484
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 6.2925534,
+        "y" : -1.7886658
+      },
+      "previousPosition" : {
+        "x" : 6.2925534,
+        "y" : -1.7886658
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 6.495187,
+        "y" : -5.0503287
+      },
+      "previousPosition" : {
+        "x" : 6.495187,
+        "y" : -5.0503287
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -1.0936152,
+        "y" : 6.0168657
+      },
+      "previousPosition" : {
+        "x" : -1.0936152,
+        "y" : 6.0168657
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -2.6956806,
+        "y" : 5.5097847
+      },
+      "previousPosition" : {
+        "x" : -2.6956806,
+        "y" : 5.5097847
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 7.9296694,
+        "y" : 3.5409417
+      },
+      "previousPosition" : {
+        "x" : 7.9296694,
+        "y" : 3.5409417
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 0.040323645,
+        "y" : -0.7592126
+      },
+      "previousPosition" : {
+        "x" : 0.040323645,
+        "y" : -0.7592126
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 4.801184,
+        "y" : 6.9792438
+      },
+      "previousPosition" : {
+        "x" : 4.801184,
+        "y" : 6.9792438
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 6.15934,
+        "y" : 6.4455295
+      },
+      "previousPosition" : {
+        "x" : 6.15934,
+        "y" : 6.4455295
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -12.790315,
+        "y" : -11.781054
+      },
+      "previousPosition" : {
+        "x" : -12.790315,
+        "y" : -11.781054
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -0.75977635,
+        "y" : -13.771139
+      },
+      "previousPosition" : {
+        "x" : -0.75977635,
+        "y" : -13.771139
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : -0.75977635,
+        "y" : -13.771139
+      },
+      "previousPosition" : {
+        "x" : -0.75977635,
+        "y" : -13.771139
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 2.4084723,
+        "y" : 0.019143343
+      },
+      "previousPosition" : {
+        "x" : 2.4084723,
+        "y" : 0.019143343
+      },
+      "signature" : 1
+    }, {
+      "position" : {
+        "x" : 5.4084725,
+        "y" : -0.7885658
+      },
+      "previousPosition" : {
+        "x" : 5.4084725,
+        "y" : -0.7885658
+      },
+      "signature" : 1
+    } ]
+  },
+  "physicalBodyCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.PhysicalBodyComponent",
+    "entityIDToPosition" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5,
+      "6" : 6,
+      "7" : 7,
+      "8" : 8,
+      "9" : 9,
+      "10" : 10,
+      "11" : 11,
+      "12" : 12,
+      "13" : 13,
+      "14" : 14,
+      "15" : 15,
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20,
+      "21" : 21,
+      "22" : 22,
+      "23" : 23,
+      "24" : 24,
+      "25" : 25,
+      "28" : 26,
+      "29" : 27
+    },
+    "positionToEntityID" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5,
+      "6" : 6,
+      "7" : 7,
+      "8" : 8,
+      "9" : 9,
+      "10" : 10,
+      "11" : 11,
+      "12" : 12,
+      "13" : 13,
+      "14" : 14,
+      "15" : 15,
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20,
+      "21" : 21,
+      "22" : 22,
+      "23" : 23,
+      "24" : 24,
+      "25" : 25,
+      "26" : 28,
+      "27" : 29
+    },
+    "lastLivePosition" : 27,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : true,
+      "onGround" : true,
+      "dynamic" : true,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : true,
+      "onGround" : true,
+      "dynamic" : true,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : true,
+      "onGround" : true,
+      "dynamic" : true,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : true,
+      "onGround" : true,
+      "dynamic" : true,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, null, null ],
+    "componentSignature" : 4,
+    "allComponents" : [ {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : true,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : true,
+      "onGround" : true,
+      "dynamic" : true,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : true,
+      "onGround" : true,
+      "dynamic" : true,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : true,
+      "onGround" : true,
+      "dynamic" : true,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    }, {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : true,
+      "onGround" : true,
+      "dynamic" : true,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false,
+      "signature" : 4
+    } ]
+  },
+  "colliderCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.ColliderComponent",
+    "entityIDToPosition" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5,
+      "6" : 6,
+      "7" : 7,
+      "8" : 8,
+      "9" : 9,
+      "10" : 10,
+      "11" : 11,
+      "12" : 12,
+      "13" : 13,
+      "14" : 14,
+      "15" : 15,
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20,
+      "21" : 21,
+      "22" : 22,
+      "23" : 23,
+      "24" : 24,
+      "25" : 25,
+      "28" : 26,
+      "29" : 27
+    },
+    "positionToEntityID" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5,
+      "6" : 6,
+      "7" : 7,
+      "8" : 8,
+      "9" : 9,
+      "10" : 10,
+      "11" : 11,
+      "12" : 12,
+      "13" : 13,
+      "14" : 14,
+      "15" : 15,
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20,
+      "21" : 21,
+      "22" : 22,
+      "23" : 23,
+      "24" : 24,
+      "25" : 25,
+      "26" : 28,
+      "27" : 29
+    },
+    "lastLivePosition" : 27,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 1.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 2.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 2.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.25,
+      "height" : 10.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.25,
+      "height" : 30.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 12.5,
+      "height" : 8.25,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 43.0,
+      "height" : 23.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.5,
+      "height" : 6.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.0,
+      "height" : 14.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.25,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.6,
+      "height" : 1.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.6,
+      "height" : 1.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.6,
+      "height" : 1.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.6,
+      "height" : 1.5,
+      "signature" : 8
+    }, null, null ],
+    "componentSignature" : 8,
+    "allComponents" : [ {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 1.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 2.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 5.0,
+      "height" : 2.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.25,
+      "height" : 10.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.25,
+      "height" : 30.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 12.5,
+      "height" : 8.25,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 43.0,
+      "height" : 23.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : true,
+      "offset" : {
+        "x" : 0.0,
+        "y" : -0.3
+      },
+      "width" : 1.8,
+      "height" : 0.8,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.5,
+      "height" : 6.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.0,
+      "height" : 14.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.5,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.25,
+      "height" : 0.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 2.0,
+      "height" : 2.0,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.6,
+      "height" : 1.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.6,
+      "height" : 1.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.6,
+      "height" : 1.5,
+      "signature" : 8
+    }, {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 0.6,
+      "height" : 1.5,
+      "signature" : 8
+    } ]
+  },
+  "drawableCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DrawableComponent",
+    "entityIDToPosition" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5,
+      "6" : 6,
+      "7" : 7,
+      "8" : 8,
+      "9" : 9,
+      "10" : 10,
+      "11" : 11,
+      "12" : 12,
+      "13" : 13,
+      "14" : 14,
+      "15" : 15,
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20,
+      "21" : 21,
+      "22" : 22,
+      "23" : 23,
+      "24" : 24,
+      "25" : 25,
+      "28" : 26,
+      "29" : 27
+    },
+    "positionToEntityID" : {
+      "0" : 0,
+      "1" : 1,
+      "2" : 2,
+      "3" : 3,
+      "4" : 4,
+      "5" : 5,
+      "6" : 6,
+      "7" : 7,
+      "8" : 8,
+      "9" : 9,
+      "10" : 10,
+      "11" : 11,
+      "12" : 12,
+      "13" : 13,
+      "14" : 14,
+      "15" : 15,
+      "16" : 16,
+      "17" : 17,
+      "18" : 18,
+      "19" : 19,
+      "20" : 20,
+      "21" : 21,
+      "22" : 22,
+      "23" : 23,
+      "24" : 24,
+      "25" : 25,
+      "26" : 28,
+      "27" : 29
+    },
+    "lastLivePosition" : 27,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 5.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 2.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 5.0,
+        "height" : 2.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.25,
+        "height" : 10.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.25,
+        "height" : 30.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 12.5,
+        "height" : 8.25,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 43.0,
+        "height" : 23.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 0.5,
+        "height" : 6.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 14.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.25,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 2,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : -1,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : true,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : -1,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : true,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : -1,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : true,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : -1,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : true,
+      "signature" : 2
+    }, null, null ],
+    "componentSignature" : 2,
+    "allComponents" : [ {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 5.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 2.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 5.0,
+        "height" : 2.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.25,
+        "height" : 10.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.25,
+        "height" : 30.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 12.5,
+        "height" : 8.25,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 43.0,
+        "height" : 23.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 4,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 7,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 0.5,
+        "height" : 6.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 14.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 2.5,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 0,
+        "textureIsTiled" : true,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.25,
+        "height" : 0.5,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : 2,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : false,
+        "pixelsPerUnit" : 1,
+        "width" : 2.0,
+        "height" : 2.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : false,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : -1,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : true,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : -1,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : true,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : -1,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : true,
+      "signature" : 2
+    }, {
+      "spriteData" : {
+        "offset" : {
+          "x" : 0.0,
+          "y" : 0.0
+        },
+        "textureID" : -1,
+        "textureIsTiled" : false,
+        "usesSizeFromTexture" : true,
+        "pixelsPerUnit" : 1,
+        "width" : 1.0,
+        "height" : 1.0,
+        "mirrorVertical" : false,
+        "mirrorHorizontal" : false,
+        "facingDirection" : "NONE"
+      },
+      "hasSegmentedBody" : true,
+      "signature" : 2
+    } ]
+  },
+  "teleporterCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.TeleporterComponent",
+    "entityIDToPosition" : {
+      "23" : 0
+    },
+    "positionToEntityID" : {
+      "0" : 23
+    },
+    "lastLivePosition" : 0,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "targetLevelID" : 2,
+      "signature" : 32
+    }, null, null, null, null, null, null, null, null, null ],
+    "componentSignature" : 32,
+    "allComponents" : [ {
+      "targetLevelID" : 2,
+      "signature" : 32
+    } ]
+  },
+  "healthCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.HealthComponent",
+    "entityIDToPosition" : {
+      "24" : 3,
+      "25" : 4,
+      "11" : 0,
+      "12" : 1,
+      "28" : 5,
+      "13" : 2,
+      "29" : 6
+    },
+    "positionToEntityID" : {
+      "0" : 11,
+      "1" : 12,
+      "2" : 13,
+      "3" : 24,
+      "4" : 25,
+      "5" : 28,
+      "6" : 29
+    },
+    "lastLivePosition" : 6,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "currentHp" : 1,
+      "maxHp" : 1,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
+      "signature" : 64
+    }, {
+      "currentHp" : 1,
+      "maxHp" : 1,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
+      "signature" : 64
+    }, {
+      "currentHp" : 1,
+      "maxHp" : 1,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
+      "signature" : 64
+    }, {
+      "currentHp" : 64,
+      "maxHp" : 100,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.41549498,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : true,
+      "signature" : 64
+    }, {
+      "currentHp" : 64,
+      "maxHp" : 100,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.41549498,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : true,
+      "signature" : 64
+    }, {
+      "currentHp" : 98,
+      "maxHp" : 100,
+      "isInvulnerable" : false,
+      "iframeTimer" : -8.48406E-4,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : true,
+      "signature" : 64
+    }, {
+      "currentHp" : 100,
+      "maxHp" : 100,
+      "isInvulnerable" : false,
+      "iframeTimer" : -0.07906255,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : true,
+      "signature" : 64
+    }, null, null, null ],
+    "componentSignature" : 64,
+    "allComponents" : [ {
+      "currentHp" : 1,
+      "maxHp" : 1,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
+      "signature" : 64
+    }, {
+      "currentHp" : 1,
+      "maxHp" : 1,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
+      "signature" : 64
+    }, {
+      "currentHp" : 1,
+      "maxHp" : 1,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.0,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : false,
+      "signature" : 64
+    }, {
+      "currentHp" : 64,
+      "maxHp" : 100,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.41549498,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : true,
+      "signature" : 64
+    }, {
+      "currentHp" : 64,
+      "maxHp" : 100,
+      "isInvulnerable" : false,
+      "iframeTimer" : 0.41549498,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : true,
+      "signature" : 64
+    }, {
+      "currentHp" : 98,
+      "maxHp" : 100,
+      "isInvulnerable" : false,
+      "iframeTimer" : -8.48406E-4,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : true,
+      "signature" : 64
+    }, {
+      "currentHp" : 100,
+      "maxHp" : 100,
+      "isInvulnerable" : false,
+      "iframeTimer" : -0.07906255,
+      "iframeDuration" : 1.0,
+      "damageTriggersiframes" : true,
+      "signature" : 64
+    } ]
+  },
+  "damageEmitterCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DamageEmitterComponent",
+    "entityIDToPosition" : {
+      "7" : 0,
+      "8" : 1,
+      "24" : 4,
+      "9" : 2,
+      "25" : 5,
+      "10" : 3,
+      "28" : 6,
+      "29" : 7
+    },
+    "positionToEntityID" : {
+      "0" : 7,
+      "1" : 8,
+      "2" : 9,
+      "3" : 10,
+      "4" : 24,
+      "5" : 25,
+      "6" : 28,
+      "7" : 29
+    },
+    "lastLivePosition" : 7,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "damageType" : "BURST",
+      "damageAmount" : 20,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 20,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 20,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 20,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, null, null ],
+    "componentSignature" : 128,
+    "allComponents" : [ {
+      "damageType" : "BURST",
+      "damageAmount" : 20,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 20,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 20,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 20,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    }, {
+      "damageType" : "BURST",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false,
+      "signature" : 128
+    } ]
+  },
+  "destructibleCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.DestructibleComponent",
+    "entityIDToPosition" : {
+      "24" : 0,
+      "25" : 1,
+      "28" : 2,
+      "29" : 3
+    },
+    "positionToEntityID" : {
+      "0" : 24,
+      "1" : 25,
+      "2" : 28,
+      "3" : 29
+    },
+    "lastLivePosition" : 3,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "isAlive" : true,
+      "destructionDelay" : 10.0,
+      "signature" : 256
+    }, {
+      "isAlive" : true,
+      "destructionDelay" : 10.0,
+      "signature" : 256
+    }, {
+      "isAlive" : true,
+      "destructionDelay" : 10.0,
+      "signature" : 256
+    }, {
+      "isAlive" : true,
+      "destructionDelay" : 10.0,
+      "signature" : 256
+    }, null, null, null, null, null, null ],
+    "componentSignature" : 256,
+    "allComponents" : [ {
+      "isAlive" : true,
+      "destructionDelay" : 10.0,
+      "signature" : 256
+    }, {
+      "isAlive" : true,
+      "destructionDelay" : 10.0,
+      "signature" : 256
+    }, {
+      "isAlive" : true,
+      "destructionDelay" : 10.0,
+      "signature" : 256
+    }, {
+      "isAlive" : true,
+      "destructionDelay" : 10.0,
+      "signature" : 256
+    } ]
+  },
+  "segmentedDrawableCollection" : {
+    "componentType" : "io.github.JavaGame2D.Components.SegmentedDrawableComponent",
+    "entityIDToPosition" : {
+      "24" : 0,
+      "25" : 1,
+      "28" : 2,
+      "29" : 3
+    },
+    "positionToEntityID" : {
+      "0" : 24,
+      "1" : 25,
+      "2" : 28,
+      "3" : 29
+    },
+    "lastLivePosition" : 3,
+    "defaultSize" : 10,
+    "collectionOfComponents" : [ {
+      "drawableSegments" : {
+        "UPPER_BODY" : {
+          "offset" : {
+            "x" : 0.0,
+            "y" : 0.0
+          },
+          "textureID" : -1,
+          "textureIsTiled" : false,
+          "usesSizeFromTexture" : true,
+          "pixelsPerUnit" : 1,
+          "width" : 1.0,
+          "height" : 1.0,
+          "mirrorVertical" : false,
+          "mirrorHorizontal" : false,
+          "facingDirection" : "NONE"
+        }
+      },
+      "signature" : 1024
+    }, {
+      "drawableSegments" : {
+        "UPPER_BODY" : {
+          "offset" : {
+            "x" : 0.0,
+            "y" : 0.0
+          },
+          "textureID" : -1,
+          "textureIsTiled" : false,
+          "usesSizeFromTexture" : true,
+          "pixelsPerUnit" : 1,
+          "width" : 1.0,
+          "height" : 1.0,
+          "mirrorVertical" : false,
+          "mirrorHorizontal" : false,
+          "facingDirection" : "NONE"
+        }
+      },
+      "signature" : 1024
+    }, {
+      "drawableSegments" : {
+        "UPPER_BODY" : {
+          "offset" : {
+            "x" : 0.0,
+            "y" : 0.0
+          },
+          "textureID" : 15,
+          "textureIsTiled" : false,
+          "usesSizeFromTexture" : true,
+          "pixelsPerUnit" : 900,
+          "width" : 1.0,
+          "height" : 1.0,
+          "mirrorVertical" : true,
+          "mirrorHorizontal" : false,
+          "facingDirection" : "RIGHT"
+        }
+      },
+      "signature" : 1024
+    }, {
+      "drawableSegments" : {
+        "UPPER_BODY" : {
+          "offset" : {
+            "x" : 0.0,
+            "y" : 0.0
+          },
+          "textureID" : 8,
+          "textureIsTiled" : false,
+          "usesSizeFromTexture" : true,
+          "pixelsPerUnit" : 900,
+          "width" : 1.0,
+          "height" : 1.0,
+          "mirrorVertical" : false,
+          "mirrorHorizontal" : false,
+          "facingDirection" : "RIGHT"
+        }
+      },
+      "signature" : 1024
+    }, null, null, null, null, null, null ],
+    "componentSignature" : 1024,
+    "allComponents" : [ {
+      "drawableSegments" : {
+        "UPPER_BODY" : {
+          "offset" : {
+            "x" : 0.0,
+            "y" : 0.0
+          },
+          "textureID" : -1,
+          "textureIsTiled" : false,
+          "usesSizeFromTexture" : true,
+          "pixelsPerUnit" : 1,
+          "width" : 1.0,
+          "height" : 1.0,
+          "mirrorVertical" : false,
+          "mirrorHorizontal" : false,
+          "facingDirection" : "NONE"
+        }
+      },
+      "signature" : 1024
+    }, {
+      "drawableSegments" : {
+        "UPPER_BODY" : {
+          "offset" : {
+            "x" : 0.0,
+            "y" : 0.0
+          },
+          "textureID" : -1,
+          "textureIsTiled" : false,
+          "usesSizeFromTexture" : true,
+          "pixelsPerUnit" : 1,
+          "width" : 1.0,
+          "height" : 1.0,
+          "mirrorVertical" : false,
+          "mirrorHorizontal" : false,
+          "facingDirection" : "NONE"
+        }
+      },
+      "signature" : 1024
+    }, {
+      "drawableSegments" : {
+        "UPPER_BODY" : {
+          "offset" : {
+            "x" : 0.0,
+            "y" : 0.0
+          },
+          "textureID" : 15,
+          "textureIsTiled" : false,
+          "usesSizeFromTexture" : true,
+          "pixelsPerUnit" : 900,
+          "width" : 1.0,
+          "height" : 1.0,
+          "mirrorVertical" : true,
+          "mirrorHorizontal" : false,
+          "facingDirection" : "RIGHT"
+        }
+      },
+      "signature" : 1024
+    }, {
+      "drawableSegments" : {
+        "UPPER_BODY" : {
+          "offset" : {
+            "x" : 0.0,
+            "y" : 0.0
+          },
+          "textureID" : 8,
+          "textureIsTiled" : false,
+          "usesSizeFromTexture" : true,
+          "pixelsPerUnit" : 900,
+          "width" : 1.0,
+          "height" : 1.0,
+          "mirrorVertical" : false,
+          "mirrorHorizontal" : false,
+          "facingDirection" : "RIGHT"
+        }
+      },
+      "signature" : 1024
+    } ]
+  },
+  "validSpawnPoints" : {
+    "0" : {
+      "x" : 5.4084725,
+      "y" : -0.7885658
+    }
+  },
+  "defaultSpawnPointID" : 0
+}

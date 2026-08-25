@@ -18,7 +18,7 @@ public class LevelManager {
     public int defaultSpawnPoint;
 
     //private Level currentLevel;
-    private int currentLevelID;
+    private int currentLevelID = -1;
     private FileSystem fileSystem;
     EntityComponentManager entityComponentManager;
     TeleportPlayerEvent teleportEventToResolve;
@@ -77,6 +77,7 @@ public class LevelManager {
 //        Vector2 playerSpawnPosition = this.spawnPointIDtoPosition.get(defaultSpawnPoint);
 //        int playerID = entityComponentManager.createPlayer(playerSpawnPosition);
 //        EventBus.getInstance().publish(new PlayerIDChanged(playerID));
+        this.currentLevelID = levelID;
     }
 
     public void loadPlayer(){
@@ -111,6 +112,15 @@ public class LevelManager {
         level.defaultSpawnPointID = this.defaultSpawnPoint;
         // #3 serialize level and save it
         fileSystem.saveLevel(level);
+    }
+
+    public void saveCurrentLevel(){
+        // don't save if
+        if (currentLevelID < 0){
+            System.out.println("can't save current level, invalid Id:" + currentLevelID);
+            return;
+        }
+        this.saveLevel(this.currentLevelID);
     }
 
 

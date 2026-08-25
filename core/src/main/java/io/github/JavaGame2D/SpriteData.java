@@ -27,4 +27,18 @@ public class SpriteData {
         this.facingDirection = facingDirection;
     }
 
+    public SpriteData makeCopy(){
+        SpriteData temp = new SpriteData();
+        temp.offset = this.offset.cpy();
+        temp.textureID = this.textureID;
+        temp.textureIsTiled = this.textureIsTiled;
+        temp.usesSizeFromTexture = this.usesSizeFromTexture;
+        temp.pixelsPerUnit = this.pixelsPerUnit;
+        temp.width = this.width;
+        temp.height = this.height;
+        temp.mirrorVertical = this.mirrorVertical;
+        temp.mirrorHorizontal = this.mirrorHorizontal;
+        temp.facingDirection = this.facingDirection; // enums are passed by ref, but that's ok since it's a ref to a singleton
+        return temp;
+    }
 }

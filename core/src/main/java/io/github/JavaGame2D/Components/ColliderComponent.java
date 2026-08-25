@@ -14,4 +14,16 @@ public class ColliderComponent implements Component {
 
     @Override
     public long getSignature() { return ComponentSignatures.COLLIDER; }
+
+    @Override
+    public Component makeCopy() {
+        ColliderComponent temp = new ColliderComponent();
+        temp.layer = this.layer;
+        temp.colliderType = this.colliderType;
+        temp.usesOffset = this.usesOffset;
+        temp.offset = this.offset.cpy();
+        temp.width = this.width;
+        temp.height = this.height;
+        return temp;
+    }
 }

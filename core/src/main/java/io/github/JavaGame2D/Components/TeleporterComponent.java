@@ -6,4 +6,11 @@ public class TeleporterComponent implements Component{
     public long getSignature() {
         return ComponentSignatures.TELEPORTER;
     }
+
+    @Override
+    public Component makeCopy() {
+        TeleporterComponent temp = new TeleporterComponent();
+        temp.targetLevelID = this.targetLevelID;
+        return temp;
+    }
 }

@@ -16,4 +16,11 @@ public class DrawableComponent implements Component{
     public long getSignature() {
         return ComponentSignatures.DRAWABLE;
     }
+
+    @Override
+    public Component makeCopy() {
+        DrawableComponent temp = new DrawableComponent();
+        temp.spriteData = this.spriteData.makeCopy();
+        return temp;
+    }
 }

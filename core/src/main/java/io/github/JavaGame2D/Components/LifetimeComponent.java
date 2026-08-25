@@ -7,4 +7,11 @@ public class LifetimeComponent implements Component{
     public long getSignature() {
         return ComponentSignatures.LIFETIME;
     }
+
+    @Override
+    public Component makeCopy() {
+        LifetimeComponent temp = new LifetimeComponent();
+        temp.deathTimer = this.deathTimer;
+        return temp;
+    }
 }

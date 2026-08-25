@@ -25,5 +25,17 @@ public class HealthComponent implements Component {
         return ComponentSignatures.HEALTH;
     }
 
-    // Getters and setters...
+    @Override
+    public Component makeCopy() {
+        HealthComponent temp = new HealthComponent();
+        temp.currentHp = this.currentHp;
+        temp.maxHp = this.maxHp;
+        temp.isInvulnerable = this.isInvulnerable;
+        temp.iframeTimer = this.iframeTimer;
+        temp.iframeDuration = this.iframeDuration;
+        temp.damageTriggersiframes = this.damageTriggersiframes;
+        return temp;
+    }
+
+
 }

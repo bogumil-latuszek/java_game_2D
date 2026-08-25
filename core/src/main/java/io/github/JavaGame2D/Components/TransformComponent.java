@@ -18,4 +18,12 @@ public class TransformComponent implements Component{
     public long getSignature() {
         return ComponentSignatures.TRANSFORM;
     }
+
+    @Override
+    public Component makeCopy() {
+        TransformComponent temp = new TransformComponent();
+        temp.position = this.position.cpy();
+        temp.previousPosition = this.previousPosition.cpy();
+        return temp;
+    }
 }

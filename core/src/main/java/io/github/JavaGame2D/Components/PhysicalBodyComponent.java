@@ -26,4 +26,17 @@ public class PhysicalBodyComponent implements Component{
     public long getSignature() {
         return ComponentSignatures.PHYSICAL_BODY;
     }
+
+    @Override
+    public Component makeCopy() {
+        PhysicalBodyComponent temp = new PhysicalBodyComponent();
+        temp.velocity = this.velocity.cpy();
+        temp.usesGravity = this.usesGravity;
+        temp.onGround = this.onGround;
+        temp.dynamic = this.dynamic;
+        temp.moveSpeed = this.moveSpeed;
+        temp.jumpForce = this.jumpForce;
+        temp.ignoresPhysicalCollision = this.ignoresPhysicalCollision;
+        return temp;
+    }
 }

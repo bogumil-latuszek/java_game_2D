@@ -16,4 +16,16 @@ public class AnimationComponent implements Component{
 
     @Override
     public long getSignature() { return ComponentSignatures.ANIMATION; }
+
+    @Override
+    public Component makeCopy() {
+        AnimationComponent temp = new AnimationComponent();
+        temp.characterType = this.characterType;
+        for ( HashMap.Entry<BodySegmentType, AnimationState> entry : segmentAnimations.entrySet()){
+            BodySegmentType keyCopy = entry.getKey();
+            AnimationState valueCopy = entry.getValue().makeCopy();
+            temp.segmentAnimations.put(keyCopy, valueCopy);
+        }
+        return temp;
+    }
 }

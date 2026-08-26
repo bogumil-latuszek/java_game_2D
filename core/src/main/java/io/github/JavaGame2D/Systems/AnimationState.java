@@ -11,4 +11,12 @@ public class AnimationState {
     public float durationInMilliseconds = 0;
     public AnimationType animationType = AnimationType.IDLE;
     public FacingDirection facingDirection = FacingDirection.NONE;
+
+    public AnimationState makeCopy(){
+        AnimationState temp = new AnimationState();
+        temp.durationInMilliseconds = this.durationInMilliseconds;
+        temp.animationType = this.animationType;
+        temp.facingDirection = this.facingDirection;
+        return temp;
+    }
 }

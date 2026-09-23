@@ -34,6 +34,10 @@ public class PrefabManager {
         }
     }
 
+    public void savePrefab(String prefabName, Prefab prefab){
+        this.fileSystem.savePrefab(prefabName, prefab);
+    }
+
     public int instantiateWithOverrides(int entityId, String prefabName, HashMap<String, Object> overrides, EntityComponentManager ecm) {
 
         // 1. load prefab

@@ -21,9 +21,6 @@ public class EntityComponentManager {
         this.componentManager = new ComponentManager();
     }
 
-    //TODO: add function that returns all components for given Entity
-    //public <T> Components
-
     public <T> ComponentCollection<T> getComponentCollection(Class<T> componentType) {
         return  componentManager.getComponentCollection(componentType);
     }

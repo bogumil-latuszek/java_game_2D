@@ -11,16 +11,30 @@ public class Prefab {
         this.prefabComponents = new HashMap<>();
     }
 
-    public Prefab makeCopy(){
-        Prefab prefabCopy = new Prefab();
+    public HashMap<Class<?>, Object> copyComponents(){
+        HashMap<Class<?>, Object> componentsCopy = new HashMap<>();
 
         for(HashMap.Entry<Class<?>, Object> entry : prefabComponents.entrySet()){
             Class<?> componentClass = entry.getKey();
             Component componentInstance = (Component) entry.getValue(); // Does this actually remove some info?
             Component componentCopy = componentInstance.makeCopy();
-            prefabCopy.prefabComponents.put(componentClass, componentCopy);
+            componentsCopy.put(componentClass, componentCopy);
         }
 
-        return prefabCopy;
+        return componentsCopy;
     }
+
+//    public Prefab makeCopy(){
+//        Prefab prefabCopy = new Prefab();
+//
+//        for(HashMap.Entry<Class<?>, Object> entry : prefabComponents.entrySet()){
+//            Class<?> componentClass = entry.getKey();
+//            Component componentInstance = (Component) entry.getValue(); // Does this actually remove some info?
+//            Component componentCopy = componentInstance.makeCopy();
+//            prefabCopy.prefabComponents.put(componentClass, componentCopy);
+//        }
+//
+//        return prefabCopy;
+//    }
+
 }

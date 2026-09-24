@@ -24,6 +24,7 @@ public class ComponentManager {
         registerComponentCollection(AnimationComponent.class, new ComponentCollection<>(AnimationComponent.class, ComponentSignatures.ANIMATION));
         registerComponentCollection(DestructibleComponent.class, new ComponentCollection<>(DestructibleComponent.class, ComponentSignatures.DESTRUCTIBLE));
         registerComponentCollection(SegmentedDrawableComponent.class, new ComponentCollection<>(SegmentedDrawableComponent.class, ComponentSignatures.SEGMENTED_DRAWABLE));
+        registerComponentCollection(PrefabComponent.class, new ComponentCollection<>(PrefabComponent.class, ComponentSignatures.PREFAB));
     }
 
     // Get a component collection by type (type-safe)

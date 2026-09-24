@@ -12,4 +12,5 @@ public final class ComponentSignatures {
     public static final long DESTRUCTIBLE   = 1L << 8;
     public static final long LIFETIME       = 1L << 9;
     public static final long SEGMENTED_DRAWABLE = 1L << 10;
+    public static final long PREFAB = 1L << 11;
 }

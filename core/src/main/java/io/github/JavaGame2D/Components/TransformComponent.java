@@ -14,6 +14,11 @@ public class TransformComponent implements Component{
         this.previousPosition = new Vector2(0f,0f);
     }
 
+    public TransformComponent(Vector2 position){
+        this.position = position;
+        this.previousPosition = position;
+    }
+
     @Override
     public long getSignature() {
         return ComponentSignatures.TRANSFORM;

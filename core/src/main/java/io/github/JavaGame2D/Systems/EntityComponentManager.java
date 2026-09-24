@@ -45,7 +45,7 @@ public class EntityComponentManager {
         getComponentCollection(componentType).removeComponentFromEntity(entityID);
     }
 
-    // Check if a component type is registereda
+    // Check if a component type is registered
     public boolean hasComponentType(Class<?> componentType) {
         return componentManager.hasComponentType(componentType);
     }
@@ -74,6 +74,24 @@ public class EntityComponentManager {
 
     public DrawableComponent[] getAllDrawableComponents(){
         return componentManager.getAllComponents(DrawableComponent.class);
+    }
+
+    public void addSignature(int entityID, long signature){
+        entityManager.addSignature(entityID, signature);
+    }
+
+//    public int createEmptyEntity(){
+//        return  entityManager.createEntity();
+//    }
+
+    public int createEntity(Vector2 position){
+        int entityID = entityManager.createEntity();
+
+        TransformComponent transform = new TransformComponent(position);
+        componentManager.addComponent(TransformComponent.class, transform, entityID);
+        entityManager.addSignature(entityID, ComponentSignatures.TRANSFORM);
+
+        return entityID;
     }
 
     public int createPlatform(float x, float y, float width, float height){

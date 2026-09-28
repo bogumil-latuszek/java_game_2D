@@ -142,7 +142,12 @@ public class PrefabManager {
         }
     }
 
-
+    public void createPrefabFromEntity(int entityID, String prefabName){
+        HashMap<Class<?>, Object> components = ecm.getEntityComponents(entityID);
+        Prefab prefab = new Prefab();
+        prefab.prefabComponents = components;
+        savePrefab(prefabName, prefab);
+    }
 
     public void savePrefab(String prefabName, Prefab prefab){
         this.fileSystem.savePrefab(prefabName, prefab);
@@ -229,6 +234,7 @@ public class PrefabManager {
 //        return entityId;
 //    }
 
+    //TODO: Move this to EntityComponentManager
     @SuppressWarnings("unchecked") // Safe because the Prefab guarantees value matches key.
     private <T> void addComponentSafely(int entityId, Class<T> componentType, Object component) {
         // The .cast() method performs a runtime check (throwing ClassCastException if wrong).

@@ -5,6 +5,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import io.github.JavaGame2D.Components.ColliderComponent;
+import io.github.JavaGame2D.Components.ComponentSignatures;
+import io.github.JavaGame2D.Components.DrawableComponent;
+import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
 
@@ -18,6 +22,7 @@ public class GameManager extends Game {
     PhysicsSystem physicsSystem;
     GameSettings gameSettings;
     LevelManager levelManager;
+    PrefabManager prefabManager;
     EntityComponentManager entityComponentManager;
     FileSystem fileSystem;
     OrthographicCamera camera;
@@ -39,9 +44,10 @@ public class GameManager extends Game {
         Skin uiskin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         runtimeDataOverlay = new RuntimeDataOverlay(uiskin);
 
+        createWallPrefab();
         //legacyCreateLevels();
 
-        levelManager.changeCurrentLevel(1);
+        //levelManager.changeCurrentLevel(1);
 
         switch (gameMode){
             case STANDARD_GAMEPLAY:
@@ -64,7 +70,8 @@ public class GameManager extends Game {
 
         renderingSystem = new RenderingSystem(entityComponentManager, camera, textureManager);
         physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
-        levelManager = new LevelManager(fileSystem,entityComponentManager);
+        prefabManager = new PrefabManager(fileSystem, entityComponentManager);
+        levelManager = new LevelManager(fileSystem,entityComponentManager, prefabManager);
     }
 
     public void switchToDifferentGameMode(GameMode gameMode){
@@ -85,6 +92,29 @@ public class GameManager extends Game {
         createLevel1();
         //createLevel2();
         //createLevel3();
+    }
+
+    private  void createWallPrefab(){
+//        Prefab wallPrefab = new Prefab();
+//
+//        TransformComponent transform = new TransformComponent();
+//        wallPrefab.prefabComponents.put(TransformComponent.class, transform);
+//
+//        DrawableComponent drawable = new DrawableComponent();
+//        drawable.spriteData.height = 2;
+//        drawable.spriteData.width = 2;
+//        drawable.spriteData.textureID = 0;
+//        drawable.spriteData.textureIsTiled = true;
+//        wallPrefab.prefabComponents.put(DrawableComponent.class, drawable);
+//
+//        ColliderComponent collider = new ColliderComponent();
+//        collider.width = 2;
+//        collider.height = 2;
+//        wallPrefab.prefabComponents.put(ColliderComponent.class, collider);
+//
+//        prefabManager.
+        int platformID = entityComponentManager.createPlatform(0f,    0f, 2f,   2f);
+        prefabManager.createPrefabFromEntity(platformID, "wall");
     }
 
     private void createLevel1(){

@@ -10,14 +10,14 @@ public class BakedEntity {
 
     // default values for serializer?
     public int entityID;
-    HashMap<Class<?>, Object> components;
+    public HashMap<Class<?>, Object> components;
 
     // empty constructor for serializer
     public BakedEntity(){
     }
 
-    public BakedEntity(int entityID, EntityComponentManager ecm){
-        this.components = ecm.getEntityComponents(entityID);
+    public BakedEntity(int entityID,  HashMap<Class<?>, Object> components){
+        this.components = components;
         this.entityID = entityID;
     }
 

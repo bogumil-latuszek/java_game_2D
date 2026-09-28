@@ -72,6 +72,10 @@ public class EntityComponentManager {
         return entityManager.getEntitiesMatchingSignature(signature);
     }
 
+    public int[] getAllEntities(){
+        return entityManager.getEntitiesMatchingSignature(0);
+    }
+
     public DrawableComponent[] getAllDrawableComponents(){
         return componentManager.getAllComponents(DrawableComponent.class);
     }

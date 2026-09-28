@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
@@ -24,6 +26,24 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class FileSystem {
+
+    private ObjectMapper mapper;
+
+    public FileSystem(){
+        mapper = new ObjectMapper();
+        // add special rules for Vector2 class
+        mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
+        // formats json for better reading
+        mapper.enable(SerializationFeature.INDENT_OUTPUT);
+        // make sure it deserializes as much as possible without failing
+        mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        // only serialize public fields, ignore non-field variables such as variables inside getters, setters, etc.
+        // mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
+
+        // use this line if you want non-public fields to be serialized:
+        //mapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+    }
 
     public GameSettings loadGameSettings(){
         if (!Gdx.files.local("game_settings.json").exists()) {
@@ -50,12 +70,6 @@ public class FileSystem {
     }
 
     public void savePrefab(String prefabName, Prefab prefab){
-        ObjectMapper mapper = new ObjectMapper();
-        // add special rules for Vector2 class
-        mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
-        // formats json for better reading
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
         String path = "assets/prefabs/" + prefabName + ".json";
         FileHandle fileHandle = Gdx.files.local(path);
         // Ensure the parent directory exists
@@ -73,11 +87,6 @@ public class FileSystem {
             return Optional.empty();
         }
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-            mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
-
             String jsonText = Gdx.files.internal("prefabs/"+prefabName+".json").readString();
             Prefab prefab = mapper.readValue(jsonText, Prefab.class);
             return Optional.of(prefab);
@@ -90,12 +99,6 @@ public class FileSystem {
 
 
     public void saveLevel(Level level){
-        ObjectMapper mapper = new ObjectMapper();
-        // add special rules for Vector2 class
-        mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
-        // formats json for better reading
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-
         // Use LibGDX's local storage path (works on all platforms)
         // Also, remember that assets are READ-ONLY when distributing the game
         // so if we want to have custom level creation as a feature in the final game,
@@ -118,11 +121,6 @@ public class FileSystem {
             return null; // Return defaults if no save file
         }
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-            mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
-
             String jsonText = Gdx.files.internal("levels/"+levelID+".json").readString();
             return mapper.readValue(jsonText, Level.class);
 
@@ -174,40 +172,6 @@ public class FileSystem {
         }
     }
 
-    public Entity loadEntityJackson(String filename) {
-        try {
-            FileHandle file = Gdx.files.internal(filename);
-            if (!file.exists()) {
-                return null;
-            }
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.enable(SerializationFeature.INDENT_OUTPUT);
-            mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
-            mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
-
-            String json = file.readString();
-            return mapper.readValue(json, Entity.class);
-
-        } catch (Exception e) {
-            Gdx.app.error("SaveManager", "Failed to load entity from: " + filename, e);
-            return null;
-        }
-    }
-
-    public static <T> void serializeEntityJackson(T entity) {
-        ObjectMapper mapper = new ObjectMapper();
-        // add special rules for Vector2 class
-        mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
-        // formats json for better reading
-        mapper.enable(SerializationFeature.INDENT_OUTPUT);
-        String path = "levels/serialized_component_jackson.json";
-        try{
-            mapper.writeValue(new File(path), entity);
-        } catch (Exception e) {
-            Gdx.app.error("JacksonSerializer", "Failed to serialize component: " + entity.getClass().getSimpleName(), e);
-        }
-    }
-
     @JsonSerialize(using = Vector2Serializer.class)
     @JsonDeserialize(using = Vector2Deserializer.class)
     public abstract class Vector2Mixin {
@@ -235,5 +199,29 @@ public class FileSystem {
             return new Vector2(x, y);
         }
     }
+
+//    public Entity loadEntityJackson(String filename) {
+//        try {
+//            FileHandle file = Gdx.files.internal(filename);
+//            if (!file.exists()) {
+//                return null;
+//            }
+//            String json = file.readString();
+//            return mapper.readValue(json, Entity.class);
+//
+//        } catch (Exception e) {
+//            Gdx.app.error("SaveManager", "Failed to load entity from: " + filename, e);
+//            return null;
+//        }
+//    }
+
+//    public static <T> void serializeEntityJackson(T entity) {
+//        String path = "levels/serialized_component_jackson.json";
+//        try{
+//            mapper.writeValue(new File(path), entity);
+//        } catch (Exception e) {
+//            Gdx.app.error("JacksonSerializer", "Failed to serialize component: " + entity.getClass().getSimpleName(), e);
+//        }
+//    }
 
 }

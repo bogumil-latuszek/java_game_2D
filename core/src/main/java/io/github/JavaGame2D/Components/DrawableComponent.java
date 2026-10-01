@@ -12,10 +12,7 @@ public class DrawableComponent implements Component{
     public boolean hasSegmentedBody = false;
 
 
-    @Override
-    public long getSignature() {
-        return ComponentSignatures.DRAWABLE;
-    }
+    public static final long SIGNATURE = ComponentSignatures.register(DrawableComponent.class);
 
     @Override
     public Component makeCopy() {

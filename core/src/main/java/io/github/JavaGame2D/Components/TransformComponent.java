@@ -9,6 +9,8 @@ public class TransformComponent implements Component{
     // previous frame position
     public Vector2 previousPosition;
 
+    public static final long SIGNATURE = ComponentSignatures.register(TransformComponent.class);
+
     public TransformComponent(){
         this.position = new Vector2(0f,0f);
         this.previousPosition = new Vector2(0f,0f);
@@ -17,11 +19,6 @@ public class TransformComponent implements Component{
     public TransformComponent(Vector2 position){
         this.position = position;
         this.previousPosition = position;
-    }
-
-    @Override
-    public long getSignature() {
-        return ComponentSignatures.TRANSFORM;
     }
 
     @Override

@@ -5,10 +5,7 @@ public class DestructibleComponent implements Component{
     public boolean isAlive = true;
     public float destructionDelay = 0; //In Seconds
 
-    @Override
-    public long getSignature() {
-        return ComponentSignatures.DESTRUCTIBLE;
-    }
+    public static final long SIGNATURE = ComponentSignatures.register(DestructibleComponent.class);
 
     @Override
     public Component makeCopy() {

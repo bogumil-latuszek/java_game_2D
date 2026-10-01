@@ -9,6 +9,8 @@ public class HealthComponent implements Component {
     public float iframeTimer = 0f;
     public float iframeDuration = 1f;
     public boolean damageTriggersiframes = false;
+
+    public static final long SIGNATURE = ComponentSignatures.register(HealthComponent.class);
     //private float lastDamageTime = 0f;
 
     private HealthComponent(){
@@ -20,10 +22,6 @@ public class HealthComponent implements Component {
         this.currentHp = maxHp;
     }
 
-    @Override
-    public long getSignature() {
-        return ComponentSignatures.HEALTH;
-    }
 
     @Override
     public Component makeCopy() {

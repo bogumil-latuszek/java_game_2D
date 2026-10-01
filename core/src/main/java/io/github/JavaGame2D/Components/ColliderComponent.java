@@ -12,8 +12,7 @@ public class ColliderComponent implements Component {
     public float width;
     public float height;
 
-    @Override
-    public long getSignature() { return ComponentSignatures.COLLIDER; }
+    public static final long SIGNATURE = ComponentSignatures.register(ColliderComponent.class);
 
     @Override
     public Component makeCopy() {

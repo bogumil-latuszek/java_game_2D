@@ -15,10 +15,7 @@ public class DamageEmitterComponent implements Component{
     // public DamageElement damageElement = DamageElement.PHYSICAL;
 
 
-    @Override
-    public long getSignature() {
-        return ComponentSignatures.DAMAGE_EMITTER;
-    }
+    public static final long SIGNATURE = ComponentSignatures.register(DamageEmitterComponent.class);
 
     @Override
     public Component makeCopy() {

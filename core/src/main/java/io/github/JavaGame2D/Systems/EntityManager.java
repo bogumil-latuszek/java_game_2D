@@ -41,6 +41,11 @@ public class EntityManager {
         entity.signature = entity.signature | signature;
     }
 
+    public void removeSignature(int entityID, long signature){
+        Entity entity  = entities.get(entityID);
+        entity.signature = entity.signature & ~signature;
+    }
+
     public  int[] getEntitiesMatchingSignature(long signature) {
         return entities.values().stream()
             .filter(entity -> ((entity.signature & signature) == signature))  // Your condition here

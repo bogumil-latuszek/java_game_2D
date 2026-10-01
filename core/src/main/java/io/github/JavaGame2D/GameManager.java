@@ -44,10 +44,12 @@ public class GameManager extends Game {
         Skin uiskin = new Skin(Gdx.files.internal("ui/uiskin.json"));
         runtimeDataOverlay = new RuntimeDataOverlay(uiskin);
 
-        createWallPrefab();
+        //createWallPrefab();
+        //prefabManager.createEntityFromPrefab("wall", new Vector2());
+        //createPrefabLevel();
         //legacyCreateLevels();
 
-        //levelManager.changeCurrentLevel(1);
+        levelManager.changeCurrentLevel(5);
 
         switch (gameMode){
             case STANDARD_GAMEPLAY:
@@ -94,27 +96,18 @@ public class GameManager extends Game {
         //createLevel3();
     }
 
-    private  void createWallPrefab(){
-//        Prefab wallPrefab = new Prefab();
-//
-//        TransformComponent transform = new TransformComponent();
-//        wallPrefab.prefabComponents.put(TransformComponent.class, transform);
-//
-//        DrawableComponent drawable = new DrawableComponent();
-//        drawable.spriteData.height = 2;
-//        drawable.spriteData.width = 2;
-//        drawable.spriteData.textureID = 0;
-//        drawable.spriteData.textureIsTiled = true;
-//        wallPrefab.prefabComponents.put(DrawableComponent.class, drawable);
-//
-//        ColliderComponent collider = new ColliderComponent();
-//        collider.width = 2;
-//        collider.height = 2;
-//        wallPrefab.prefabComponents.put(ColliderComponent.class, collider);
-//
-//        prefabManager.
+    private void createWallPrefab(){
         int platformID = entityComponentManager.createPlatform(0f,    0f, 2f,   2f);
         prefabManager.createPrefabFromEntity(platformID, "wall");
+    }
+
+
+    private void createPrefabLevel(){
+        prefabManager.createEntityFromPrefab("wall", new Vector2(0,0));
+        prefabManager.createEntityFromPrefab("wall", new Vector2(-2,-2));
+        prefabManager.createEntityFromPrefab("wall", new Vector2(2,0));
+        prefabManager.createEntityFromPrefab("wall", new Vector2(4,0));
+        levelManager.saveLevel(5);
     }
 
     private void createLevel1(){

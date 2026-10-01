@@ -1,0 +1,44 @@
+{
+  "levelID" : 5,
+  "levelName" : "unnamed",
+  "prefabInstances" : [
+    {
+      "entityID" : 0,
+      "prefabName" : "wall",
+      "overrides" : {
+        "TransformComponent.position" : {
+          "x" : -30.0,
+          "y" : -16.0
+        }
+      }
+    },
+    {
+      "entityID" : 1,
+      "prefabName" : "wall",
+      "overrides" : {
+        "TransformComponent.position" : {
+          "x" : -15.0,
+          "y" : -14.0
+        }
+      }
+    },
+    {
+      "entityID" : 2,
+      "prefabName" : "wall",
+      "overrides" : {
+        "TransformComponent.position" : {
+          "x" : 5.0,
+          "y" : -18.0
+        }
+      }
+    }
+  ],
+  "bakedEntities" : [ ],
+  "validSpawnPoints" : {
+    "0" : {
+      "x" : 0.0,
+      "y" : 0.0
+    }
+  },
+  "defaultSpawnPointID" : 0
+}

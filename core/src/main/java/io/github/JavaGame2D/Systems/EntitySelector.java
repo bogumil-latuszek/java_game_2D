@@ -39,7 +39,7 @@ public class EntitySelector {
 
     public OptionalInt findEntityTouchingPoint(Vector2 pointInWorldCoords){
         // 1. get all entities with drawable component
-        long drawableSignature = ComponentSignatures.TRANSFORM | ComponentSignatures.DRAWABLE;
+        long drawableSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
         int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(drawableSignature);
 
         // 2. check collision for each one, return first found

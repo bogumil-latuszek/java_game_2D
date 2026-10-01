@@ -62,7 +62,7 @@ public class RenderingSystem {
 
         //draw drawable entities
 
-        long signature = ComponentSignatures.TRANSFORM | ComponentSignatures.DRAWABLE;
+        long signature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
         int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
 
         // draw each entity in list:
@@ -91,7 +91,7 @@ public class RenderingSystem {
         // draw Colliders
         if (drawColliders){
 
-            long entitiesWithCollidersSignature = ComponentSignatures.TRANSFORM | ComponentSignatures.COLLIDER;
+            long entitiesWithCollidersSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(ColliderComponent.class);
             int[] entitiesWithColliders = entityComponentManager.getEntitiesMatchingSignature(entitiesWithCollidersSignature);
 
             shapeRenderer.setProjectionMatrix(this.getProjectionMatrix(this.camera)); // is this an unncecessary duplicate?
@@ -109,7 +109,7 @@ public class RenderingSystem {
     }
 
     private void highlightSelectedEntity(int selectedEntityID, ShapeRenderer renderer, Color color, boolean fill){
-        long drawableSignature = ComponentSignatures.TRANSFORM | ComponentSignatures.DRAWABLE;
+        long drawableSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
         Entity selected = entityComponentManager.getEntity(selectedEntityID);
         boolean isDrawable = ( (selected.signature & drawableSignature) == drawableSignature );
 
@@ -131,7 +131,7 @@ public class RenderingSystem {
         }
         else{
             // otherwise, draw collider outline
-            Long colliderSignature = ComponentSignatures.TRANSFORM | ComponentSignatures.COLLIDER;
+            Long colliderSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(ColliderComponent.class);
             boolean hasCollider = ( (selected.signature & colliderSignature) == colliderSignature );
             if (hasCollider){
                 TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,selectedEntityID);

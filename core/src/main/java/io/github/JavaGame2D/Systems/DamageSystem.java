@@ -19,8 +19,8 @@ public class DamageSystem {
 
     public DamageSystem(EntityComponentManager entityComponentManager) {
         this.entityComponentManager = entityComponentManager;
-        this.damageEmitterSignature = ComponentSignatures.DAMAGE_EMITTER;
-        this.canBeDamagedSignature = ComponentSignatures.DESTRUCTIBLE | ComponentSignatures.HEALTH;
+        this.damageEmitterSignature = ComponentSignatures.get(DamageEmitterComponent.class);
+        this.canBeDamagedSignature = ComponentSignatures.get(DestructibleComponent.class) | ComponentSignatures.get(HealthComponent.class);
         EventBus.getInstance().subscribe(DetectedCollisionsEvent.class, this::handlePotentialDamage);
     }
 

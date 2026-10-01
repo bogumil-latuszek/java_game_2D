@@ -26,7 +26,7 @@ public class TeleporterSystem {
 
         // first, narrow down the search to all Collisions with Teleporters:
 
-        long teleportSignature = ComponentSignatures.TELEPORTER;
+        long teleportSignature = ComponentSignatures.get(TeleporterComponent.class);
         ArrayList<Collision> collisionsWithTeleporters = new ArrayList<>();
 
         for (Collision collision: collisions){

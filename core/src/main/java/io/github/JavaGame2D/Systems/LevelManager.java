@@ -138,7 +138,7 @@ public class LevelManager {
         // #1 save entities into the level
 
         // 1.1 get all entities with prefabComponents
-        long signature = ComponentSignatures.PREFAB;
+        long signature = ComponentSignatures.get(PrefabComponent.class);
         int[] prefabEntities = ecm.getEntitiesMatchingSignature(signature);
         // and save them to prefabInstances
         for (int entityID : prefabEntities){

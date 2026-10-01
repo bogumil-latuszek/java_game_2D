@@ -43,7 +43,7 @@ public class PhysicsSystem {
 
     private void moveEntities(float deltaTime){
 
-        long signature = ComponentSignatures.PHYSICAL_BODY | ComponentSignatures.TRANSFORM;
+        long signature = ComponentSignatures.get(PhysicalBodyComponent.class) | ComponentSignatures.get(TransformComponent.class);
         int[] physicalEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
 
         // move them:
@@ -97,9 +97,9 @@ public class PhysicsSystem {
         AABBCollider transformedCollider = createAABBCollider(transform, collider);
         AABBCollider groundCollider = createAABBGroundCollider(transformedCollider);
 
-        long signature = ComponentSignatures.TRANSFORM
-                         | ComponentSignatures.PHYSICAL_BODY
-                         | ComponentSignatures.COLLIDER;
+        long signature = ComponentSignatures.get(TransformComponent.class)
+                         | ComponentSignatures.get(PhysicalBodyComponent.class)
+                         | ComponentSignatures.get(ColliderComponent.class);
         int[] potentialGround = entityComponentManager.getEntitiesMatchingSignature(signature);
 
         for (int otherEntityID : potentialGround){
@@ -132,9 +132,9 @@ public class PhysicsSystem {
 
         ArrayList<Collision> detectedCollisions = new ArrayList<>();
 
-        long signature = ComponentSignatures.PHYSICAL_BODY |
-                         ComponentSignatures.TRANSFORM |
-                         ComponentSignatures.COLLIDER;
+        long signature = ComponentSignatures.get(TransformComponent.class)
+                        | ComponentSignatures.get(PhysicalBodyComponent.class)
+                        | ComponentSignatures.get(ColliderComponent.class);
         int[] potentiallyColliding = entityComponentManager.getEntitiesMatchingSignature(signature);
 
         for (int entityID : potentiallyColliding){

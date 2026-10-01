@@ -10,8 +10,6 @@ public class SegmentedDrawableComponent implements Component{
 
     public EnumMap<BodySegmentType, SpriteData> drawableSegments = new EnumMap<>(BodySegmentType.class);
 
-    public static final long SIGNATURE = ComponentSignatures.register(SegmentedDrawableComponent.class);
-
     @Override
     public Component makeCopy() {
         SegmentedDrawableComponent temp = new SegmentedDrawableComponent();

@@ -7,20 +7,16 @@ public final class ComponentSignatures {
     private static long nextBit = 1L;
 
     // synchronized: can only be accessed by one thread at a time
-    public static synchronized long register(Class<? extends Component> type) {
-        // computeIfAbsent: if it's already registered, don't execute the lambda expression
-        return compClassToSignature.computeIfAbsent(type, t -> {
+    public static synchronized long get(Class<? extends Component> type) {
+        if (compClassToSignature.containsKey(type)){
+            return compClassToSignature.get(type);
+        }
+        else{
+            // generate new signature, save and return it
             long bit = nextBit;
+            compClassToSignature.put(type, bit);
             nextBit <<= 1; // shift the bit by 1 position
             return bit;
-        });
-    }
-
-    public static long get(Class<? extends Component> type) {
-        Long sig = compClassToSignature.get(type);
-        if (sig == null){
-            throw new IllegalArgumentException("Unregistered: " + type);
         }
-        return sig;
     }
 }

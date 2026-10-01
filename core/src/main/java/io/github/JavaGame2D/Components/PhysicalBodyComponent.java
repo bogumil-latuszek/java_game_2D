@@ -12,9 +12,6 @@ public class PhysicalBodyComponent implements Component{
     public float jumpForce;
     public boolean ignoresPhysicalCollision = false;
 
-
-    public static final long SIGNATURE = ComponentSignatures.register(PhysicalBodyComponent.class);
-
     public PhysicalBodyComponent() {
         this.velocity = new Vector2(0f,0f);
         this.usesGravity = false;

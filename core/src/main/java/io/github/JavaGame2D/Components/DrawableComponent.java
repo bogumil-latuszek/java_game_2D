@@ -11,9 +11,6 @@ public class DrawableComponent implements Component{
     // but not every entity with DrawableComponent has SegmentedDrawableBodyComponent
     public boolean hasSegmentedBody = false;
 
-
-    public static final long SIGNATURE = ComponentSignatures.register(DrawableComponent.class);
-
     @Override
     public Component makeCopy() {
         DrawableComponent temp = new DrawableComponent();

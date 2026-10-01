@@ -14,8 +14,6 @@ public class AnimationComponent implements Component{
     public CharacterType characterType = CharacterType.PLAYER;
     public EnumMap<BodySegmentType, AnimationState> segmentAnimations = new EnumMap<>(BodySegmentType.class);
 
-    public static final long SIGNATURE = ComponentSignatures.register(AnimationComponent.class);
-
     @Override
     public Component makeCopy() {
         AnimationComponent temp = new AnimationComponent();

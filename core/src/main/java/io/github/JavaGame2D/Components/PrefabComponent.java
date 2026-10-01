@@ -4,8 +4,6 @@ public class PrefabComponent implements Component {
 
     public String prefabName = "default"; // default value for serializer
 
-    public static final long SIGNATURE = ComponentSignatures.register(PrefabComponent.class);
-
     // empty constructor for serializer
     public PrefabComponent() {
     }

@@ -1,16 +1,26 @@
 package io.github.JavaGame2D.Components;
+import java.util.HashMap;
+import java.util.Map;
 
 public final class ComponentSignatures {
-    public static final long TRANSFORM      = 1L << 0;
-    public static final long DRAWABLE       = 1L << 1;
-    public static final long PHYSICAL_BODY  = 1L << 2;
-    public static final long COLLIDER       = 1L << 3;
-    public static final long ANIMATION      = 1L << 4;
-    public static final long TELEPORTER     = 1L << 5;
-    public static final long HEALTH         = 1L << 6;
-    public static final long DAMAGE_EMITTER = 1L << 7;
-    public static final long DESTRUCTIBLE   = 1L << 8;
-    public static final long LIFETIME       = 1L << 9;
-    public static final long SEGMENTED_DRAWABLE = 1L << 10;
-    public static final long PREFAB = 1L << 11;
+    private static final Map<Class<? extends Component>, Long> compClassToSignature = new HashMap<>();
+    private static long nextBit = 1L;
+
+    // synchronized: can only be accessed by one thread at a time
+    public static synchronized long register(Class<? extends Component> type) {
+        // computeIfAbsent: if it's already registered, don't execute the lambda expression
+        return compClassToSignature.computeIfAbsent(type, t -> {
+            long bit = nextBit;
+            nextBit <<= 1; // shift the bit by 1 position
+            return bit;
+        });
+    }
+
+    public static long get(Class<? extends Component> type) {
+        Long sig = compClassToSignature.get(type);
+        if (sig == null){
+            throw new IllegalArgumentException("Unregistered: " + type);
+        }
+        return sig;
+    }
 }

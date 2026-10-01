@@ -88,6 +88,10 @@ public class EntityComponentManager {
 //        return  entityManager.createEntity();
 //    }
 
+    public void createEmptyEntity(int entityID){
+        entityManager.createEntity(entityID);
+    }
+
     public int createEntity(Vector2 position){
         int entityID = entityManager.createEntity();
 

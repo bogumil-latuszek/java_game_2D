@@ -30,6 +30,12 @@ public class EntityManager {
         return id;
     }
 
+    public void createEntity(int entityID){
+        this.nextEntityId = Math.max(entityID,this.nextEntityId) + 1;
+        Entity newEntity = new Entity(entityID);
+        entities.put(entityID, newEntity);
+    }
+
     public void addSignature(int entityID, long signature){
         Entity entity  = entities.get(entityID);
         entity.signature = entity.signature | signature;

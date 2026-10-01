@@ -11,10 +11,12 @@ import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.github.JavaGame2D.*;
+import io.github.JavaGame2D.Components.Component;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.CharacterType;
 import io.github.JavaGame2D.Enums.FacingDirection;
+import io.github.JavaGame2D.SaveData.ComponentFullNameMapper;
 import io.github.JavaGame2D.SaveData.JacksonModules.ShortenComponentClassNames;
 
 import static com.badlogic.gdx.net.HttpRequestBuilder.json;
@@ -22,14 +24,17 @@ import static com.badlogic.gdx.net.HttpRequestBuilder.json;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Optional;
 
 public class FileSystem {
 
     private ObjectMapper mapper;
     private ShortenComponentClassNames shortNameModule;
+    private ComponentFullNameMapper componentMapper;
 
-    public FileSystem(){
+    public FileSystem(ComponentFullNameMapper componentMapper){
         mapper = new ObjectMapper();
         // add special rules for Vector2 class
         mapper.addMixInAnnotations(Vector2.class, Vector2Mixin.class);
@@ -38,8 +43,9 @@ public class FileSystem {
         // make sure it deserializes as much as possible without failing
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
 
+        this.componentMapper = componentMapper;
         // removes package names from Components in json
-        this.shortNameModule = new ShortenComponentClassNames("io.github.JavaGame2D.Components");
+        this.shortNameModule = new ShortenComponentClassNames(this.componentMapper);
         mapper.registerModule(shortNameModule);
         //mapper.registerModule(new ShortenComponentClassNames("io.myorg.MyGame.Components"));
 
@@ -103,7 +109,7 @@ public class FileSystem {
             // 2. Rebuild the components map with proper concrete component types.
             JsonNode componentsNode = root.get("prefabComponents");
             if (componentsNode != null && componentsNode.isObject()) {
-                prefab.components = shortNameModule.readComponentsMap(componentsNode, this.mapper);
+                prefab.components = this.readComponentsMap(componentsNode);
             } else {
                 prefab.components = new HashMap<>();
             }
@@ -113,6 +119,36 @@ public class FileSystem {
             return Optional.empty();
         }
     }
+
+    private HashMap<Class<?>, Object> readComponentsMap(JsonNode componentsNode)
+        throws IOException {
+        HashMap<Class<?>, Object> result = new HashMap<>();
+
+        Iterator<HashMap.Entry<String, JsonNode>> fields = componentsNode.fields();
+        while (fields.hasNext()) {
+            HashMap.Entry<String, JsonNode> entry = fields.next();
+            String shortName = entry.getKey();
+            JsonNode valueNode = entry.getValue();
+
+            try {
+                // Resolve short name -> Class
+
+                Class<?> componentClass = componentMapper.getComponentClass(shortName);
+
+                // Deserialize the value AS that concrete class
+                Object component = this.mapper.treeToValue(valueNode, componentClass);
+
+                result.put(componentClass, component);
+            } catch (IOException e) {
+                // Stale component in the file—the class no longer exists.
+                // Log and skip instead of crashing.
+                Gdx.app.log("FileSystem", "Unknown component: " + shortName);
+            }
+        }
+
+        return result;
+    }
+
 
 
     public void saveLevel(Level level){
@@ -149,8 +185,6 @@ public class FileSystem {
 //        }
 //    }
 
-    private static final String COMPONENT_BASE_PACKAGE = "io.myorg.MyGame.Components";
-
     public Optional<Level> loadLevel(int levelID) {
         FileHandle file = Gdx.files.internal("levels/" + levelID + ".json");
         if (!file.exists()) {
@@ -172,7 +206,7 @@ public class FileSystem {
                     JsonNode componentsNode = bakedNode.get("components");
 
                     if (componentsNode != null && componentsNode.isObject()) {
-                        level.bakedEntities.get(i).components = shortNameModule.readComponentsMap(componentsNode, mapper);
+                        level.bakedEntities.get(i).components = this.readComponentsMap(componentsNode);
                     } else {
                         level.bakedEntities.get(i).components = new HashMap<>();
                     }

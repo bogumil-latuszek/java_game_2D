@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Enums.GameMode;
+import io.github.JavaGame2D.SaveData.ComponentFullNameMapper;
 import io.github.JavaGame2D.Systems.*;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
@@ -22,6 +23,7 @@ public class GameManager extends Game {
     PrefabManager prefabManager;
     EntityComponentManager entityComponentManager;
     FileSystem fileSystem;
+    ComponentFullNameMapper componentMapper;
     OrthographicCamera camera;
     Vector2 screenSizeInGameUnits = new Vector2(14f, 9.8f);
 
@@ -59,15 +61,15 @@ public class GameManager extends Game {
 
     private void initializeSharedSystems(){
         camera = new OrthographicCamera();
-
-        fileSystem = new FileSystem();
+        componentMapper = new ComponentFullNameMapper("io.github.JavaGame2D.Components");
+        fileSystem = new FileSystem(componentMapper);
         gameSettings = fileSystem.loadGameSettings();
         entityComponentManager = new EntityComponentManager();
         textureManager = new TextureManager();
 
         renderingSystem = new RenderingSystem(entityComponentManager, camera, textureManager);
         physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
-        prefabManager = new PrefabManager(fileSystem, entityComponentManager);
+        prefabManager = new PrefabManager(fileSystem, entityComponentManager, componentMapper);
         levelManager = new LevelManager(fileSystem,entityComponentManager, prefabManager);
     }
 

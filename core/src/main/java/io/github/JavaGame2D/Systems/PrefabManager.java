@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Components.PrefabComponent;
 import io.github.JavaGame2D.Prefab;
+import io.github.JavaGame2D.SaveData.ComponentFullNameMapper;
 import io.github.JavaGame2D.SaveData.JacksonModules.ShortenComponentClassNames;
 import io.github.JavaGame2D.SaveData.PrefabInstance;
 
@@ -16,12 +17,14 @@ public class PrefabManager {
 
     private HashMap<String, Prefab> loadedPrefabs;
     private FileSystem fileSystem;
+    private ComponentFullNameMapper componentMapper;
     EntityComponentManager ecm;
 
-    public PrefabManager(FileSystem fileSystem, EntityComponentManager ecm) {
+    public PrefabManager(FileSystem fileSystem, EntityComponentManager ecm, ComponentFullNameMapper componentMapper) {
         loadedPrefabs = new HashMap<>();
         this.fileSystem = fileSystem;
         this.ecm = ecm;
+        this.componentMapper = componentMapper;
     }
 
     public void createEntityFromPrefab(String prefabName, Vector2 position){
@@ -104,9 +107,6 @@ public class PrefabManager {
         // For each override entry, find the component and set the field.
         // Example override: {"HealthComponent.maxHp" : 500}
 
-        // TODO: extract this method to another class, shared by both fileManager and that Module class. Something like ComponentShortNameMapper
-        ShortenComponentClassNames shortNameModule = new ShortenComponentClassNames("io.github.JavaGame2D.Components");
-
         for (HashMap.Entry<String, Object> entry : overrides.entrySet()) {
             try {
                 String[] parts = entry.getKey().split("\\.");
@@ -117,7 +117,7 @@ public class PrefabManager {
 
                 // get component type (class)
                 //Class<?> compClass = Class.forName(className);
-                Class<?> compClass = shortNameModule.resolveClass(className);
+                Class<?> compClass = componentMapper.getComponentClass(className);
 
                 // get component instance
                 Object component = ecm.getComponent(compClass, entityID);

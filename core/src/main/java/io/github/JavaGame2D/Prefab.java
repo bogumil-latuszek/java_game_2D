@@ -1,10 +1,13 @@
 package io.github.JavaGame2D;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.JavaGame2D.Components.Component;
 
 import java.util.HashMap;
 
 public class Prefab {
+    // TODO: rename to "components"
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY) // necessary to avoid deserialization errors
     public HashMap<Class<?>, Object> prefabComponents;
 
     public Prefab() {

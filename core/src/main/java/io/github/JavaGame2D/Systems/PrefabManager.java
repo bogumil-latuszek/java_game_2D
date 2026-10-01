@@ -8,10 +8,12 @@ import io.github.JavaGame2D.Components.PrefabComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Prefab;
+import io.github.JavaGame2D.SaveData.JacksonModules.ShortenComponentClassNames;
 import io.github.JavaGame2D.SaveData.PrefabInstance;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -49,16 +51,19 @@ public class PrefabManager {
         String prefabName = prefabInstance.prefabName;
         HashMap<String,Object> overrides = prefabInstance.overrides;
 
-        // 2. assign PrefabComponent
+        // 2. create entity
+        ecm.createEmptyEntity(entityID);
+
+        // 3. assign PrefabComponent
 
         PrefabComponent prefabComp = new PrefabComponent(prefabName);
         ecm.addComponent(PrefabComponent.class, prefabComp, entityID);
         ecm.addSignature(entityID, ComponentSignatures.PREFAB);
 
-        // 3. populate Entity with Components copied from Prefab
+        // 4. populate Entity with Components copied from Prefab
         populateEntity(entityID, prefabName);
 
-        // 4. apply overrides
+        // 5. apply overrides
         applyPrefabOverrides(overrides, entityID);
 
 
@@ -74,6 +79,7 @@ public class PrefabManager {
         return Optional.empty();
     }
 
+    // TODO: rename to inflatePrefab?
     private void populateEntity(int entityID, String prefabName){
         // 1. load prefab
         Optional<Prefab> prefabOptional = this.getPrefab(prefabName);
@@ -106,26 +112,68 @@ public class PrefabManager {
     public void applyPrefabOverrides(HashMap<String,Object> overrides, int entityID){
         // For each override entry, find the component and set the field.
         // Example override: {"HealthComponent.maxHp" : 500}
+
+        // TODO: extract this method to another class, shared by both fileManager and that Module class. Something like ComponentShortNameMapper
+        ShortenComponentClassNames shortNameModule = new ShortenComponentClassNames("io.github.JavaGame2D.Components");
+
         for (HashMap.Entry<String, Object> entry : overrides.entrySet()) {
             try {
                 String[] parts = entry.getKey().split("\\.");
                 String className = parts[0];
                 String fieldName = parts[1];
 
+                Object value = entry.getValue();
+
                 // get component type (class)
-                Class<?> compClass = Class.forName(className);
+                //Class<?> compClass = Class.forName(className);
+                Class<?> compClass = shortNameModule.resolveClass(className);
 
                 // get component instance
                 Object component = ecm.getComponent(compClass, entityID);
 
-                // Use reflection to set the field value for that instance
+                // Use reflection to set the field value for that instance:
+
+                // get field
                 Field field = compClass.getField(fieldName);
-                field.set(component, entry.getValue());
+                // cast value to right type if needed
+                Object coercedValue = coerce(value, field.getType());
+                // set field value
+                field.set(component, coercedValue);
             }
             catch (Exception e){
                 Gdx.app.log("PrefabManager","Error while trying to apply prefab override to entityID: "+entityID);
             }
         }
+    }
+
+    private Object coerce(Object raw, Class<?> targetType) {
+        if (targetType == int.class || targetType == Integer.class) {
+            return ((Number) raw).intValue();
+        }
+        if (targetType == float.class || targetType == Float.class) {
+            return ((Number) raw).floatValue();
+        }
+        if (targetType == double.class || targetType == Double.class) {
+            return ((Number) raw).doubleValue();
+        }
+        if (targetType == long.class || targetType == Long.class) {
+            return ((Number) raw).longValue();
+        }
+        if (targetType == boolean.class || targetType == Boolean.class) {
+            return (Boolean) raw;
+        }
+        if (targetType == String.class) {
+            return raw.toString();
+        }
+        // For Vector2 overrides, Jackson gave us a LinkedHashMap; convert it.
+        if (targetType == Vector2.class && raw instanceof Map) {
+            Map<?, ?> m = (Map<?, ?>) raw;
+            return new Vector2(
+                ((Number) m.get("x")).floatValue(),
+                ((Number) m.get("y")).floatValue()
+            );
+        }
+        return raw;
     }
 
     public Optional<Prefab> getPrefab (String prefabName){

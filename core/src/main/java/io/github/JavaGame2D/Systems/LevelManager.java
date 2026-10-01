@@ -1,6 +1,7 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
@@ -82,7 +83,12 @@ public class LevelManager {
 
     public void loadLevel (int levelID){
         // #1 load and deserialize level
-        Level level = fileSystem.loadLevel(levelID);
+        Optional<Level> levelOptional = fileSystem.loadLevel(levelID);
+        if (!levelOptional.isPresent()){
+            Gdx.app.log("LevelManager","Level: "+levelID+" couldn't be loaded");
+            return;
+        }
+        Level level = levelOptional.get();
 
         ArrayList<PrefabInstance> prefabInstances = level.prefabInstances;
         ArrayList<BakedEntity> bakedEntities = level.bakedEntities;
@@ -93,12 +99,15 @@ public class LevelManager {
         }
 
         // 3. load Entities from bakedInstances
-        for (BakedEntity bakedEntity : level.bakedEntities){
+        for (BakedEntity bakedEntity : bakedEntities){
             this.loadEntityFromBakedEntity(bakedEntity);
         }
 
-        // #4 infer Entites from collections and save them in EntityManager
+        // #4 infer Entity signatures from Component collections and update them
+        //TODO: rename to loadEntitySignatures ?
         ecm.loadEntitiesFromCollections();
+
+
         // #5 load level specific data to global variable?
         // load spawn positions:
         this.defaultSpawnPoint = level.defaultSpawnPointID;

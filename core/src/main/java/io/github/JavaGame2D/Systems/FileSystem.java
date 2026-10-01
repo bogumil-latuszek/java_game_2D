@@ -2,12 +2,9 @@ package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
@@ -18,16 +15,21 @@ import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.CharacterType;
 import io.github.JavaGame2D.Enums.FacingDirection;
+import io.github.JavaGame2D.SaveData.JacksonModules.ShortenComponentClassNames;
 
 import static com.badlogic.gdx.net.HttpRequestBuilder.json;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Optional;
 
 public class FileSystem {
 
     private ObjectMapper mapper;
+    private ShortenComponentClassNames shortNameModule;
 
     public FileSystem(){
         mapper = new ObjectMapper();
@@ -37,6 +39,11 @@ public class FileSystem {
         mapper.enable(SerializationFeature.INDENT_OUTPUT);
         // make sure it deserializes as much as possible without failing
         mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
+        // removes package names from Components in json
+        this.shortNameModule = new ShortenComponentClassNames("io.github.JavaGame2D.Components");
+        mapper.registerModule(shortNameModule);
+        //mapper.registerModule(new ShortenComponentClassNames("io.myorg.MyGame.Components"));
 
         // only serialize public fields, ignore non-field variables such as variables inside getters, setters, etc.
         // mapper.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.NONE);
@@ -82,17 +89,29 @@ public class FileSystem {
         }
     }
 
-    public Optional<Prefab> loadPrefab(String prefabName){
-        if (!Gdx.files.internal("assets/prefabs/" + prefabName + ".json").exists()) {
+    public Optional<Prefab> loadPrefab(String prefabName) {
+        FileHandle file = Gdx.files.internal("prefabs/" + prefabName + ".json");
+        if (!file.exists()) {
             return Optional.empty();
         }
         try {
-            String jsonText = Gdx.files.internal("prefabs/"+prefabName+".json").readString();
-            Prefab prefab = mapper.readValue(jsonText, Prefab.class);
-            return Optional.of(prefab);
+            String jsonText = file.readString();
+            JsonNode root = mapper.readTree(jsonText);
 
+            // 1. Deserialize the prefab normally. The `components` map will be
+            //    populated with LinkedHashMap values — we overwrite it in step 2.
+            Prefab prefab = mapper.treeToValue(root, Prefab.class);
+
+            // 2. Rebuild the components map with proper concrete component types.
+            JsonNode componentsNode = root.get("prefabComponents");
+            if (componentsNode != null && componentsNode.isObject()) {
+                prefab.prefabComponents = shortNameModule.readComponentsMap(componentsNode, this.mapper);
+            } else {
+                prefab.prefabComponents = new HashMap<>();
+            }
+            return Optional.of(prefab);
         } catch (Exception e) {
-            Gdx.app.error("SaveManager", "Failed to load prefab: "+ prefabName, e);
+            Gdx.app.error("SaveManager", "Failed to load prefab: " + prefabName, e);
             return Optional.empty();
         }
     }
@@ -116,19 +135,58 @@ public class FileSystem {
         }
     }
 
-    public Level loadLevel(int levelID){
-        if (!Gdx.files.internal("levels/"+levelID+".json").exists()) {
-            return null; // Return defaults if no save file
+//    public Level loadLevel(int levelID){
+//        if (!Gdx.files.internal("levels/"+levelID+".json").exists()) {
+//            return null; // Return defaults if no save file
+//        }
+//        try {
+//            // 1. load json as string
+//            String jsonText = Gdx.files.internal("levels/"+levelID+".json").readString();
+//            // 2. create an empty level
+//            return mapper.readValue(jsonText, Level.class);
+//
+//        } catch (Exception e) {
+//            Gdx.app.error("SaveManager", "Failed to load level: "+ levelID, e);
+//            return null;
+//        }
+//    }
+
+    private static final String COMPONENT_BASE_PACKAGE = "io.myorg.MyGame.Components";
+
+    public Optional<Level> loadLevel(int levelID) {
+        FileHandle file = Gdx.files.internal("levels/" + levelID + ".json");
+        if (!file.exists()) {
+            return Optional.empty();
         }
         try {
-            String jsonText = Gdx.files.internal("levels/"+levelID+".json").readString();
-            return mapper.readValue(jsonText, Level.class);
+            String jsonText = file.readString();
+            JsonNode root = mapper.readTree(jsonText);
 
+            // 1. Deserialize the level normally. Everything works EXCEPT
+            //    each BakedEntity's `components` map, which becomes LinkedHashMaps.
+            Level level = mapper.treeToValue(root, Level.class);
+
+            // 2. Fix up the baked entities' component maps.
+            JsonNode bakedEntitiesNode = root.get("bakedEntities");
+            if (bakedEntitiesNode != null && bakedEntitiesNode.isArray()) {
+                for (int i = 0; i < bakedEntitiesNode.size(); i++) {
+                    JsonNode bakedNode = bakedEntitiesNode.get(i);
+                    JsonNode componentsNode = bakedNode.get("components");
+
+                    if (componentsNode != null && componentsNode.isObject()) {
+                        level.bakedEntities.get(i).components = shortNameModule.readComponentsMap(componentsNode, mapper);
+                    } else {
+                        level.bakedEntities.get(i).components = new HashMap<>();
+                    }
+                }
+            }
+            return Optional.of(level);
         } catch (Exception e) {
-            Gdx.app.error("SaveManager", "Failed to load level: "+ levelID, e);
-            return null;
+            Gdx.app.error("SaveManager", "Failed to load level: " + levelID, e);
+            return Optional.empty();
         }
     }
+
 
     public void loadPlayerAnimations(AnimationManager animationManager, TextureManager textureManager){
         try {

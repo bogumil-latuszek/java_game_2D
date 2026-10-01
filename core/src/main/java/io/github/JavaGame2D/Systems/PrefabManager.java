@@ -68,13 +68,11 @@ public class PrefabManager {
     }
 
     public Optional<PrefabInstance> createPrefabInstanceFromEntity(int entityID){
-        Entity entity = ecm.getEntity(entityID);
-        // TODO: create entityHasComponent(ComponentSignature) in ecm
-        if ((entity.signature & ComponentSignatures.PREFAB) == ComponentSignatures.PREFAB){
-            PrefabInstance prefabInstance = new PrefabInstance(entityID, this.ecm, this);
-            return Optional.of(prefabInstance);
+        if (!ecm.hasComponent(entityID, PrefabComponent.class)){
+            return Optional.empty();
         }
-        return Optional.empty();
+        PrefabInstance prefabInstance = new PrefabInstance(entityID, this.ecm, this);
+        return Optional.of(prefabInstance);
     }
 
     // TODO: rename to inflatePrefab?

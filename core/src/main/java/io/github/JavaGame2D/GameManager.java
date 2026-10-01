@@ -5,10 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import io.github.JavaGame2D.Components.ColliderComponent;
-import io.github.JavaGame2D.Components.ComponentSignatures;
-import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
 
@@ -45,9 +42,7 @@ public class GameManager extends Game {
         runtimeDataOverlay = new RuntimeDataOverlay(uiskin);
 
         //createWallPrefab();
-        //prefabManager.createEntityFromPrefab("wall", new Vector2());
         //createPrefabLevel();
-        //legacyCreateLevels();
 
         levelManager.changeCurrentLevel(5);
 
@@ -89,16 +84,27 @@ public class GameManager extends Game {
         }
     }
 
-    private void legacyCreateLevels(){
-        // TODO: add migrations so that this method becomes a fallback option, not the main way to update levels after major changes to component structure
-        createLevel1();
-        //createLevel2();
-        //createLevel3();
-    }
-
     private void createWallPrefab(){
-        int platformID = entityComponentManager.createPlatform(0f,    0f, 2f,   2f);
-        prefabManager.createPrefabFromEntity(platformID, "wall");
+        int entityID = entityComponentManager.createEntity(new Vector2());
+
+        PhysicalBodyComponent body = new PhysicalBodyComponent();
+        body.dynamic = false;
+        body.usesGravity = false;
+        entityComponentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
+
+        DrawableComponent drawable = new DrawableComponent();
+        drawable.spriteData.textureID = 0;
+        drawable.spriteData.textureIsTiled = true;
+        drawable.spriteData.width = 1;
+        drawable.spriteData.height = 1;
+        entityComponentManager.addComponent(DrawableComponent.class, drawable, entityID);
+
+        ColliderComponent collider = new ColliderComponent();
+        collider.width = 1;
+        collider.height = 1;
+        entityComponentManager.addComponent(ColliderComponent.class, collider, entityID);
+
+        prefabManager.createPrefabFromEntity(entityID, "wall");
     }
 
 
@@ -108,71 +114,5 @@ public class GameManager extends Game {
         prefabManager.createEntityFromPrefab("wall", new Vector2(2,0));
         prefabManager.createEntityFromPrefab("wall", new Vector2(4,0));
         levelManager.saveLevel(5);
-    }
-
-    private void createLevel1(){
-        // LEVEL 1
-        entityComponentManager.createPlatform(0f,    -2.5f, 5f,   1f);
-        entityComponentManager.createPlatform(5f,    1.125f,2.5f, 2.5f);
-        entityComponentManager.createPlatform(10f,   2.5f,  5f,   2.5f);
-        entityComponentManager.createPlatform(12.5f, 2.5f,  1.25f,10f);
-        entityComponentManager.createPlatform(17.5f, 2.5f,  1.25f,17.5f);
-        entityComponentManager.createPlatform(17.5f, -10f,  12.5f,1.25f);
-        entityComponentManager.createPlatform(-6f,   -5f,   30f,  0.5f);
-        entityComponentManager.createSpikes(7f, -4f,  2f,2f);
-        entityComponentManager.createSpikes(5f, -4f,  2f,2f);
-        entityComponentManager.createSpikes(3f, -4f,  2f,2f);
-        entityComponentManager.createSpikes(1f, -4f,  2f,2f);
-        entityComponentManager.createDestructibleCrate(-7f, -4f, 2f,2f);
-        entityComponentManager.createDestructibleCrate(-7f, -2f, 2f,2f);
-        entityComponentManager.createDestructibleCrate(-9f, -4f, 2f,2f);
-        entityComponentManager.createPlatform(20f,   -6f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(22.5f, -2f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(20f,   2f,    2.5f, 0.5f);
-        entityComponentManager.createPlatform(22.5f, 6f,    2.5f, 0.5f);
-        entityComponentManager.createPlatform(20f,   10f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(22.5f, 14f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(17.5f, 18f,   5f,   0.5f);
-        entityComponentManager.createPlatform(17.5f, 22f,   2.5f, 0.5f);
-        entityComponentManager.createPlatform(17.5f, 26f,   1.25f,0.5f);
-        entityComponentManager.createTeleporter(17.5f, 27.5f, 2f,2f, 2);
-        levelManager.saveLevel(1);
-    }
-
-    private void createLevel2(){
-        // LEVEL 2
-        entityComponentManager.createPlatform(5f,2f,15f,10f);
-        entityComponentManager.createPlatform(35f, 0f, 40f,20f);
-        entityComponentManager.createPlatform(30f, 5f, 10f,16f);
-        entityComponentManager.createPlatform(40f, 14.5f, 5f,5f);
-        entityComponentManager.createPlatform(50f, 12.5f, 10f,15f);
-        entityComponentManager.createPlatform(65f, 15f, 30f,15f);
-        entityComponentManager.createPlatform(65f, 35f, 30f,15f);
-        entityComponentManager.createPlatform(82.5f, 14f, 5f,15f);
-        entityComponentManager.createPlatform(87.5f, 12.5f, 5f,15f);
-        entityComponentManager.createPlatform(92.5f, 13.5f, 5f,15f);
-        entityComponentManager.createPlatform(97.5f, 12f, 5f,15f);
-        entityComponentManager.createPlatform(87.5f, 35.5f, 5f,15f);
-        entityComponentManager.createPlatform(97.5f, 32f, 5f,15f);
-        entityComponentManager.createPlatform(107.5f, 18f, 5f,10f);
-        entityComponentManager.createPlatform(112.5f, 37.5f, 5f,15f);
-        entityComponentManager.createPlatform(117.5f, 20f, 3f,5f);
-        entityComponentManager.createTeleporter(117.5f, 24f, 2f,2f, 3);
-        levelManager.spawnPointIDtoPosition.put(0,new Vector2(5,10));
-        levelManager.defaultSpawnPoint = 0;
-        levelManager.saveLevel(2);
-    }
-
-    private void createLevel3(){
-//         LEVEL 3
-        entityComponentManager.createPlatform(10f, 25f, 20f,5f);
-        entityComponentManager.createPlatform(10f, 5f, 20f,5f);
-        entityComponentManager.createPlatform(0f, 15f, 5f,30f);
-        entityComponentManager.createPlatform(20f, 15f, 5f,30f);
-        entityComponentManager.createPlatform(10f, 11f, 2f,0.5f);
-        entityComponentManager.createBackgroundElement(10f, 15f, 10f,10f);
-        levelManager.spawnPointIDtoPosition.put(0,new Vector2(10,16));
-        levelManager.defaultSpawnPoint = 0;
-        levelManager.saveLevel(3);
     }
 }

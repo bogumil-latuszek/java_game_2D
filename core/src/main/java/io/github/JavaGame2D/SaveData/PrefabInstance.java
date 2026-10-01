@@ -16,6 +16,10 @@ public class PrefabInstance {
     public String prefabName;
     public HashMap<String, Object> overrides = new HashMap<>();
 
+    // empty constructor for serializer
+    public PrefabInstance(){
+    }
+
     public PrefabInstance(int entityID, EntityComponentManager ecm, PrefabManager prefabManager) {
         this.entityID = entityID;
 

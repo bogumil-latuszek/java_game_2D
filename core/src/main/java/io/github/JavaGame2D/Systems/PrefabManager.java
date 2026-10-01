@@ -37,7 +37,6 @@ public class PrefabManager {
 
         PrefabComponent prefabComp = new PrefabComponent(prefabName);
         ecm.addComponent(PrefabComponent.class, prefabComp, entityID);
-        ecm.addSignature(entityID, ComponentSignatures.PREFAB);
 
         // 3. populate Entity with Components copied from Prefab
 
@@ -58,7 +57,6 @@ public class PrefabManager {
 
         PrefabComponent prefabComp = new PrefabComponent(prefabName);
         ecm.addComponent(PrefabComponent.class, prefabComp, entityID);
-        ecm.addSignature(entityID, ComponentSignatures.PREFAB);
 
         // 4. populate Entity with Components copied from Prefab
         populateEntity(entityID, prefabName);

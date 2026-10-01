@@ -2,11 +2,7 @@ package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import io.github.JavaGame2D.Components.Component;
-import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PrefabComponent;
-import io.github.JavaGame2D.Components.TransformComponent;
-import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Prefab;
 import io.github.JavaGame2D.SaveData.JacksonModules.ShortenComponentClassNames;
 import io.github.JavaGame2D.SaveData.PrefabInstance;
@@ -14,7 +10,6 @@ import io.github.JavaGame2D.SaveData.PrefabInstance;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PrefabManager {
@@ -189,7 +184,7 @@ public class PrefabManager {
     public void createPrefabFromEntity(int entityID, String prefabName){
         HashMap<Class<?>, Object> components = ecm.getEntityComponents(entityID);
         Prefab prefab = new Prefab();
-        prefab.prefabComponents = components;
+        prefab.components = components;
         savePrefab(prefabName, prefab);
     }
 

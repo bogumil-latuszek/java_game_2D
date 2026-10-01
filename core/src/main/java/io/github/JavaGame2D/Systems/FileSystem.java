@@ -22,8 +22,6 @@ import static com.badlogic.gdx.net.HttpRequestBuilder.json;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Optional;
 
 public class FileSystem {
@@ -105,9 +103,9 @@ public class FileSystem {
             // 2. Rebuild the components map with proper concrete component types.
             JsonNode componentsNode = root.get("prefabComponents");
             if (componentsNode != null && componentsNode.isObject()) {
-                prefab.prefabComponents = shortNameModule.readComponentsMap(componentsNode, this.mapper);
+                prefab.components = shortNameModule.readComponentsMap(componentsNode, this.mapper);
             } else {
-                prefab.prefabComponents = new HashMap<>();
+                prefab.components = new HashMap<>();
             }
             return Optional.of(prefab);
         } catch (Exception e) {

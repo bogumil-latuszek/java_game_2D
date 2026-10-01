@@ -8,16 +8,16 @@ import java.util.HashMap;
 public class Prefab {
     // TODO: rename to "components"
     @JsonProperty(access = JsonProperty.Access.READ_ONLY) // necessary to avoid deserialization errors
-    public HashMap<Class<?>, Object> prefabComponents;
+    public HashMap<Class<?>, Object> components;
 
     public Prefab() {
-        this.prefabComponents = new HashMap<>();
+        this.components = new HashMap<>();
     }
 
     public HashMap<Class<?>, Object> copyComponents(){
         HashMap<Class<?>, Object> componentsCopy = new HashMap<>();
 
-        for(HashMap.Entry<Class<?>, Object> entry : prefabComponents.entrySet()){
+        for(HashMap.Entry<Class<?>, Object> entry : this.components.entrySet()){
             Class<?> componentClass = entry.getKey();
             Component componentInstance = (Component) entry.getValue(); // Does this actually remove some info?
             Component componentCopy = componentInstance.makeCopy();

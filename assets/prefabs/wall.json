@@ -1,46 +1,19 @@
 {
-  "prefabComponents" : {
-    "ColliderComponent" : {
-      "layer" : 0,
-      "colliderType" : "AABB",
-      "usesOffset" : false,
+  "components" : {
+    "DrawableComponent" : {
       "offset" : {
         "x" : 0.0,
         "y" : 0.0
       },
+      "textureID" : 0,
+      "textureIsTiled" : true,
+      "usesSizeFromTexture" : true,
+      "pixelsPerUnit" : 1,
       "width" : 20.0,
       "height" : 20.0,
-      "signature" : 8
-    },
-    "DrawableComponent" : {
-      "spriteData" : {
-        "offset" : {
-          "x" : 0.0,
-          "y" : 0.0
-        },
-        "textureID" : 0,
-        "textureIsTiled" : true,
-        "usesSizeFromTexture" : true,
-        "pixelsPerUnit" : 1,
-        "width" : 20.0,
-        "height" : 20.0,
-        "mirrorVertical" : false,
-        "mirrorHorizontal" : false,
-        "facingDirection" : "NONE"
-      },
-      "hasSegmentedBody" : false,
-      "signature" : 2
-    },
-    "TransformComponent" : {
-      "position" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "previousPosition" : {
-        "x" : 0.0,
-        "y" : 0.0
-      },
-      "signature" : 1
+      "mirrorVertical" : false,
+      "mirrorHorizontal" : false,
+      "facingDirection" : "NONE"
     },
     "PhysicalBodyComponent" : {
       "velocity" : {
@@ -52,8 +25,28 @@
       "dynamic" : false,
       "moveSpeed" : 300.0,
       "jumpForce" : 26.0,
-      "ignoresPhysicalCollision" : false,
-      "signature" : 4
+      "ignoresPhysicalCollision" : false
+    },
+    "ColliderComponent" : {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 20.0,
+      "height" : 20.0
+    },
+    "TransformComponent" : {
+      "position" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
     }
   }
 }

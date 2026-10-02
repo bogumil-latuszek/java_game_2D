@@ -1,38 +1,67 @@
 {
   "levelID" : 5,
   "levelName" : "unnamed",
-  "prefabInstances" : [
-    {
-      "entityID" : 0,
-      "prefabName" : "wall",
-      "overrides" : {
-        "TransformComponent.position" : {
-          "x" : -30.0,
-          "y" : -16.0
-        }
-      }
-    },
-    {
-      "entityID" : 1,
-      "prefabName" : "wall",
-      "overrides" : {
-        "TransformComponent.position" : {
-          "x" : -15.0,
-          "y" : -14.0
-        }
-      }
-    },
-    {
-      "entityID" : 2,
-      "prefabName" : "wall",
-      "overrides" : {
-        "TransformComponent.position" : {
-          "x" : 5.0,
-          "y" : -18.0
-        }
+  "prefabInstances" : [ {
+    "entityID" : 0,
+    "prefabName" : "wall",
+    "overrides" : {
+      "TransformComponent.position" : {
+        "x" : -24.573603,
+        "y" : -33.63748
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : -24.573603,
+        "y" : -33.63748
       }
     }
-  ],
+  }, {
+    "entityID" : 1,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 20,
+      "ColliderComponent.height" : 1.0,
+      "DrawableComponent.height" : 1.0,
+      "TransformComponent.position" : {
+        "x" : -5.570709,
+        "y" : -23.136934
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : -5.570709,
+        "y" : -23.136934
+      }
+    }
+  }, {
+    "entityID" : 2,
+    "prefabName" : "wall",
+    "overrides" : {
+      "TransformComponent.position" : {
+        "x" : 11.417315,
+        "y" : -33.64455
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 11.417315,
+        "y" : -33.64455
+      }
+    }
+  }, {
+    "entityID" : 3,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 21,
+      "ColliderComponent.height" : 1.0,
+      "TransformComponent.position" : {
+        "x" : -25.0727,
+        "y" : -23.13626
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : -25.0727,
+        "y" : -23.13626
+      },
+      "DrawableComponent.height" : 1.0,
+      "DrawableComponent.width" : 19.0,
+      "ColliderComponent.width" : 19.0
+    }
+  } ],
   "bakedEntities" : [ ],
   "validSpawnPoints" : {
     "0" : {

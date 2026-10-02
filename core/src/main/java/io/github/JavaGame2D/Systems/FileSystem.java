@@ -107,7 +107,7 @@ public class FileSystem {
             Prefab prefab = mapper.treeToValue(root, Prefab.class);
 
             // 2. Rebuild the components map with proper concrete component types.
-            JsonNode componentsNode = root.get("prefabComponents");
+            JsonNode componentsNode = root.get("components");
             if (componentsNode != null && componentsNode.isObject()) {
                 prefab.components = this.readComponentsMap(componentsNode);
             } else {

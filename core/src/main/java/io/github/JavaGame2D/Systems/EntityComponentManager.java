@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.SaveData.PrefabInstance;
-import io.github.JavaGame2D.SpriteData;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.EventBus;
@@ -127,12 +126,7 @@ public class EntityComponentManager {
         this.addComponent(PhysicalBodyComponent.class, body, entityID);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.hasSegmentedBody = true;
         this.addComponent(DrawableComponent.class, drawable, entityID);
-
-        SegmentedDrawableComponent segmentedDrawable = new SegmentedDrawableComponent();
-        segmentedDrawable.drawableSegments.put(BodySegmentType.UPPER_BODY,new SpriteData());
-        this.addComponent(SegmentedDrawableComponent.class, segmentedDrawable, entityID);
 
         ColliderComponent collider = new ColliderComponent();
         collider.width = 0.6f;

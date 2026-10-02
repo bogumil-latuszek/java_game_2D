@@ -95,10 +95,10 @@ public class GameManager extends Game {
         entityComponentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
 
         DrawableComponent drawable = new DrawableComponent();
-        drawable.spriteData.textureID = 0;
-        drawable.spriteData.textureIsTiled = true;
-        drawable.spriteData.width = 1;
-        drawable.spriteData.height = 1;
+        drawable.textureID = 0;
+        drawable.textureIsTiled = true;
+        drawable.width = 1;
+        drawable.height = 1;
         entityComponentManager.addComponent(DrawableComponent.class, drawable, entityID);
 
         ColliderComponent collider = new ColliderComponent();

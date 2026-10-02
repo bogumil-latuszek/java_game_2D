@@ -14,7 +14,6 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.BodySegmentType;
-import io.github.JavaGame2D.SpriteData;
 
 import java.util.OptionalInt;
 
@@ -70,15 +69,7 @@ public class RenderingSystem {
             TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
             DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
 
-            if (drawableComponent.hasSegmentedBody){
-                SegmentedDrawableComponent segmentedDrawable = entityComponentManager.getComponent(SegmentedDrawableComponent.class, entityID);
-                // used for big bosses, player, some enemies, etc.
-                this.drawSegments(worldBatch, segmentedDrawable, transformComponent.position);
-            }
-            else{
-                // used for platforms, simple enemies, items, obstacles, background setpieces, etc.
-                this.drawSprite(worldBatch, drawableComponent.spriteData, transformComponent.position);
-            }
+            this.drawSprite(worldBatch, drawableComponent, transformComponent.position);
         }
         worldBatch.end();
 
@@ -117,17 +108,9 @@ public class RenderingSystem {
         if (isDrawable){
             TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,selectedEntityID);
             DrawableComponent drawable = entityComponentManager.getComponent(DrawableComponent.class,selectedEntityID);
-            SpriteData spriteData = drawable.spriteData;
             Vector2 center = transform.position;
 
-            if (drawable.hasSegmentedBody){
-                SegmentedDrawableComponent segmentedDrawable = entityComponentManager.getComponent(SegmentedDrawableComponent.class, selectedEntityID);
-                for (SpriteData sprite : segmentedDrawable.drawableSegments.values()){
-                    this.highlightSprite(renderer, sprite, center, color, fill);
-                }
-                return;
-            }
-            this.highlightSprite(renderer, spriteData, center, color, fill);
+            this.highlightSprite(renderer, drawable, center, color, fill);
         }
         else{
             // otherwise, draw collider outline
@@ -149,13 +132,13 @@ public class RenderingSystem {
         }
     }
 
-    private void highlightSprite(ShapeRenderer renderer, SpriteData sprite, Vector2 center, Color color, boolean fill){
-        float width = sprite.width;
-        float height = sprite.height;
+    private void highlightSprite(ShapeRenderer renderer, DrawableComponent drawable, Vector2 center, Color color, boolean fill){
+        float width = drawable.width;
+        float height = drawable.height;
 
-        if (sprite.usesSizeFromTexture && !sprite.textureIsTiled){
+        if (drawable.usesSizeFromTexture && !drawable.textureIsTiled){
             float pixelsPerUnit = 32f; //TODO: this should be System-wide variable loaded from settings
-            int textureID = sprite.textureID;
+            int textureID = drawable.textureID;
             Texture texture = textureManager.getTexture(textureID);
             int texturePixelHeight = texture.getHeight();
             int texturePixelWidth = texture.getWidth();
@@ -164,7 +147,7 @@ public class RenderingSystem {
             width = textureUnitWidth;
             height = textureUnitHeight;
         }
-        Vector2 offsetCenter = center.add(sprite.offset);
+        Vector2 offsetCenter = center.add(drawable.offset);
 
         this.drawHighlightRectangle(renderer, offsetCenter, width, height, color, fill);
 
@@ -211,49 +194,35 @@ public class RenderingSystem {
             TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
             DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
             Vector2 center = transformComponent.position;
-            SpriteData spriteData = drawableComponent.spriteData;
 
-            if (drawableComponent.hasSegmentedBody){
-                SegmentedDrawableComponent segmentedDrawable = entityComponentManager.getComponent(SegmentedDrawableComponent.class, entityID);
-                for (SpriteData sprite : segmentedDrawable.drawableSegments.values()){
-                    this.highlightSprite(renderer, sprite, center, color, fill);
-                }
-                continue;
-            }
-            this.highlightSprite(renderer, spriteData, center, color, fill);
+            this.highlightSprite(renderer, drawableComponent, center, color, fill);
         }
     }
 
-    private void drawSegments(SpriteBatch spriteBatch, SegmentedDrawableComponent segmentedDrawable, Vector2 center){
-        for (SpriteData segment: segmentedDrawable.drawableSegments.values()){
-            drawSprite(spriteBatch, segment, center);
-        }
+    private void drawSprite(SpriteBatch spriteBatch, DrawableComponent drawable, Vector2 center){
+        this.drawSprite(spriteBatch, drawable, center, false);
     }
 
-    private void drawSprite(SpriteBatch spriteBatch, SpriteData sprite, Vector2 center){
-        this.drawSprite(spriteBatch, sprite, center, false);
-    }
-
-    private void drawSprite(SpriteBatch spriteBatch, SpriteData sprite, Vector2 center, boolean drawOutline){
-        int textureID = sprite.textureID;
-        boolean mirrorVertical = sprite.mirrorVertical;
-        boolean mirrorHorizontal = sprite.mirrorHorizontal;
+    private void drawSprite(SpriteBatch spriteBatch, DrawableComponent drawable, Vector2 center, boolean drawOutline){
+        int textureID = drawable.textureID;
+        boolean mirrorVertical = drawable.mirrorVertical;
+        boolean mirrorHorizontal = drawable.mirrorHorizontal;
 
         Texture texture = textureManager.getTexture(textureID);
 
         // this system needs x,y coords of the lower left corner, not center!
-        Vector2 lowerLeftCorner = new Vector2(center.x-sprite.width/2, center.y-sprite.height/2);
+        Vector2 lowerLeftCorner = new Vector2(center.x-drawable.width/2, center.y-drawable.height/2);
 
         // draw Sprite's texture
-        if (sprite.textureIsTiled){
-            drawTiledTexture(spriteBatch, texture, 32f, sprite.width, sprite.height, lowerLeftCorner);
+        if (drawable.textureIsTiled){
+            drawTiledTexture(spriteBatch, texture, 32f, drawable.width, drawable.height, lowerLeftCorner);
         }
         else{
-            if (sprite.usesSizeFromTexture){
-                drawTexture(spriteBatch, texture, 32f, sprite.offset, center, mirrorHorizontal, mirrorVertical);
+            if (drawable.usesSizeFromTexture){
+                drawTexture(spriteBatch, texture, 32f, drawable.offset, center, mirrorHorizontal, mirrorVertical);
             }
             else{
-                drawStretchingTexture(spriteBatch, texture, sprite.width, sprite.height, sprite.offset, center, mirrorHorizontal, mirrorVertical);
+                drawStretchingTexture(spriteBatch, texture, drawable.width, drawable.height, drawable.offset, center, mirrorHorizontal, mirrorVertical);
             }
         }
     }

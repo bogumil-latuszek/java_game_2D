@@ -23,7 +23,6 @@ public class ComponentManager {
         registerComponentCollection(DamageEmitterComponent.class, new ComponentCollection<>(DamageEmitterComponent.class, ComponentSignatures.get(DamageEmitterComponent.class)));
         registerComponentCollection(AnimationComponent.class, new ComponentCollection<>(AnimationComponent.class, ComponentSignatures.get(AnimationComponent.class)));
         registerComponentCollection(DestructibleComponent.class, new ComponentCollection<>(DestructibleComponent.class, ComponentSignatures.get(DestructibleComponent.class)));
-        registerComponentCollection(SegmentedDrawableComponent.class, new ComponentCollection<>(SegmentedDrawableComponent.class, ComponentSignatures.get(SegmentedDrawableComponent.class)));
         registerComponentCollection(PrefabComponent.class, new ComponentCollection<>(PrefabComponent.class, ComponentSignatures.get(PrefabComponent.class)));
     }
 

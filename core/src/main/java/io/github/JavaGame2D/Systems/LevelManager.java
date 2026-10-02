@@ -120,7 +120,8 @@ public class LevelManager {
     }
 
     public void loadPlayer(){
-        Vector2 playerSpawnPosition = this.spawnPointIDtoPosition.get(defaultSpawnPoint);
+        Vector2 defaultSpawnPointPosition = this.spawnPointIDtoPosition.get(defaultSpawnPoint);
+        Vector2 playerSpawnPosition = defaultSpawnPointPosition.cpy(); // avoid "pass by ref" bugs
         this.playerID = ecm.createPlayer(playerSpawnPosition);
         triggerPlayerDataUpdate();
     }
@@ -150,6 +151,7 @@ public class LevelManager {
 
         //TODO: Omit player entity
 
+        /*
         // 1.2 get all entities without prefabComponents
         int[] allEntities = ecm.getAllEntities();
         Set<Integer> prefabEntitiesSet = new HashSet<>();
@@ -165,6 +167,7 @@ public class LevelManager {
             BakedEntity bakedEntity = new BakedEntity(entityID, entityComponents);
             level.bakedEntities.add(bakedEntity);
         }
+        */
 
         // #2 save global variables that can change from level to level
         level.validSpawnPoints = this.spawnPointIDtoPosition;

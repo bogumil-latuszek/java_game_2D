@@ -5,13 +5,14 @@
     "entityID" : 0,
     "prefabName" : "wall",
     "overrides" : {
+      "DrawableComponent.textureID" : 22,
       "TransformComponent.position" : {
-        "x" : -24.573603,
-        "y" : -33.63748
+        "x" : -24.568222,
+        "y" : -33.639503
       },
       "TransformComponent.previousPosition" : {
-        "x" : -24.573603,
-        "y" : -33.63748
+        "x" : -24.568222,
+        "y" : -33.639503
       }
     }
   }, {
@@ -20,28 +21,35 @@
     "overrides" : {
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 1.0,
-      "DrawableComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : -5.570709,
-        "y" : -23.136934
+        "x" : -5.8609486,
+        "y" : -22.128384
       },
       "TransformComponent.previousPosition" : {
-        "x" : -5.570709,
-        "y" : -23.136934
-      }
+        "x" : -5.8609486,
+        "y" : -22.128384
+      },
+      "DrawableComponent.height" : 1.0,
+      "DrawableComponent.width" : 19.0,
+      "ColliderComponent.width" : 19.0
     }
   }, {
     "entityID" : 2,
     "prefabName" : "wall",
     "overrides" : {
+      "DrawableComponent.textureID" : 21,
+      "ColliderComponent.height" : 10.0,
       "TransformComponent.position" : {
-        "x" : 11.417315,
-        "y" : -33.64455
+        "x" : 7.100502,
+        "y" : -27.633453
       },
       "TransformComponent.previousPosition" : {
-        "x" : 11.417315,
-        "y" : -33.64455
-      }
+        "x" : 7.100502,
+        "y" : -27.633453
+      },
+      "DrawableComponent.height" : 10.0,
+      "DrawableComponent.width" : 10.0,
+      "ColliderComponent.width" : 10.0
     }
   }, {
     "entityID" : 3,
@@ -49,17 +57,33 @@
     "overrides" : {
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 1.0,
+      "DrawableComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : -25.0727,
-        "y" : -23.13626
+        "x" : -24.563633,
+        "y" : -23.140722
       },
       "TransformComponent.previousPosition" : {
-        "x" : -25.0727,
-        "y" : -23.13626
+        "x" : -24.563633,
+        "y" : -23.140722
+      }
+    }
+  },{
+    "entityID" : 4,
+    "prefabName" : "shadow",
+    "overrides" : {
+      "ColliderComponent.height" : 1.5,
+      "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
+      "TransformComponent.position" : {
+        "x" : -2.4102943,
+        "y" : -20.807781
       },
-      "DrawableComponent.height" : 1.0,
-      "DrawableComponent.width" : 19.0,
-      "ColliderComponent.width" : 19.0
+      "TransformComponent.previousPosition" : {
+        "x" : -2.4102943,
+        "y" : -20.807781
+      },
+      "DamageEmitterComponent.damageAmount" : 10,
+      "DamageEmitterComponent.selfDestructsOnImpact" : true,
+      "ColliderComponent.width" : 0.5
     }
   } ],
   "bakedEntities" : [ ],

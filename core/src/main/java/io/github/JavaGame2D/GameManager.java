@@ -87,7 +87,10 @@ public class GameManager extends Game {
     }
 
     private void createWallPrefab(){
-        int entityID = entityComponentManager.createEntity(new Vector2());
+        int entityID = entityComponentManager.createEmptyEntity();
+
+        TransformComponent transformComponent = new TransformComponent();
+        entityComponentManager.addComponent(TransformComponent.class, transformComponent, entityID);
 
         PhysicalBodyComponent body = new PhysicalBodyComponent();
         body.dynamic = false;

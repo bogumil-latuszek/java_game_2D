@@ -103,14 +103,8 @@ public class EntityComponentManager {
     public void createEmptyEntity(int entityID){
         entityManager.createEntity(entityID);
     }
-
-    public int createEntity(Vector2 position){
-        int entityID = entityManager.createEntity();
-
-        TransformComponent transform = new TransformComponent(position);
-        this.addComponent(TransformComponent.class, transform, entityID);
-
-        return entityID;
+    public int createEmptyEntity(){
+        return entityManager.createEntity();
     }
 
     public int createPlayer(Vector2 position){

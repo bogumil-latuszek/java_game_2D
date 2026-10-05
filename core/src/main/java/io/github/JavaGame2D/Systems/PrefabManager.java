@@ -29,7 +29,7 @@ public class PrefabManager {
 
     public void createEntityFromPrefab(String prefabName, Vector2 position){
 
-        int entityID = ecm.createEntity(position);
+        int entityID = ecm.createEmptyEntity();
 
         // 2. assign PrefabComponent
 
@@ -37,8 +37,11 @@ public class PrefabManager {
         ecm.addComponent(PrefabComponent.class, prefabComp, entityID);
 
         // 3. populate Entity with Components copied from Prefab
-
         populateEntity(entityID, prefabName);
+
+        // 4. update position
+        TransformComponent transform = ecm.getComponent(TransformComponent.class, entityID);
+        transform.position = position;
     }
 
     public void loadEntityFromPrefabInstance(PrefabInstance prefabInstance){

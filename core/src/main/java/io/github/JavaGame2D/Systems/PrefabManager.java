@@ -1,8 +1,11 @@
 package io.github.JavaGame2D.Systems;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 import io.github.JavaGame2D.Components.PrefabComponent;
+import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Prefab;
 import io.github.JavaGame2D.SaveData.ComponentFullNameMapper;
 import io.github.JavaGame2D.SaveData.JacksonModules.ShortenComponentClassNames;
@@ -25,6 +28,32 @@ public class PrefabManager {
         this.fileSystem = fileSystem;
         this.ecm = ecm;
         this.componentMapper = componentMapper;
+    }
+
+    /**
+     * Scans assets/prefabs/ for .json files and returns their names without extension.
+     * Called by the editor every time the prefab dropdown opens, so newly added
+     * prefab files appear without restarting the app.
+     *
+     * Note: Only works on desktop backends. On Android/iOS, Gdx.files.internal()
+     * cannot list directories inside a packaged JAR/APK. Your editor is desktop-only,
+     * so this is fine.
+     */
+    public Array<String> getAllPrefabNames() {
+        Array<String> names = new Array<>();
+        FileHandle dir = Gdx.files.internal("assets/prefabs/");
+
+        if (!dir.exists() || !dir.isDirectory()) {
+            Gdx.app.log("PrefabManager", "Prefab directory not found: prefabs/");
+            return names;
+        }
+
+        for (FileHandle f : dir.list(".json")) {
+            names.add(f.nameWithoutExtension());
+        }
+
+        names.sort();
+        return names;
     }
 
     public void createEntityFromPrefab(String prefabName, Vector2 position){

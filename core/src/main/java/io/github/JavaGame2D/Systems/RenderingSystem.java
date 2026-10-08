@@ -10,11 +10,14 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.BodySegmentType;
+import io.github.JavaGame2D.Enums.RenderingLayer;
 
+import java.util.HashMap;
 import java.util.OptionalInt;
 
 public class RenderingSystem {
@@ -23,10 +26,9 @@ public class RenderingSystem {
     private TextureManager textureManager;
 
     private OptionalInt selectedEntityID ;
-
-
     ShapeRenderer shapeRenderer; //used for drawing outlines in Edit mode
 
+    private final IntArray[] buckets = new IntArray[RenderingLayer.values().length];
 
     private OrthographicCamera camera;
 
@@ -38,6 +40,10 @@ public class RenderingSystem {
 
         shapeRenderer = new ShapeRenderer();
         selectedEntityID = OptionalInt.empty();
+
+        for (int i = 0; i < buckets.length; i++){
+            buckets[i] = new IntArray();
+        }
     }
 
     public void setSelectedEntityID(OptionalInt selectedEntityID){
@@ -63,6 +69,9 @@ public class RenderingSystem {
 
         long signature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
         int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
+
+        // sort drawableEntities by RenderingLayer + zOrder
+        drawableEntities = this.sortDrawableEntities(drawableEntities);
 
         // draw each entity in list:
         for ( int entityID : drawableEntities){
@@ -96,6 +105,45 @@ public class RenderingSystem {
         // draw Selected Entity outline
         if (highlightSelectedEntity && selectedEntityID.isPresent()){
             this.highlightSelectedEntity(selectedEntityID.getAsInt(), shapeRenderer, Color.RED, true);
+        }
+    }
+
+    public int[] sortDrawableEntities(int[] entityIDs) {
+        int n = entityIDs.length;
+
+        // Clear buckets.
+        for (IntArray b : buckets) b.clear();
+
+        // Bucket by layer (single pass, no sorting).
+        for (int i = 0; i < n; i++) {
+            int id = entityIDs[i];
+            DrawableComponent dc = entityComponentManager.getComponent(DrawableComponent.class, id);
+            buckets[dc.renderingLayer.ordinal()].add(id);
+        }
+
+        // Within each bucket, sort by zOrder (insertion sort is fine — buckets are small).
+        int out = 0;
+        for (IntArray bucket : buckets) {
+            sortBucketByZ(bucket);
+            for (int i = 0; i < bucket.size; i++) {
+                entityIDs[out++] = bucket.get(i);
+            }
+        }
+        return entityIDs;
+    }
+
+    private void sortBucketByZ(IntArray bucket) {
+        int[] items = bucket.items;
+        int size = bucket.size;
+        for (int i = 1; i < size; i++) {
+            int key = items[i];
+            int keyZ = entityComponentManager.getComponent(DrawableComponent.class, key).zOrder;
+            int j = i - 1;
+            while (j >= 0 && entityComponentManager.getComponent(DrawableComponent.class, items[j]).zOrder > keyZ) {
+                items[j + 1] = items[j];
+                j--;
+            }
+            items[j + 1] = key;
         }
     }
 

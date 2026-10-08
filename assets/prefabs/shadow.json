@@ -1,0 +1,57 @@
+{
+  "components" : {
+    "DrawableComponent" : {
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "textureID" : 23,
+      "textureIsTiled" : false,
+      "usesSizeFromTexture" : true,
+      "pixelsPerUnit" : 1,
+      "width" : 1.0,
+      "height" : 1.0,
+      "mirrorVertical" : false,
+      "mirrorHorizontal" : false,
+      "facingDirection" : "NONE"
+    },
+    "TransformComponent" : {
+      "position" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "previousPosition" : {
+        "x" : 0.0,
+        "y" : 0.0
+      }
+    },
+    "ColliderComponent" : {
+      "layer" : 0,
+      "colliderType" : "AABB",
+      "usesOffset" : false,
+      "offset" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "width" : 1.0,
+      "height" : 1.0
+    },
+    "DamageEmitterComponent" : {
+      "damageType" : "CONTINUOUS",
+      "damageAmount" : 1,
+      "selfDestructsOnImpact" : false
+    },
+    "PhysicalBodyComponent" : {
+      "velocity" : {
+        "x" : 0.0,
+        "y" : 0.0
+      },
+      "usesGravity" : false,
+      "onGround" : false,
+      "dynamic" : false,
+      "moveSpeed" : 300.0,
+      "jumpForce" : 26.0,
+      "ignoresPhysicalCollision" : false
+    }
+  }
+}

@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import io.github.JavaGame2D.Annotations.InspectorIgnore;
-import io.github.JavaGame2D.SpriteData;
 import io.github.JavaGame2D.Systems.EntityComponentManager;
 
 import java.lang.reflect.Field;
@@ -155,9 +154,6 @@ public class PropertyInspector {
                 }
                 else if (fieldType == Vector2.class) {
                     renderVector2Field(fieldLabel, (Vector2) value, field, componentInstance);
-                }
-                else if (fieldType == SpriteData.class) {
-                    renderComponentFields(value, SpriteData.class, table);
                 }
                 else if (isPrimitiveOrString(fieldType)) {
                     renderPrimitiveField(fieldLabel, field, componentInstance);

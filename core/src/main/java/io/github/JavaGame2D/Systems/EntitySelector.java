@@ -4,9 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Components.SegmentedDrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
-import io.github.JavaGame2D.SpriteData;
 
 import java.util.OptionalInt;
 
@@ -39,7 +37,7 @@ public class EntitySelector {
 
     public OptionalInt findEntityTouchingPoint(Vector2 pointInWorldCoords){
         // 1. get all entities with drawable component
-        long drawableSignature = ComponentSignatures.TRANSFORM | ComponentSignatures.DRAWABLE;
+        long drawableSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
         int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(drawableSignature);
 
         // 2. check collision for each one, return first found
@@ -48,20 +46,8 @@ public class EntitySelector {
             DrawableComponent drawable = entityComponentManager.getComponent(DrawableComponent.class, entityID);
             Vector2 center = transform.position;
 
-            if (drawable.hasSegmentedBody){
-                SegmentedDrawableComponent segmentedDrawable = entityComponentManager.getComponent(SegmentedDrawableComponent.class, entityID);
-                for (SpriteData segmentSprite : segmentedDrawable.drawableSegments.values()){
-                    if (this.pointInsideSpriteData(pointInWorldCoords, segmentSprite, center)){
-                        return OptionalInt.of(entityID);
-                    }
-                }
-            }
-            else {
-                SpriteData drawableSprite = drawable.spriteData;
-
-                if (this.pointInsideSpriteData(pointInWorldCoords, drawableSprite, center)){
-                    return OptionalInt.of(entityID);
-                }
+            if (this.pointInsideDrawable(pointInWorldCoords, drawable, center)){
+                return OptionalInt.of(entityID);
             }
         }
 
@@ -71,15 +57,15 @@ public class EntitySelector {
         return OptionalInt.empty();
     }
 
-    private boolean pointInsideSpriteData(Vector2 point, SpriteData sprite, Vector2 center){
+    private boolean pointInsideDrawable(Vector2 point, DrawableComponent drawable, Vector2 center){
         Vector2 offsetCenter = center.cpy();
-        offsetCenter = offsetCenter.add(sprite.offset);
+        offsetCenter = offsetCenter.add(drawable.offset);
 
-        float width = sprite.width;
-        float height = sprite.height;
+        float width = drawable.width;
+        float height = drawable.height;
 
-        if (sprite.usesSizeFromTexture && !sprite.textureIsTiled){
-            Texture texture = textureManager.getTexture(sprite.textureID);
+        if (drawable.usesSizeFromTexture && !drawable.textureIsTiled){
+            Texture texture = textureManager.getTexture(drawable.textureID);
             int texturePixelHeight = texture.getHeight();
             int texturePixelWidth = texture.getWidth();
             width = texturePixelWidth/32f;

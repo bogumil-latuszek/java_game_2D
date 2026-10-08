@@ -1,9 +1,8 @@
 package io.github.JavaGame2D.Systems;
 
+import io.github.JavaGame2D.AnimationFrame;
 import io.github.JavaGame2D.Components.AnimationComponent;
 import io.github.JavaGame2D.Components.DrawableComponent;
-import io.github.JavaGame2D.Components.SegmentedDrawableComponent;
-import io.github.JavaGame2D.SpriteData;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.CharacterType;
@@ -35,27 +34,34 @@ public class AnimationSystem {
         // #1 player is a special case
         int playerID = this.entityComponentManager.getPlayerEntityID();
         AnimationComponent animationComponent = entityComponentManager.getComponent(AnimationComponent.class, playerID);
-        //DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, playerID);
-        SegmentedDrawableComponent segmentedDrawable = entityComponentManager.getComponent(SegmentedDrawableComponent.class, playerID);
+        DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, playerID);
 
         playerStateMachine.update(deltaTimeInSeconds);
         EnumMap<BodySegmentType, AnimationState> currentPlayerState = playerStateMachine.bodySegmentAnimations;
-        BodySegmentType[] allSegments = currentPlayerState.keySet().toArray(new BodySegmentType[currentPlayerState.size()]);
-
         CharacterType characterType = animationComponent.characterType;
-        for (BodySegmentType segmentType : allSegments){
-            if(segmentedDrawable.drawableSegments.containsKey(segmentType)){
-                AnimationState animationState = currentPlayerState.get(segmentType);
-                AnimationType animationType = animationState.animationType;
-                float durationInMillis = animationState.durationInMilliseconds;
-                SpriteData animationFrame = animationManager.getAnimationFrameByDuration(characterType, segmentType, animationType, durationInMillis);
-                animationFrame = mirrorAnimationFrameIfFacingWrongDirection(animationFrame, animationState.facingDirection);
-                segmentedDrawable.drawableSegments.put(segmentType, animationFrame);
-            }
-        }
+        BodySegmentType upperBody = BodySegmentType.UPPER_BODY;
+        AnimationState animationState = currentPlayerState.get(upperBody);
+        AnimationType animationType = animationState.animationType;
+        float durationInMillis = animationState.durationInMilliseconds;
+        AnimationFrame animationFrame = animationManager.getAnimationFrameByDuration(characterType, upperBody, animationType, durationInMillis);
+        animationFrame = mirrorAnimationFrameIfFacingWrongDirection(animationFrame, animationState.facingDirection);
+        copyAnimationFrameToDrawable(animationFrame,drawableComponent);
     }
 
-    private SpriteData mirrorAnimationFrameIfFacingWrongDirection(SpriteData animationFrame, FacingDirection direction){
+    private void copyAnimationFrameToDrawable(AnimationFrame animationFrame, DrawableComponent drawable){
+        drawable.textureID = animationFrame.textureID;
+        drawable.facingDirection = animationFrame.facingDirection;
+        drawable.width = animationFrame.width;
+        drawable.height = animationFrame.height;
+        drawable.offset = animationFrame.offset;
+        drawable.mirrorHorizontal = animationFrame.mirrorHorizontal;
+        drawable.mirrorVertical = animationFrame.mirrorVertical;
+        drawable.usesSizeFromTexture = true;
+        drawable.textureIsTiled = false;
+        drawable.pixelsPerUnit = animationFrame.pixelsPerUnit;
+    }
+
+    private AnimationFrame mirrorAnimationFrameIfFacingWrongDirection(AnimationFrame animationFrame, FacingDirection direction){
         // instead of having separate frames for left/right, up/down, we're going to mirror existing ones
         // never mirror frames that don't face any direction:
         if (animationFrame.facingDirection != FacingDirection.NONE){

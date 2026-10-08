@@ -1,18 +1,18 @@
 package io.github.JavaGame2D.Systems;
 
-import io.github.JavaGame2D.SpriteData;
+import io.github.JavaGame2D.AnimationFrame;
 
 public class Animation {
     public boolean looping = true;
     public int framesPerSecond = 30;
-    private final SpriteData[] animationFrames;
+    private final AnimationFrame[] animationFrames;
     int pixelsToUnit = 900;
 
-    public Animation(SpriteData[] animationFrames) {
+    public Animation(AnimationFrame[] animationFrames) {
         this.animationFrames = animationFrames;
     }
 
-    public SpriteData getFrameByNumber(int frameNumber){
+    public AnimationFrame getFrameByNumber(int frameNumber){
         //if number out of bounds, then:
         if(frameNumber >= animationFrames.length){
             if (this.looping){
@@ -25,11 +25,11 @@ public class Animation {
         return animationFrames[frameNumber];
     }
 
-    public SpriteData getFrameByDuration(float durationInMilliseconds){
+    public AnimationFrame getFrameByDuration(float durationInMilliseconds){
         //if number out of bounds, then:
         float durationInSeconds = durationInMilliseconds/1000;
         int frameNumber = (int)(framesPerSecond*durationInSeconds);
-        SpriteData animationFrame =  getFrameByNumber(frameNumber);
+        AnimationFrame animationFrame = getFrameByNumber(frameNumber);
         animationFrame.pixelsPerUnit = this.pixelsToUnit;
         return animationFrame;
     }

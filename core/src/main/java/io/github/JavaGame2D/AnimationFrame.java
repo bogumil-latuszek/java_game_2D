@@ -1,28 +1,22 @@
 package io.github.JavaGame2D;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Enums.FacingDirection;
 
-// It's called "SpriteData" to avoid confusion with LibGDX's own "Sprite" class
-public class SpriteData {
+public class AnimationFrame {
     public Vector2 offset = new Vector2();
     public int textureID = -1; // missing texture by default
-
-    public boolean textureIsTiled = false;
-    public boolean usesSizeFromTexture = true; // true for pixel-perfect graphics, false when texture has to stretch
-    public int pixelsPerUnit = 1; //used for pixel-perfect texture tiling
-
     public float width = 1;
     public float height = 1;
     public boolean mirrorVertical = false;
     public boolean mirrorHorizontal = false;
+    public int pixelsPerUnit = 1;
     public FacingDirection facingDirection = FacingDirection.NONE; // this field should be kept accurate to drawable visual direction
 
+    public AnimationFrame() {
+    }
 
-    public SpriteData(){}
-
-    public SpriteData(int textureID, FacingDirection facingDirection){
+    public AnimationFrame(int textureID, FacingDirection facingDirection) {
         this.textureID = textureID;
         this.facingDirection = facingDirection;
     }

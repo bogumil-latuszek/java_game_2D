@@ -9,6 +9,7 @@ public class HealthComponent implements Component {
     public float iframeTimer = 0f;
     public float iframeDuration = 1f;
     public boolean damageTriggersiframes = false;
+
     //private float lastDamageTime = 0f;
 
     private HealthComponent(){
@@ -20,10 +21,18 @@ public class HealthComponent implements Component {
         this.currentHp = maxHp;
     }
 
+
     @Override
-    public long getSignature() {
-        return ComponentSignatures.HEALTH;
+    public Component makeCopy() {
+        HealthComponent temp = new HealthComponent();
+        temp.currentHp = this.currentHp;
+        temp.maxHp = this.maxHp;
+        temp.isInvulnerable = this.isInvulnerable;
+        temp.iframeTimer = this.iframeTimer;
+        temp.iframeDuration = this.iframeDuration;
+        temp.damageTriggersiframes = this.damageTriggersiframes;
+        return temp;
     }
 
-    // Getters and setters...
+
 }

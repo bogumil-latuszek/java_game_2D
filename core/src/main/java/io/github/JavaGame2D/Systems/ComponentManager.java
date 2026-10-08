@@ -14,16 +14,16 @@ public class ComponentManager {
 
     public ComponentManager() {
         this.componentCollections = new HashMap<Class<?>, ComponentCollectionInterface>();
-        registerComponentCollection(TransformComponent.class, new ComponentCollection<>(TransformComponent.class, ComponentSignatures.TRANSFORM));
-        registerComponentCollection(DrawableComponent.class, new ComponentCollection<>(DrawableComponent.class, ComponentSignatures.DRAWABLE));
-        registerComponentCollection(PhysicalBodyComponent.class, new ComponentCollection<>(PhysicalBodyComponent.class, ComponentSignatures.PHYSICAL_BODY));
-        registerComponentCollection(ColliderComponent.class, new ComponentCollection<>(ColliderComponent.class, ComponentSignatures.COLLIDER));
-        registerComponentCollection(TeleporterComponent.class, new ComponentCollection<>(TeleporterComponent.class, ComponentSignatures.TELEPORTER));
-        registerComponentCollection(HealthComponent.class, new ComponentCollection<>(HealthComponent.class, ComponentSignatures.HEALTH));
-        registerComponentCollection(DamageEmitterComponent.class, new ComponentCollection<>(DamageEmitterComponent.class, ComponentSignatures.DAMAGE_EMITTER));
-        registerComponentCollection(AnimationComponent.class, new ComponentCollection<>(AnimationComponent.class, ComponentSignatures.ANIMATION));
-        registerComponentCollection(DestructibleComponent.class, new ComponentCollection<>(DestructibleComponent.class, ComponentSignatures.DESTRUCTIBLE));
-        registerComponentCollection(SegmentedDrawableComponent.class, new ComponentCollection<>(SegmentedDrawableComponent.class, ComponentSignatures.SEGMENTED_DRAWABLE));
+        registerComponentCollection(TransformComponent.class, new ComponentCollection<>(TransformComponent.class, ComponentSignatures.get(TransformComponent.class)));
+        registerComponentCollection(DrawableComponent.class, new ComponentCollection<>(DrawableComponent.class, ComponentSignatures.get(DrawableComponent.class)));
+        registerComponentCollection(PhysicalBodyComponent.class, new ComponentCollection<>(PhysicalBodyComponent.class, ComponentSignatures.get(PhysicalBodyComponent.class)));
+        registerComponentCollection(ColliderComponent.class, new ComponentCollection<>(ColliderComponent.class, ComponentSignatures.get(ColliderComponent.class)));
+        registerComponentCollection(TeleporterComponent.class, new ComponentCollection<>(TeleporterComponent.class, ComponentSignatures.get(TeleporterComponent.class)));
+        registerComponentCollection(HealthComponent.class, new ComponentCollection<>(HealthComponent.class, ComponentSignatures.get(HealthComponent.class)));
+        registerComponentCollection(DamageEmitterComponent.class, new ComponentCollection<>(DamageEmitterComponent.class, ComponentSignatures.get(DamageEmitterComponent.class)));
+        registerComponentCollection(AnimationComponent.class, new ComponentCollection<>(AnimationComponent.class, ComponentSignatures.get(AnimationComponent.class)));
+        registerComponentCollection(DestructibleComponent.class, new ComponentCollection<>(DestructibleComponent.class, ComponentSignatures.get(DestructibleComponent.class)));
+        registerComponentCollection(PrefabComponent.class, new ComponentCollection<>(PrefabComponent.class, ComponentSignatures.get(PrefabComponent.class)));
     }
 
     // Get a component collection by type (type-safe)

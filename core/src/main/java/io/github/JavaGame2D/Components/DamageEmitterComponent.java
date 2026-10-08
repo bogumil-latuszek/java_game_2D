@@ -16,7 +16,13 @@ public class DamageEmitterComponent implements Component{
 
 
     @Override
-    public long getSignature() {
-        return ComponentSignatures.DAMAGE_EMITTER;
+    public Component makeCopy() {
+        DamageEmitterComponent temp = new DamageEmitterComponent();
+        temp.damageType = this.damageType;
+        temp.damageAmount = this.damageAmount;
+        temp.selfDestructsOnImpact = this.selfDestructsOnImpact;
+        return temp;
     }
+
+
 }

@@ -1,6 +1,6 @@
 package io.github.JavaGame2D.Systems;
 
-import io.github.JavaGame2D.SpriteData;
+import io.github.JavaGame2D.AnimationFrame;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 
@@ -21,7 +21,7 @@ public class CharacterAnimations {
         animations.get(segmentType).addAnimation(animationType, animation);
     }
 
-    public SpriteData getFrameByNumber(BodySegmentType segment, AnimationType animationType, int frameNumber){
+    public AnimationFrame getFrameByNumber(BodySegmentType segment, AnimationType animationType, int frameNumber){
         BodySegmentAnimations segmentAnimations = animations.get(segment);
         if ( segmentAnimations == null ){
             return null;
@@ -29,7 +29,7 @@ public class CharacterAnimations {
         return segmentAnimations.getFrameByNumber(animationType,frameNumber);
     }
 
-    public SpriteData getFrameByDuration(BodySegmentType segment, AnimationType animationType, float durationInMilliseconds){
+    public AnimationFrame getFrameByDuration(BodySegmentType segment, AnimationType animationType, float durationInMilliseconds){
         BodySegmentAnimations segmentAnimations = animations.get(segment);
         if ( segmentAnimations == null ){
             return null;

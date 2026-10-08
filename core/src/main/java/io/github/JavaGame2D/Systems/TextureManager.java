@@ -62,6 +62,10 @@ public class TextureManager {
         registerTexture(5, "health_bar.png");
         registerTexture(6, "health_bar_frame.png");
         registerTexture(7, "crate.png");
+        registerTexture(20, "tile_wood.png");
+        registerTexture(21, "tile_grass.png");
+        registerTexture(22, "tile_stone.png");
+        registerTexture(23, "shadow.png");
     }
 }
 

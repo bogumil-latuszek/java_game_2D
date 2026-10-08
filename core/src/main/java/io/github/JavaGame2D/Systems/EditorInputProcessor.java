@@ -3,10 +3,12 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.EditScreen;
 import io.github.JavaGame2D.Enums.SelectedTool;
 import io.github.JavaGame2D.UserInterface.PropertyInspector;
 
@@ -21,14 +23,16 @@ public class EditorInputProcessor implements InputProcessor {
     private Vector2 lastDragPosition;
     private EntityComponentManager entityComponentManager;
     private PropertyInspector propertyInspector;
+    private EditScreen editScreen; //TODO: remove circular dependance?
 
-    public EditorInputProcessor(EntityComponentManager entityComponentManager, EntitySelector entitySelector, PropertyInspector propertyInspector, OrthographicCamera camera) {
+    public EditorInputProcessor(EntityComponentManager entityComponentManager, EntitySelector entitySelector, PropertyInspector propertyInspector, OrthographicCamera camera, EditScreen editScreen) {
         this.entityComponentManager = entityComponentManager;
         this.entitySelector = entitySelector;
         this.propertyInspector = propertyInspector;
         this.camera = camera;
         this.selectedTool = SelectedTool.DRAGGING_TOOL;
         lastDragPosition = new Vector2(0,0);
+        this.editScreen = editScreen;
     }
 
     public OptionalInt getSelectedEntityID(){
@@ -37,6 +41,28 @@ public class EditorInputProcessor implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        //TODO: implement guards
+//        // Guard 1: Don't hijack keys if a TextField/SelectBox has focus.
+//        if (editorStage.getKeyboardFocus() != null) return false;
+//
+//        // Guard 2: Don't open while a modal window (dropdown, dialog) is up.
+//        if (dropdown != null) return false;
+
+        boolean shiftHeld = Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT)
+            || Gdx.input.isKeyPressed(Input.Keys.SHIFT_RIGHT);
+
+        if (keycode == Input.Keys.A && shiftHeld) {
+            // Guard 3: Don't open when the mouse is over UI.
+//            Actor hit = editorStage.hit(Gdx.input.getX(), Gdx.input.getY(), true);
+//            if (hit != null) return false;
+
+            // Convert screen to world.
+            Vector3 screen = new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0);
+            Vector3 world = camera.unproject(screen);
+
+            editScreen.showPrefabDropdown(world.x, world.y);
+            return true;
+        }
         return false;
     }
 

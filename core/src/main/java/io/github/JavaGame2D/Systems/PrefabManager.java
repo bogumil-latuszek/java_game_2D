@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import io.github.JavaGame2D.Components.PrefabComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.Enums.RenderingLayer;
 import io.github.JavaGame2D.Prefab;
 import io.github.JavaGame2D.SaveData.ComponentFullNameMapper;
 import io.github.JavaGame2D.SaveData.JacksonModules.ShortenComponentClassNames;
@@ -170,6 +171,10 @@ public class PrefabManager {
     }
 
     private Object coerce(Object raw, Class<?> targetType) {
+        if (targetType == RenderingLayer.class){
+            String enumName = (String) raw;
+            return RenderingLayer.valueOf(enumName);
+        }
         if (targetType == int.class || targetType == Integer.class) {
             return ((Number) raw).intValue();
         }

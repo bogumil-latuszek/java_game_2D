@@ -52,6 +52,10 @@ public class DrawableComponent implements Component{
         temp.mirrorVertical = this.mirrorVertical;
         temp.mirrorHorizontal = this.mirrorHorizontal;
         temp.facingDirection = this.facingDirection; // enums are passed by ref, but that's ok since it's a ref to a singleton
+        temp.renderingLayer = this.renderingLayer;
+        temp.zOrder = this.zOrder;
+        temp.parallaxFactorX = this.parallaxFactorX;
+        temp.parallaxFactorY = this.parallaxFactorY;
         return temp;
     }
 }

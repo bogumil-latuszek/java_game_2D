@@ -51,10 +51,10 @@ public class RenderingSystem {
     }
 
     public void renderGameWorld(){
-        this.renderGameWorld(false, false, false);
+        this.renderGameWorld(false, false, false, true);
     }
 
-    public void renderGameWorld(boolean drawSpriteOutlines, boolean drawColliders, boolean highlightSelectedEntity){
+    public void renderGameWorld(boolean drawSpriteOutlines, boolean drawColliders, boolean highlightSelectedEntity, boolean useParallax){
 
         //clear screen
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
@@ -78,7 +78,8 @@ public class RenderingSystem {
             TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
             DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
 
-            this.drawSprite(worldBatch, drawableComponent, transformComponent.position);
+            Vector2 cameraPosition = new Vector2(this.camera.position.x, this.camera.position.y);
+            this.drawSprite(worldBatch, cameraPosition, drawableComponent, transformComponent.position, useParallax);
         }
         worldBatch.end();
 
@@ -247,30 +248,35 @@ public class RenderingSystem {
         }
     }
 
-    private void drawSprite(SpriteBatch spriteBatch, DrawableComponent drawable, Vector2 center){
-        this.drawSprite(spriteBatch, drawable, center, false);
-    }
-
-    private void drawSprite(SpriteBatch spriteBatch, DrawableComponent drawable, Vector2 center, boolean drawOutline){
+    private void drawSprite(SpriteBatch spriteBatch, Vector2 cameraPosition, DrawableComponent drawable, Vector2 center, boolean useParallax){
         int textureID = drawable.textureID;
         boolean mirrorVertical = drawable.mirrorVertical;
         boolean mirrorHorizontal = drawable.mirrorHorizontal;
 
         Texture texture = textureManager.getTexture(textureID);
 
-        // this system needs x,y coords of the lower left corner, not center!
-        Vector2 lowerLeftCorner = new Vector2(center.x-drawable.width/2, center.y-drawable.height/2);
+        Vector2 correctedCenter = center;
+
+        float parallaxFactorX = drawable.parallaxFactorX;
+        float parallaxFactorY = drawable.parallaxFactorY;
+
+        if (useParallax && ( parallaxFactorX != 1f || parallaxFactorY != 1f) ) {
+            correctedCenter = new Vector2(
+                correctedCenter.x + (cameraPosition.x) * (1f - parallaxFactorX),
+                correctedCenter.y + (cameraPosition.y) * (1f - parallaxFactorY)
+            );
+        }
 
         // draw Sprite's texture
         if (drawable.textureIsTiled){
-            drawTiledTexture(spriteBatch, texture, 32f, drawable.width, drawable.height, lowerLeftCorner);
+            drawTiledTexture(spriteBatch, texture, 32f, drawable.width, drawable.height, correctedCenter);
         }
         else{
             if (drawable.usesSizeFromTexture){
-                drawTexture(spriteBatch, texture, 32f, drawable.offset, center, mirrorHorizontal, mirrorVertical);
+                drawTexture(spriteBatch, texture, 32f, drawable.offset, correctedCenter, mirrorHorizontal, mirrorVertical);
             }
             else{
-                drawStretchingTexture(spriteBatch, texture, drawable.width, drawable.height, drawable.offset, center, mirrorHorizontal, mirrorVertical);
+                drawStretchingTexture(spriteBatch, texture, drawable.width, drawable.height, drawable.offset, correctedCenter, mirrorHorizontal, mirrorVertical);
             }
         }
     }
@@ -295,7 +301,10 @@ public class RenderingSystem {
         spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
     }
 
-    private void drawTiledTexture(SpriteBatch spriteBatch, Texture texture, float pixelsPerWorldUnit,  float width, float height, Vector2 lowerLeftCorner){
+    private void drawTiledTexture(SpriteBatch spriteBatch, Texture texture, float pixelsPerWorldUnit,  float width, float height, Vector2 center){
+
+        Vector2 lowerLeftCorner = new Vector2(center.x-width/2, center.y-height/2);
+
         texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 

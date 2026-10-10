@@ -307,18 +307,14 @@
     "overrides" : {
       "DrawableComponent.mirrorVertical" : true,
       "PhysicalBodyComponent.dynamic" : true,
-      "PhysicalBodyComponent.velocity" : {
-        "x" : 0.0,
-        "y" : 0.06
-      },
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
       "TransformComponent.position" : {
-        "x" : 38.028843,
-        "y" : -18.760386
+        "x" : 37.166134,
+        "y" : -19.434067
       },
       "TransformComponent.previousPosition" : {
-        "x" : 38.028843,
-        "y" : -18.761389
+        "x" : 37.166134,
+        "y" : -19.434067
       }
     }
   }, {
@@ -327,18 +323,14 @@
     "overrides" : {
       "DrawableComponent.mirrorVertical" : true,
       "PhysicalBodyComponent.dynamic" : true,
-      "PhysicalBodyComponent.velocity" : {
-        "x" : 0.0,
-        "y" : 0.08
-      },
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
       "TransformComponent.position" : {
-        "x" : 55.95984,
-        "y" : -23.427013
+        "x" : 57.126125,
+        "y" : -24.317719
       },
       "TransformComponent.previousPosition" : {
-        "x" : 55.95984,
-        "y" : -23.42835
+        "x" : 57.126125,
+        "y" : -24.317719
       }
     }
   }, {
@@ -346,18 +338,14 @@
     "prefabName" : "shadow",
     "overrides" : {
       "PhysicalBodyComponent.dynamic" : true,
-      "PhysicalBodyComponent.velocity" : {
-        "x" : 0.0,
-        "y" : 0.04
-      },
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
       "TransformComponent.position" : {
-        "x" : 44.359894,
-        "y" : -23.211351
+        "x" : 43.79971,
+        "y" : -26.356438
       },
       "TransformComponent.previousPosition" : {
-        "x" : 44.359894,
-        "y" : -23.21202
+        "x" : 43.79971,
+        "y" : -26.356438
       }
     }
   }, {
@@ -366,18 +354,14 @@
     "overrides" : {
       "DrawableComponent.mirrorVertical" : true,
       "PhysicalBodyComponent.dynamic" : true,
-      "PhysicalBodyComponent.velocity" : {
-        "x" : 0.0,
-        "y" : 0.06
-      },
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
       "TransformComponent.position" : {
-        "x" : 49.734497,
-        "y" : -19.02959
+        "x" : 50.16409,
+        "y" : -18.457981
       },
       "TransformComponent.previousPosition" : {
-        "x" : 49.734497,
-        "y" : -19.030594
+        "x" : 50.16409,
+        "y" : -18.457981
       }
     }
   }, {
@@ -1198,6 +1182,166 @@
         "x" : 120.66615,
         "y" : 4.485423
       }
+    }
+  }, {
+    "entityID" : 77,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 24,
+      "DrawableComponent.parallaxFactorY" : 0.0,
+      "DrawableComponent.parallaxFactorX" : 0.0,
+      "DrawableComponent.height" : 12.0,
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "SKYBOX",
+      "DrawableComponent.usesSizeFromTexture" : false,
+      "DrawableComponent.pixelsPerUnit" : 2,
+      "DrawableComponent.width" : 20.0
+    }
+  }, {
+    "entityID" : 79,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 25,
+      "DrawableComponent.parallaxFactorY" : 0.01,
+      "DrawableComponent.parallaxFactorX" : 0.01,
+      "TransformComponent.position" : {
+        "x" : -8.142565,
+        "y" : -1.5655041
+      },
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "FAR",
+      "DrawableComponent.usesSizeFromTexture" : false
+    }
+  }, {
+    "entityID" : 80,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 25,
+      "DrawableComponent.parallaxFactorY" : 0.01,
+      "DrawableComponent.parallaxFactorX" : 0.01,
+      "DrawableComponent.zOrder" : -10,
+      "TransformComponent.position" : {
+        "x" : 0.34637344,
+        "y" : -1.4947042
+      },
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "FAR",
+      "DrawableComponent.usesSizeFromTexture" : false,
+      "DrawableComponent.width" : 15.0
+    }
+  }, {
+    "entityID" : 81,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 25,
+      "DrawableComponent.parallaxFactorY" : 0.01,
+      "DrawableComponent.parallaxFactorX" : 0.01,
+      "TransformComponent.position" : {
+        "x" : 6.9954023,
+        "y" : -1.788259
+      },
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "FAR",
+      "DrawableComponent.usesSizeFromTexture" : false
+    }
+  }, {
+    "entityID" : 83,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 26,
+      "DrawableComponent.parallaxFactorY" : 0.8,
+      "DrawableComponent.parallaxFactorX" : 0.6,
+      "TransformComponent.position" : {
+        "x" : -20.18527,
+        "y" : -20.662283
+      },
+      "DrawableComponent.height" : 20.0,
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "NEAR",
+      "DrawableComponent.usesSizeFromTexture" : false,
+      "DrawableComponent.width" : 20.0
+    }
+  }, {
+    "entityID" : 84,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 26,
+      "DrawableComponent.parallaxFactorY" : 0.8,
+      "DrawableComponent.parallaxFactorX" : 0.5,
+      "DrawableComponent.zOrder" : -10,
+      "TransformComponent.position" : {
+        "x" : 1.6165099,
+        "y" : -21.30758
+      },
+      "DrawableComponent.height" : 20.0,
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "NEAR",
+      "DrawableComponent.usesSizeFromTexture" : false,
+      "DrawableComponent.width" : 30.0
+    }
+  }, {
+    "entityID" : 85,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 26,
+      "DrawableComponent.parallaxFactorY" : 0.8,
+      "DrawableComponent.parallaxFactorX" : 0.6,
+      "TransformComponent.position" : {
+        "x" : 22.621208,
+        "y" : -22.864304
+      },
+      "DrawableComponent.height" : 20.0,
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "NEAR",
+      "DrawableComponent.usesSizeFromTexture" : false,
+      "DrawableComponent.width" : 20.0
+    }
+  }, {
+    "entityID" : 87,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 27,
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.parallaxFactorY" : 0.8,
+      "DrawableComponent.parallaxFactorX" : 0.5,
+      "DrawableComponent.renderingLayer" : "NEAR",
+      "TransformComponent.position" : {
+        "x" : 5.041869,
+        "y" : -14.818557
+      }
+    }
+  }, {
+    "entityID" : 88,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 26,
+      "DrawableComponent.parallaxFactorY" : 0.8,
+      "DrawableComponent.parallaxFactorX" : 0.6,
+      "DrawableComponent.zOrder" : 10,
+      "TransformComponent.position" : {
+        "x" : 36.240242,
+        "y" : -29.47649
+      },
+      "DrawableComponent.height" : 40.0,
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "NEAR",
+      "DrawableComponent.usesSizeFromTexture" : false,
+      "DrawableComponent.width" : 15.0
+    }
+  }, {
+    "entityID" : 89,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 26,
+      "TransformComponent.position" : {
+        "x" : 44.717102,
+        "y" : -33.71989
+      },
+      "DrawableComponent.height" : 20.0,
+      "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.renderingLayer" : "BACKGROUND",
+      "DrawableComponent.usesSizeFromTexture" : false,
+      "DrawableComponent.width" : 30.0
     }
   } ],
   "bakedEntities" : [ ],

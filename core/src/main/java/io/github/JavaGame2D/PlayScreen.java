@@ -26,7 +26,7 @@ public class PlayScreen implements Screen {
     private PhysicsSystem physicsSystem;
     private GameSettings gameSettings;
     private LevelManager levelManager;
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private FileSystem fileSystem;
     private OrthographicCamera camera;
     private Vector2 screenSizeInGameUnits;
@@ -51,7 +51,7 @@ public class PlayScreen implements Screen {
         physicsSystem = gameManager.physicsSystem;
         gameSettings = gameManager.gameSettings;
         levelManager = gameManager.levelManager;
-        entityComponentManager = gameManager.entityComponentManager;
+        ecm = gameManager.ecm;
         fileSystem = gameManager.fileSystem;
         camera = gameManager.camera;
         screenSizeInGameUnits = gameManager.screenSizeInGameUnits;
@@ -69,13 +69,13 @@ public class PlayScreen implements Screen {
 
         // Instantiate play-only systems
         playerInterface = new PlayerInterface();
-        playerCharacterController = new PlayerCharacterController(entityComponentManager);
-        animationSystem = new AnimationSystem(entityComponentManager, fileSystem, playerCharacterController, textureManager);
+        playerCharacterController = new PlayerCharacterController(ecm);
+        animationSystem = new AnimationSystem(ecm, fileSystem, playerCharacterController, textureManager);
         playerInputSystem = new PlayerInputSystem();
-        damageSystem = new DamageSystem(entityComponentManager);
+        damageSystem = new DamageSystem(ecm);
         playerDeathHandler = new PlayerDeathHandler();
-        teleporterSystem = new TeleporterSystem(entityComponentManager);
-        cameraController = new PlayerCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y, entityComponentManager);
+        teleporterSystem = new TeleporterSystem(ecm);
+        cameraController = new PlayerCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y, ecm);
 
         // Update newly created player-oriented systems about existing player character's ID and Health
         levelManager.triggerPlayerDataUpdate();

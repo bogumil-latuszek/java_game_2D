@@ -3,7 +3,6 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -21,12 +20,12 @@ public class EditorInputProcessor implements InputProcessor {
     private SelectedTool selectedTool;
     private boolean isDragging = false;
     private Vector2 lastDragPosition;
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private PropertyInspector propertyInspector;
     private EditScreen editScreen; //TODO: remove circular dependance?
 
-    public EditorInputProcessor(EntityComponentManager entityComponentManager, EntitySelector entitySelector, PropertyInspector propertyInspector, OrthographicCamera camera, EditScreen editScreen) {
-        this.entityComponentManager = entityComponentManager;
+    public EditorInputProcessor(EntityComponentManager ecm, EntitySelector entitySelector, PropertyInspector propertyInspector, OrthographicCamera camera, EditScreen editScreen) {
+        this.ecm = ecm;
         this.entitySelector = entitySelector;
         this.propertyInspector = propertyInspector;
         this.camera = camera;
@@ -137,7 +136,7 @@ public class EditorInputProcessor implements InputProcessor {
         Vector3 touchWorldCoords3D = camera.unproject(touchScreenCoords3D);
         Vector2 touchWorldCoords = new Vector2(touchWorldCoords3D.x, touchWorldCoords3D.y);
 
-        TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class, entitySelector.getSelectedEntityID().getAsInt());
+        TransformComponent transform = ecm.getComponent(TransformComponent.class, entitySelector.getSelectedEntityID().getAsInt());
 
         Vector2 tempTouchWorldCoords = touchWorldCoords.cpy();
         Vector2 dragVector = tempTouchWorldCoords.sub(lastDragPosition);

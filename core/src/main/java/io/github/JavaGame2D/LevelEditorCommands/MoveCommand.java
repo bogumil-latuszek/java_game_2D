@@ -6,13 +6,13 @@ import io.github.JavaGame2D.Systems.EntityComponentManager;
 
 public class MoveCommand implements ICommand{
 
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private Vector2 oldPosition;
     private Vector2 newPosition;
     private int entityID;
 
-    public MoveCommand(Vector2 oldPosition, Vector2 newPosition, int entityID, EntityComponentManager entityComponentManager) {
-        this.entityComponentManager = entityComponentManager;
+    public MoveCommand(Vector2 oldPosition, Vector2 newPosition, int entityID, EntityComponentManager ecm) {
+        this.ecm = ecm;
         this.oldPosition = oldPosition;
         this.newPosition = newPosition;
         this.entityID = entityID;
@@ -21,13 +21,13 @@ public class MoveCommand implements ICommand{
 
     @Override
     public void execute() {
-        TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class, entityID);
+        TransformComponent transform = ecm.getComponent(TransformComponent.class, entityID);
         transform.position = newPosition;
     }
 
     @Override
     public void undo() {
-        TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class, entityID);
+        TransformComponent transform = ecm.getComponent(TransformComponent.class, entityID);
         transform.position = oldPosition;
     }
 

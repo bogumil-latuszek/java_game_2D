@@ -14,15 +14,13 @@ import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
-import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.RenderingLayer;
 
-import java.util.HashMap;
 import java.util.OptionalInt;
 
 public class RenderingSystem {
     private SpriteBatch worldBatch;
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private TextureManager textureManager;
 
     private OptionalInt selectedEntityID ;
@@ -32,9 +30,9 @@ public class RenderingSystem {
 
     private OrthographicCamera camera;
 
-    public RenderingSystem(EntityComponentManager entityComponentManager, OrthographicCamera camera, TextureManager textureManager){
+    public RenderingSystem(EntityComponentManager ecm, OrthographicCamera camera, TextureManager textureManager){
         worldBatch = new SpriteBatch();
-        this.entityComponentManager = entityComponentManager;
+        this.ecm = ecm;
         this.textureManager = textureManager;
         this.camera = camera;
 
@@ -68,15 +66,15 @@ public class RenderingSystem {
         //draw drawable entities
 
         long signature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
-        int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
+        int[] drawableEntities = ecm.getEntitiesMatchingSignature(signature);
 
         // sort drawableEntities by RenderingLayer + zOrder
         drawableEntities = this.sortDrawableEntities(drawableEntities);
 
         // draw each entity in list:
         for ( int entityID : drawableEntities){
-            TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
-            DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
+            TransformComponent transformComponent = ecm.getComponent(TransformComponent.class,entityID);
+            DrawableComponent drawableComponent = ecm.getComponent(DrawableComponent.class, entityID);
 
             Vector2 cameraPosition = new Vector2(this.camera.position.x, this.camera.position.y);
             this.drawSprite(worldBatch, cameraPosition, drawableComponent, transformComponent.position, useParallax);
@@ -93,7 +91,7 @@ public class RenderingSystem {
         if (drawColliders){
 
             long entitiesWithCollidersSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(ColliderComponent.class);
-            int[] entitiesWithColliders = entityComponentManager.getEntitiesMatchingSignature(entitiesWithCollidersSignature);
+            int[] entitiesWithColliders = ecm.getEntitiesMatchingSignature(entitiesWithCollidersSignature);
 
             shapeRenderer.setProjectionMatrix(this.getProjectionMatrix(this.camera)); // is this an unncecessary duplicate?
             // Enable blending (if not already on)
@@ -118,7 +116,7 @@ public class RenderingSystem {
         // Bucket by layer (single pass, no sorting).
         for (int i = 0; i < n; i++) {
             int id = entityIDs[i];
-            DrawableComponent dc = entityComponentManager.getComponent(DrawableComponent.class, id);
+            DrawableComponent dc = ecm.getComponent(DrawableComponent.class, id);
             buckets[dc.renderingLayer.ordinal()].add(id);
         }
 
@@ -138,9 +136,9 @@ public class RenderingSystem {
         int size = bucket.size;
         for (int i = 1; i < size; i++) {
             int key = items[i];
-            int keyZ = entityComponentManager.getComponent(DrawableComponent.class, key).zOrder;
+            int keyZ = ecm.getComponent(DrawableComponent.class, key).zOrder;
             int j = i - 1;
-            while (j >= 0 && entityComponentManager.getComponent(DrawableComponent.class, items[j]).zOrder > keyZ) {
+            while (j >= 0 && ecm.getComponent(DrawableComponent.class, items[j]).zOrder > keyZ) {
                 items[j + 1] = items[j];
                 j--;
             }
@@ -150,13 +148,13 @@ public class RenderingSystem {
 
     private void highlightSelectedEntity(int selectedEntityID, ShapeRenderer renderer, Color color, boolean fill){
         long drawableSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
-        Entity selected = entityComponentManager.getEntity(selectedEntityID);
+        Entity selected = ecm.getEntity(selectedEntityID);
         boolean isDrawable = ( (selected.signature & drawableSignature) == drawableSignature );
 
         // draw sprite outline if possible
         if (isDrawable){
-            TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,selectedEntityID);
-            DrawableComponent drawable = entityComponentManager.getComponent(DrawableComponent.class,selectedEntityID);
+            TransformComponent transform = ecm.getComponent(TransformComponent.class,selectedEntityID);
+            DrawableComponent drawable = ecm.getComponent(DrawableComponent.class,selectedEntityID);
             Vector2 center = transform.position;
 
             this.highlightSprite(renderer, drawable, center, color, fill);
@@ -166,8 +164,8 @@ public class RenderingSystem {
             Long colliderSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(ColliderComponent.class);
             boolean hasCollider = ( (selected.signature & colliderSignature) == colliderSignature );
             if (hasCollider){
-                TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,selectedEntityID);
-                ColliderComponent collider = entityComponentManager.getComponent(ColliderComponent.class,selectedEntityID);
+                TransformComponent transform = ecm.getComponent(TransformComponent.class,selectedEntityID);
+                ColliderComponent collider = ecm.getComponent(ColliderComponent.class,selectedEntityID);
                 Vector2 center = transform.position;
                 Vector2 offsetCenter = center.add(collider.offset);
                 float width = collider.width;
@@ -226,8 +224,8 @@ public class RenderingSystem {
 
     private void drawColliders(int[] entitiesWithColliders, ShapeRenderer renderer){
         for ( int entityID : entitiesWithColliders){
-            TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,entityID);
-            ColliderComponent collider = entityComponentManager.getComponent(ColliderComponent.class, entityID);
+            TransformComponent transform = ecm.getComponent(TransformComponent.class,entityID);
+            ColliderComponent collider = ecm.getComponent(ColliderComponent.class, entityID);
 
             Vector2 center = transform.position;
             float width = collider.width;
@@ -240,8 +238,8 @@ public class RenderingSystem {
     private void drawSpriteOutlines(int[] drawableEntities, ShapeRenderer renderer, Color color, boolean fill){
         // outline each entity in list:
         for ( int entityID : drawableEntities){
-            TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
-            DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
+            TransformComponent transformComponent = ecm.getComponent(TransformComponent.class,entityID);
+            DrawableComponent drawableComponent = ecm.getComponent(DrawableComponent.class, entityID);
             Vector2 center = transformComponent.position;
 
             this.highlightSprite(renderer, drawableComponent, center, color, fill);

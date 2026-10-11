@@ -10,7 +10,7 @@ import java.util.OptionalInt;
 
 public class EntitySelector {
 
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private OptionalInt selectedEntityID;
     private TextureManager textureManager;
 
@@ -22,8 +22,8 @@ public class EntitySelector {
         return !this.selectedEntityID.isPresent();
     }
 
-    public EntitySelector(EntityComponentManager entityComponentManager, TextureManager textureManager) {
-        this.entityComponentManager = entityComponentManager;
+    public EntitySelector(EntityComponentManager ecm, TextureManager textureManager) {
+        this.ecm = ecm;
         this.selectedEntityID = OptionalInt.empty();
         this.textureManager = textureManager;
     }
@@ -38,12 +38,12 @@ public class EntitySelector {
     public OptionalInt findEntityTouchingPoint(Vector2 pointInWorldCoords){
         // 1. get all entities with drawable component
         long drawableSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
-        int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(drawableSignature);
+        int[] drawableEntities = ecm.getEntitiesMatchingSignature(drawableSignature);
 
         // 2. check collision for each one, return first found
         for (int entityID : drawableEntities){
-            TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class, entityID);
-            DrawableComponent drawable = entityComponentManager.getComponent(DrawableComponent.class, entityID);
+            TransformComponent transform = ecm.getComponent(TransformComponent.class, entityID);
+            DrawableComponent drawable = ecm.getComponent(DrawableComponent.class, entityID);
             Vector2 center = transform.position;
 
             if (this.pointInsideDrawable(pointInWorldCoords, drawable, center)){

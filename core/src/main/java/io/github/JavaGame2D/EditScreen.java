@@ -28,7 +28,7 @@ public class EditScreen implements Screen {
     // shared systems
     private RenderingSystem renderingSystem;
     private LevelManager levelManager;
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private Vector2 screenSizeInGameUnits;
     private OrthographicCamera camera;
     private PrefabManager prefabManager;
@@ -56,7 +56,7 @@ public class EditScreen implements Screen {
 
         this.renderingSystem = gameManager.renderingSystem;
         this.levelManager = gameManager.levelManager;
-        this.entityComponentManager = gameManager.entityComponentManager;
+        this.ecm = gameManager.ecm;
         this.camera = gameManager.camera;
         this.screenSizeInGameUnits = gameManager.screenSizeInGameUnits;
         this.prefabManager = gameManager.prefabManager;
@@ -73,8 +73,8 @@ public class EditScreen implements Screen {
         // Create the camera controller
         cameraController = new EditorCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y);
 
-        entitySelector = new EntitySelector(gameManager.entityComponentManager, gameManager.textureManager );
-        inputProcessor = new EditorInputProcessor(entityComponentManager, entitySelector, propertyInspector, camera, this);
+        entitySelector = new EntitySelector(gameManager.ecm, gameManager.textureManager );
+        inputProcessor = new EditorInputProcessor(ecm, entitySelector, propertyInspector, camera, this);
     }
 
     private Actor createEditorUI(Skin skin){
@@ -118,7 +118,7 @@ public class EditScreen implements Screen {
         //leftPanel.setBackground(uiskin.getDrawable("default-rect")); // optional
 
         // Right side: The Property Inspector
-        propertyInspector = new PropertyInspector(this.editorStage, entityComponentManager, skin);
+        propertyInspector = new PropertyInspector(this.editorStage, ecm, skin);
         inspectorPanel = new Table();
         inspectorPanel.setBackground(skin.getDrawable("default-rect")); // optional
         inspectorPanel.add(propertyInspector.getActor()).expand().fill();

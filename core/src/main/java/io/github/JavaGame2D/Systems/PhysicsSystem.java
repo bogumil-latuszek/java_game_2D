@@ -11,7 +11,6 @@ import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.ColliderType;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.DetectedCollisionsEvent;
-import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 import io.github.JavaGame2D.GameSettings;
 
 import java.util.ArrayList;
@@ -20,11 +19,11 @@ import java.util.ArrayList;
 
 public class PhysicsSystem {
     private float gravity; //acceleration: unit/s in y direction
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private float groundCheckDepth;
 
-    public PhysicsSystem(EntityComponentManager entityComponentManager, GameSettings settings) {
-        this.entityComponentManager = entityComponentManager;
+    public PhysicsSystem(EntityComponentManager ecm, GameSettings settings) {
+        this.ecm = ecm;
         this.gravity = settings.gravity;
         this.groundCheckDepth = settings.groundCheckDepth;
     }
@@ -44,18 +43,18 @@ public class PhysicsSystem {
     private void moveEntities(float deltaTime){
 
         long signature = ComponentSignatures.get(PhysicalBodyComponent.class) | ComponentSignatures.get(TransformComponent.class);
-        int[] physicalEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
+        int[] physicalEntities = ecm.getEntitiesMatchingSignature(signature);
 
         // move them:
         for(int entityID: physicalEntities){
-            TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class, entityID);
-            PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class,entityID);
+            TransformComponent transform = ecm.getComponent(TransformComponent.class, entityID);
+            PhysicalBodyComponent body = ecm.getComponent(PhysicalBodyComponent.class,entityID);
             Vector2 position = transform.position;
             Vector2 previousPosition = transform.previousPosition;
             Vector2 velocity = body.velocity;
             if (body.usesGravity && body.onGround){
                 //do the ground check:
-                ColliderComponent collider = entityComponentManager.getComponent(ColliderComponent.class,entityID);
+                ColliderComponent collider = ecm.getComponent(ColliderComponent.class,entityID);
                 boolean stillOnGround = groundCheck(collider, transform, entityID);
                 if (!stillOnGround){
                     body.onGround = false;
@@ -100,7 +99,7 @@ public class PhysicsSystem {
         long signature = ComponentSignatures.get(TransformComponent.class)
                          | ComponentSignatures.get(PhysicalBodyComponent.class)
                          | ComponentSignatures.get(ColliderComponent.class);
-        int[] potentialGround = entityComponentManager.getEntitiesMatchingSignature(signature);
+        int[] potentialGround = ecm.getEntitiesMatchingSignature(signature);
 
         for (int otherEntityID : potentialGround){
             // check if collision is possible
@@ -108,12 +107,12 @@ public class PhysicsSystem {
             if (entityID == otherEntityID){
                 continue;
             }
-            ColliderComponent otherCollider = entityComponentManager.getComponent(ColliderComponent.class,otherEntityID);
+            ColliderComponent otherCollider = ecm.getComponent(ColliderComponent.class,otherEntityID);
             // impossible for entities on different layers to collide
             if (collider.layer != otherCollider.layer){
                 continue;
             }
-            TransformComponent otherTransform = entityComponentManager.getComponent(TransformComponent.class, otherEntityID);
+            TransformComponent otherTransform = ecm.getComponent(TransformComponent.class, otherEntityID);
             if (otherCollider.colliderType == ColliderType.AABB){
                 AABBCollider otherTransformedCollider = createAABBCollider(otherTransform, otherCollider);
                 boolean detectedCollision = detectAABBxAABBCollision(groundCollider, otherTransformedCollider);
@@ -135,13 +134,13 @@ public class PhysicsSystem {
         long signature = ComponentSignatures.get(TransformComponent.class)
                         | ComponentSignatures.get(PhysicalBodyComponent.class)
                         | ComponentSignatures.get(ColliderComponent.class);
-        int[] potentiallyColliding = entityComponentManager.getEntitiesMatchingSignature(signature);
+        int[] potentiallyColliding = ecm.getEntitiesMatchingSignature(signature);
 
         for (int entityID : potentiallyColliding){
             // if it's not dynamic, it can't move by itself
             // therefore it didn't INITIATE any collisions
             // * what about collisions if it was pushed?
-            PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class,entityID);
+            PhysicalBodyComponent body = ecm.getComponent(PhysicalBodyComponent.class,entityID);
             if (!body.dynamic){
                 continue;
             }
@@ -151,21 +150,21 @@ public class PhysicsSystem {
                 if (entityID == otherEntityID){
                     continue;
                 }
-                ColliderComponent collider1 = entityComponentManager.getComponent(ColliderComponent.class,entityID);
-                ColliderComponent collider2 = entityComponentManager.getComponent(ColliderComponent.class,otherEntityID);
+                ColliderComponent collider1 = ecm.getComponent(ColliderComponent.class,entityID);
+                ColliderComponent collider2 = ecm.getComponent(ColliderComponent.class,otherEntityID);
                 // impossible for entities on different layers to collide
                 if (collider1.layer != collider2.layer){
                     continue;
                 }
 
                 // check if objects are colliding
-                TransformComponent transform1 = entityComponentManager.getComponent(TransformComponent.class, entityID);
-                TransformComponent transform2 = entityComponentManager.getComponent(TransformComponent.class, otherEntityID);
+                TransformComponent transform1 = ecm.getComponent(TransformComponent.class, entityID);
+                TransformComponent transform2 = ecm.getComponent(TransformComponent.class, otherEntityID);
                 boolean collisionDetected = detectCollision(transform1, collider1, transform2, collider2);
 
                 if (collisionDetected){
-                    Entity entity = entityComponentManager.getEntity(entityID);
-                    Entity otherEntity = entityComponentManager.getEntity(otherEntityID);
+                    Entity entity = ecm.getEntity(entityID);
+                    Entity otherEntity = ecm.getEntity(otherEntityID);
                     Collision collision = new Collision(entity,otherEntity);
                     detectedCollisions.add(collision);
                     //System.out.println("collision detected between" + entityID + " and " + otherEntityID);
@@ -185,12 +184,12 @@ public class PhysicsSystem {
             // we know from "detect collisions step" that all entities in collisions
             // need to have Transform, Body, and Collider
             // so there's no need to check for it again!
-            TransformComponent transform1 = entityComponentManager.getComponent(TransformComponent.class, entity1.ID);
-            TransformComponent transform2 = entityComponentManager.getComponent(TransformComponent.class, entity2.ID);
-            PhysicalBodyComponent body1 = entityComponentManager.getComponent(PhysicalBodyComponent.class, entity1.ID);
-            PhysicalBodyComponent body2 = entityComponentManager.getComponent(PhysicalBodyComponent.class, entity2.ID);
-            ColliderComponent collider1 = entityComponentManager.getComponent(ColliderComponent.class, entity1.ID);
-            ColliderComponent collider2 = entityComponentManager.getComponent(ColliderComponent.class, entity2.ID);
+            TransformComponent transform1 = ecm.getComponent(TransformComponent.class, entity1.ID);
+            TransformComponent transform2 = ecm.getComponent(TransformComponent.class, entity2.ID);
+            PhysicalBodyComponent body1 = ecm.getComponent(PhysicalBodyComponent.class, entity1.ID);
+            PhysicalBodyComponent body2 = ecm.getComponent(PhysicalBodyComponent.class, entity2.ID);
+            ColliderComponent collider1 = ecm.getComponent(ColliderComponent.class, entity1.ID);
+            ColliderComponent collider2 = ecm.getComponent(ColliderComponent.class, entity2.ID);
 
             if (body1.ignoresPhysicalCollision || body2.ignoresPhysicalCollision){
                 continue;

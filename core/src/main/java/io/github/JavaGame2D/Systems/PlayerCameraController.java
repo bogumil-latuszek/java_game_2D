@@ -10,12 +10,12 @@ public class PlayerCameraController{
     private OrthographicCamera camera;
     private ExtendViewport viewport;
     private TransformComponent followedTransformComponent = null;
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
 
-    public PlayerCameraController(OrthographicCamera camera, float minWorldWidth, float minWorldHeight, EntityComponentManager entityComponentManager) {
+    public PlayerCameraController(OrthographicCamera camera, float minWorldWidth, float minWorldHeight, EntityComponentManager ecm) {
         this.camera = camera;
         this.viewport = new ExtendViewport(minWorldWidth,minWorldHeight, camera);
-        this.entityComponentManager = entityComponentManager;
+        this.ecm = ecm;
         EventBus.getInstance().subscribe(PlayerIDChanged.class, this::handlePlayerIDChanged);
         this.camera.zoom = 1f; //reset camera zoom that may have changed in Editor Mode
     }
@@ -38,7 +38,7 @@ public class PlayerCameraController{
     }
 
     public void setEntityFollowedByCamera(int entityID){
-        TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
+        TransformComponent transformComponent = ecm.getComponent(TransformComponent.class,entityID);
         followTransformComponent(transformComponent);
     }
 

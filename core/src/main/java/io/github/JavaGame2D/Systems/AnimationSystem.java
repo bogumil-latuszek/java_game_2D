@@ -13,13 +13,13 @@ import java.util.EnumMap;
 
 public class AnimationSystem {
 
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private PlayerStateMachine playerStateMachine;
     private AnimationManager animationManager;
 
-    public AnimationSystem(EntityComponentManager entityComponentManager, FileSystem fileSystem, PlayerCharacterController playerController, TextureManager textureManager) {
-        this.entityComponentManager = entityComponentManager;
-        playerStateMachine = new PlayerStateMachine(entityComponentManager, playerController);
+    public AnimationSystem(EntityComponentManager ecm, FileSystem fileSystem, PlayerCharacterController playerController, TextureManager textureManager) {
+        this.ecm = ecm;
+        playerStateMachine = new PlayerStateMachine(ecm, playerController);
         animationManager = new AnimationManager();
         fileSystem.loadPlayerAnimations(this.animationManager, textureManager);
     }
@@ -32,9 +32,9 @@ public class AnimationSystem {
 
         // 2. using data from animation component match it with state machine
         // #1 player is a special case
-        int playerID = this.entityComponentManager.getPlayerEntityID();
-        AnimationComponent animationComponent = entityComponentManager.getComponent(AnimationComponent.class, playerID);
-        DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, playerID);
+        int playerID = this.ecm.getPlayerEntityID();
+        AnimationComponent animationComponent = ecm.getComponent(AnimationComponent.class, playerID);
+        DrawableComponent drawableComponent = ecm.getComponent(DrawableComponent.class, playerID);
 
         playerStateMachine.update(deltaTimeInSeconds);
         EnumMap<BodySegmentType, AnimationState> currentPlayerState = playerStateMachine.bodySegmentAnimations;

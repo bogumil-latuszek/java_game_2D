@@ -21,7 +21,7 @@ public class GameManager extends Game {
     GameSettings gameSettings;
     LevelManager levelManager;
     PrefabManager prefabManager;
-    EntityComponentManager entityComponentManager;
+    EntityComponentManager ecm;
     FileSystem fileSystem;
     ComponentFullNameMapper componentMapper;
     OrthographicCamera camera;
@@ -64,13 +64,13 @@ public class GameManager extends Game {
         componentMapper = new ComponentFullNameMapper("io.github.JavaGame2D.Components");
         fileSystem = new FileSystem(componentMapper);
         gameSettings = fileSystem.loadGameSettings();
-        entityComponentManager = new EntityComponentManager();
+        ecm = new EntityComponentManager();
         textureManager = new TextureManager();
 
-        renderingSystem = new RenderingSystem(entityComponentManager, camera, textureManager);
-        physicsSystem = new PhysicsSystem(entityComponentManager, gameSettings);
-        prefabManager = new PrefabManager(fileSystem, entityComponentManager, componentMapper);
-        levelManager = new LevelManager(fileSystem,entityComponentManager, prefabManager);
+        renderingSystem = new RenderingSystem(ecm, camera, textureManager);
+        physicsSystem = new PhysicsSystem(ecm, gameSettings);
+        prefabManager = new PrefabManager(fileSystem, ecm, componentMapper);
+        levelManager = new LevelManager(fileSystem, ecm, prefabManager);
     }
 
     public void switchToDifferentGameMode(GameMode gameMode){
@@ -87,27 +87,27 @@ public class GameManager extends Game {
     }
 
     private void createWallPrefab(){
-        int entityID = entityComponentManager.createEmptyEntity();
+        int entityID = ecm.createEmptyEntity();
 
         TransformComponent transformComponent = new TransformComponent();
-        entityComponentManager.addComponent(TransformComponent.class, transformComponent, entityID);
+        ecm.addComponent(TransformComponent.class, transformComponent, entityID);
 
         PhysicalBodyComponent body = new PhysicalBodyComponent();
         body.dynamic = false;
         body.usesGravity = false;
-        entityComponentManager.addComponent(PhysicalBodyComponent.class, body, entityID);
+        ecm.addComponent(PhysicalBodyComponent.class, body, entityID);
 
         DrawableComponent drawable = new DrawableComponent();
         drawable.textureID = 0;
         drawable.textureIsTiled = true;
         drawable.width = 1;
         drawable.height = 1;
-        entityComponentManager.addComponent(DrawableComponent.class, drawable, entityID);
+        ecm.addComponent(DrawableComponent.class, drawable, entityID);
 
         ColliderComponent collider = new ColliderComponent();
         collider.width = 1;
         collider.height = 1;
-        entityComponentManager.addComponent(ColliderComponent.class, collider, entityID);
+        ecm.addComponent(ColliderComponent.class, collider, entityID);
 
         prefabManager.createPrefabFromEntity(entityID, "wall");
     }

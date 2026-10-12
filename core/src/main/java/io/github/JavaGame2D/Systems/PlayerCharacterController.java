@@ -15,15 +15,15 @@ public class PlayerCharacterController {
     private float jumpTimer = 0;
     private float maxJumpDuration = 0.22f;
     private boolean canExtendJump;
-    EntityComponentManager entityComponentManager;
+    EntityComponentManager ecm;
     //public PlayerAction currentPlayerAction = PlayerAction.NONE;
     public PlayerAction horizontalMovement = PlayerAction.NONE;
     public PlayerAction verticalMovement = PlayerAction.NONE;
     public PlayerAction specialAction = PlayerAction.NONE;
     private int playerActionEventsSinceLastUpdate = 0;
 
-    public PlayerCharacterController(EntityComponentManager entityComponentManager){
-        this.entityComponentManager = entityComponentManager;
+    public PlayerCharacterController(EntityComponentManager ecm){
+        this.ecm = ecm;
         EventBus.getInstance().subscribe(PlayerActionEvent.class, this::handlePlayerAction);
         EventBus.getInstance().subscribe(PlayerIDChanged.class, this::handlePlayerIDChanged);
         this.jumpTimer = 0;
@@ -55,12 +55,12 @@ public class PlayerCharacterController {
     }
 
     private boolean isPlayerDead(){
-        DestructibleComponent destructible = entityComponentManager.getComponent(DestructibleComponent.class, playerEntityID);
+        DestructibleComponent destructible = ecm.getComponent(DestructibleComponent.class, playerEntityID);
         return !destructible.isAlive;
     }
 
     private void updatePlayerMovement(float deltaTimeInSeconds){
-        PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class, playerEntityID);
+        PhysicalBodyComponent body = ecm.getComponent(PhysicalBodyComponent.class, playerEntityID);
         if (playerActionEventsSinceLastUpdate <= 0){
             //currentPlayerAction = PlayerAction.NONE;
             horizontalMovement = PlayerAction.NONE;

@@ -10,15 +10,13 @@ import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.DetectedCollisionsEvent;
 import io.github.JavaGame2D.Events.PlayerHpChanged;
 
-import java.util.ArrayList;
-
 public class DamageSystem {
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private Long damageEmitterSignature;
     private Long canBeDamagedSignature;
 
-    public DamageSystem(EntityComponentManager entityComponentManager) {
-        this.entityComponentManager = entityComponentManager;
+    public DamageSystem(EntityComponentManager ecm) {
+        this.ecm = ecm;
         this.damageEmitterSignature = ComponentSignatures.get(DamageEmitterComponent.class);
         this.canBeDamagedSignature = ComponentSignatures.get(DestructibleComponent.class) | ComponentSignatures.get(HealthComponent.class);
         EventBus.getInstance().subscribe(DetectedCollisionsEvent.class, this::handlePotentialDamage);
@@ -30,7 +28,7 @@ public class DamageSystem {
 
     public void update(float deltaTimeInSeconds){
         // #1 find all things with health component
-        int[] livingEntities = entityComponentManager.getEntitiesMatchingSignature(canBeDamagedSignature);
+        int[] livingEntities = ecm.getEntitiesMatchingSignature(canBeDamagedSignature);
         // #2 update iframes
         updateIframes(livingEntities, deltaTimeInSeconds);
         // #3 for those whose hp <= 0 and aren't invincible, destroy them
@@ -66,8 +64,8 @@ public class DamageSystem {
     }
 
     private void resolveDamage(Entity damageEmitter, Entity damageReceiver){
-        DamageEmitterComponent damageEmitterComponent = entityComponentManager.getComponent(DamageEmitterComponent.class, damageEmitter.ID);
-        HealthComponent damageReceiverHealth = entityComponentManager.getComponent(HealthComponent.class, damageReceiver.ID);
+        DamageEmitterComponent damageEmitterComponent = ecm.getComponent(DamageEmitterComponent.class, damageEmitter.ID);
+        HealthComponent damageReceiverHealth = ecm.getComponent(HealthComponent.class, damageReceiver.ID);
         if (damageReceiverHealth.isInvulnerable){
             return;
         }
@@ -78,7 +76,7 @@ public class DamageSystem {
         if (damageReceiverHealth.damageTriggersiframes){
             damageReceiverHealth.iframeTimer = damageReceiverHealth.iframeDuration;
         }
-        if (damageReceiver.ID == entityComponentManager.getPlayerEntityID()){
+        if (damageReceiver.ID == ecm.getPlayerEntityID()){
             PlayerHpChanged event = new PlayerHpChanged(damageReceiverHealth.currentHp, damageReceiverHealth.maxHp);
             EventBus.getInstance().publish(event);
         }
@@ -91,7 +89,7 @@ public class DamageSystem {
 
     private void updateIframes(int[] livingEntities, float deltaTime){
         for (int entityID : livingEntities){
-            HealthComponent healthComponent = entityComponentManager.getComponent(HealthComponent.class, entityID);
+            HealthComponent healthComponent = ecm.getComponent(HealthComponent.class, entityID);
             if (healthComponent.iframeTimer >= 0){
                 healthComponent.iframeTimer -= deltaTime;
             }
@@ -100,8 +98,8 @@ public class DamageSystem {
 
     private void destroyEntitiesWithNoHpLeft(int[] livingEntities){
         for (int entityID : livingEntities){
-            HealthComponent healthComponent = entityComponentManager.getComponent(HealthComponent.class, entityID);
-            DestructibleComponent destructible = entityComponentManager.getComponent(DestructibleComponent.class, entityID);
+            HealthComponent healthComponent = ecm.getComponent(HealthComponent.class, entityID);
+            DestructibleComponent destructible = ecm.getComponent(DestructibleComponent.class, entityID);
             if (destructible.isAlive && healthComponent.currentHp <= 0){
                 destructible.isAlive = false;
             }

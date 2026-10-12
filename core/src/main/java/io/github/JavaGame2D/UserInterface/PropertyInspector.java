@@ -20,14 +20,14 @@ public class PropertyInspector {
     private final Table contentTable;      // The table we'll populate with fields
     private final ScrollPane scrollPane;   // Wraps the table so it scrolls
     private final Skin skin;
-    private final EntityComponentManager entityComponentManager;
+    private final EntityComponentManager ecm;
     private final PopupManager popupManager;
 
     private int selectedEntityId = -1;      // Track what we're currently showing
 
-    public PropertyInspector(Stage stage, EntityComponentManager entityComponentManager, Skin skin) {
+    public PropertyInspector(Stage stage, EntityComponentManager ecm, Skin skin) {
         this.skin = skin;
-        this.entityComponentManager = entityComponentManager;
+        this.ecm = ecm;
         this.popupManager = new PopupManager(skin, stage);
 
         stage.addListener(new ClickListener() {
@@ -78,7 +78,7 @@ public class PropertyInspector {
         }
 
         // Get all components for this entity.
-        Map<Class<?>, Object> components = entityComponentManager.getEntityComponents(selectedEntityId);
+        Map<Class<?>, Object> components = ecm.getEntityComponents(selectedEntityId);
 
         if (components == null || components.isEmpty()) {
             contentTable.add("Entity has no components").colspan(2).left().pad(10);

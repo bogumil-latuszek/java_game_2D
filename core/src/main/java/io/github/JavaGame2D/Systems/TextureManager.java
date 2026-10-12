@@ -66,6 +66,10 @@ public class TextureManager {
         registerTexture(21, "tile_grass.png");
         registerTexture(22, "tile_stone.png");
         registerTexture(23, "shadow.png");
+        registerTexture(24, "skybox.png");
+        registerTexture(25, "mountain.png");
+        registerTexture(26, "hill.png");
+        registerTexture(27, "house.png");
     }
 }
 

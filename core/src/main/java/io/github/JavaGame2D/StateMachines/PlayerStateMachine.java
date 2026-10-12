@@ -1,20 +1,17 @@
 package io.github.JavaGame2D.StateMachines;
 
-import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
-import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.*;
 import io.github.JavaGame2D.Systems.AnimationState;
 import io.github.JavaGame2D.Systems.EntityComponentManager;
 import io.github.JavaGame2D.Systems.PlayerCharacterController;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 
 public class PlayerStateMachine {
     private DecidingFactorsForPlayer decidingFactors;
-    private final EntityComponentManager entityComponentManager;
+    private final EntityComponentManager ecm;
     public final CharacterType characterType = CharacterType.PLAYER;
     // UpperBodyState upperBodyState <= can be null
     // lowerBodyState <= can be null
@@ -23,8 +20,8 @@ public class PlayerStateMachine {
     private PlayerCharacterController playerController;
 
     // StateMachine upperBodyStateMachine; = new StateMachine(UpperBodyState);
-    public PlayerStateMachine(EntityComponentManager entityComponentManager, PlayerCharacterController playerController){
-        this.entityComponentManager = entityComponentManager;
+    public PlayerStateMachine(EntityComponentManager ecm, PlayerCharacterController playerController){
+        this.ecm = ecm;
         this.bodySegmentAnimations = new EnumMap<>(BodySegmentType.class);
         this.bodySegmentAnimations.put(BodySegmentType.UPPER_BODY, new AnimationState());
         this.bodySegmentAnimations.put(BodySegmentType.LOWER_BODY, new AnimationState());
@@ -35,11 +32,11 @@ public class PlayerStateMachine {
     public void update(float deltaTimeInSeconds){
         float deltaTimeInMilliseconds = deltaTimeInSeconds * 1000;
         // 1. get player entity
-        int playerID = entityComponentManager.getPlayerEntityID();
+        int playerID = ecm.getPlayerEntityID();
         // 2. we're always going to assume that player entity has certain components;
 
-        TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class, playerID);
-        PhysicalBodyComponent body = entityComponentManager.getComponent(PhysicalBodyComponent.class, playerID);
+        TransformComponent transform = ecm.getComponent(TransformComponent.class, playerID);
+        PhysicalBodyComponent body = ecm.getComponent(PhysicalBodyComponent.class, playerID);
 
         decidingFactors.direction = body.velocity;
         decidingFactors.grounded = body.onGround;

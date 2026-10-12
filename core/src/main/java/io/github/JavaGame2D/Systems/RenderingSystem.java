@@ -10,34 +10,38 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
-import io.github.JavaGame2D.Enums.BodySegmentType;
+import io.github.JavaGame2D.Enums.RenderingLayer;
 
 import java.util.OptionalInt;
 
 public class RenderingSystem {
     private SpriteBatch worldBatch;
-    private EntityComponentManager entityComponentManager;
+    private EntityComponentManager ecm;
     private TextureManager textureManager;
 
     private OptionalInt selectedEntityID ;
-
-
     ShapeRenderer shapeRenderer; //used for drawing outlines in Edit mode
 
+    private final IntArray[] buckets = new IntArray[RenderingLayer.values().length];
 
     private OrthographicCamera camera;
 
-    public RenderingSystem(EntityComponentManager entityComponentManager, OrthographicCamera camera, TextureManager textureManager){
+    public RenderingSystem(EntityComponentManager ecm, OrthographicCamera camera, TextureManager textureManager){
         worldBatch = new SpriteBatch();
-        this.entityComponentManager = entityComponentManager;
+        this.ecm = ecm;
         this.textureManager = textureManager;
         this.camera = camera;
 
         shapeRenderer = new ShapeRenderer();
         selectedEntityID = OptionalInt.empty();
+
+        for (int i = 0; i < buckets.length; i++){
+            buckets[i] = new IntArray();
+        }
     }
 
     public void setSelectedEntityID(OptionalInt selectedEntityID){
@@ -45,10 +49,10 @@ public class RenderingSystem {
     }
 
     public void renderGameWorld(){
-        this.renderGameWorld(false, false, false);
+        this.renderGameWorld(false, false, false, true);
     }
 
-    public void renderGameWorld(boolean drawSpriteOutlines, boolean drawColliders, boolean highlightSelectedEntity){
+    public void renderGameWorld(boolean drawSpriteOutlines, boolean drawColliders, boolean highlightSelectedEntity, boolean useParallax){
 
         //clear screen
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
@@ -62,14 +66,18 @@ public class RenderingSystem {
         //draw drawable entities
 
         long signature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
-        int[] drawableEntities = entityComponentManager.getEntitiesMatchingSignature(signature);
+        int[] drawableEntities = ecm.getEntitiesMatchingSignature(signature);
+
+        // sort drawableEntities by RenderingLayer + zOrder
+        drawableEntities = this.sortDrawableEntities(drawableEntities);
 
         // draw each entity in list:
         for ( int entityID : drawableEntities){
-            TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
-            DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
+            TransformComponent transformComponent = ecm.getComponent(TransformComponent.class,entityID);
+            DrawableComponent drawableComponent = ecm.getComponent(DrawableComponent.class, entityID);
 
-            this.drawSprite(worldBatch, drawableComponent, transformComponent.position);
+            Vector2 cameraPosition = new Vector2(this.camera.position.x, this.camera.position.y);
+            this.drawSprite(worldBatch, cameraPosition, drawableComponent, transformComponent.position, useParallax);
         }
         worldBatch.end();
 
@@ -83,7 +91,7 @@ public class RenderingSystem {
         if (drawColliders){
 
             long entitiesWithCollidersSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(ColliderComponent.class);
-            int[] entitiesWithColliders = entityComponentManager.getEntitiesMatchingSignature(entitiesWithCollidersSignature);
+            int[] entitiesWithColliders = ecm.getEntitiesMatchingSignature(entitiesWithCollidersSignature);
 
             shapeRenderer.setProjectionMatrix(this.getProjectionMatrix(this.camera)); // is this an unncecessary duplicate?
             // Enable blending (if not already on)
@@ -99,15 +107,54 @@ public class RenderingSystem {
         }
     }
 
+    public int[] sortDrawableEntities(int[] entityIDs) {
+        int n = entityIDs.length;
+
+        // Clear buckets.
+        for (IntArray b : buckets) b.clear();
+
+        // Bucket by layer (single pass, no sorting).
+        for (int i = 0; i < n; i++) {
+            int id = entityIDs[i];
+            DrawableComponent dc = ecm.getComponent(DrawableComponent.class, id);
+            buckets[dc.renderingLayer.ordinal()].add(id);
+        }
+
+        // Within each bucket, sort by zOrder (insertion sort is fine — buckets are small).
+        int out = 0;
+        for (IntArray bucket : buckets) {
+            sortBucketByZ(bucket);
+            for (int i = 0; i < bucket.size; i++) {
+                entityIDs[out++] = bucket.get(i);
+            }
+        }
+        return entityIDs;
+    }
+
+    private void sortBucketByZ(IntArray bucket) {
+        int[] items = bucket.items;
+        int size = bucket.size;
+        for (int i = 1; i < size; i++) {
+            int key = items[i];
+            int keyZ = ecm.getComponent(DrawableComponent.class, key).zOrder;
+            int j = i - 1;
+            while (j >= 0 && ecm.getComponent(DrawableComponent.class, items[j]).zOrder > keyZ) {
+                items[j + 1] = items[j];
+                j--;
+            }
+            items[j + 1] = key;
+        }
+    }
+
     private void highlightSelectedEntity(int selectedEntityID, ShapeRenderer renderer, Color color, boolean fill){
         long drawableSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);
-        Entity selected = entityComponentManager.getEntity(selectedEntityID);
+        Entity selected = ecm.getEntity(selectedEntityID);
         boolean isDrawable = ( (selected.signature & drawableSignature) == drawableSignature );
 
         // draw sprite outline if possible
         if (isDrawable){
-            TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,selectedEntityID);
-            DrawableComponent drawable = entityComponentManager.getComponent(DrawableComponent.class,selectedEntityID);
+            TransformComponent transform = ecm.getComponent(TransformComponent.class,selectedEntityID);
+            DrawableComponent drawable = ecm.getComponent(DrawableComponent.class,selectedEntityID);
             Vector2 center = transform.position;
 
             this.highlightSprite(renderer, drawable, center, color, fill);
@@ -117,8 +164,8 @@ public class RenderingSystem {
             Long colliderSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(ColliderComponent.class);
             boolean hasCollider = ( (selected.signature & colliderSignature) == colliderSignature );
             if (hasCollider){
-                TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,selectedEntityID);
-                ColliderComponent collider = entityComponentManager.getComponent(ColliderComponent.class,selectedEntityID);
+                TransformComponent transform = ecm.getComponent(TransformComponent.class,selectedEntityID);
+                ColliderComponent collider = ecm.getComponent(ColliderComponent.class,selectedEntityID);
                 Vector2 center = transform.position;
                 Vector2 offsetCenter = center.add(collider.offset);
                 float width = collider.width;
@@ -177,8 +224,8 @@ public class RenderingSystem {
 
     private void drawColliders(int[] entitiesWithColliders, ShapeRenderer renderer){
         for ( int entityID : entitiesWithColliders){
-            TransformComponent transform = entityComponentManager.getComponent(TransformComponent.class,entityID);
-            ColliderComponent collider = entityComponentManager.getComponent(ColliderComponent.class, entityID);
+            TransformComponent transform = ecm.getComponent(TransformComponent.class,entityID);
+            ColliderComponent collider = ecm.getComponent(ColliderComponent.class, entityID);
 
             Vector2 center = transform.position;
             float width = collider.width;
@@ -191,38 +238,43 @@ public class RenderingSystem {
     private void drawSpriteOutlines(int[] drawableEntities, ShapeRenderer renderer, Color color, boolean fill){
         // outline each entity in list:
         for ( int entityID : drawableEntities){
-            TransformComponent transformComponent = entityComponentManager.getComponent(TransformComponent.class,entityID);
-            DrawableComponent drawableComponent = entityComponentManager.getComponent(DrawableComponent.class, entityID);
+            TransformComponent transformComponent = ecm.getComponent(TransformComponent.class,entityID);
+            DrawableComponent drawableComponent = ecm.getComponent(DrawableComponent.class, entityID);
             Vector2 center = transformComponent.position;
 
             this.highlightSprite(renderer, drawableComponent, center, color, fill);
         }
     }
 
-    private void drawSprite(SpriteBatch spriteBatch, DrawableComponent drawable, Vector2 center){
-        this.drawSprite(spriteBatch, drawable, center, false);
-    }
-
-    private void drawSprite(SpriteBatch spriteBatch, DrawableComponent drawable, Vector2 center, boolean drawOutline){
+    private void drawSprite(SpriteBatch spriteBatch, Vector2 cameraPosition, DrawableComponent drawable, Vector2 center, boolean useParallax){
         int textureID = drawable.textureID;
         boolean mirrorVertical = drawable.mirrorVertical;
         boolean mirrorHorizontal = drawable.mirrorHorizontal;
 
         Texture texture = textureManager.getTexture(textureID);
 
-        // this system needs x,y coords of the lower left corner, not center!
-        Vector2 lowerLeftCorner = new Vector2(center.x-drawable.width/2, center.y-drawable.height/2);
+        Vector2 correctedCenter = center;
+
+        float parallaxFactorX = drawable.parallaxFactorX;
+        float parallaxFactorY = drawable.parallaxFactorY;
+
+        if (useParallax && ( parallaxFactorX != 1f || parallaxFactorY != 1f) ) {
+            correctedCenter = new Vector2(
+                correctedCenter.x + (cameraPosition.x) * (1f - parallaxFactorX),
+                correctedCenter.y + (cameraPosition.y) * (1f - parallaxFactorY)
+            );
+        }
 
         // draw Sprite's texture
         if (drawable.textureIsTiled){
-            drawTiledTexture(spriteBatch, texture, 32f, drawable.width, drawable.height, lowerLeftCorner);
+            drawTiledTexture(spriteBatch, texture, 32f, drawable.width, drawable.height, correctedCenter);
         }
         else{
             if (drawable.usesSizeFromTexture){
-                drawTexture(spriteBatch, texture, 32f, drawable.offset, center, mirrorHorizontal, mirrorVertical);
+                drawTexture(spriteBatch, texture, 32f, drawable.offset, correctedCenter, mirrorHorizontal, mirrorVertical);
             }
             else{
-                drawStretchingTexture(spriteBatch, texture, drawable.width, drawable.height, drawable.offset, center, mirrorHorizontal, mirrorVertical);
+                drawStretchingTexture(spriteBatch, texture, drawable.width, drawable.height, drawable.offset, correctedCenter, mirrorHorizontal, mirrorVertical);
             }
         }
     }
@@ -247,7 +299,10 @@ public class RenderingSystem {
         spriteBatch.draw(texture, lowerLeftCorner.x, lowerLeftCorner.y, width, height);
     }
 
-    private void drawTiledTexture(SpriteBatch spriteBatch, Texture texture, float pixelsPerWorldUnit,  float width, float height, Vector2 lowerLeftCorner){
+    private void drawTiledTexture(SpriteBatch spriteBatch, Texture texture, float pixelsPerWorldUnit,  float width, float height, Vector2 center){
+
+        Vector2 lowerLeftCorner = new Vector2(center.x-width/2, center.y-height/2);
+
         texture.setWrap(Texture.TextureWrap.Repeat, Texture.TextureWrap.Repeat);
         texture.setFilter(Texture.TextureFilter.Nearest, Texture.TextureFilter.Nearest);
 

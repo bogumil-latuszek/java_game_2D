@@ -6,11 +6,7 @@ import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Collections.*;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.EventBus;
-import io.github.JavaGame2D.Events.FinishedLoadingLevelEvent;
-import io.github.JavaGame2D.Events.LoadingNewLevelEvent;
-import io.github.JavaGame2D.Events.PlayerIDChanged;
-import io.github.JavaGame2D.Events.TeleportPlayerEvent;
-import io.github.JavaGame2D.Events.PlayerHpChanged;
+import io.github.JavaGame2D.Events.*;
 import io.github.JavaGame2D.Level;
 import io.github.JavaGame2D.SaveData.BakedEntity;
 import io.github.JavaGame2D.SaveData.PrefabInstance;
@@ -45,8 +41,14 @@ public class LevelManager {
 
     public void loadLevelIfChanged(){
         if (this.teleportEventToResolve != null){
-            int newLevelID = teleportEventToResolve.targetLevelID;
-            changeCurrentLevel(newLevelID);
+            if (teleportEventToResolve.targetLevelID == -1 || teleportEventToResolve.targetLevelID == this.currentLevelID){
+                // teleport within the level
+                EventBus.getInstance().publish(new MovePlayerEvent(teleportEventToResolve.targetEntityID));
+            }
+            else {
+                // teleport to another level
+                changeCurrentLevel(teleportEventToResolve.targetLevelID, teleportEventToResolve.targetEntityID);
+            }
             teleportEventToResolve = null;
         }
     }
@@ -119,9 +121,8 @@ public class LevelManager {
         this.currentLevelID = levelID;
     }
 
-    public void loadPlayer(){
-        Vector2 defaultSpawnPointPosition = this.spawnPointIDtoPosition.get(defaultSpawnPoint);
-        Vector2 playerSpawnPosition = defaultSpawnPointPosition.cpy(); // avoid "pass by ref" bugs
+    public void loadPlayer(Vector2 spawnPosition){
+        Vector2 playerSpawnPosition = spawnPosition.cpy(); // avoid "pass by ref" bugs
         this.playerID = ecm.createPlayer(playerSpawnPosition);
         triggerPlayerDataUpdate();
     }
@@ -187,13 +188,31 @@ public class LevelManager {
 
 
     public void changeCurrentLevel(int newLevelID){
+        changeCurrentLevel(newLevelID, -1);
+    }
+
+    public void changeCurrentLevel(int newLevelID, int playerSpawnPointID){
         // #1 publish an Event "changing levels"
         EventBus.getInstance().publish(new LoadingNewLevelEvent(currentLevelID, newLevelID));
         // #1 unload current level?
         // #2 load new level
         loadLevel(newLevelID);
         // #3 load Player
-        loadPlayer();
+        Vector2 spawnPosition = new Vector2();
+        if (playerSpawnPointID == -1){
+            // use level's default spawn point
+            spawnPosition = this.spawnPointIDtoPosition.get(defaultSpawnPoint);
+        }
+        else{
+            // use spawn point entity if it exists
+            try {
+                TransformComponent transform = ecm.getComponent(TransformComponent.class, playerSpawnPointID);
+                spawnPosition = transform.position.cpy();
+            }
+            catch (Exception e) {
+            }
+        }
+        loadPlayer(spawnPosition);
         // #4 publish an Event "finished loading level"
         EventBus.getInstance().publish(new FinishedLoadingLevelEvent());
     }

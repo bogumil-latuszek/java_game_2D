@@ -1,13 +1,13 @@
 package io.github.JavaGame2D.Systems;
 
+import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Components.DestructibleComponent;
 import io.github.JavaGame2D.Components.PhysicalBodyComponent;
 
+import io.github.JavaGame2D.Components.TransformComponent;
 import io.github.JavaGame2D.Enums.PlayerAction;
 import io.github.JavaGame2D.EventBus;
-import io.github.JavaGame2D.Events.PlayerActionEvent;
-import io.github.JavaGame2D.Events.PlayerIDChanged;
-import io.github.JavaGame2D.Events.PlayerIsDeadEvent;
+import io.github.JavaGame2D.Events.*;
 
 public class PlayerCharacterController {
     private boolean playerNotSpecified = true;
@@ -26,7 +26,24 @@ public class PlayerCharacterController {
         this.ecm = ecm;
         EventBus.getInstance().subscribe(PlayerActionEvent.class, this::handlePlayerAction);
         EventBus.getInstance().subscribe(PlayerIDChanged.class, this::handlePlayerIDChanged);
+        EventBus.getInstance().subscribe(MovePlayerEvent.class, this::handleMovePlayerEvent);
         this.jumpTimer = 0;
+    }
+
+    private void handleMovePlayerEvent(MovePlayerEvent event){
+        int targetEntityID = event.targetEntityID;
+        try {
+            // move player to target entity
+            TransformComponent targetTransform = ecm.getComponent(TransformComponent.class, targetEntityID);
+            TransformComponent playerTransform = ecm.getComponent(TransformComponent.class, this.playerEntityID);
+            playerTransform.position = targetTransform.position.cpy();
+
+            // make sure the player doesn't hover in the center of the door
+            PhysicalBodyComponent playerBody = ecm.getComponent(PhysicalBodyComponent.class, this.playerEntityID);
+            playerBody.onGround = false;
+        }
+        catch (RuntimeException e) {
+        }
     }
 
     public void handlePlayerIDChanged(PlayerIDChanged event){

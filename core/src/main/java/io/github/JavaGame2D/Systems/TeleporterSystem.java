@@ -56,6 +56,7 @@ public class TeleporterSystem {
 
         TeleportPlayerEvent teleportEvent = new TeleportPlayerEvent();
         teleportEvent.targetLevelID = teleporter.targetLevelID;
+        teleportEvent.targetEntityID = teleporter.targetEntityID;
         EventBus.getInstance().publish(teleportEvent);
 
     }

@@ -3,7 +3,6 @@ package io.github.JavaGame2D.Systems;
 import com.badlogic.gdx.graphics.Texture;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.LoadingNewLevelEvent;
-import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 
 import java.util.HashMap;
 

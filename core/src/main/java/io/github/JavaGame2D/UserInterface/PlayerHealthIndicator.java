@@ -1,13 +1,11 @@
 package io.github.JavaGame2D.UserInterface;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.ProgressBar;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.PlayerHpChanged;
-import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 
 public class PlayerHealthIndicator {
     ProgressBar healthBar;

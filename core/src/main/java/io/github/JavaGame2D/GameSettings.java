@@ -10,7 +10,7 @@ public class GameSettings {
 
     //private Json json = new Json();
     public float gravity = -9.8f;
-    public float groundCheckDepth = 1f;
+    public float groundCheckDepth = 0.2f;
 
     // Empty constructor is IMPORTANT for JSON
     public GameSettings() {}

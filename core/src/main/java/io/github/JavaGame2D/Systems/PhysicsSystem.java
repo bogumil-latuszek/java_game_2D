@@ -90,7 +90,7 @@ public class PhysicsSystem {
     }
 
     private boolean groundCheckForAABB(ColliderComponent collider, TransformComponent transform, int entityID){
-        boolean groundCollisionDetected = true;
+        boolean groundCollisionDetected = false;
         boolean atLeastOneCollision = false;
 
         AABBCollider transformedCollider = createAABBCollider(transform, collider);
@@ -121,8 +121,8 @@ public class PhysicsSystem {
                 }
             }
         }
-        if (!atLeastOneCollision){
-            groundCollisionDetected = false;
+        if (atLeastOneCollision){
+            groundCollisionDetected = true;
         }
         return groundCollisionDetected;
     }
@@ -285,6 +285,9 @@ public class PhysicsSystem {
         boolean overlapOnXAxis = detectOverlap(a.position.x, a.width, b.position.x, b.width);
         boolean overlapOnYAxis = detectOverlap(a.position.y, a.height, b.position.y, b.height);
         boolean detectedCollision = overlapOnXAxis && overlapOnYAxis;
+        if (detectedCollision){
+            System.out.println("detected overlap");
+        }
         return detectedCollision;
     }
 //    public boolean detectAABBxAABBCollision(Vector2 positionA, float widthA, float heightA,

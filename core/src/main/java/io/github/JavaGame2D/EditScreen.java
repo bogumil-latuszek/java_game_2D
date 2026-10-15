@@ -51,6 +51,13 @@ public class EditScreen implements Screen {
     private Table toolPicker;
     private Window dropdown; //TODO: rename to prefabPicker
 
+    // flag that forces LevelHierarchyTab to update.
+    // set to true when:
+    // 1) new entity got created
+    // 2) entity got deleted
+    // 3) rendering layer of an entity changed
+    public boolean levelHierarchyChanged = false;
+
     public EditScreen(GameManager gameManager) {
         this.gameManager = gameManager;
 

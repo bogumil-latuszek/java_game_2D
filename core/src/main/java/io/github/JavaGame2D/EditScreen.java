@@ -17,6 +17,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.Systems.*;
+import io.github.JavaGame2D.UserInterface.EditorVisibilityState;
+import io.github.JavaGame2D.UserInterface.LevelHierarchy;
 import io.github.JavaGame2D.UserInterface.PropertyInspector;
 
 import java.util.OptionalInt;
@@ -51,12 +53,15 @@ public class EditScreen implements Screen {
     private Table toolPicker;
     private Window dropdown; //TODO: rename to prefabPicker
 
+    private LevelHierarchy hierarchyTab;
+
     // flag that forces LevelHierarchyTab to update.
     // set to true when:
     // 1) new entity got created
     // 2) entity got deleted
     // 3) rendering layer of an entity changed
-    public boolean levelHierarchyChanged = false;
+    public boolean hierarchyDirty = true;
+    public final EditorVisibilityState visibilityState = new EditorVisibilityState();
 
     public EditScreen(GameManager gameManager) {
         this.gameManager = gameManager;
@@ -68,7 +73,9 @@ public class EditScreen implements Screen {
         this.screenSizeInGameUnits = gameManager.screenSizeInGameUnits;
         this.prefabManager = gameManager.prefabManager;
 
-        // 1. Set up the Editor UI Stage
+        entitySelector = new EntitySelector(gameManager.ecm, gameManager.textureManager );
+
+        // Set up the Editor UI Stage
         editorStage = new Stage(new ScreenViewport());
 
         uiskin = new Skin(Gdx.files.internal("ui/uiskin.json"));
@@ -79,8 +86,6 @@ public class EditScreen implements Screen {
 
         // Create the camera controller
         cameraController = new EditorCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y);
-
-        entitySelector = new EntitySelector(gameManager.ecm, gameManager.textureManager );
         inputProcessor = new EditorInputProcessor(ecm, entitySelector, propertyInspector, camera, this);
     }
 
@@ -115,11 +120,11 @@ public class EditScreen implements Screen {
 
         gameWorld = new Table();
 
-        toolPicker = new Table();
-        toolPicker.setBackground(skin.getDrawable("default-rect"));
-        toolPicker.setWidth(200);
-
-        bottomLeftPanel.add(toolPicker).width(200).fillY();
+        this.hierarchyTab = new LevelHierarchy(this, this.ecm, this.entitySelector, skin,  this.visibilityState);
+        //toolPicker = new Table();
+        bottomLeftPanel.add(hierarchyTab.getActor()).width(300).fillY();
+//        hierarchyTab.setBackground(skin.getDrawable("default-rect"));
+//        hierarchyTab.setWidth(200);
         bottomLeftPanel.add(gameWorld).expand().fillY();
 
         //leftPanel.setBackground(uiskin.getDrawable("default-rect")); // optional
@@ -275,6 +280,9 @@ public class EditScreen implements Screen {
             gameManager.switchToDifferentGameMode(GameMode.STANDARD_GAMEPLAY);
             return; // Stop processing this frame (screen will be replaced)
         }
+
+        // update level hierarchy
+        hierarchyTab.refreshIfDirty();
 
         // Render Game World
         OptionalInt selectedEntityID = inputProcessor.getSelectedEntityID();

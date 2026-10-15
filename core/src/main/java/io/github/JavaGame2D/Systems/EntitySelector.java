@@ -28,6 +28,10 @@ public class EntitySelector {
         this.textureManager = textureManager;
     }
 
+    public void setSelectedEntityID(int entityID){
+        this.selectedEntityID = OptionalInt.of(entityID);
+    }
+
     public OptionalInt selectEntity(Vector2 pointer){
         OptionalInt foundEntity = findEntityTouchingPoint(pointer);
         selectedEntityID = foundEntity;

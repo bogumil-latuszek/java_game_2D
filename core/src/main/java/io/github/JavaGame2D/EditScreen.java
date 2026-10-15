@@ -16,6 +16,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.JavaGame2D.Enums.GameMode;
+import io.github.JavaGame2D.Events.FinishedLoadingLevelEvent;
+import io.github.JavaGame2D.Events.TeleportPlayerEvent;
 import io.github.JavaGame2D.Systems.*;
 import io.github.JavaGame2D.UserInterface.EditorVisibilityState;
 import io.github.JavaGame2D.UserInterface.LevelHierarchy;
@@ -87,6 +89,16 @@ public class EditScreen implements Screen {
         // Create the camera controller
         cameraController = new EditorCameraController(camera, screenSizeInGameUnits.x, screenSizeInGameUnits.y);
         inputProcessor = new EditorInputProcessor(ecm, entitySelector, propertyInspector, camera, this);
+
+        EventBus.getInstance().subscribe(FinishedLoadingLevelEvent.class, this::handleLevelChange);
+    }
+
+    private void handleLevelChange(FinishedLoadingLevelEvent event){
+        visibilityState.reset();
+        hierarchyTab.resetCollapseState();
+        hierarchyDirty = true;
+        //levelDirty = false;
+        //lastSelectedLayer = RenderingLayer.PLAY;
     }
 
     private Actor createEditorUI(Skin skin){

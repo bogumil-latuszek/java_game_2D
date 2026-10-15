@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import io.github.JavaGame2D.Components.ComponentSignatures;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.Components.TransformComponent;
+import io.github.JavaGame2D.UserInterface.EditorVisibilityState;
 
 import java.util.OptionalInt;
 
@@ -13,6 +14,7 @@ public class EntitySelector {
     private EntityComponentManager ecm;
     private OptionalInt selectedEntityID;
     private TextureManager textureManager;
+    private EditorVisibilityState visibilityState;
 
     public OptionalInt getSelectedEntityID(){
         return  this.selectedEntityID;
@@ -22,11 +24,17 @@ public class EntitySelector {
         return !this.selectedEntityID.isPresent();
     }
 
-    public EntitySelector(EntityComponentManager ecm, TextureManager textureManager) {
+    public EntitySelector(EntityComponentManager ecm, TextureManager textureManager, EditorVisibilityState visibilityState) {
         this.ecm = ecm;
         this.selectedEntityID = OptionalInt.empty();
         this.textureManager = textureManager;
+        this.visibilityState = visibilityState;
     }
+
+    // most likely not needed since visibilityState in EditScreen is Final
+//    public void setVisibilityState(EditorVisibilityState visibilityState){
+//        this.visibilityState = visibilityState;
+//    }
 
     public void setSelectedEntityID(int entityID){
         this.selectedEntityID = OptionalInt.of(entityID);
@@ -46,8 +54,14 @@ public class EntitySelector {
 
         // 2. check collision for each one, return first found
         for (int entityID : drawableEntities){
+            if (visibilityState.getHiddenEntities().contains(entityID) || visibilityState.getLockedEntities().contains(entityID)){
+                continue; // skip hidden/locked entities
+            }
             TransformComponent transform = ecm.getComponent(TransformComponent.class, entityID);
             DrawableComponent drawable = ecm.getComponent(DrawableComponent.class, entityID);
+            if (visibilityState.getHiddenLayers().contains(drawable.renderingLayer) || visibilityState.getLockedLayers().contains(drawable.renderingLayer)){
+                continue; // skip hidden/locked layers
+            }
             Vector2 center = transform.position;
 
             if (this.pointInsideDrawable(pointInWorldCoords, drawable, center)){

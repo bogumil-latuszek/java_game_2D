@@ -75,7 +75,7 @@ public class EditScreen implements Screen {
         this.screenSizeInGameUnits = gameManager.screenSizeInGameUnits;
         this.prefabManager = gameManager.prefabManager;
 
-        entitySelector = new EntitySelector(gameManager.ecm, gameManager.textureManager );
+        entitySelector = new EntitySelector(gameManager.ecm, gameManager.textureManager, this.visibilityState);
 
         // Set up the Editor UI Stage
         editorStage = new Stage(new ScreenViewport());

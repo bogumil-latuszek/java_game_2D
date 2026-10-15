@@ -16,6 +16,7 @@ import io.github.JavaGame2D.Systems.EntityComponentManager;
 import io.github.JavaGame2D.Systems.EntitySelector;
 
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.OptionalInt;
 
 /**
@@ -48,6 +49,8 @@ public class LevelHierarchy{
     private final IntMap<Table> entityRows = new IntMap<>();
     private int highlightedEntity = -1;
 
+    private final EnumSet<RenderingLayer> collapsedLayers = EnumSet.noneOf(RenderingLayer.class);
+
     public LevelHierarchy(EditScreen editScreen, EntityComponentManager ecm, EntitySelector selector, Skin skin, EditorVisibilityState visibility) {
         this.selector = selector;
         this.editScreen = editScreen;
@@ -66,6 +69,10 @@ public class LevelHierarchy{
         scrollPane = new AutoFocusScrollPane(contentTable, skin);
         scrollPane.setFadeScrollBars(false);
         scrollPane.setScrollingDisabled(true, false);
+    }
+
+    public void resetCollapseState(){
+        collapsedLayers.clear();
     }
 
     // ==============================================================
@@ -125,19 +132,29 @@ public class LevelHierarchy{
         // Emit layers in enum order.
         for (RenderingLayer layer : RenderingLayer.values()) {
             IntArray bucket = buckets.get(layer);
-            addLayerHeader(layer, bucket.size);
-            for (int i = 0; i < bucket.size; i++) {
-                addEntityRow(layer, bucket.get(i));
+            boolean collapsed = collapsedLayers.contains(layer);
+
+            addLayerHeader(layer, bucket.size, collapsed);
+
+            if (!collapsed) {
+                Table entityList = new Table(skin);
+                entityList.top().left();
+                for (int i = 0; i < bucket.size; i++) {
+                    addEntityRow(entityList, layer, bucket.get(i));
+                }
+                contentTable.add(entityList).growX().row();
             }
         }
 
         // Misc at the bottom.
         addMiscHeader(misc.size);
+        Table entityList = new Table(skin);
+        entityList.top().left();
         for (int i = 0; i < misc.size; i++) {
-            addEntityRow(null, misc.get(i));
+            addEntityRow(entityList, null, misc.get(i));
         }
+        contentTable.add(entityList).growX().row();
 
-        // Reapply highlight to the current selection.
         highlightedEntity = -1;
         onSelectionChanged();
     }
@@ -146,9 +163,24 @@ public class LevelHierarchy{
     //  Header / row builders
     // ==============================================================
 
-    private void addLayerHeader(RenderingLayer layer, int count) {
+    private void addLayerHeader(RenderingLayer layer, int count, boolean collapsed) {
         Table header = new Table(skin);
         header.setBackground(layerHeaderBg);
+
+        // Collapse arrow — the only place the collapse toggles.
+        TextButton arrow = new TextButton(collapsed ? ">" : "v", skin);
+        arrow.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (collapsedLayers.contains(layer)){
+                    collapsedLayers.remove(layer);
+                }
+                else {
+                    collapsedLayers.add(layer);
+                }
+                editScreen.hierarchyDirty = true;
+            }
+        });
 
         TextButton eye = makeToggle(
             visibility.isLayerVisible(layer),
@@ -164,7 +196,8 @@ public class LevelHierarchy{
                 editScreen.hierarchyDirty = true;
             });
 
-        header.add(eye).width(ICON_WIDTH).padLeft(2);
+        header.add(arrow).width(ICON_WIDTH).padLeft(2);
+        header.add(eye).width(ICON_WIDTH).padLeft(1);
         header.add(lock).width(ICON_WIDTH).padLeft(1);
         header.add(new Label(layer.name(), skin)).left().expandX();
         header.add(new Label("(" + count + ")", skin)).right().padRight(4);
@@ -180,7 +213,7 @@ public class LevelHierarchy{
         contentTable.add(header).growX().padTop(2).row();
     }
 
-    private void addEntityRow(RenderingLayer layer, int entityID) {
+    private void addEntityRow(Table parent, RenderingLayer layer, int entityID) {
         Table row = new Table(skin);
 
         boolean ownVisible = visibility.isEntityVisible(entityID);
@@ -224,7 +257,7 @@ public class LevelHierarchy{
         });
 
         entityRows.put(entityID, row);
-        contentTable.add(row).growX().row();
+        parent.add(row).growX().row();
     }
 
     // ==============================================================

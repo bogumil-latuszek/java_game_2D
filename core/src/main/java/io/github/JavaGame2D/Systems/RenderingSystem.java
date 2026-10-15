@@ -11,12 +11,16 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.IntArray;
+import com.badlogic.gdx.utils.IntSet;
 import com.badlogic.gdx.utils.ScreenUtils;
 import io.github.JavaGame2D.Components.*;
 import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.RenderingLayer;
 
+import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.OptionalInt;
+import java.util.Set;
 
 public class RenderingSystem {
     private SpriteBatch worldBatch;
@@ -49,10 +53,17 @@ public class RenderingSystem {
     }
 
     public void renderGameWorld(){
-        this.renderGameWorld(false, false, false, true);
+        Set<RenderingLayer> hiddenLayers = EnumSet.noneOf(RenderingLayer.class);
+        IntSet hiddenEntities = new IntSet();
+        this.renderGameWorld(false, false, false, true, hiddenLayers, hiddenEntities);
     }
 
-    public void renderGameWorld(boolean drawSpriteOutlines, boolean drawColliders, boolean highlightSelectedEntity, boolean useParallax){
+    public void renderGameWorld(boolean drawSpriteOutlines,
+                                boolean drawColliders,
+                                boolean highlightSelectedEntity,
+                                boolean useParallax,
+                                Set<RenderingLayer> hiddenLayers,
+                                IntSet hiddenEntities){
 
         //clear screen
         ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
@@ -71,23 +82,36 @@ public class RenderingSystem {
         // sort drawableEntities by RenderingLayer + zOrder
         drawableEntities = this.sortDrawableEntities(drawableEntities);
 
-        // draw each entity in list:
+        // find all visible entities
+        ArrayList<Integer> visibleDrawableEntities = new ArrayList<>();
         for ( int entityID : drawableEntities){
+            if (hiddenEntities.contains(entityID)){
+                continue; // skip hidden entity
+            }
+            DrawableComponent drawableComponent = ecm.getComponent(DrawableComponent.class, entityID);
+            if (hiddenLayers.contains(drawableComponent.renderingLayer)){
+                continue; // skip hidden layer;
+            }
+            visibleDrawableEntities.add(entityID);
+        }
+
+        // draw each visible entity in list:
+        for ( int entityID : visibleDrawableEntities){
             TransformComponent transformComponent = ecm.getComponent(TransformComponent.class,entityID);
             DrawableComponent drawableComponent = ecm.getComponent(DrawableComponent.class, entityID);
-
             Vector2 cameraPosition = new Vector2(this.camera.position.x, this.camera.position.y);
             this.drawSprite(worldBatch, cameraPosition, drawableComponent, transformComponent.position, useParallax);
         }
         worldBatch.end();
 
-        // draw Sprite outlines
+        // draw (visible) Sprite outlines
         if (drawSpriteOutlines){
             shapeRenderer.setProjectionMatrix(this.getProjectionMatrix(this.camera));
-            this.drawSpriteOutlines(drawableEntities, shapeRenderer, Color.BLUE, false);
+            int[] arr = visibleDrawableEntities.stream().mapToInt(i -> i).toArray();
+            this.drawSpriteOutlines(arr, shapeRenderer, Color.BLUE, false);
         }
 
-        // draw Colliders
+        // draw Colliders (even if entity should be invisible)
         if (drawColliders){
 
             long entitiesWithCollidersSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(ColliderComponent.class);

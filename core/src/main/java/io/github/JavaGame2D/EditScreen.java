@@ -299,7 +299,7 @@ public class EditScreen implements Screen {
         // Render Game World
         OptionalInt selectedEntityID = inputProcessor.getSelectedEntityID();
         renderingSystem.setSelectedEntityID(selectedEntityID);
-        renderingSystem.renderGameWorld(true, true, true, false);
+        renderingSystem.renderGameWorld(true, true, true, false, visibilityState.getHiddenLayers(), visibilityState.getHiddenEntities());
 
         // Render Editor UI
         editorStage.act(delta);

@@ -68,4 +68,20 @@ public class EditorVisibilityState {
         hiddenEntities.clear();
         lockedEntities.clear();
     }
+
+    public Set<RenderingLayer> getHiddenLayers() {
+        return hiddenLayers;
+    }
+
+    public Set<RenderingLayer> getLockedLayers() {
+        return lockedLayers;
+    }
+
+    public IntSet getHiddenEntities() {
+        return hiddenEntities;
+    }
+
+    public IntSet getLockedEntities() {
+        return lockedEntities;
+    }
 }

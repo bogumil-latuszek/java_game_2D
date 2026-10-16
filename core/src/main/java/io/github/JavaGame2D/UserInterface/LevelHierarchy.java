@@ -270,7 +270,7 @@ public class LevelHierarchy{
 
         row.add(eye).width(ICON_WIDTH).padLeft(INDENT);
         row.add(lock).width(ICON_WIDTH).padLeft(1);
-        row.add(idLabel).left().expandX().padRight(4);
+        row.add(idLabel).left().expandX().fillX().padRight(4);
 
         // Clicking the row body selects. The toggle buttons consume their own
         // clicks (they're separate actors), so toggling eye/lock won't fire this.

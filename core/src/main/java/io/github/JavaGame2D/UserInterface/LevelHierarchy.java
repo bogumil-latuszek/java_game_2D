@@ -101,9 +101,14 @@ public class LevelHierarchy{
         if (selectedEntityID == highlightedEntity) {
             return;
         }
+        highlightEntity(selectedEntityID);
+    }
+
+
+    public void highlightEntity(int entityID){
         applyHighlight(highlightedEntity, false);
-        applyHighlight(selectedEntityID, true);
-        highlightedEntity = selectedEntityID;
+        applyHighlight(entityID, true);
+        highlightedEntity = entityID;
     }
 
     // ==============================================================
@@ -278,6 +283,7 @@ public class LevelHierarchy{
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 selector.setSelectedEntityID(entityID);
+                highlightEntity(entityID);
             }
         });
 

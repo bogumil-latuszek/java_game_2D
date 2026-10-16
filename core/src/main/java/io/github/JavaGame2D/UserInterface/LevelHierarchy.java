@@ -239,24 +239,24 @@ public class LevelHierarchy{
 
         Drawable visibleIcon = skin.getDrawable("visible");
         Drawable hiddenIcon = skin.getDrawable("hidden");
-        ImageButton eye = new ImageButton(visibility.isLayerVisible(layer) ? visibleIcon : hiddenIcon);
+        ImageButton eye = new ImageButton(visibility.isEntityVisible(entityID) ? visibleIcon : hiddenIcon);
         eye.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                boolean currentState = visibility.isLayerVisible(layer);
-                visibility.setLayerVisible(layer, !currentState);
+                boolean currentState = visibility.isEntityVisible(entityID);
+                visibility.setEntityVisible(entityID, !currentState);
                 editScreen.hierarchyDirty = true;
             }
         });
 
         Drawable locked = skin.getDrawable("locked");
         Drawable unlocked = skin.getDrawable("unlocked");
-        ImageButton lock = new ImageButton(visibility.isLayerLocked(layer) ? locked : unlocked);
+        ImageButton lock = new ImageButton(visibility.isEntityLocked(entityID) ? locked : unlocked);
         lock.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                boolean currentState = visibility.isLayerLocked(layer);
-                visibility.setLayerLocked(layer, !currentState);
+                boolean currentState = visibility.isEntityLocked(entityID);
+                visibility.setEntityLocked(entityID, !currentState);
                 editScreen.hierarchyDirty = true;
             }
         });

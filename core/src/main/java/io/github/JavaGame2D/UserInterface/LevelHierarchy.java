@@ -167,8 +167,9 @@ public class LevelHierarchy{
         Table header = new Table(skin);
         header.setBackground(layerHeaderBg);
 
-        // Collapse arrow — the only place the collapse toggles.
-        TextButton arrow = new TextButton(collapsed ? ">" : "v", skin);
+        Drawable expandedIcon = skin.getDrawable("expanded");
+        Drawable collapsedIcon = skin.getDrawable("collapsed");
+        ImageButton arrow = new ImageButton(collapsed ? collapsedIcon : expandedIcon);
         arrow.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -182,19 +183,29 @@ public class LevelHierarchy{
             }
         });
 
-        TextButton eye = makeToggle(
-            visibility.isLayerVisible(layer),
-            on -> {
-                visibility.setLayerVisible(layer, on);
+        Drawable visibleIcon = skin.getDrawable("visible");
+        Drawable hiddenIcon = skin.getDrawable("hidden");
+        ImageButton eye = new ImageButton(visibility.isLayerVisible(layer) ? visibleIcon : hiddenIcon);
+        eye.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                boolean currentState = visibility.isLayerVisible(layer);
+                visibility.setLayerVisible(layer, !currentState);
                 editScreen.hierarchyDirty = true;
-            });
+            }
+        });
 
-        TextButton lock = makeToggle(
-            visibility.isLayerLocked(layer),
-            on -> {
-                visibility.setLayerLocked(layer, on);
+        Drawable locked = skin.getDrawable("locked");
+        Drawable unlocked = skin.getDrawable("unlocked");
+        ImageButton lock = new ImageButton(visibility.isLayerLocked(layer) ? locked : unlocked);
+        lock.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                boolean currentState = visibility.isLayerLocked(layer);
+                visibility.setLayerLocked(layer, !currentState);
                 editScreen.hierarchyDirty = true;
-            });
+            }
+        });
 
         header.add(arrow).width(ICON_WIDTH).padLeft(2);
         header.add(eye).width(ICON_WIDTH).padLeft(1);
@@ -226,14 +237,28 @@ public class LevelHierarchy{
             ? ownLocked
             : visibility.isLayerLocked(layer) || ownLocked;
 
-        TextButton eye = makeToggle(ownVisible, on -> {
-            visibility.setEntityVisible(entityID, on);
-            editScreen.hierarchyDirty = true;
+        Drawable visibleIcon = skin.getDrawable("visible");
+        Drawable hiddenIcon = skin.getDrawable("hidden");
+        ImageButton eye = new ImageButton(visibility.isLayerVisible(layer) ? visibleIcon : hiddenIcon);
+        eye.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                boolean currentState = visibility.isLayerVisible(layer);
+                visibility.setLayerVisible(layer, !currentState);
+                editScreen.hierarchyDirty = true;
+            }
         });
 
-        TextButton lock = makeToggle(ownLocked, on -> {
-            visibility.setEntityLocked(entityID, on);
-            editScreen.hierarchyDirty = true;
+        Drawable locked = skin.getDrawable("locked");
+        Drawable unlocked = skin.getDrawable("unlocked");
+        ImageButton lock = new ImageButton(visibility.isLayerLocked(layer) ? locked : unlocked);
+        lock.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                boolean currentState = visibility.isLayerLocked(layer);
+                visibility.setLayerLocked(layer, !currentState);
+                editScreen.hierarchyDirty = true;
+            }
         });
 
         Label idLabel = new Label(Integer.toString(entityID), skin);

@@ -2,6 +2,8 @@ package io.github.JavaGame2D.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.tools.texturepacker.TexturePacker;
 import io.github.JavaGame2D.Enums.GameMode;
 import io.github.JavaGame2D.GameManager;
 
@@ -17,7 +19,21 @@ public class Lwjgl3Launcher {
             }
         }
 
+        generateUISkin();
+
         createApplication(mode);
+    }
+
+    private static void generateUISkin(){
+        TexturePacker.Settings settings = new TexturePacker.Settings();
+        settings.filterMin = Texture.TextureFilter.Linear;
+        settings.filterMag = Texture.TextureFilter.Linear;
+        settings.paddingX = 2;
+        settings.paddingY = 2;
+        settings.maxWidth = 2048;
+        settings.maxHeight = 2048;
+
+        TexturePacker.process(settings, "assets/raw-ui", "assets/ui", "uiskin");
     }
 
     private static Lwjgl3Application createApplication(GameMode mode) {

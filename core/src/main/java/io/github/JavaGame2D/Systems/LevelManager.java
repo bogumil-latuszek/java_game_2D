@@ -195,6 +195,7 @@ public class LevelManager {
         // #1 publish an Event "changing levels"
         EventBus.getInstance().publish(new LoadingNewLevelEvent(currentLevelID, newLevelID));
         // #1 unload current level?
+        unloadCurrentLevel();
         // #2 load new level
         loadLevel(newLevelID);
         // #3 load Player
@@ -215,6 +216,10 @@ public class LevelManager {
         loadPlayer(spawnPosition);
         // #4 publish an Event "finished loading level"
         EventBus.getInstance().publish(new FinishedLoadingLevelEvent());
+    }
+
+    private void unloadCurrentLevel(){
+        ecm.removeAllEntities();
     }
 
     public int getCurrentLevelID(){

@@ -65,6 +65,11 @@ public class EntityManager {
         }
     }
 
+    public void removeAllEntities(){
+        entities = new HashMap<Integer, Entity>();
+        this.nextEntityId = 0;
+    }
+
     public void removeEntity(int entityID) {
         entities.remove(entityID);
     }

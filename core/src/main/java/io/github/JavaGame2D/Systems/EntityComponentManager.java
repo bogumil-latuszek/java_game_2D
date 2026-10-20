@@ -158,4 +158,9 @@ public class EntityComponentManager {
         entityManager.loadEntitiesFromHashMap(entities);
     }
 
+    public void removeAllEntities(){
+        this.entityManager.removeAllEntities();
+        this.componentManager.resetAllComponentCollections();
+    }
+
 }

@@ -14,6 +14,10 @@ public class ComponentManager {
 
     public ComponentManager() {
         this.componentCollections = new HashMap<Class<?>, ComponentCollectionInterface>();
+        registerAllComponentCollections();
+    }
+
+    public void registerAllComponentCollections(){
         registerComponentCollection(TransformComponent.class, new ComponentCollection<>(TransformComponent.class, ComponentSignatures.get(TransformComponent.class)));
         registerComponentCollection(DrawableComponent.class, new ComponentCollection<>(DrawableComponent.class, ComponentSignatures.get(DrawableComponent.class)));
         registerComponentCollection(PhysicalBodyComponent.class, new ComponentCollection<>(PhysicalBodyComponent.class, ComponentSignatures.get(PhysicalBodyComponent.class)));
@@ -98,5 +102,9 @@ public class ComponentManager {
         }
 
         return entityIDToSignature;
+    }
+
+    public void resetAllComponentCollections(){
+        registerAllComponentCollections();
     }
 }

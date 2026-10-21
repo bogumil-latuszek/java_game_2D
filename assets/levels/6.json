@@ -1,0 +1,151 @@
+{
+  "levelID" : 6,
+  "levelName" : "unnamed",
+  "prefabInstances" : [ {
+    "entityID" : 0,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 22,
+      "TransformComponent.position" : {
+        "x" : 6.4705515,
+        "y" : -15.801413
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 6.4705515,
+        "y" : -15.801413
+      },
+      "DrawableComponent.zOrder" : -20,
+      "DrawableComponent.width" : 30.0,
+      "ColliderComponent.width" : 30.0
+    }
+  }, {
+    "entityID" : 1,
+    "prefabName" : "wall",
+    "overrides" : {
+      "ColliderComponent.height" : 1.0,
+      "TransformComponent.position" : {
+        "x" : 5.842268,
+        "y" : -5.3019085
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 5.842268,
+        "y" : -5.3019085
+      },
+      "DrawableComponent.zOrder" : -10,
+      "DrawableComponent.height" : 1.0,
+      "DrawableComponent.width" : 1.0,
+      "ColliderComponent.width" : 1.0
+    }
+  }, {
+    "entityID" : 3,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 20,
+      "DrawableComponent.renderingLayer" : "BACKGROUND",
+      "TransformComponent.position" : {
+        "x" : 0.3426323,
+        "y" : -2.9857762
+      }
+    }
+  }, {
+    "entityID" : 4,
+    "prefabName" : "wall",
+    "overrides" : {
+      "ColliderComponent.height" : 8.0,
+      "TransformComponent.position" : {
+        "x" : -5.1572204,
+        "y" : -1.7960538
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : -5.1572204,
+        "y" : -1.7960538
+      },
+      "DrawableComponent.zOrder" : -10,
+      "DrawableComponent.height" : 8.0,
+      "DrawableComponent.width" : 1.0,
+      "ColliderComponent.width" : 1.0
+    }
+  }, {
+    "entityID" : 5,
+    "prefabName" : "wall",
+    "overrides" : {
+      "ColliderComponent.height" : 1.0,
+      "TransformComponent.position" : {
+        "x" : 0.34115696,
+        "y" : 1.7044165
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 0.34115696,
+        "y" : 1.7044165
+      },
+      "DrawableComponent.zOrder" : -10,
+      "DrawableComponent.height" : 1.0,
+      "DrawableComponent.width" : 10.0,
+      "ColliderComponent.width" : 10.0
+    }
+  }, {
+    "entityID" : 6,
+    "prefabName" : "wall",
+    "overrides" : {
+      "ColliderComponent.height" : 3.0,
+      "TransformComponent.position" : {
+        "x" : 5.8410883,
+        "y" : 0.70335245
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 5.8410883,
+        "y" : 0.70335245
+      },
+      "DrawableComponent.zOrder" : -10,
+      "DrawableComponent.height" : 3.0,
+      "DrawableComponent.width" : 1.0,
+      "ColliderComponent.width" : 1.0
+    }
+  }, {
+    "entityID" : 7,
+    "prefabName" : "wall",
+    "overrides" : {
+      "ColliderComponent.height" : 1.0,
+      "DrawableComponent.height" : 1.0,
+      "TransformComponent.position" : {
+        "x" : 14.469159,
+        "y" : -5.306857
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 14.469159,
+        "y" : -5.306857
+      },
+      "DrawableComponent.width" : 3.0,
+      "ColliderComponent.width" : 3.0
+    }
+  }, {
+    "entityID" : 8,
+    "prefabName" : "door",
+    "overrides" : {
+      "DrawableComponent.textureID" : 2,
+      "ColliderComponent.height" : 2.0,
+      "TransformComponent.position" : {
+        "x" : 14.448033,
+        "y" : -3.3224347
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 14.422245,
+        "y" : -3.3482196
+      },
+      "DrawableComponent.height" : 2.0,
+      "DrawableComponent.textureIsTiled" : false,
+      "TeleporterComponent.targetEntityID" : 96,
+      "DrawableComponent.usesSizeFromTexture" : false,
+      "DrawableComponent.width" : 2.0,
+      "ColliderComponent.width" : 2.0
+    }
+  } ],
+  "bakedEntities" : [ ],
+  "validSpawnPoints" : {
+    "0" : {
+      "x" : 0.0,
+      "y" : 0.0
+    }
+  },
+  "defaultSpawnPointID" : 0
+}

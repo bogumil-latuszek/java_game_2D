@@ -47,7 +47,7 @@ public class LevelHierarchy{
 
     // For cheap highlight updates without rebuilding the whole list.
     private final IntMap<Table> entityRows = new IntMap<>();
-    private int highlightedEntity = -1;
+    public int highlightedEntity = -1;
 
     private final EnumSet<RenderingLayer> collapsedLayers = EnumSet.noneOf(RenderingLayer.class);
 

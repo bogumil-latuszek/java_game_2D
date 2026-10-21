@@ -293,6 +293,10 @@ public class EditScreen implements Screen {
             return; // Stop processing this frame (screen will be replaced)
         }
 
+        if (entitySelector.getSelectedEntityID().isPresent() && hierarchyTab.highlightedEntity != entitySelector.getSelectedEntityID().getAsInt()){
+            hierarchyDirty = true;
+        }
+
         // update level hierarchy
         hierarchyTab.refreshIfDirty();
 

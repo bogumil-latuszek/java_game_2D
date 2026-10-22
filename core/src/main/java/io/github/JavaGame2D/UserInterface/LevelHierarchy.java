@@ -1,6 +1,7 @@
 package io.github.JavaGame2D.UserInterface;
 
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -10,7 +11,6 @@ import com.badlogic.gdx.utils.IntArray;
 import com.badlogic.gdx.utils.IntMap;
 import io.github.JavaGame2D.Components.DrawableComponent;
 import io.github.JavaGame2D.EditScreen;
-import io.github.JavaGame2D.Entity;
 import io.github.JavaGame2D.Enums.RenderingLayer;
 import io.github.JavaGame2D.Systems.EntityComponentManager;
 import io.github.JavaGame2D.Systems.EntitySelector;
@@ -79,6 +79,31 @@ public class LevelHierarchy{
     //  Public API
     // ==============================================================
 
+    public void scrollToHighlightedRow() {
+        scrollPane.validate(); // sets row sizes if empty
+
+        int targetID = highlightedEntity;
+
+        Table row = entityRows.get(targetID);
+        if (row == null){
+            return;
+        }
+
+        // Row coordinates are relative to its parent (entityList Table).
+        // Convert to contentTable's space, which is what scrollTo expects.
+        Vector2 scrollTmp = new Vector2();
+        row.localToAscendantCoordinates(contentTable, scrollTmp);
+
+        scrollPane.scrollTo(
+            scrollTmp.x,
+            scrollTmp.y,
+            row.getWidth(),
+            row.getHeight(),
+            false,  // centerHorizontal — no horizontal scroll anyway
+            true   // centerVertical
+        );
+    }
+
     public Actor getActor() {
         return scrollPane;
     }
@@ -102,6 +127,7 @@ public class LevelHierarchy{
             return;
         }
         highlightEntity(selectedEntityID);
+        this.scrollToHighlightedRow();
     }
 
 

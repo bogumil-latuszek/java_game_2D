@@ -7,12 +7,12 @@
     "overrides" : {
       "DrawableComponent.textureID" : 22,
       "TransformComponent.position" : {
-        "x" : -24.568222,
-        "y" : -33.639503
+        "x" : -24.5,
+        "y" : -33.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : -24.568222,
-        "y" : -33.639503
+        "x" : -24.5,
+        "y" : -33.5
       }
     }
   }, {
@@ -22,12 +22,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : -5.8609486,
-        "y" : -22.128384
+        "x" : -6.0,
+        "y" : -22.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : -5.8609486,
-        "y" : -22.128384
+        "x" : -6.0,
+        "y" : -22.0
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 19.0,
@@ -39,13 +39,14 @@
     "overrides" : {
       "DrawableComponent.textureID" : 22,
       "ColliderComponent.height" : 10.0,
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
-        "x" : 7.282718,
-        "y" : -27.63265
+        "x" : 7.5,
+        "y" : -27.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 7.282718,
-        "y" : -27.63265
+        "x" : 7.5,
+        "y" : -27.5
       },
       "DrawableComponent.height" : 10.0,
       "DrawableComponent.width" : 10.0,
@@ -59,12 +60,12 @@
       "ColliderComponent.height" : 1.0,
       "DrawableComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : -24.563633,
-        "y" : -23.140722
+        "x" : -24.5,
+        "y" : -23.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : -24.563633,
-        "y" : -23.140722
+        "x" : -24.5,
+        "y" : -23.0
       }
     }
   }, {
@@ -104,12 +105,12 @@
     "overrides" : {
       "DrawableComponent.textureID" : 22,
       "TransformComponent.position" : {
-        "x" : -44.563843,
-        "y" : -30.710985
+        "x" : -44.5,
+        "y" : -30.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : -44.563843,
-        "y" : -30.710985
+        "x" : -44.5,
+        "y" : -30.5
       }
     }
   }, {
@@ -119,12 +120,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : -40.274387,
-        "y" : -20.203806
+        "x" : -40.0,
+        "y" : -20.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : -40.274387,
-        "y" : -20.203806
+        "x" : -40.0,
+        "y" : -20.0
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 10.0,
@@ -137,12 +138,12 @@
       "ColliderComponent.height" : 10.0,
       "DrawableComponent.height" : 10.0,
       "TransformComponent.position" : {
-        "x" : 24.915617,
-        "y" : -32.658234
+        "x" : 25.0,
+        "y" : -32.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 24.915617,
-        "y" : -32.658234
+        "x" : 25.0,
+        "y" : -32.5
       }
     }
   }, {
@@ -152,12 +153,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 12.543367,
-        "y" : -22.128178
+        "x" : 12.5,
+        "y" : -22.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 12.543367,
-        "y" : -22.128178
+        "x" : 12.5,
+        "y" : -22.0
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 2.0,
@@ -170,12 +171,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 13.903104,
-        "y" : -21.106922
+        "x" : 14.0,
+        "y" : -21.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 13.903104,
-        "y" : -21.106922
+        "x" : 14.0,
+        "y" : -21.0
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 2.0,
@@ -187,30 +188,30 @@
     "overrides" : {
       "ColliderComponent.height" : 4.0,
       "DrawableComponent.height" : 4.0,
+      "DrawableComponent.width" : 9.0,
       "TransformComponent.position" : {
-        "x" : -49.77746,
-        "y" : -18.707563
+        "x" : -49.5,
+        "y" : -18.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : -49.77746,
-        "y" : -18.707563
+        "x" : -49.5,
+        "y" : -18.5
       },
-      "DrawableComponent.width" : 9.0,
       "ColliderComponent.width" : 9.0
     }
   }, {
     "entityID" : 14,
     "prefabName" : "wall",
     "overrides" : {
+      "DrawableComponent.width" : 1.0,
       "TransformComponent.position" : {
-        "x" : -53.772835,
-        "y" : -6.7049704
+        "x" : -53.5,
+        "y" : -6.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : -53.772835,
-        "y" : -6.7049704
+        "x" : -53.5,
+        "y" : -6.5
       },
-      "DrawableComponent.width" : 1.0,
       "ColliderComponent.width" : 1.0
     }
   }, {
@@ -219,15 +220,15 @@
     "overrides" : {
       "ColliderComponent.height" : 17.0,
       "DrawableComponent.height" : 17.0,
+      "DrawableComponent.width" : 1.0,
       "TransformComponent.position" : {
-        "x" : -45.72073,
-        "y" : -5.171918
+        "x" : -45.5,
+        "y" : -5.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : -45.72073,
-        "y" : -5.171918
+        "x" : -45.5,
+        "y" : -5.0
       },
-      "DrawableComponent.width" : 1.0,
       "ColliderComponent.width" : 1.0
     }
   }, {
@@ -237,12 +238,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : -51.76377,
-        "y" : -12.500978
+        "x" : -51.5,
+        "y" : -12.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : -51.76377,
-        "y" : -12.500978
+        "x" : -51.5,
+        "y" : -12.5
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 3.0,
@@ -255,12 +256,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : -47.232872,
-        "y" : -12.479724
+        "x" : -47.0,
+        "y" : -12.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : -47.232872,
-        "y" : -12.479724
+        "x" : -47.0,
+        "y" : -12.5
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 2.0,
@@ -273,12 +274,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : -52.270615,
-        "y" : -6.7056503
+        "x" : -52.0,
+        "y" : -5.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : -52.270615,
-        "y" : -6.7056503
+        "x" : -52.0,
+        "y" : -5.5
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 2.0,
@@ -388,12 +389,12 @@
       "ColliderComponent.height" : 1.0,
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
       "TransformComponent.position" : {
-        "x" : 7.5331154,
-        "y" : -23.13322
+        "x" : 7.5,
+        "y" : -23.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 7.5331154,
-        "y" : -23.13322
+        "x" : 7.5,
+        "y" : -23.0
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 8.0,
@@ -406,12 +407,12 @@
       "ColliderComponent.height" : 1.0,
       "DrawableComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 44.886185,
-        "y" : -20.123047
+        "x" : 45.0,
+        "y" : -20.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 44.886185,
-        "y" : -20.123047
+        "x" : 45.0,
+        "y" : -20.0
       }
     }
   }, {
@@ -420,15 +421,15 @@
     "overrides" : {
       "ColliderComponent.height" : 2.0,
       "DrawableComponent.height" : 2.0,
+      "DrawableComponent.width" : 30.0,
       "TransformComponent.position" : {
-        "x" : 49.89078,
-        "y" : -28.644299
+        "x" : 50.0,
+        "y" : -28.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 49.89078,
-        "y" : -28.644299
+        "x" : 50.0,
+        "y" : -28.5
       },
-      "DrawableComponent.width" : 30.0,
       "ColliderComponent.width" : 30.0
     }
   }, {
@@ -438,13 +439,14 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 30.0,
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
+      "DrawableComponent.zOrder" : 10,
       "TransformComponent.position" : {
-        "x" : 40.397408,
-        "y" : -35.60755
+        "x" : 40.5,
+        "y" : -35.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 40.397408,
-        "y" : -35.60755
+        "x" : 40.5,
+        "y" : -35.5
       },
       "DrawableComponent.height" : 30.0,
       "DrawableComponent.width" : 1.0,
@@ -457,13 +459,14 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 30.0,
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
+      "DrawableComponent.zOrder" : 10,
       "TransformComponent.position" : {
-        "x" : 46.370125,
-        "y" : -35.60294
+        "x" : 46.5,
+        "y" : -35.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 46.370125,
-        "y" : -35.60294
+        "x" : 46.5,
+        "y" : -35.5
       },
       "DrawableComponent.height" : 30.0,
       "DrawableComponent.width" : 1.0,
@@ -476,13 +479,14 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 30.0,
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
+      "DrawableComponent.zOrder" : 10,
       "TransformComponent.position" : {
-        "x" : 52.37303,
-        "y" : -35.61348
+        "x" : 52.5,
+        "y" : -35.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 52.37303,
-        "y" : -35.61348
+        "x" : 52.5,
+        "y" : -35.5
       },
       "DrawableComponent.height" : 30.0,
       "DrawableComponent.width" : 1.0,
@@ -495,12 +499,12 @@
       "DrawableComponent.textureID" : 22,
       "ColliderComponent.height" : 5.0,
       "TransformComponent.position" : {
-        "x" : 75.37094,
-        "y" : -30.769424
+        "x" : 75.5,
+        "y" : -30.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 75.37094,
-        "y" : -30.769424
+        "x" : 75.5,
+        "y" : -30.5
       },
       "DrawableComponent.height" : 5.0,
       "DrawableComponent.width" : 5.0,
@@ -513,12 +517,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 72.3675,
-        "y" : -28.7664
+        "x" : 72.5,
+        "y" : -28.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 72.3675,
-        "y" : -28.7664
+        "x" : 72.5,
+        "y" : -28.5
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 1.0,
@@ -530,12 +534,12 @@
     "overrides" : {
       "DrawableComponent.textureID" : 22,
       "TransformComponent.position" : {
-        "x" : 87.8719,
-        "y" : -37.264763
+        "x" : 88.0,
+        "y" : -37.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 87.8719,
-        "y" : -37.264763
+        "x" : 88.0,
+        "y" : -37.5
       }
     }
   }, {
@@ -546,12 +550,12 @@
       "ColliderComponent.height" : 1.0,
       "DrawableComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 87.87143,
-        "y" : -26.763315
+        "x" : 88.0,
+        "y" : -27.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 87.87143,
-        "y" : -26.763315
+        "x" : 88.0,
+        "y" : -27.0
       }
     }
   }, {
@@ -561,12 +565,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 75.36003,
-        "y" : -27.76598
+        "x" : 75.5,
+        "y" : -27.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 75.36003,
-        "y" : -27.76598
+        "x" : 75.5,
+        "y" : -27.5
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 5.0,
@@ -579,12 +583,12 @@
       "DrawableComponent.textureID" : 22,
       "ColliderComponent.height" : 6.0,
       "TransformComponent.position" : {
-        "x" : 99.87283,
-        "y" : -31.265444
+        "x" : 100.0,
+        "y" : -31.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 99.87283,
-        "y" : -31.265444
+        "x" : 100.0,
+        "y" : -31.5
       },
       "DrawableComponent.height" : 6.0,
       "DrawableComponent.width" : 4.0,
@@ -597,12 +601,12 @@
       "DrawableComponent.textureID" : 22,
       "ColliderComponent.height" : 3.0,
       "TransformComponent.position" : {
-        "x" : 102.371925,
-        "y" : -29.766773
+        "x" : 102.5,
+        "y" : -30.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 102.371925,
-        "y" : -29.766773
+        "x" : 102.5,
+        "y" : -30.0
       },
       "DrawableComponent.height" : 3.0,
       "DrawableComponent.width" : 1.0,
@@ -615,12 +619,12 @@
       "DrawableComponent.textureID" : 22,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 103.37121,
-        "y" : -28.766758
+        "x" : 103.5,
+        "y" : -29.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 103.37121,
-        "y" : -28.766758
+        "x" : 103.5,
+        "y" : -29.0
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 1.0,
@@ -633,12 +637,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 100.872795,
-        "y" : -27.763937
+        "x" : 101.0,
+        "y" : -28.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 100.872795,
-        "y" : -27.763937
+        "x" : 101.0,
+        "y" : -28.0
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 6.0,
@@ -651,12 +655,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 1.0,
       "TransformComponent.position" : {
-        "x" : 88.611534,
-        "y" : -25.751284
+        "x" : 88.5,
+        "y" : -26.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 88.611534,
-        "y" : -25.751284
+        "x" : 88.5,
+        "y" : -26.0
       },
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 5.0,
@@ -669,12 +673,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 5.0,
       "TransformComponent.position" : {
-        "x" : 91.61826,
-        "y" : -23.762856
+        "x" : 91.5,
+        "y" : -24.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 91.61826,
-        "y" : -23.762856
+        "x" : 91.5,
+        "y" : -24.0
       },
       "DrawableComponent.height" : 5.0,
       "DrawableComponent.width" : 1.0,
@@ -687,12 +691,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 2.0,
       "TransformComponent.position" : {
-        "x" : 86.66886,
-        "y" : -22.256638
+        "x" : 86.5,
+        "y" : -22.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 86.66886,
-        "y" : -22.256638
+        "x" : 86.5,
+        "y" : -22.5
       },
       "DrawableComponent.height" : 2.0,
       "DrawableComponent.width" : 1.0,
@@ -705,12 +709,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.5,
       "TransformComponent.position" : {
-        "x" : 85.60764,
-        "y" : -26.00553
+        "x" : 85.5,
+        "y" : -26.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 85.60764,
-        "y" : -26.00553
+        "x" : 85.5,
+        "y" : -26.5
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 1.0,
@@ -723,12 +727,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.5,
       "TransformComponent.position" : {
-        "x" : 88.98821,
-        "y" : -21.008448
+        "x" : 89.0,
+        "y" : -21.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 88.98821,
-        "y" : -21.008448
+        "x" : 89.0,
+        "y" : -21.5
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 8.0,
@@ -741,12 +745,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.5,
       "TransformComponent.position" : {
-        "x" : 85.169685,
-        "y" : -21.50853
+        "x" : 85.0,
+        "y" : -22.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 85.169685,
-        "y" : -21.50853
+        "x" : 85.0,
+        "y" : -22.0
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 2.0,
@@ -759,12 +763,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.5,
       "TransformComponent.position" : {
-        "x" : 84.67014,
-        "y" : -22.008497
+        "x" : 84.5,
+        "y" : -22.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 84.67014,
-        "y" : -22.008497
+        "x" : 84.5,
+        "y" : -22.5
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 3.0,
@@ -777,12 +781,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.5,
       "TransformComponent.position" : {
-        "x" : 93.120834,
-        "y" : -21.511427
+        "x" : 93.0,
+        "y" : -22.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 93.120834,
-        "y" : -21.511427
+        "x" : 93.0,
+        "y" : -22.0
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 2.0,
@@ -795,12 +799,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.5,
       "TransformComponent.position" : {
-        "x" : 93.61902,
-        "y" : -22.011356
+        "x" : 93.5,
+        "y" : -22.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 93.61902,
-        "y" : -22.011356
+        "x" : 93.5,
+        "y" : -22.5
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 3.0,
@@ -813,12 +817,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 2.0,
       "TransformComponent.position" : {
-        "x" : 95.7822,
-        "y" : -25.255098
+        "x" : 96.0,
+        "y" : -25.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 95.7822,
-        "y" : -25.255098
+        "x" : 96.0,
+        "y" : -25.5
       },
       "DrawableComponent.height" : 2.0,
       "DrawableComponent.width" : 2.0,
@@ -830,12 +834,12 @@
     "overrides" : {
       "DrawableComponent.textureID" : 22,
       "TransformComponent.position" : {
-        "x" : 119.05601,
-        "y" : -34.504276
+        "x" : 119.0,
+        "y" : -34.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 119.05601,
-        "y" : -34.504276
+        "x" : 119.0,
+        "y" : -34.5
       }
     }
   }, {
@@ -844,12 +848,12 @@
     "overrides" : {
       "DrawableComponent.textureID" : 22,
       "TransformComponent.position" : {
-        "x" : 124.0549,
-        "y" : -14.503536
+        "x" : 124.0,
+        "y" : -14.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 124.0549,
-        "y" : -14.503536
+        "x" : 124.0,
+        "y" : -14.5
       }
     }
   }, {
@@ -859,12 +863,12 @@
       "DrawableComponent.textureID" : 22,
       "ColliderComponent.height" : 8.0,
       "TransformComponent.position" : {
-        "x" : 112.555084,
-        "y" : -20.504488
+        "x" : 112.5,
+        "y" : -20.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 112.555084,
-        "y" : -20.504488
+        "x" : 112.5,
+        "y" : -20.5
       },
       "DrawableComponent.height" : 8.0,
       "DrawableComponent.width" : 3.0,
@@ -877,12 +881,12 @@
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.5,
       "TransformComponent.position" : {
-        "x" : 110.05633,
-        "y" : -24.255419
+        "x" : 110.0,
+        "y" : -24.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 110.05633,
-        "y" : -24.255419
+        "x" : 110.0,
+        "y" : -24.5
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 2.0,
@@ -894,13 +898,14 @@
     "overrides" : {
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.25,
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
-        "x" : 112.56164,
-        "y" : -16.375605
+        "x" : 112.5,
+        "y" : -16.375
       },
       "TransformComponent.previousPosition" : {
-        "x" : 112.56164,
-        "y" : -16.375605
+        "x" : 112.5,
+        "y" : -16.375
       },
       "DrawableComponent.height" : 0.25,
       "DrawableComponent.width" : 3.0,
@@ -912,15 +917,15 @@
     "overrides" : {
       "ColliderComponent.height" : 0.5,
       "DrawableComponent.height" : 0.5,
+      "DrawableComponent.width" : 0.75,
       "TransformComponent.position" : {
-        "x" : 110.68104,
-        "y" : -20.709114
+        "x" : 111.0,
+        "y" : -20.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 110.68104,
-        "y" : -20.709114
+        "x" : 111.0,
+        "y" : -20.5
       },
-      "DrawableComponent.width" : 0.75,
       "ColliderComponent.width" : 0.75
     }
   }, {
@@ -930,12 +935,12 @@
       "ColliderComponent.height" : 5.0,
       "DrawableComponent.height" : 5.0,
       "TransformComponent.position" : {
-        "x" : 125.328835,
-        "y" : -2.0031343
+        "x" : 125.0,
+        "y" : -2.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 125.328835,
-        "y" : -2.0031343
+        "x" : 125.0,
+        "y" : -2.0
       }
     }
   }, {
@@ -944,6 +949,7 @@
     "overrides" : {
       "ColliderComponent.height" : 1.5,
       "DrawableComponent.height" : 1.5,
+      "DrawableComponent.width" : 1.5,
       "TransformComponent.position" : {
         "x" : 125.06868,
         "y" : 1.244835
@@ -952,7 +958,6 @@
         "x" : 125.06868,
         "y" : 1.244835
       },
-      "DrawableComponent.width" : 1.5,
       "ColliderComponent.width" : 1.5
     }
   }, {
@@ -961,6 +966,7 @@
     "overrides" : {
       "ColliderComponent.height" : 0.5,
       "DrawableComponent.height" : 0.5,
+      "DrawableComponent.width" : 0.75,
       "TransformComponent.position" : {
         "x" : 113.70862,
         "y" : -9.050645
@@ -969,7 +975,6 @@
         "x" : 113.70862,
         "y" : -9.050645
       },
-      "DrawableComponent.width" : 0.75,
       "ColliderComponent.width" : 0.75
     }
   }, {
@@ -979,12 +984,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 0.75,
       "TransformComponent.position" : {
-        "x" : 113.55944,
-        "y" : -13.761749
+        "x" : 113.52205,
+        "y" : -13.6721
       },
       "TransformComponent.previousPosition" : {
-        "x" : 113.55944,
-        "y" : -13.761749
+        "x" : 113.52205,
+        "y" : -13.6721
       },
       "DrawableComponent.height" : 0.75,
       "DrawableComponent.width" : 1.0,
@@ -997,12 +1002,12 @@
       "DrawableComponent.textureID" : 20,
       "ColliderComponent.height" : 0.5,
       "TransformComponent.position" : {
-        "x" : 112.558525,
-        "y" : -13.636742
+        "x" : 112.53372,
+        "y" : -13.545811
       },
       "TransformComponent.previousPosition" : {
-        "x" : 112.558525,
-        "y" : -13.636742
+        "x" : 112.53372,
+        "y" : -13.545811
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 1.0,
@@ -1016,12 +1021,12 @@
       "ColliderComponent.height" : 0.75,
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
       "TransformComponent.position" : {
-        "x" : 111.93447,
-        "y" : -13.415066
+        "x" : 111.94824,
+        "y" : -13.420577
       },
       "TransformComponent.previousPosition" : {
-        "x" : 111.93447,
-        "y" : -13.415066
+        "x" : 111.94824,
+        "y" : -13.420577
       },
       "DrawableComponent.height" : 0.75,
       "DrawableComponent.width" : 0.25,
@@ -1035,12 +1040,12 @@
       "ColliderComponent.height" : 0.25,
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
       "TransformComponent.position" : {
-        "x" : 111.3214,
-        "y" : -13.170738
+        "x" : 111.33243,
+        "y" : -13.167982
       },
       "TransformComponent.previousPosition" : {
-        "x" : 111.3214,
-        "y" : -13.170738
+        "x" : 111.33243,
+        "y" : -13.167982
       },
       "DrawableComponent.height" : 0.25,
       "DrawableComponent.width" : 1.0,
@@ -1054,12 +1059,12 @@
       "ColliderComponent.height" : 0.5,
       "PhysicalBodyComponent.ignoresPhysicalCollision" : true,
       "TransformComponent.position" : {
-        "x" : 111.50999,
-        "y" : -12.804781
+        "x" : 111.672585,
+        "y" : -12.810292
       },
       "TransformComponent.previousPosition" : {
-        "x" : 111.50999,
-        "y" : -12.804781
+        "x" : 111.672585,
+        "y" : -12.810292
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 0.25,
@@ -1071,13 +1076,14 @@
     "overrides" : {
       "DrawableComponent.textureID" : 21,
       "ColliderComponent.height" : 0.5,
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
-        "x" : 114.83352,
-        "y" : -4.250685
+        "x" : 114.5,
+        "y" : -4.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 114.83352,
-        "y" : -4.250685
+        "x" : 114.5,
+        "y" : -4.5
       },
       "DrawableComponent.height" : 0.5,
       "DrawableComponent.width" : 1.0,
@@ -1109,8 +1115,8 @@
     "overrides" : {
       "DrawableComponent.textureID" : 7,
       "TransformComponent.position" : {
-        "x" : 89.018196,
-        "y" : -23.449266
+        "x" : 89.0,
+        "y" : -24.0
       },
       "DrawableComponent.height" : 5.0,
       "DrawableComponent.textureIsTiled" : false,
@@ -1125,11 +1131,11 @@
       "DrawableComponent.textureID" : 7,
       "DrawableComponent.height" : 21.0,
       "DrawableComponent.renderingLayer" : "BACKGROUND",
+      "DrawableComponent.width" : 8.0,
       "TransformComponent.position" : {
         "x" : -49.793617,
         "y" : -6.5510907
-      },
-      "DrawableComponent.width" : 8.0
+      }
     }
   }, {
     "entityID" : 72,
@@ -1167,11 +1173,11 @@
     "overrides" : {
       "DrawableComponent.textureID" : 20,
       "DrawableComponent.height" : 8.0,
+      "DrawableComponent.width" : 0.5,
       "TransformComponent.position" : {
         "x" : 129.16663,
         "y" : 4.4127975
-      },
-      "DrawableComponent.width" : 0.5
+      }
     }
   }, {
     "entityID" : 75,
@@ -1179,11 +1185,11 @@
     "overrides" : {
       "DrawableComponent.textureID" : 20,
       "DrawableComponent.height" : 8.0,
+      "DrawableComponent.width" : 0.5,
       "TransformComponent.position" : {
         "x" : 120.66615,
         "y" : 4.485423
-      },
-      "DrawableComponent.width" : 0.5
+      }
     }
   }, {
     "entityID" : 77,
@@ -1221,11 +1227,11 @@
       "DrawableComponent.textureID" : 25,
       "DrawableComponent.parallaxFactorY" : 0.01,
       "DrawableComponent.parallaxFactorX" : 0.01,
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
         "x" : 0.34637344,
         "y" : -1.4947042
       },
-      "DrawableComponent.zOrder" : -10,
       "DrawableComponent.textureIsTiled" : false,
       "DrawableComponent.renderingLayer" : "FAR",
       "DrawableComponent.usesSizeFromTexture" : false,
@@ -1270,11 +1276,11 @@
       "DrawableComponent.textureID" : 26,
       "DrawableComponent.parallaxFactorY" : 0.8,
       "DrawableComponent.parallaxFactorX" : 0.5,
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
         "x" : 1.6165099,
         "y" : -21.30758
       },
-      "DrawableComponent.zOrder" : -10,
       "DrawableComponent.height" : 20.0,
       "DrawableComponent.textureIsTiled" : false,
       "DrawableComponent.renderingLayer" : "NEAR",
@@ -1319,11 +1325,11 @@
       "DrawableComponent.textureID" : 26,
       "DrawableComponent.parallaxFactorY" : 0.8,
       "DrawableComponent.parallaxFactorX" : 0.6,
+      "DrawableComponent.zOrder" : 10,
       "TransformComponent.position" : {
         "x" : 35.9703,
         "y" : -28.38831
       },
-      "DrawableComponent.zOrder" : 10,
       "DrawableComponent.height" : 40.0,
       "DrawableComponent.textureIsTiled" : false,
       "DrawableComponent.renderingLayer" : "NEAR",
@@ -1352,12 +1358,12 @@
       "DrawableComponent.textureID" : 28,
       "ColliderComponent.height" : 2.0,
       "TransformComponent.position" : {
-        "x" : 88.94315,
-        "y" : -24.206696
+        "x" : 89.0,
+        "y" : -24.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 88.94315,
-        "y" : -24.206696
+        "x" : 89.0,
+        "y" : -24.5
       },
       "DrawableComponent.textureIsTiled" : false,
       "TeleporterComponent.targetEntityID" : 93,
@@ -1369,12 +1375,12 @@
     "prefabName" : "door",
     "overrides" : {
       "TransformComponent.position" : {
-        "x" : 98.54067,
-        "y" : -34.85291
+        "x" : 98.5,
+        "y" : -35.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 98.54067,
-        "y" : -34.85291
+        "x" : 98.5,
+        "y" : -35.0
       }
     }
   }, {
@@ -1395,6 +1401,7 @@
     "overrides" : {
       "ColliderComponent.height" : 1.0,
       "DrawableComponent.height" : 1.0,
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
         "x" : 18.407831,
         "y" : -74.20528
@@ -1402,8 +1409,7 @@
       "TransformComponent.previousPosition" : {
         "x" : 18.407831,
         "y" : -74.20528
-      },
-      "DrawableComponent.zOrder" : -10
+      }
     }
   }, {
     "entityID" : 95,
@@ -1412,11 +1418,11 @@
       "DrawableComponent.textureID" : 22,
       "DrawableComponent.height" : 30.0,
       "DrawableComponent.renderingLayer" : "NEAR",
+      "DrawableComponent.width" : 50.0,
       "TransformComponent.position" : {
         "x" : 16.724052,
         "y" : -71.622856
-      },
-      "DrawableComponent.width" : 50.0
+      }
     }
   }, {
     "entityID" : 96,
@@ -1424,11 +1430,11 @@
     "overrides" : {
       "DrawableComponent.textureID" : 28,
       "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.zOrder" : -20,
       "TransformComponent.position" : {
-        "x" : -52.184692,
-        "y" : -5.095869
-      },
-      "DrawableComponent.zOrder" : -20
+        "x" : -52.0,
+        "y" : -4.0
+      }
     }
   }, {
     "entityID" : 97,
@@ -1436,6 +1442,7 @@
     "overrides" : {
       "DrawableComponent.textureID" : 28,
       "ColliderComponent.height" : 2.0,
+      "DrawableComponent.zOrder" : -20,
       "TransformComponent.position" : {
         "x" : 9.906008,
         "y" : -72.66075
@@ -1444,7 +1451,6 @@
         "x" : 9.906008,
         "y" : -72.66075
       },
-      "DrawableComponent.zOrder" : -20,
       "DrawableComponent.textureIsTiled" : false,
       "TeleporterComponent.targetEntityID" : 96,
       "TeleporterComponent.targetLevelID" : -1,
@@ -1457,12 +1463,12 @@
       "ColliderComponent.height" : 3.0,
       "DrawableComponent.height" : 3.0,
       "TransformComponent.position" : {
-        "x" : 24.886135,
-        "y" : -21.114048
+        "x" : 25.0,
+        "y" : -21.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 24.886135,
-        "y" : -21.114048
+        "x" : 25.0,
+        "y" : -21.0
       }
     }
   }, {
@@ -1471,15 +1477,15 @@
     "overrides" : {
       "ColliderComponent.height" : 5.0,
       "DrawableComponent.height" : 5.0,
+      "DrawableComponent.width" : 15.0,
       "TransformComponent.position" : {
-        "x" : 22.39816,
-        "y" : -25.118795
+        "x" : 22.5,
+        "y" : -25.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 22.39816,
-        "y" : -25.118795
+        "x" : 22.5,
+        "y" : -25.0
       },
-      "DrawableComponent.width" : 15.0,
       "ColliderComponent.width" : 15.0
     }
   }, {
@@ -1489,25 +1495,25 @@
       "DrawableComponent.textureID" : 29,
       "DrawableComponent.height" : 5.0,
       "DrawableComponent.renderingLayer" : "BACKGROUND",
+      "DrawableComponent.width" : 5.0,
       "TransformComponent.position" : {
-        "x" : 32.3869,
-        "y" : -25.109846
-      },
-      "DrawableComponent.width" : 5.0
+        "x" : 32.5,
+        "y" : -25.0
+      }
     }
   }, {
     "entityID" : 102,
     "prefabName" : "wall",
     "overrides" : {
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
-        "x" : 87.34372,
-        "y" : -89.07221
+        "x" : 87.5,
+        "y" : -89.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 87.34372,
-        "y" : -89.07221
-      },
-      "DrawableComponent.zOrder" : -10
+        "x" : 87.5,
+        "y" : -89.0
+      }
     }
   }, {
     "entityID" : 103,
@@ -1515,6 +1521,7 @@
     "overrides" : {
       "DrawableComponent.textureID" : 28,
       "ColliderComponent.height" : 2.0,
+      "DrawableComponent.zOrder" : -20,
       "TransformComponent.position" : {
         "x" : 31.476164,
         "y" : -26.597061
@@ -1523,7 +1530,6 @@
         "x" : 31.476164,
         "y" : -26.597061
       },
-      "DrawableComponent.zOrder" : -20,
       "DrawableComponent.textureIsTiled" : false,
       "TeleporterComponent.targetEntityID" : 104,
       "TeleporterComponent.targetLevelID" : -1,
@@ -1535,11 +1541,11 @@
     "overrides" : {
       "DrawableComponent.textureID" : 28,
       "DrawableComponent.textureIsTiled" : false,
+      "DrawableComponent.zOrder" : -20,
       "TransformComponent.position" : {
-        "x" : 92.11065,
-        "y" : -78.01931
-      },
-      "DrawableComponent.zOrder" : -20
+        "x" : 91.5,
+        "y" : -78.0
+      }
     }
   }, {
     "entityID" : 105,
@@ -1547,53 +1553,53 @@
     "overrides" : {
       "DrawableComponent.textureID" : 29,
       "DrawableComponent.renderingLayer" : "NEAR",
+      "DrawableComponent.width" : 15.0,
       "TransformComponent.position" : {
         "x" : 87.848366,
         "y" : -76.09311
-      },
-      "DrawableComponent.width" : 15.0
+      }
     }
   }, {
     "entityID" : 106,
     "prefabName" : "wall",
     "overrides" : {
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
-        "x" : 103.341484,
-        "y" : -79.07699
+        "x" : 103.5,
+        "y" : -79.0
       },
       "TransformComponent.previousPosition" : {
-        "x" : 103.341484,
-        "y" : -79.07699
-      },
-      "DrawableComponent.zOrder" : -10
+        "x" : 103.5,
+        "y" : -79.0
+      }
     }
   }, {
     "entityID" : 107,
     "prefabName" : "wall",
     "overrides" : {
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
-        "x" : 73.336266,
-        "y" : -78.078476
+        "x" : 73.5,
+        "y" : -77.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 73.336266,
-        "y" : -78.078476
-      },
-      "DrawableComponent.zOrder" : -10
+        "x" : 73.5,
+        "y" : -77.5
+      }
     }
   }, {
     "entityID" : 108,
     "prefabName" : "wall",
     "overrides" : {
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
-        "x" : 87.3406,
-        "y" : -63.114723
+        "x" : 87.5,
+        "y" : -63.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 87.3406,
-        "y" : -63.114723
-      },
-      "DrawableComponent.zOrder" : -10
+        "x" : 87.5,
+        "y" : -63.5
+      }
     }
   }, {
     "entityID" : 110,
@@ -1601,15 +1607,15 @@
     "overrides" : {
       "DrawableComponent.textureID" : 30,
       "ColliderComponent.height" : 1.0,
+      "DrawableComponent.zOrder" : -5,
       "TransformComponent.position" : {
-        "x" : 85.56661,
-        "y" : -77.72305
+        "x" : 85.46227,
+        "y" : -77.6341
       },
       "TransformComponent.previousPosition" : {
-        "x" : 85.56661,
-        "y" : -77.72305
+        "x" : 85.46227,
+        "y" : -77.6341
       },
-      "DrawableComponent.zOrder" : -5,
       "DrawableComponent.height" : 2.0,
       "DrawableComponent.textureIsTiled" : false,
       "DrawableComponent.width" : 2.0,
@@ -1620,15 +1626,15 @@
     "prefabName" : "wall",
     "overrides" : {
       "ColliderComponent.height" : 1.0,
+      "DrawableComponent.zOrder" : -10,
       "TransformComponent.position" : {
-        "x" : 85.50814,
-        "y" : -78.58541
+        "x" : 85.5,
+        "y" : -78.5
       },
       "TransformComponent.previousPosition" : {
-        "x" : 85.50814,
-        "y" : -78.58541
+        "x" : 85.5,
+        "y" : -78.5
       },
-      "DrawableComponent.zOrder" : -10,
       "DrawableComponent.height" : 1.0,
       "DrawableComponent.width" : 2.0,
       "ColliderComponent.width" : 2.0

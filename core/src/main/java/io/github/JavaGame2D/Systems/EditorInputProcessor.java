@@ -63,6 +63,13 @@ public class EditorInputProcessor implements InputProcessor {
             editScreen.showPrefabDropdown(world.x, world.y);
             return true;
         }
+
+        if (keycode == Input.Keys.DEL || keycode == Input.Keys.FORWARD_DEL) {
+            if(!entitySelector.nothingSelected()){
+                editScreen.showDeleteConfirmationDialog(entitySelector.getSelectedEntityID().getAsInt());
+                return true;
+            }
+        }
         return false;
     }
 

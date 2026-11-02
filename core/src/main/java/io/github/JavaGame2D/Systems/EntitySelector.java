@@ -47,6 +47,10 @@ public class EntitySelector {
         return selectedEntityID;
     }
 
+    public void resetSelection(){
+        this.selectedEntityID = OptionalInt.empty();
+    }
+
     public OptionalInt findEntityTouchingPoint(Vector2 pointInWorldCoords){
         // 1. get all entities with drawable component
         long drawableSignature = ComponentSignatures.get(TransformComponent.class) | ComponentSignatures.get(DrawableComponent.class);

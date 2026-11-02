@@ -202,6 +202,31 @@ public class EditScreen implements Screen {
         saveDialog.show(editorStage);
     }
 
+    public void showDeleteConfirmationDialog(int entityID) {
+        Dialog deleteDialog = new Dialog("Delete entity", uiskin) {
+            @Override
+            protected void result(Object object) {
+                // 'true' is returned if "Yes" is clicked, 'false' for "No"
+                if ((boolean) object) {
+                    ecm.deleteEntity(entityID);
+                    entitySelector.resetSelection();
+                    System.out.println("Deleted entity: "+ entityID);
+                } else {
+                    System.out.println("Delete cancelled.");
+                }
+            }
+        };
+
+        deleteDialog.text("Are you sure you want to delete selected entity?");
+
+        // Adding buttons. The second parameter is the 'Object' passed to result()
+        deleteDialog.button("Yes", true);
+        deleteDialog.button("No", false);
+
+        // Show the dialog and make it modal (blocks input to the rest of the Stage)
+        deleteDialog.show(editorStage);
+    }
+
     public void showPrefabDropdown(float worldX, float worldY) {
         Array<String> prefabNames = prefabManager.getAllPrefabNames();
 

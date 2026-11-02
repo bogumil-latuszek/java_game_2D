@@ -19,10 +19,12 @@ public class EditorInputProcessor implements InputProcessor {
     private OrthographicCamera camera;
     private SelectedTool selectedTool;
     private boolean isDragging = false;
-    private Vector2 lastDragPosition;
     private EntityComponentManager ecm;
     private PropertyInspector propertyInspector;
     private EditScreen editScreen; //TODO: remove circular dependance?
+
+    private Vector2 entityDragOrigin = new Vector2();
+    private Vector2 mouseDragOrigin;
 
     public EditorInputProcessor(EntityComponentManager ecm, EntitySelector entitySelector, PropertyInspector propertyInspector, OrthographicCamera camera, EditScreen editScreen) {
         this.ecm = ecm;
@@ -30,7 +32,6 @@ public class EditorInputProcessor implements InputProcessor {
         this.propertyInspector = propertyInspector;
         this.camera = camera;
         this.selectedTool = SelectedTool.DRAGGING_TOOL;
-        lastDragPosition = new Vector2(0,0);
         this.editScreen = editScreen;
     }
 
@@ -98,7 +99,10 @@ public class EditorInputProcessor implements InputProcessor {
             // if entity got selected, start dragging
             if (entitySelector.getSelectedEntityID().isPresent()){
                 isDragging = true;
-                lastDragPosition = touchWorldCoords;
+                // no need to check if selected entity has transform, as only entities with transform can be selected
+                TransformComponent transform = ecm.getComponent(TransformComponent.class, entitySelector.getSelectedEntityID().getAsInt());
+                this.entityDragOrigin = transform.position.cpy();
+                this.mouseDragOrigin = touchWorldCoords;
             }
             else {
                 isDragging = false;
@@ -114,6 +118,9 @@ public class EditorInputProcessor implements InputProcessor {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         if (button == Input.Buttons.LEFT && isDragging) {
             isDragging = false;
+            // reset drag variables
+            this.mouseDragOrigin = new Vector2();
+            this.entityDragOrigin = new Vector2();
             return true;
         }
         return false;
@@ -126,6 +133,8 @@ public class EditorInputProcessor implements InputProcessor {
 
     @Override
     public boolean touchDragged(int screenX, int screenY, int pointer) {
+        //System.out.println("touch dragging, entity origin:" + this.entityDragOrigin.toString() + " , mouse origin:" + this.mouseDragOrigin);
+
         if (!isDragging || !entitySelector.getSelectedEntityID().isPresent()){
             return false;
         }
@@ -139,16 +148,18 @@ public class EditorInputProcessor implements InputProcessor {
         TransformComponent transform = ecm.getComponent(TransformComponent.class, entitySelector.getSelectedEntityID().getAsInt());
 
         Vector2 tempTouchWorldCoords = touchWorldCoords.cpy();
-        Vector2 dragVector = tempTouchWorldCoords.sub(lastDragPosition);
-        transform.position = transform.position.add(dragVector);
+        Vector2 dragVector = tempTouchWorldCoords.sub(mouseDragOrigin);
 
-        // optionally, add Snapping to grid
-//        int gridSize = 16; // pixels
-//        transform.x = Math.round((worldX - dragOffsetX) / gridSize) * gridSize;
-//        transform.y = Math.round((worldY - dragOffsetY) / gridSize) * gridSize;
-
-
-        lastDragPosition = touchWorldCoords;
+        if (editScreen.snapToGrid){
+            //TODO: take zoom into account
+            // for now, we always snap to 0.5 unit
+            transform.position.x = (float)Math.round((this.entityDragOrigin.x + dragVector.x)*2) / 2;
+            transform.position.y = (float)Math.round((this.entityDragOrigin.y + dragVector.y)*2) / 2;
+        }
+        else {
+            transform.position.x = (this.entityDragOrigin.x + dragVector.x);
+            transform.position.y = (this.entityDragOrigin.y + dragVector.y);
+        }
 
         return true;
     }

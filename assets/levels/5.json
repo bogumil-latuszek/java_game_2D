@@ -1306,8 +1306,8 @@
       "DrawableComponent.parallaxFactorY" : 0.8,
       "DrawableComponent.parallaxFactorX" : 0.6,
       "TransformComponent.position" : {
-        "x" : 35.9703,
-        "y" : -28.38831
+        "x" : 36.0,
+        "y" : -28.5
       },
       "DrawableComponent.zOrder" : 10,
       "DrawableComponent.height" : 40.0,
@@ -1322,12 +1322,13 @@
     "overrides" : {
       "DrawableComponent.textureID" : 26,
       "TransformComponent.position" : {
-        "x" : 44.717102,
-        "y" : -33.71989
+        "x" : 44.0,
+        "y" : -31.5
       },
+      "DrawableComponent.zOrder" : 10,
       "DrawableComponent.height" : 20.0,
       "DrawableComponent.textureIsTiled" : false,
-      "DrawableComponent.renderingLayer" : "BACKGROUND",
+      "DrawableComponent.renderingLayer" : "NEAR",
       "DrawableComponent.usesSizeFromTexture" : false,
       "DrawableComponent.width" : 30.0
     }
@@ -1640,6 +1641,148 @@
       "DrawableComponent.usesSizeFromTexture" : false,
       "DrawableComponent.width" : 2.0,
       "ColliderComponent.width" : 2.0
+    }
+  }, {
+    "entityID" : 115,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 22,
+      "ColliderComponent.height" : 12.0,
+      "TransformComponent.position" : {
+        "x" : 67.0,
+        "y" : -45.5
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 67.0,
+        "y" : -45.5
+      },
+      "DrawableComponent.height" : 12.0,
+      "DrawableComponent.width" : 9.0,
+      "ColliderComponent.width" : 9.0
+    }
+  }, {
+    "entityID" : 116,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 21,
+      "ColliderComponent.height" : 1.0,
+      "TransformComponent.position" : {
+        "x" : 67.0,
+        "y" : -39.0
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 67.0,
+        "y" : -39.0
+      },
+      "DrawableComponent.height" : 1.0,
+      "DrawableComponent.width" : 9.0,
+      "ColliderComponent.width" : 9.0
+    }
+  }, {
+    "entityID" : 117,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 22,
+      "ColliderComponent.height" : 9.0,
+      "TransformComponent.position" : {
+        "x" : 72.5,
+        "y" : -44.5
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 72.5,
+        "y" : -44.5
+      },
+      "DrawableComponent.height" : 9.0,
+      "DrawableComponent.width" : 2.0,
+      "ColliderComponent.width" : 2.0
+    }
+  }, {
+    "entityID" : 118,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 21,
+      "ColliderComponent.height" : 1.0,
+      "TransformComponent.position" : {
+        "x" : 72.0,
+        "y" : -39.5
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 72.0,
+        "y" : -39.5
+      },
+      "DrawableComponent.height" : 1.0,
+      "DrawableComponent.width" : 1.0,
+      "ColliderComponent.width" : 1.0
+    }
+  }, {
+    "entityID" : 119,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 22,
+      "ColliderComponent.height" : 9.0,
+      "TransformComponent.position" : {
+        "x" : 60.5,
+        "y" : -44.5
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 60.5,
+        "y" : -44.5
+      },
+      "DrawableComponent.height" : 9.0,
+      "DrawableComponent.width" : 4.0,
+      "ColliderComponent.width" : 4.0
+    }
+  }, {
+    "entityID" : 120,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 21,
+      "ColliderComponent.height" : 1.0,
+      "TransformComponent.position" : {
+        "x" : 61.0,
+        "y" : -39.5
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 61.0,
+        "y" : -39.5
+      },
+      "DrawableComponent.height" : 1.0,
+      "DrawableComponent.width" : 3.0,
+      "ColliderComponent.width" : 3.0
+    }
+  }, {
+    "entityID" : 121,
+    "prefabName" : "wall",
+    "overrides" : {
+      "DrawableComponent.textureID" : 22,
+      "ColliderComponent.height" : 7.0,
+      "TransformComponent.position" : {
+        "x" : 52.5,
+        "y" : -50.0
+      },
+      "TransformComponent.previousPosition" : {
+        "x" : 52.5,
+        "y" : -50.0
+      },
+      "DrawableComponent.height" : 7.0,
+      "DrawableComponent.width" : 5.0,
+      "ColliderComponent.width" : 5.0
+    }
+  }, {
+    "entityID" : 123,
+    "prefabName" : "bckgrElement",
+    "overrides" : {
+      "DrawableComponent.textureID" : 20,
+      "DrawableComponent.parallaxFactorY" : 0.9,
+      "DrawableComponent.parallaxFactorX" : 0.9,
+      "TransformComponent.position" : {
+        "x" : 46.0,
+        "y" : -45.5
+      },
+      "DrawableComponent.zOrder" : 20,
+      "DrawableComponent.height" : 20.0,
+      "DrawableComponent.renderingLayer" : "NEAR",
+      "DrawableComponent.width" : 40.0
     }
   } ],
   "bakedEntities" : [ ],

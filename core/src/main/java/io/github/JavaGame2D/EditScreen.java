@@ -12,7 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import io.github.JavaGame2D.Enums.GameMode;
@@ -64,6 +66,7 @@ public class EditScreen implements Screen {
     // 3) rendering layer of an entity changed
     public boolean hierarchyDirty = true;
     public final EditorVisibilityState visibilityState = new EditorVisibilityState();
+    public boolean snapToGrid = true;
 
     public EditScreen(GameManager gameManager) {
         this.gameManager = gameManager;
@@ -122,6 +125,23 @@ public class EditScreen implements Screen {
             }
         });
         topLeftPanel.add(saveButton).left();
+
+        // create toggle button for snapToGrid
+        Drawable snap_to_grid_on = skin.getDrawable("snap_to_grid_on");
+        Drawable snap_to_grid_off = skin.getDrawable("snap_to_grid_off");
+        ImageButton.ImageButtonStyle style = new ImageButton.ImageButtonStyle();
+        style.up = snap_to_grid_off;
+        style.checked = snap_to_grid_on;
+        ImageButton snapToggleButton = new ImageButton(style);
+        snapToggleButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println("snapToGrid: " + snapToGrid);
+                snapToGrid = snapToggleButton.isChecked();
+            }
+        });
+        topLeftPanel.add(snapToggleButton).padLeft(20).padRight(20).left();
+
 
 
         bottomLeftPanel = new Table();

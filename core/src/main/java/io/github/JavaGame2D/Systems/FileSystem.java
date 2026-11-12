@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.github.JavaGame2D.*;
 import io.github.JavaGame2D.Components.Component;
+import io.github.JavaGame2D.Dialogue.Dialogue;
 import io.github.JavaGame2D.Enums.AnimationType;
 import io.github.JavaGame2D.Enums.BodySegmentType;
 import io.github.JavaGame2D.Enums.CharacterType;
@@ -22,6 +23,7 @@ import io.github.JavaGame2D.SaveData.JacksonModules.ShortenComponentClassNames;
 import static com.badlogic.gdx.net.HttpRequestBuilder.json;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -90,6 +92,22 @@ public class FileSystem {
             mapper.writeValue(new File(path), prefab);
         } catch (Exception e) {
             Gdx.app.error("JacksonSerializer", "Failed to serialize prefab: " + prefabName, e);
+        }
+    }
+
+    public Optional<Dialogue> loadDialogue(String dialogueID){
+        FileHandle file = Gdx.files.internal("dialogue/" + dialogueID + ".json");
+        if (!file.exists()) {
+            Gdx.app.error("AssetManager", "requested dialogue: "+dialogueID+" does not exist");
+            return Optional.empty();
+        }
+        try {
+            String jsonText = file.readString();
+            Dialogue dialogue = json.fromJson(Dialogue.class, jsonText); // Convert back to object
+            return Optional.of(dialogue);
+        } catch (Exception e) {
+            Gdx.app.error("SaveManager", "requested dialogue: " +dialogueID+" is corrupted", e);
+            return Optional.empty();
         }
     }
 

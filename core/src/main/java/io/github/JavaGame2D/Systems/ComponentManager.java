@@ -28,6 +28,7 @@ public class ComponentManager {
         registerComponentCollection(AnimationComponent.class, new ComponentCollection<>(AnimationComponent.class, ComponentSignatures.get(AnimationComponent.class)));
         registerComponentCollection(DestructibleComponent.class, new ComponentCollection<>(DestructibleComponent.class, ComponentSignatures.get(DestructibleComponent.class)));
         registerComponentCollection(PrefabComponent.class, new ComponentCollection<>(PrefabComponent.class, ComponentSignatures.get(PrefabComponent.class)));
+        registerComponentCollection(DialogueComponent.class, new ComponentCollection<>(DialogueComponent.class, ComponentSignatures.get(DialogueComponent.class)));
     }
 
     // Get a component collection by type (type-safe)

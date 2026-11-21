@@ -9,9 +9,11 @@ import io.github.JavaGame2D.Enums.PlayerAction;
 import io.github.JavaGame2D.EventBus;
 import io.github.JavaGame2D.Events.*;
 
+import java.util.OptionalInt;
+
 public class PlayerCharacterController {
-    private boolean playerNotSpecified = true;
-    private int playerEntityID;
+    private OptionalInt playerEntityID;
+
     private float jumpTimer = 0;
     private float maxJumpDuration = 0.22f;
     private boolean canExtendJump;
@@ -32,14 +34,17 @@ public class PlayerCharacterController {
 
     private void handleMovePlayerEvent(MovePlayerEvent event){
         int targetEntityID = event.targetEntityID;
+        if (!this.playerEntityID.isPresent()){
+            return;
+        }
         try {
             // move player to target entity
             TransformComponent targetTransform = ecm.getComponent(TransformComponent.class, targetEntityID);
-            TransformComponent playerTransform = ecm.getComponent(TransformComponent.class, this.playerEntityID);
+            TransformComponent playerTransform = ecm.getComponent(TransformComponent.class, this.playerEntityID.getAsInt());
             playerTransform.position = targetTransform.position.cpy();
 
             // make sure the player doesn't hover in the center of the door
-            PhysicalBodyComponent playerBody = ecm.getComponent(PhysicalBodyComponent.class, this.playerEntityID);
+            PhysicalBodyComponent playerBody = ecm.getComponent(PhysicalBodyComponent.class, this.playerEntityID.getAsInt());
             playerBody.onGround = false;
         }
         catch (RuntimeException e) {
@@ -47,12 +52,15 @@ public class PlayerCharacterController {
     }
 
     public void handlePlayerIDChanged(PlayerIDChanged event){
-        this.playerEntityID = event.playerEntityID;
-        this.playerNotSpecified = false;
+        this.playerEntityID = OptionalInt.of(event.playerEntityID);
     }
 
     public void update(float deltaTimeInSeconds){
-        if (isPlayerDead()){
+        if (!this.playerEntityID.isPresent()){
+            return;
+        }
+        DestructibleComponent destructible = ecm.getComponent(DestructibleComponent.class, playerEntityID.getAsInt());
+        if (!destructible.isAlive){
             PlayerIsDeadEvent playerIsDeadEvent = new PlayerIsDeadEvent();
             EventBus.getInstance().publish(playerIsDeadEvent);
         }
@@ -62,7 +70,7 @@ public class PlayerCharacterController {
     }
 
     public void handlePlayerAction(PlayerActionEvent event){
-        if (playerNotSpecified){
+        if (!this.playerEntityID.isPresent()){
             return;
         }
         this.playerActionEventsSinceLastUpdate += 1;
@@ -71,13 +79,8 @@ public class PlayerCharacterController {
         this.specialAction = event.specialAction;
     }
 
-    private boolean isPlayerDead(){
-        DestructibleComponent destructible = ecm.getComponent(DestructibleComponent.class, playerEntityID);
-        return !destructible.isAlive;
-    }
-
     private void updatePlayerMovement(float deltaTimeInSeconds){
-        PhysicalBodyComponent body = ecm.getComponent(PhysicalBodyComponent.class, playerEntityID);
+        PhysicalBodyComponent body = ecm.getComponent(PhysicalBodyComponent.class, playerEntityID.getAsInt());
         if (playerActionEventsSinceLastUpdate <= 0){
             //currentPlayerAction = PlayerAction.NONE;
             horizontalMovement = PlayerAction.NONE;
